@@ -40,10 +40,10 @@ if uploaded_file is not None:
   file.sheet_names
   if "tabs" not in st.session_state:
     st.session_state["tabs"] = file.sheet_names
-	tabs = st.tabs(st.session_state["tabs"])
+	#tabs = st.tabs(st.session_state["tabs"])
 
 if st.session_state["chosen_id"] is not None:
-	st.session_state["chosen_id"]
+	#st.session_state["chosen_id"]
 	my_html = f"<script>{my_js}</script>"
 	html(my_html)
 	st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
