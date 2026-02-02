@@ -1,12 +1,28 @@
 import streamlit as st
 import pandas as pd
-
+from streamlit.components.v1 import html
 # https://gist.github.com/asehmi/160109597bca79f7498d0f24d1adaae6
 
 st.set_page_config(page_title="Excel v2", page_icon="🗃")
 st.title("Excel v2")
 uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
 #file = pd.ExcelFile("myfile.xlsx")
+
+my_js = """
+function getCurrentTab(){
+	var tabid = -1;
+    try {
+    	var tabobjs=document.getElementsByTagName('button');
+        for (let i = 0; i < getLength(tabobjs); i++) {
+        	if(tabobjs[i].ariaSelected=="true"){
+                tabid=tabobjs[i].id.split("-")[3];
+			}
+        }
+	} catch (e) {tabid=-1;}    
+	return tabid;
+}
+function getLength(o){try {return o.length;}catch(e){return 0;}}
+"""
 
 if uploaded_file is not None:
   df1 = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
@@ -22,6 +38,9 @@ if uploaded_file is not None:
     st.session_state["chosen_id"] = chosen_id
 
 if st.session_state["chosen_id"] is not None:
-  st.session_state["chosen_id"] 
+  st.session_state["chosen_id"]
+  my_html = f"<script>{my_js}</script>"
+  html(my_html)
+  st.session_state.selectedtab=getCurrentTab
 
 # st.experimental_rerun()
