@@ -14,7 +14,7 @@ if uploaded_file is not None:
 
 if uploaded_file is not None:
   file = pd.ExcelFile(uploaded_file)
-  st.tabs(file.sheet_names, width="stretch", default=None)
+  chosen_id = st.tabs(file.sheet_names, width="stretch", default=None)
   file.sheet_names
   if "tabs" not in st.session_state:
     st.session_state["tabs"] = file.sheet_names
