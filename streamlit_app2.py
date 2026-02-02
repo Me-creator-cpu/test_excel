@@ -3,6 +3,8 @@ import pandas as pd
 
 # https://gist.github.com/asehmi/160109597bca79f7498d0f24d1adaae6
 
+st.set_page_config(page_title="Excel v2", page_icon="🗃")
+
 uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
 #file = pd.ExcelFile("myfile.xlsx")
 
