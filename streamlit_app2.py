@@ -23,13 +23,14 @@ function getCurrentTab(){
                 tabid=tabobjs[i].id.split("-")[3];
 			}
         }
-	} catch (e) {tabid=-1;}    
+	} catch (e) {tabid=-1;} 
+	window.parent.postMessage(tabid, '*');
 	return tabid;
 }
 function getLength(o){try {return o.length;}catch(e){return 0;}}
 """
 def func_empty():
-    return None
+    return st.empty()
 	
 if uploaded_file is not None:
   df1 = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
