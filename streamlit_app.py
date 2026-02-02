@@ -7,8 +7,8 @@ from io import StringIO
 # import statistics Library
 import statistics
 from openpyxl import load_workbook
-import xlsxwriter
-from openpyxl.utils.dataframe import dataframe_to_rows
+# import xlsxwriter
+# from openpyxl.utils.dataframe import dataframe_to_rows
 
 uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
 if uploaded_file is not None:
