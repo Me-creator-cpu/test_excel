@@ -49,7 +49,8 @@ if tabs is not None:
 	my_html = f"<script>{my_js}</script>"
 	html(my_html)
 	st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
-	nbtabs = len(st.session_state["tabs"])
+	#nbtabs = len(st.session_state["tabs"])
+	nbtabs = len(tabs)
 	i=0
 	for tabx in st.session_state["tabs"]:
 		if i != st.session_state.selectedtab:
