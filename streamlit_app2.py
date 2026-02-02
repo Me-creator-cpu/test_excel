@@ -21,7 +21,7 @@ if uploaded_file is not None:
   if "chosen_id" not in st.session_state:
     st.session_state["chosen_id"] = chosen_id
 
-if "chosen_id" is in st.session_state:
+if st.session_state["chosen_id"] is not None:
   st.session_state["chosen_id"] 
 
 # st.experimental_rerun()
