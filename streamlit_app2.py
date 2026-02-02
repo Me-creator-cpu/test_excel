@@ -9,7 +9,7 @@ uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
 #file = pd.ExcelFile("myfile.xlsx")
 
 if uploaded_file is not None:
-  df1 = pd.read_excel(uploaded_file, sheet_name='Ergebnisse', decimal =',')
+  df1 = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
   st.dataframe(df1)
 
 if uploaded_file is not None:
