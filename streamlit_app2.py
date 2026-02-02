@@ -42,7 +42,7 @@ if uploaded_file is not None:
     st.session_state["tabs"] = file.sheet_names
 	#tabs = st.tabs(st.session_state["tabs"])
 
-if st.session_state["chosen_id"] is not None:
+if st.session_state["tabs"] is not None:
 	#st.session_state["chosen_id"]
 	my_html = f"<script>{my_js}</script>"
 	html(my_html)
