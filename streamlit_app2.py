@@ -49,7 +49,11 @@ if tabs is not None:
 	#st.session_state["chosen_id"]
 	my_html = f"<script>{my_js}</script>"
 	html(my_html)
-	st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
+	
+	return_value = st_javascript("(function(){ getCurrentTab(); })()")
+	st.session_state.selectedtab=return_value
+	#st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
+	
 	#nbtabs = len(st.session_state["tabs"])
 	nbtabs = len(tabs)
 	i=0
