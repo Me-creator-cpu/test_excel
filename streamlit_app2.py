@@ -11,6 +11,7 @@ uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
 
 i=0
 st.session_state.selectedtab=0
+st.session_state.tabs=[]
 
 my_js = """
 function getCurrentTab(){
