@@ -52,6 +52,9 @@ if tabs is not None:
 	#nbtabs = len(st.session_state["tabs"])
 	nbtabs = len(tabs)
 	i=0
+	
+	st.write(tabs[st.session_state.selectedtab])
+	
 	for tabx in tabs:
 		if i != st.session_state.selectedtab:
 			with tabs[i]:
