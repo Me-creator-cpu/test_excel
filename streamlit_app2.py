@@ -9,6 +9,9 @@ st.title("Excel v2")
 uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
 #file = pd.ExcelFile("myfile.xlsx")
 
+i=0
+st.session_state.selectedtab=0
+
 my_js = """
 function getCurrentTab(){
 	var tabid = -1;
@@ -24,24 +27,37 @@ function getCurrentTab(){
 }
 function getLength(o){try {return o.length;}catch(e){return 0;}}
 """
-
+def func_empty():
+    return None
+	
 if uploaded_file is not None:
   df1 = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
   st.dataframe(df1)
 
 if uploaded_file is not None:
   file = pd.ExcelFile(uploaded_file)
-  chosen_id = st.tabs(file.sheet_names, width="stretch", default=None)
+  tabs = st.tabs(file.sheet_names, width="stretch", default=None)
   file.sheet_names
   if "tabs" not in st.session_state:
     st.session_state["tabs"] = file.sheet_names
-  if "chosen_id" not in st.session_state:
-    st.session_state["chosen_id"] = chosen_id
+	tabs = st.tabs(st.session_state["tabs"])
 
 if st.session_state["chosen_id"] is not None:
-  st.session_state["chosen_id"]
-  my_html = f"<script>{my_js}</script>"
-  html(my_html)
-  st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
+	st.session_state["chosen_id"]
+	my_html = f"<script>{my_js}</script>"
+	html(my_html)
+	st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
+	nbtabs = len(st.session_state["tabs"])
+	i=0
+	for tabx in st.session_state["tabs"]:
+		if i != st.session_state.selectedtab:
+			with tabs[i]:
+				func_empty
+		else:
+			with tabs[i]:
+				st.write(tabs[i])
+				#df_xls = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
+				#st.dataframe(df_xls)
+		i=i+1
 
 # st.experimental_rerun()
