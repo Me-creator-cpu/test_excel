@@ -52,7 +52,7 @@ if tabs is not None:
 	#nbtabs = len(st.session_state["tabs"])
 	nbtabs = len(tabs)
 	i=0
-	for tabx in st.session_state["tabs"]:
+	for tabx in tabs:
 		if i != st.session_state.selectedtab:
 			with tabs[i]:
 				func_empty
