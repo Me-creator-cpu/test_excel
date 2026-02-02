@@ -41,6 +41,6 @@ if st.session_state["chosen_id"] is not None:
   st.session_state["chosen_id"]
   my_html = f"<script>{my_js}</script>"
   html(my_html)
-  st.session_state.selectedtab=getCurrentTab()
+  st.session_state.selectedtab=st_javascript("""getCurrentTab();"""))
 
 # st.experimental_rerun()
