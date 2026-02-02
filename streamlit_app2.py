@@ -11,7 +11,7 @@ uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
 
 i=0
 st.session_state.selectedtab=0
-st.session_state.tabs=[]
+st.session_state.tabs=None
 
 my_js = """
 function getCurrentTab(){
@@ -43,7 +43,8 @@ if uploaded_file is not None:
     st.session_state["tabs"] = file.sheet_names
 	#tabs = st.tabs(st.session_state["tabs"])
 
-if st.session_state["tabs"] is not None:
+#if st.session_state["tabs"] is not None:
+if tabs is not None: 
 	#st.session_state["chosen_id"]
 	my_html = f"<script>{my_js}</script>"
 	html(my_html)
