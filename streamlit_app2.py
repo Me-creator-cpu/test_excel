@@ -33,7 +33,7 @@ function getCurrentTab(){
 function getLength(o){try {return o.length;}catch(e){return 0;}}
 """
 
-my_js1 = """
+my_js2 = """
 <script type='text/javascript'>
 function getCurrentTab(){
 	var tabid = -1;
