@@ -20,6 +20,7 @@ from openpyxl import load_workbook
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
 excel_loaded=False
 
+# ======================================================================================================
 # Définitions DataFrame et Excel
 df_costs_exp=None
 xls_exp_cols='A:C'
@@ -28,13 +29,19 @@ cols_exp = ['Level from', 'Level to', 'Cost']
 
 df_costs_comp=None
 xls_comp_cols='H:I'
-xls_comp_rows=32
+xls_comp_rows=31
 cols_comp = ['Level from', 'Cost']
 
 df_costs_mut=None
 xls_mut_cols='N:Q'
-xls_mut_rows=226
+xls_mut_rows=224
 cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
+
+df_pal_data=None
+xls_data_cols='B:N'
+xls_data_rows=42
+cols_data = ['Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2']
+# ======================================================================================================
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows):
     df = pd.read_excel(
@@ -69,11 +76,14 @@ if uploaded_file is not None:
     else:
         excel_loaded=False
 
+    df_pal_data=get_data_from_excel(uploaded_file,"Palmon",1,xls_data_cols,xls_data_rows)
+    st.dataframe(df_pal_data)
+    
     df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows)
-    st.dataframe(df_costs_exp)
     df_costs_comp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_comp_cols,xls_comp_rows)
-    st.dataframe(df_costs_comp)
     df_costs_mut=get_data_from_excel(uploaded_file,"Tableaux",1,xls_mut_cols,xls_mut_rows)
+    st.dataframe(df_costs_exp)
+    st.dataframe(df_costs_comp)
     st.dataframe(df_costs_mut)
 
 
