@@ -92,7 +92,7 @@ if uploaded_file is not None:
     st.dataframe(df_costs_comp)
     st.dataframe(df_costs_mut)
 
-    write_js_script
+    
 
 # ---- HIDE STREAMLIT STYLE ----
 hide_st_style = """
@@ -103,7 +103,11 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
-    
+write_js_script()
+js_script = """
+    <script language=javascript>alert('Hello workd');</script>
+    """
+
     #df2 = pd.read_excel(uploaded_file, sheet_name='Statistik')
     #st.dataframe(df2)
 
