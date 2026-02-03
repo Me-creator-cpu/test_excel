@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit.components.v1 as components
 #from streamlit.components.v1 import html
 from streamlit_javascript import st_javascript
+import extra_streamlit_components as stx
 # https://gist.github.com/asehmi/160109597bca79f7498d0f24d1adaae6
 
 st.set_page_config(page_title="Excel v2", page_icon="🗃")
