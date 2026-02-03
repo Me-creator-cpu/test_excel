@@ -32,13 +32,33 @@ function getCurrentTab(){
 }
 function getLength(o){try {return o.length;}catch(e){return 0;}}
 """
+
+my_js1 = """
+<script type='text/javascript'>
+function getCurrentTab(){
+	var tabid = -1;
+    try {
+    	var tabobjs=document.getElementsByTagName('button');
+        for (let i = 0; i < getLength(tabobjs); i++) {
+        	if(tabobjs[i].ariaSelected=='true'){
+                tabid=tabobjs[i].id.split('-')[3];
+			}
+        }
+		alert(tabid);
+	} catch (e) {tabid=-1;}
+	window.parent.postMessage(tabid, '*');
+	return tabid;
+}
+function getLength(o){try {return o.length;}catch(e){return 0;}}
+</script>
+"""
 def func_empty():
   return st.empty()
 
-my_html = f"<script>{my_js}</script>"
+my_html = f"<script type='text/javascript'>{my_js}</script>"
 components.html(my_html)
 components.html("<div>Hello world</div>")
-components.html(f"<div>{my_js}</div>")
+components.html(f"<div>{my_js2}</div>")
 
 if uploaded_file is not None:
   df1 = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
