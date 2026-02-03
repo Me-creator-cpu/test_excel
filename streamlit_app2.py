@@ -15,7 +15,7 @@ st.session_state.selectedtab=0
 st.session_state.tabs=None
 
 my_js = """
-function getCurrentTab(){{
+function getCurrentTab(){
 	var tabid = -1;
     try {
     	var tabobjs=document.getElementsByTagName('button');
