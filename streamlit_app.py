@@ -92,8 +92,8 @@ if uploaded_file is not None:
     st.dataframe(df_costs_comp)
     st.dataframe(df_costs_mut)
 
-
-
+    write_js_script
+    
     
     #df2 = pd.read_excel(uploaded_file, sheet_name='Statistik')
     #st.dataframe(df2)
@@ -142,4 +142,4 @@ if uploaded_file is not None:
 
     #df5 = pd.DataFrame([{'Spannung Beginn':mittelwertMax, 'STABW Beginn': stdevMax, 'Spannung Ende': mittelwertMin, 'STABW Ende': stdevMin, 'rel. Spannung Versuchsende': mittelwertSigmaRel * 100, 'rel. Spannung STABW': stdevSigmaRel}])
     #st.dataframe(df5)
-write_js_script
+
