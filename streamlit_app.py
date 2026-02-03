@@ -17,7 +17,6 @@ from openpyxl import load_workbook
 # 4:"Tests"
 # 5:"CSV tableaux"
 
-cols_costs = ['Level from', 'Level to', 'Cost']
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
 excel_loaded=False
 
@@ -25,14 +24,17 @@ excel_loaded=False
 df_costs_exp=None
 xls_exp_cols='A:C'
 xls_exp_rows=302
+cols_exp = ['Level from', 'Level to', 'Cost']
 
 df_costs_comp=None
 xls_comp_cols='H:I'
 xls_comp_rows=32
+cols_comp = ['Level from', 'Cost']
 
 df_costs_mut=None
 xls_mut_cols='N:Q'
 xls_mut_rows=226
+cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows):
     df = pd.read_excel(
@@ -59,7 +61,6 @@ if uploaded_file is not None:
         )
         if option is not None:
             if option == "Tableaux":
-                #df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',', names=cols_costs)
                 df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
             else:
                 df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
@@ -68,8 +69,12 @@ if uploaded_file is not None:
     else:
         excel_loaded=False
 
-    df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows)    
+    df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows)
     st.dataframe(df_costs_exp)
+    df_costs_comp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_comp_cols,xls_comp_rows)
+    st.dataframe(df_costs_comp)
+    df_costs_mut=get_data_from_excel(uploaded_file,"Tableaux",1,xls_mut_cols,xls_mut_rows)
+    st.dataframe(df_costs_mut)
 
 
 
