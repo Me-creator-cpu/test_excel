@@ -31,9 +31,10 @@ if uploaded_file is not None:
         )
         if option is not None:
             if option == "Tableaux":
-                df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=0, decimal =',', names=cols_costs)
+                #df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',', names=cols_costs)
+                df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
             else:
-                df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=0, decimal =',')
+                df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
             st.dataframe(df1)
 
 
