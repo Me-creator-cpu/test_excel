@@ -12,8 +12,8 @@ from openpyxl import load_workbook
 
 uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
 if uploaded_file is not None:
-    df1 = pd.read_excel(uploaded_file, sheet_name='Ergebnisse', decimal =',')
-    #st.dataframe(df1)
+    df1 = pd.read_excel(uploaded_file, sheet_name='Palmon', header = [0, 1, 2], decimal =',')
+    st.dataframe(df1)
 
     df2 = pd.read_excel(uploaded_file, sheet_name='Statistik')
     #st.dataframe(df2)
