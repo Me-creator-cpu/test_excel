@@ -37,12 +37,13 @@ if uploaded_file is not None:
   st.dataframe(df1)
 
 if uploaded_file is not None:
-  file = pd.ExcelFile(uploaded_file)
-  tabs = st.tabs(file.sheet_names, width="stretch", default=None)
-  file.sheet_names
-  if "tabs" not in st.session_state:
-    st.session_state["tabs"] = file.sheet_names
-	tabs = st.tabs(st.session_state["tabs"])
+	file = pd.ExcelFile(uploaded_file)
+	tabs = st.tabs(file.sheet_names, width="stretch", default=None)
+	st.session_state["tabs"] = file.sheet_names
+	file.sheet_names
+  	if "tabs" not in st.session_state:
+	    st.session_state["tabs"] = file.sheet_names
+		#tabs = st.tabs(st.session_state["tabs"])
 
 #if st.session_state["tabs"] is not None:
 if tabs is not None: 
