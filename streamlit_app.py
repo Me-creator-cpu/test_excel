@@ -105,7 +105,7 @@ if uploaded_file is not None:
 #st.markdown(hide_st_style, unsafe_allow_html=True)
 write_js_script()
 js_script = """
-    <script>alert('Hello workd');</script>
+    <script language='javascript'>alert('Hello workd');</script>
     """
 st.markdown(js_script, unsafe_allow_html=True)
 
