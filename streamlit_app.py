@@ -10,9 +10,16 @@ from openpyxl import load_workbook
 # import xlsxwriter
 # from openpyxl.utils.dataframe import dataframe_to_rows
 
+# 0:"Palmon"
+# 1:"TCD"
+# 2:"Details"
+# 3:"Tableaux"
+# 4:"Tests"
+# 5:"CSV tableaux"
+
 uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
 if uploaded_file is not None:
-    df1 = pd.read_excel(uploaded_file, sheet_name='Palmon', header = [0, 1, 2], decimal =',')
+    df1 = pd.read_excel(uploaded_file, sheet_name='Palmon', header = [0], decimal =',')
     st.dataframe(df1)
 
     df2 = pd.read_excel(uploaded_file, sheet_name='Statistik')
