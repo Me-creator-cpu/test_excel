@@ -76,7 +76,7 @@ if uploaded_file is not None:
 
 if st.session_state["tabs"] is not None: 
   #st.session_state["chosen_id"]
-  return_value = st_javascript("(function(){ getCurrentTab(); })()")
+  return_value = st_javascript("(function(){ alert('Hello world'); })()")
   st.session_state.selectedtab=return_value
   #st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
 	
