@@ -43,7 +43,7 @@ xls_data_rows=42
 cols_data = ['Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2']
 # ======================================================================================================
 
-def write_js_scritp():
+def write_js_script():
     js_script="""
         <script language=javascript>alert('Hello workd');</script>
     """
@@ -142,3 +142,4 @@ if uploaded_file is not None:
 
     #df5 = pd.DataFrame([{'Spannung Beginn':mittelwertMax, 'STABW Beginn': stdevMax, 'Spannung Ende': mittelwertMin, 'STABW Ende': stdevMin, 'rel. Spannung Versuchsende': mittelwertSigmaRel * 100, 'rel. Spannung STABW': stdevSigmaRel}])
     #st.dataframe(df5)
+write_js_script
