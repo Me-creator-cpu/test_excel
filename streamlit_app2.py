@@ -14,20 +14,20 @@ st.session_state.selectedtab=0
 st.session_state.tabs=None
 
 my_js = """
-function getCurrentTab(){
+function getCurrentTab(){{
 	var tabid = -1;
-    try {
+    try {{
     	var tabobjs=document.getElementsByTagName('button');
-        for (let i = 0; i < getLength(tabobjs); i++) {
-        	if(tabobjs[i].ariaSelected=="true"){
+        for (let i = 0; i < getLength(tabobjs); i++) {{
+        	if(tabobjs[i].ariaSelected=="true"){{
                 tabid=tabobjs[i].id.split("-")[3];
-			}
-        }
-	} catch (e) {tabid=-1;} 
+			}}
+        }}
+	}} catch (e) {{tabid=-1;}} 
 	window.parent.postMessage(tabid, '*');
 	return tabid;
-}
-function getLength(o){try {return o.length;}catch(e){return 0;}}
+}}
+function getLength(o){{try {return o.length;}}catch(e){{return 0;}} }}
 """
 def func_empty():
   return st.empty()
