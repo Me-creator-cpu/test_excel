@@ -69,7 +69,7 @@ if uploaded_file is not None:
         excel_loaded=False
 
     df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows)    
-    st.dataframe(df_costs_comp)
+    st.dataframe(df_costs_exp)
 
 
 
