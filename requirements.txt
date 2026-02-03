@@ -3,3 +3,4 @@ streamlit_javascript
 user_agents
 streamlit_dynamic_filters
 openpyxl
+extra_streamlit_components
