@@ -21,8 +21,8 @@ function getCurrentTab(){
     try {
     	var tabobjs=document.getElementsByTagName('button');
         for (let i = 0; i < getLength(tabobjs); i++) {
-        	if(tabobjs[i].ariaSelected=="true"){
-                tabid=tabobjs[i].id.split("-")[3];
+        	if(tabobjs[i].ariaSelected=='true'){
+                tabid=tabobjs[i].id.split('-')[3];
 			}
         }
 		alert(tabid);
