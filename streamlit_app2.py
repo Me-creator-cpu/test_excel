@@ -80,13 +80,10 @@ if st.session_state["tabs"] is not None:
   return_value = st_javascript(f"{my_js}")	
   st.session_state.selectedtab=return_value
   #st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
-	
   #nbtabs = len(st.session_state["tabs"])
   nbtabs = len(tabs)
   i=0
-  
   st.write(st.session_state.selectedtab)
-	
   for tabx in tabs:
     if i != st.session_state.selectedtab:
       with tabs[i]:
