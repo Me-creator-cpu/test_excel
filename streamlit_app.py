@@ -17,6 +17,7 @@ from openpyxl import load_workbook
 # 4:"Tests"
 # 5:"CSV tableaux"
 
+cols_costs = ['Level from', 'Level to', 'Cost']
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
 
 if uploaded_file is not None:
@@ -29,7 +30,10 @@ if uploaded_file is not None:
             placeholder="Select Worksheet...",
         )
         if option is not None:
-            df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header = [0], decimal =',')
+            if option == "Tableaux":
+                df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=0, decimal =',', names=cols_costs)
+            else:
+                df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=0, decimal =',')
             st.dataframe(df1)
 
 
