@@ -19,6 +19,34 @@ from openpyxl import load_workbook
 
 cols_costs = ['Level from', 'Level to', 'Cost']
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
+excel_loaded=False
+
+# Définitions DataFrame et Excel
+df_costs_exp=None
+xls_exp_cols='A:C'
+xls_exp_rows=302
+
+df_costs_comp=None
+xls_comp_cols='H:I'
+xls_comp_rows=32
+
+df_costs_mut=None
+xls_mut_cols='N:Q'
+xls_mut_rows=226
+
+def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows):
+    df = pd.read_excel(
+        io=xls_file,
+        engine="openpyxl",
+        sheet_name=xls_sheet,
+        skiprows=int(skip),
+        usecols=str(rng_cols),
+        nrows=int(rng_rows),
+    )
+    #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
+    return df
+
+#df = get_data_from_excel()
 
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
@@ -36,7 +64,12 @@ if uploaded_file is not None:
             else:
                 df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
             st.dataframe(df1)
+            excel_loaded=True
+    else:
+        excel_loaded=False
 
+    df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows)    
+    st.dataframe(df_costs_comp)
 
 
 
