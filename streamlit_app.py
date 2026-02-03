@@ -122,7 +122,7 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
     #probe2Min = df4.iloc[-1, 0]
     #st.write('Minimalwert Probe 2: ' + str(round(probe2Min, 2)))
 
-    st.write("""---""")
+    #st.write("""---""")
     #st.write('Maximalwert Probe 1: ' + str(round(probe1Max, 4)))
     #st.write('Minimalwert Probe 1: ' + str(round(probe1Min, 4)))
     #st.write('Maximalwert Probe 2: ' + str(round(probe2Max, 4)))
