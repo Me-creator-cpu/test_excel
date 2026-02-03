@@ -43,6 +43,12 @@ xls_data_rows=42
 cols_data = ['Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2']
 # ======================================================================================================
 
+def write_js_scritp():
+    js_script="""
+        <script language=javascript>alert('Hello workd');</script>
+    """
+    st.markdown(js_script, unsafe_allow_html=True)
+
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows):
     df = pd.read_excel(
         io=xls_file,
