@@ -30,46 +30,46 @@ function getCurrentTab(){
 function getLength(o){try {return o.length;}catch(e){return 0;}}
 """
 def func_empty():
-    return st.empty()
+  return st.empty()
 	
 if uploaded_file is not None:
   df1 = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
   st.dataframe(df1)
 
 if uploaded_file is not None:
-	file = pd.ExcelFile(uploaded_file)
-	tabs = st.tabs(file.sheet_names, width="stretch", default=None)
-	st.session_state["tabs"] = file.sheet_names
-	file.sheet_names
-  	if "tabs" not in st.session_state:
-	    st.session_state["tabs"] = file.sheet_names
-		#tabs = st.tabs(st.session_state["tabs"])
+  file = pd.ExcelFile(uploaded_file)
+  tabs = st.tabs(file.sheet_names, width="stretch", default=None)
+  st.session_state["tabs"] = file.sheet_names
+  file.sheet_names
+  if "tabs" not in st.session_state:
+    st.session_state["tabs"] = file.sheet_names
+    #tabs = st.tabs(st.session_state["tabs"])
 
 #if st.session_state["tabs"] is not None:
 if tabs is not None: 
-	#st.session_state["chosen_id"]
-	my_html = f"<script>{my_js}</script>"
-	html(my_html)
+  #st.session_state["chosen_id"]
+  my_html = f"<script>{my_js}</script>"
+  html(my_html)
+
+  return_value = st_javascript("(function(){ getCurrentTab(); })()")
+  st.session_state.selectedtab=return_value
+  #st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
 	
-	return_value = st_javascript("(function(){ getCurrentTab(); })()")
-	st.session_state.selectedtab=return_value
-	#st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
+  #nbtabs = len(st.session_state["tabs"])
+  nbtabs = len(tabs)
+  i=0
+  
+  st.write(st.session_state.selectedtab)
 	
-	#nbtabs = len(st.session_state["tabs"])
-	nbtabs = len(tabs)
-	i=0
-	
-	st.write(st.session_state.selectedtab)
-	
-	for tabx in tabs:
-		if i != st.session_state.selectedtab:
-			with tabs[i]:
-				func_empty
-		else:
-			with tabs[i]:
-				st.write(tabs[i])
-				#df_xls = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
-				#st.dataframe(df_xls)
-		i=i+1
+  for tabx in tabs:
+    if i != st.session_state.selectedtab:
+      with tabs[i]:
+        func_empty
+    else:
+      with tabs[i]:
+        st.write(tabs[i])
+        #df_xls = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
+        #st.dataframe(df_xls)
+    i=i+1
 
 # st.experimental_rerun()
