@@ -18,6 +18,7 @@ from openpyxl import load_workbook
 # 5:"CSV tableaux"
 
 file = st.file_uploader("Choose a file", type = 'xlsx')
+file
 if file is not None:
     option = st.selectbox(
         "Worksheet to open",
