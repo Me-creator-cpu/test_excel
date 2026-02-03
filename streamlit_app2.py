@@ -38,7 +38,7 @@ def func_empty():
 my_html = f"<script>{my_js}</script>"
 components.html(my_html)
 components.html("<div>Hello world</div>")
-components.html(f"<div><pre>{my_js}</pre></div>")
+components.html(f"<div>{my_js}</div>")
 
 if uploaded_file is not None:
   df1 = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
