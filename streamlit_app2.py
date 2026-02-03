@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
-from streamlit.components.v1 import html
+import streamlit.components.v1 as components
+#from streamlit.components.v1 import html
 from streamlit_javascript import st_javascript
 # https://gist.github.com/asehmi/160109597bca79f7498d0f24d1adaae6
 
@@ -23,6 +24,7 @@ function getCurrentTab(){{
                 tabid=tabobjs[i].id.split("-")[3];
 			}
         }
+		alert(tabid);
 	} catch (e) {tabid=-1;}
 	window.parent.postMessage(tabid, '*');
 	return tabid;
@@ -31,7 +33,10 @@ function getLength(o){try {return o.length;}catch(e){return 0;}}
 """
 def func_empty():
   return st.empty()
-	
+
+my_html = f"<script>{my_js}</script>"
+components.html(my_html)
+
 if uploaded_file is not None:
   df1 = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
   st.dataframe(df1)
@@ -47,9 +52,6 @@ if uploaded_file is not None:
 
 if st.session_state["tabs"] is not None: 
   #st.session_state["chosen_id"]
-  my_html = f"<script>{my_js}</script>"
-  html(my_html)
-
   return_value = st_javascript("(function(){ getCurrentTab(); })()")
   st.session_state.selectedtab=return_value
   #st.session_state.selectedtab=st_javascript("""getCurrentTab();""")
