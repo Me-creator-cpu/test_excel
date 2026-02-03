@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit.components.v1 as components
 #from streamlit.components.v1 import html
 from streamlit_javascript import st_javascript
-import extra_streamlit_components as stx
+#import extra_streamlit_components as stx
 # https://gist.github.com/asehmi/160109597bca79f7498d0f24d1adaae6
 
 st.set_page_config(page_title="Excel v2", page_icon="🗃")
@@ -37,6 +37,7 @@ def func_empty():
 
 my_html = f"<script>{my_js}</script>"
 components.html(my_html)
+components.html("<div>Hello world</div>")
 
 if uploaded_file is not None:
   df1 = pd.read_excel(uploaded_file, sheet_name='Tableaux', decimal =',')
