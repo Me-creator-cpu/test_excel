@@ -105,8 +105,9 @@ hide_st_style = """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 write_js_script()
 js_script = """
-    <script language=javascript>alert('Hello workd');</script>
+    <script language='javascript'>alert('Hello workd');</script>
     """
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
     #df2 = pd.read_excel(uploaded_file, sheet_name='Statistik')
     #st.dataframe(df2)
