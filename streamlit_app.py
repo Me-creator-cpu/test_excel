@@ -54,7 +54,7 @@ def write_js_script():
     """
     st.markdown(js_script, unsafe_allow_html=True)
 
-def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows):
+def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
     try:
         df = pd.read_excel(
             io=xls_file,
@@ -64,6 +64,8 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows):
             usecols=str(rng_cols),
             nrows=int(rng_rows),
         )
+        if rencols is not None:
+            df.columns = rencols
     except:
         df = None
     #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
@@ -97,12 +99,12 @@ if uploaded_file is not None:
     df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows)
     df_costs_comp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_comp_cols,xls_comp_rows)
     df_costs_mut=get_data_from_excel(uploaded_file,"Tableaux",1,xls_mut_cols,xls_mut_rows)
-    df_costs_mut_full=get_data_from_excel(uploaded_file,"Valeurs",0,xls_mut_full_cols,xls_mut_full_rows)
+    df_costs_mut_full=get_data_from_excel(uploaded_file,"Valeurs",0,xls_mut_full_cols,xls_mut_full_rows,cols_mut_full)
     
     st.dataframe(df_costs_exp)
     st.dataframe(df_costs_comp)
     st.dataframe(df_costs_mut)
-    df_costs_mut_full.columns=cols_mut_full
+    #df_costs_mut_full.columns=cols_mut_full
     #df_costs_mut_full.rename(columns={0: 'Cost', 1: 'Cost'})
     st.dataframe(df_costs_mut_full)
 
