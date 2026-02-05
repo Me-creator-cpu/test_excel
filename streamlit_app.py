@@ -50,16 +50,7 @@ df_xls = pd.DataFrame(data,
 
 df_xls
 
-st.write(df_xls["DataFrame"][4])
-if uploaded_file is not None:
-    df_xls["DataFrame"][4]=get_data_from_excel(
-            xls_file=uploaded_file,
-            xls_sheet=df_xls["Worksheet"][4],
-            skip=df_xls["SkipRows"][4],
-            rng_cols=df_xls["Range"][4],
-            rng_rows=df_xls["UpToRow"][4],
-            rencols=df_xls["DisplayColumns"][4])
-    st.write(df_xls["DataFrame"][4])
+
 
 df_costs_exp=None
 xls_exp_cols='A:C'
@@ -175,6 +166,16 @@ js_script = """
     """
 st.markdown(js_script, unsafe_allow_html=True)
 
+st.write(df_xls["DataFrame"][4])
+if uploaded_file is not None:
+    df_xls["DataFrame"][4]=get_data_from_excel(
+            xls_file=uploaded_file,
+            xls_sheet=df_xls["Worksheet"][4],
+            skip=df_xls["SkipRows"][4],
+            rng_cols=df_xls["Range"][4],
+            rng_rows=df_xls["UpToRow"][4],
+            rencols=df_xls["DisplayColumns"][4])
+    st.write(df_xls["DataFrame"][4])
     #df2 = pd.read_excel(uploaded_file, sheet_name='Statistik')
     #st.dataframe(df2)
 
