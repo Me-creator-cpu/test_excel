@@ -48,6 +48,11 @@ df_xls = pd.DataFrame(data,
     #index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
 )
 
+df_xls
+columns = list(df_xls)
+for i in columns:
+    st.write(df_xls[i][2])
+        
 df_costs_exp=None
 xls_exp_cols='A:C'
 xls_exp_rows=302
@@ -97,9 +102,7 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
     #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
     return df
 
-df_xls
-st.write(df_xls[0][1])
-st.write(df_xls[1][1])
+
 #for row in df_xls.itertuples(name="Workbook"):
 #    #"Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"
 #    st.write(row[0],row[1],row[2],row[3],row[4],row[5]) 
