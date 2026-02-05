@@ -1,4 +1,4 @@
-import streamlit as st
+eimport streamlit as st
 import pandas as pd
 import datetime
 import numpy as np
@@ -132,8 +132,8 @@ row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
 
-if cols_comp is not None:
-    st.bar_chart(df_costs_comp, x="Level from", y="Cost")
+if df_costs_comp is not None:
+    st.bar_chart(df_costs_comp) #, x="Level from", y="Cost")
 
 
 
