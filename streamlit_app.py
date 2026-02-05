@@ -91,9 +91,11 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
     return df
 
 df_xls
-for row in df_xls.itertuples(name="Workbook"):
-    #"Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"
-    st.write(row[0],row[1],row[2],row[3],row[4],row[5]) 
+st.write(df_xls.row[0][1])
+st.write(df_xls.row[1][1])
+#for row in df_xls.itertuples(name="Workbook"):
+#    #"Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"
+#    st.write(row[0],row[1],row[2],row[3],row[4],row[5]) 
 #df_test=get_data_from_excel(uploaded_file,"Valeurs",0,xls_mut_full_cols,xls_mut_full_rows,cols_mut_full)
 
 if uploaded_file is not None:
