@@ -55,14 +55,17 @@ def write_js_script():
     st.markdown(js_script, unsafe_allow_html=True)
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows):
-    df = pd.read_excel(
-        io=xls_file,
-        engine="openpyxl",
-        sheet_name=xls_sheet,
-        skiprows=int(skip),
-        usecols=str(rng_cols),
-        nrows=int(rng_rows),
-    )
+    try:
+        df = pd.read_excel(
+            io=xls_file,
+            engine="openpyxl",
+            sheet_name=xls_sheet,
+            skiprows=int(skip),
+            usecols=str(rng_cols),
+            nrows=int(rng_rows),
+        )
+    except:
+        df = None
     #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
     return df
 
