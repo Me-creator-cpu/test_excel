@@ -23,6 +23,18 @@ excel_loaded=False
 
 # ======================================================================================================
 # Définitions DataFrame et Excel
+cols_data = ['Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2']
+df_xls = pd.DataFrame(
+    {                     #["Worksheet", "DisplayName",     "Range", "SkipRows", "UpToRow", "DisplayColumns"]
+        "Palmons":         ["Palmon",    "Palmons",         "B:N",    1,         40,         cols_data],
+        "EXP":             ["Tableaux",  "Update costs",    "A:C",    1,         302,        ['Level from', 'Level to', 'Cost']            ],
+        "Competencies":    ["Tableaux",  "Competencies",    "H:I",    1,         31,         ['Level from', 'Cost']                        ],
+        "Mutation":        ["Tableaux",  "Mutation costs",  "N:Q",    1,         224,        ['Level', 'Step', 'Substep', 'Cost level']    ]
+        "MaxCosts":        ["Valeurs",   "Valeurs Réf."     "A:B",    0,         5           ['Cost type', 'Cost']                         ],
+    },
+    index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
+)
+
 df_costs_exp=None
 xls_exp_cols='A:C'
 xls_exp_rows=302
@@ -41,7 +53,7 @@ cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
 df_pal_data=None
 xls_data_cols='B:N'
 xls_data_rows=40
-cols_data = ['Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2']
+#cols_data = ['Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2']
 
 df_costs_mut_full=None
 xls_mut_full_cols='A:B'
@@ -76,6 +88,8 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
         df = None
     #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
     return df
+
+df_xls
 
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
