@@ -133,7 +133,7 @@ for i in range(row):
     get_data(uploaded_file,i,False)
 
 if cols_comp is not None:
-    st.bar_chart(cols_comp, x="Level from", y="Cost")
+    st.bar_chart(df_costs_comp, x="Level from", y="Cost")
 
 
 
