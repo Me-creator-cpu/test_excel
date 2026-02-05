@@ -143,14 +143,16 @@ if df_chart is not None:
     st.bar_chart(df_chart, x="Level from", y="Cost")
     sel_min=1
     sel_max=30
-    selection = st.slider(
-        label="Costs from :",
+    filter = st.slider(
+        label="Costs from leve:",
         min_value=sel_min,
         max_value=sel_max,
         value=(sel_min,sel_max),
         step=1
     )
-    st.write(selection)
+    filter_query = f"{filter[0]} <= 'Level from' <= {filter[1]}"
+    st.write(filter)
+    st.dataframe(df_chart.query(filter_query),hide_index=True)
 
 
 
