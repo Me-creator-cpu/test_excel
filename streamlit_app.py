@@ -111,18 +111,14 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
     return df
 
 def get_data(file,idx):
-    df_xls["DataFrame"][4]=get_data_from_excel(
-            xls_file=file,
-            xls_sheet=df_xls["Worksheet"][idx],
-            skip=df_xls["SkipRows"][idx],
-            rng_cols=df_xls["Range"][idx],
-            rng_rows=df_xls["UpToRow"][idx],
-            rencols=df_xls["DisplayColumns"][idx])  
-
-#for row in df_xls.itertuples(name="Workbook"):
-#    #"Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"
-#    st.write(row[0],row[1],row[2],row[3],row[4],row[5]) 
-#df_test=get_data_from_excel(uploaded_file,"Valeurs",0,xls_mut_full_cols,xls_mut_full_rows,cols_mut_full)
+    df_xls["DataFrame"][idx]=get_data_from_excel(
+                                                xls_file=file,
+                                                xls_sheet=df_xls["Worksheet"][idx],
+                                                skip=df_xls["SkipRows"][idx],
+                                                rng_cols=df_xls["Range"][idx],
+                                                rng_rows=df_xls["UpToRow"][idx],
+                                                rencols=df_xls["DisplayColumns"][idx]
+                                                )  
 
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
@@ -175,7 +171,8 @@ js_script = """
 st.markdown(js_script, unsafe_allow_html=True)
   
 get_data(uploaded_file,4)
-
+for i in range(4)
+    st.write(i)
 
     #df3 = pd.read_excel(uploaded_file, sheet_name='Probe 1', header = [0, 1, 2], decimal =',')
     #st.dataframe(df3)
