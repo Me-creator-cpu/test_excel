@@ -171,7 +171,7 @@ js_script = """
 st.markdown(js_script, unsafe_allow_html=True)
   
 get_data(uploaded_file,4)
-for i in range(4):
+for i in range(len(data)):
     st.write(i)
 
     #df3 = pd.read_excel(uploaded_file, sheet_name='Probe 1', header = [0, 1, 2], decimal =',')
