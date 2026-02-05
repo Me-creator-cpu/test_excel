@@ -73,7 +73,7 @@ xls_mut_full_cols='A:B'
 xls_mut_full_rows=5
 # ======================================================================================================
 
-def test_df_xls:
+def test_df_xls():
     columns = list(df_xls)
     for i in columns:
         cell1,cell2=st.columns(2)
