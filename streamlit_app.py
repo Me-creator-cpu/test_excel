@@ -10,14 +10,6 @@ from openpyxl import load_workbook
 # import xlsxwriter
 # from openpyxl.utils.dataframe import dataframe_to_rows
 
-# 0:"Palmon"
-# 1:"TCD"
-# 2:"Details"
-# 3:"Tableaux"
-# 4:"Tests"
-# 5:"CSV tableaux"
-# ?:"Valeurs"
-
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
 excel_loaded=False
 
@@ -143,16 +135,13 @@ if df_chart is not None:
     st.bar_chart(df_chart, x="Level from", y="Cost")
     sel_min=1
     sel_max=30
-    filter = st.slider(
+    range_level_min, range_level_max= st.slider(
         label="Costs from leve:",
         min_value=sel_min,
         max_value=sel_max,
         value=(sel_min,sel_max),
         step=1
     )
-    range_level_min=filter[0]
-    range_level_max=filter[1]
-    filter_query = f"{filter[0]} <= 'Level from' <= {filter[1]}"
     df = df_chart.loc[(df_chart['Level from'] >= int(range_level_min)) & (df_chart['Level from'] <= int(range_level_max))]
     total_col = f"Total cost from {range_level_min} to {range_level_max}"
     total_cost = df.Cost.sum()
