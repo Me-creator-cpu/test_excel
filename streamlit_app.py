@@ -104,6 +104,7 @@ if uploaded_file is not None:
     st.dataframe(df_costs_mut)
     df_costs_mut_full.names=cols_mut_full
     st.dataframe(df_costs_mut_full)
+    df_costs_mut_full
 
     
 
