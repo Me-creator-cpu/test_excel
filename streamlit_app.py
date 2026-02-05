@@ -49,15 +49,8 @@ df_xls = pd.DataFrame(data,
 )
 
 df_xls
-columns = list(df_xls)
-for i in columns:
-    cell1,cell2=st.columns(2)
-    with cell1:
-        st.write(i)
-    with cell2:
-        st.write(df_xls[i][2])
 
-st.write(df_xls["Worksheet"][4])
+st.write(df_xls["DataFrame"][4])
 
 df_costs_exp=None
 xls_exp_cols='A:C'
@@ -79,6 +72,15 @@ df_costs_mut_full=None
 xls_mut_full_cols='A:B'
 xls_mut_full_rows=5
 # ======================================================================================================
+
+def test_df_xls:
+    columns = list(df_xls)
+    for i in columns:
+        cell1,cell2=st.columns(2)
+        with cell1:
+            st.write(i)
+        with cell2:
+            st.write(df_xls[i][2])
 
 def write_js_script():
     js_script="""
