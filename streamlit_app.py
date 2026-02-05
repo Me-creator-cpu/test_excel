@@ -154,13 +154,13 @@ if df_chart is not None:
     range_level_max=filter[1]
     filter_query = f"{filter[0]} <= 'Level from' <= {filter[1]}"
     st.write(filter)
-    try:
-        #st.dataframe(df_chart.query(filter_query),hide_index=True)
-        total_col = f"Total cost from {range_level_min} to {range_level_max}"
-        total_cost = df_chart.Cost.sum()
-        total_df = pd.DataFrame( { "cost": [total_cost], } )        
-    except:
-        df_chart
+    #try:
+    #st.dataframe(df_chart.query(filter_query),hide_index=True)
+    total_col = f"Total cost from {range_level_min} to {range_level_max}"
+    total_cost = df_chart.Cost.sum()
+    total_df = pd.DataFrame( { "cost": [total_cost], } )        
+    #except:
+    #   df_chart
 
 
 
