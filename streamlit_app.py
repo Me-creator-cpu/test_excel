@@ -103,6 +103,7 @@ if uploaded_file is not None:
     st.dataframe(df_costs_comp)
     st.dataframe(df_costs_mut)
     df_costs_mut_full.rename(index={0: 'Cost', 1: 'Cost'})
+    df_costs_mut_full
     st.dataframe(df_costs_mut_full)
 
     
