@@ -130,7 +130,7 @@ if uploaded_file is not None:
 
 row, col = df_xls.shape
 for i in range(row):
-    get_data(uploaded_file,i)
+    get_data(uploaded_file,i,True)
 
 
 
