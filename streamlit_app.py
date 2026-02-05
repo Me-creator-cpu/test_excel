@@ -152,11 +152,7 @@ if df_chart is not None:
     )
     df = df_chart.loc[(df_chart['Level from'] >= int(range_level_min)) & (df_chart['Level from'] <= int(range_level_max))]
     total_col = f"Total cost from {range_level_min} to {range_level_max}"
-    total_cost = int(df.Cost.sum())
-    locale.setlocale(locale.LC_ALL, "fr_FR")
-    #st.write(locale.format_string("%.0f", total_cost, grouping=True))
-    st.markdown(f":orange-badge[{total_col} : {locale.format_string("%.0f", total_cost, grouping=True)}]")
-    st.markdown(f":orange-badge[{total_col} : {large_num_format(total_cost)}]")
+    st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df.Cost.sum()))}]")
     
 
 
