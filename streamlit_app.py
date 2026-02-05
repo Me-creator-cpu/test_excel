@@ -92,7 +92,7 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
 
 df_xls
 for row in df_xls.itertuples(name="Workbook"):
-    st.write(row)
+    st.write(row.Index)
 #df_test=get_data_from_excel(uploaded_file,"Valeurs",0,xls_mut_full_cols,xls_mut_full_rows,cols_mut_full)
 
 if uploaded_file is not None:
