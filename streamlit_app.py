@@ -159,6 +159,7 @@ if df_chart is not None:
     df = df_chart.loc[(df_chart['Level from'] >= int(range_level_min)) & (df_chart['Level from'] <= int(range_level_max))]
     total_col = f"Total cost from {range_level_min} to {range_level_max}"
     total_cost = df.Cost.sum()
+    total_cost
     pd.DataFrame({ "cost": [total_cost],},hide_index=True )    
     #except:
     #   df_chart
