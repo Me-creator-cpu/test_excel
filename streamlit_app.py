@@ -51,9 +51,12 @@ df_xls = pd.DataFrame(data,
 df_xls
 columns = list(df_xls)
 for i in columns:
-    st.write(i)
-    st.write(df_xls[i][2])
-        
+    cell1,cell2=st.columns(2)
+    with cell1:
+        st.write(i)
+    with cell2:
+        st.write(df_xls[i][2])
+
 df_costs_exp=None
 xls_exp_cols='A:C'
 xls_exp_rows=302
