@@ -28,7 +28,7 @@ cols_data_val = ('Name','Type','Skill','Level','Step','Stars','Stock','Star 1','
 df_xls = pd.DataFrame(
     {
        #"Sample":          ["Worksheet", "DisplayName",     "Range", "SkipRows", "UpToRow", "DisplayColumns"],
-        "Palmons":         ["Palmon",    "Palmons",         "B:N",    1,         40,         cols_data_val ],
+        "Palmons":         ["Palmon",    "Palmons",         "B:N",    1,         40,         cols_data ],
         "EXP":             ["Tableaux",  "Update costs",    "A:C",    1,         302,        None ],
         "Competencies":    ["Tableaux",  "Competencies",    "H:I",    1,         31,         None ],
         "Mutation":        ["Tableaux",  "Mutation costs",  "N:Q",    1,         224,        None ],
