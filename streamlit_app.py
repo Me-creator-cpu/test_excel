@@ -29,15 +29,22 @@ cols_comp = ['Level from', 'Cost']
 cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
 cols_mut_full = ['Cost type', 'Cost']
 
-df_xls = pd.DataFrame(
-    {
-        "Worksheet":      ["Palmon",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs" ],
-        "DisplayName":    ["Palmons",   "Update costs",    "Competencies", "Mutation costs",   "Valeurs Réf."],
-        "Range":          ["B:N",       "A:C",             "H:I",          "N:Q",              "A:B" ],
-        "SkipRows":       [1,           1,                 1,              1,                  0 ],
-        "UpToRow":        [40,          302,               31,             224,                5],
-        "DisplayColumns": [cols_data,   cols_exp,          cols_comp,      cols_mut,           cols_mut_full ],
-    },
+df_pal_data=None
+df_costs_exp=None
+df_costs_comp=None
+df_costs_mut=None
+df_costs_mut_full=None
+
+data = {
+        "Worksheet":      ["Palmon",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs"            ],
+        "DisplayName":    ["Palmons",   "Update costs",    "Competencies", "Mutation costs",   "Valeurs Réf."       ],
+        "Range":          ["B:N",       "A:C",             "H:I",          "N:Q",              "A:B"                ],
+        "SkipRows":       [1,           1,                 1,              1,                  0                    ],
+        "UpToRow":        [40,          302,               31,             224,                5                    ],
+        "DisplayColumns": [cols_data,   cols_exp,          cols_comp,      cols_mut,           cols_mut_full        ],
+        "DataFrame":      [df_pal_data, df_costs_exp,      df_costs_comp,  df_costs_mut,       df_costs_mut_full    ],
+       }
+df_xls = pd.DataFrame(data,
     #index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
 )
 
