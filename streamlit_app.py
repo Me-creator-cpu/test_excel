@@ -147,7 +147,7 @@ if df_chart is not None:
     total_cost = int(df.Cost.sum())
     #total_cost = df.Cost.sum().style.format(thousands=" ", precision=0)
     st.markdown(f":orange-badge[{total_col} : {total_cost}]")
-    st.markdown(f"{total_cost:,d}"
+    st.markdown(f"{total_cost:,d}")
 
 
 
