@@ -110,6 +110,14 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
     #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
     return df
 
+def get_data(file,idx):
+    df_xls["DataFrame"][4]=get_data_from_excel(
+            xls_file=file,
+            xls_sheet=df_xls["Worksheet"][idx],
+            skip=df_xls["SkipRows"][idx],
+            rng_cols=df_xls["Range"][idx],
+            rng_rows=df_xls["UpToRow"][idx],
+            rencols=df_xls["DisplayColumns"][idx])  
 
 #for row in df_xls.itertuples(name="Workbook"):
 #    #"Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"
@@ -165,19 +173,9 @@ js_script = """
     </div><script language='javascript'>alert('Hello world');</script><div>
     """
 st.markdown(js_script, unsafe_allow_html=True)
+  
+get_data(uploaded_file,4)
 
-st.write(df_xls["DataFrame"][4])
-if uploaded_file is not None:
-    df_xls["DataFrame"][4]=get_data_from_excel(
-            xls_file=uploaded_file,
-            xls_sheet=df_xls["Worksheet"][4],
-            skip=df_xls["SkipRows"][4],
-            rng_cols=df_xls["Range"][4],
-            rng_rows=df_xls["UpToRow"][4],
-            rencols=df_xls["DisplayColumns"][4])
-    st.write(df_xls["DataFrame"][4])
-    #df2 = pd.read_excel(uploaded_file, sheet_name='Statistik')
-    #st.dataframe(df2)
 
     #df3 = pd.read_excel(uploaded_file, sheet_name='Probe 1', header = [0, 1, 2], decimal =',')
     #st.dataframe(df3)
