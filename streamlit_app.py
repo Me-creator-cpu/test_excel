@@ -24,15 +24,19 @@ excel_loaded=False
 # ======================================================================================================
 # Définitions DataFrame et Excel
 cols_data = ['Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2']
-cols_data_val = ('Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2')
+cols_exp = ['Level from', 'Level to', 'Cost']
+cols_comp = ['Level from', 'Cost']
+cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
+cols_mut_full = ['Cost type', 'Cost']
+
 df_xls = pd.DataFrame(
     {
        #"Sample":          ["Worksheet", "DisplayName",     "Range", "SkipRows", "UpToRow", "DisplayColumns"],
         "Palmons":         ["Palmon",    "Palmons",         "B:N",    1,         40,         cols_data ],
-        "EXP":             ["Tableaux",  "Update costs",    "A:C",    1,         302,        None ],
-        "Competencies":    ["Tableaux",  "Competencies",    "H:I",    1,         31,         None ],
-        "Mutation":        ["Tableaux",  "Mutation costs",  "N:Q",    1,         224,        None ],
-        "MaxCosts":        ["Valeurs",   "Valeurs Réf.",    "A:B",    0,         5,          None ],
+        "EXP":             ["Tableaux",  "Update costs",    "A:C",    1,         302,        cols_exp ],
+        "Competencies":    ["Tableaux",  "Competencies",    "H:I",    1,         31,         cols_comp ],
+        "Mutation":        ["Tableaux",  "Mutation costs",  "N:Q",    1,         224,        cols_mut ],
+        "MaxCosts":        ["Valeurs",   "Valeurs Réf.",    "A:B",    0,         5,          cols_mut_full ],
     },
     index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
 )
@@ -40,27 +44,22 @@ df_xls = pd.DataFrame(
 df_costs_exp=None
 xls_exp_cols='A:C'
 xls_exp_rows=302
-cols_exp = ['Level from', 'Level to', 'Cost']
 
 df_costs_comp=None
 xls_comp_cols='H:I'
 xls_comp_rows=31
-cols_comp = ['Level from', 'Cost']
 
 df_costs_mut=None
 xls_mut_cols='N:Q'
 xls_mut_rows=224
-cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
 
 df_pal_data=None
 xls_data_cols='B:N'
 xls_data_rows=40
-#cols_data = ['Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2']
 
 df_costs_mut_full=None
 xls_mut_full_cols='A:B'
 xls_mut_full_rows=5
-cols_mut_full = ['Cost type', 'Cost']
 # ======================================================================================================
 
 def write_js_script():
