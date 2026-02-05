@@ -97,11 +97,12 @@ if uploaded_file is not None:
     df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows)
     df_costs_comp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_comp_cols,xls_comp_rows)
     df_costs_mut=get_data_from_excel(uploaded_file,"Tableaux",1,xls_mut_cols,xls_mut_rows)
-    df_costs_mut_full=get_data_from_excel(uploaded_file,"Valeurs",1,xls_mut_full_cols,xls_mut_full_rows)
+    df_costs_mut_full=get_data_from_excel(uploaded_file,"Valeurs",0,xls_mut_full_cols,xls_mut_full_rows)
     
     st.dataframe(df_costs_exp)
     st.dataframe(df_costs_comp)
     st.dataframe(df_costs_mut)
+    df_costs_mut_full.names=cols_mut_full
     st.dataframe(df_costs_mut_full)
 
     
