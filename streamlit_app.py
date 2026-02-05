@@ -130,10 +130,10 @@ if uploaded_file is not None:
 
 row, col = df_xls.shape
 for i in range(row):
-    get_data(uploaded_file,i,True)
+    get_data(uploaded_file,i,False)
 
-
-
+if cols_comp is not None:
+    st.bar_chart(cols_comp, x="Level from", y="Cost")
 
 
 
