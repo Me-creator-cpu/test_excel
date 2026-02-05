@@ -65,7 +65,10 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
             nrows=int(rng_rows),
         )
         if rencols is not None:
-            df.columns = rencols
+            try:
+                df.columns = rencols
+            except:
+                df=df
     except:
         df = None
     #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
@@ -95,7 +98,7 @@ if uploaded_file is not None:
     df_pal_data=get_data_from_excel(uploaded_file,"Palmon",1,xls_data_cols,xls_data_rows,cols_data)
     st.dataframe(df_pal_data)
 
-    #                get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows)
+    #                get_data_from_excel(    xls_file,    xls_sheet,    skip,    rng_cols,    rng_rows,    rencols=None)
     df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows,cols_exp)
     df_costs_comp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_comp_cols,xls_comp_rows,cols_comp)
     df_costs_mut=get_data_from_excel(uploaded_file,"Tableaux",1,xls_mut_cols,xls_mut_rows,cols_mut)
