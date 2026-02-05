@@ -156,8 +156,9 @@ if df_chart is not None:
     st.write(filter)
     #try:
     #st.dataframe(df_chart.query(filter_query),hide_index=True)
+    df = df_chart.loc[(df['Level from'] >= int(range_level_min)) & (df['Level from'] <= int(range_level_max))]
     total_col = f"Total cost from {range_level_min} to {range_level_max}"
-    total_cost = df_chart.Cost.sum()
+    total_cost = df.Cost.sum()
     pd.DataFrame({ "cost": [total_cost],},hide_index=True )    
     #except:
     #   df_chart
