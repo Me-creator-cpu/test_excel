@@ -32,7 +32,7 @@ df_xls = pd.DataFrame(
         "EXP":             ["Tableaux",  "Update costs",    "A:C",    1,         302,        None ],
         "Competencies":    ["Tableaux",  "Competencies",    "H:I",    1,         31,         None ],
         "Mutation":        ["Tableaux",  "Mutation costs",  "N:Q",    1,         224,        None ],
-        "MaxCosts":        ["Valeurs",   "Valeurs Réf."     "A:B",    0,         5,          None ],
+        "MaxCosts":        ["Valeurs",   "Valeurs Réf.",    "A:B",    0,         5,          None ],
     },
     #index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
 )
