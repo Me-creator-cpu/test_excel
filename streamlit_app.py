@@ -152,7 +152,10 @@ if df_chart is not None:
     )
     filter_query = f"{filter[0]} <= 'Level from' <= {filter[1]}"
     st.write(filter)
-    st.dataframe(df_chart.query(filter_query),hide_index=True)
+    try:
+        st.dataframe(df_chart.query(filter_query),hide_index=True)
+    except:
+        df_chart
 
 
 
