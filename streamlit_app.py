@@ -140,7 +140,7 @@ for i in range(row):
 
 df_chart=df_xls["DataFrame"][idx_comp]
 if df_chart is not None:
-    st.bar_chart(df_chart) #, x="Level from", y="Cost")
+    st.bar_chart(df_chart, x="Level from", y="Cost")
 
 
 
