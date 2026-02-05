@@ -16,6 +16,7 @@ from openpyxl import load_workbook
 # 3:"Tableaux"
 # 4:"Tests"
 # 5:"CSV tableaux"
+# ?:"Valeurs"
 
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
 excel_loaded=False
@@ -69,12 +70,12 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
                 df.columns = rencols
             except:
                 df=df
+        with st.expander(xls_sheet, expanded=False, icon=':material/table_view:', width='stretch'):
+            st.dataframe(df)
     except:
         df = None
     #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
     return df
-
-#df = get_data_from_excel()
 
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
@@ -104,10 +105,10 @@ if uploaded_file is not None:
     df_costs_mut=get_data_from_excel(uploaded_file,"Tableaux",1,xls_mut_cols,xls_mut_rows,cols_mut)
     df_costs_mut_full=get_data_from_excel(uploaded_file,"Valeurs",0,xls_mut_full_cols,xls_mut_full_rows,cols_mut_full)
     
-    st.dataframe(df_costs_exp)
-    st.dataframe(df_costs_comp)
-    st.dataframe(df_costs_mut)
-    st.dataframe(df_costs_mut_full)
+    # st.dataframe(df_costs_exp)
+    # st.dataframe(df_costs_comp)
+    # st.dataframe(df_costs_mut)
+    # st.dataframe(df_costs_mut_full)
 
     
 
