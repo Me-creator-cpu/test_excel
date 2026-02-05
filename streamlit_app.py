@@ -95,16 +95,16 @@ if uploaded_file is not None:
             excel_loaded=True
     else:
         excel_loaded=False
-
-    df_pal_data=get_data_from_excel(uploaded_file,"Palmon",1,xls_data_cols,xls_data_rows,cols_data)
-    st.dataframe(df_pal_data)
+    
 
     #                get_data_from_excel(    xls_file,    xls_sheet,    skip,    rng_cols,    rng_rows,    rencols=None)
+    df_pal_data=get_data_from_excel(uploaded_file,"Palmon",1,xls_data_cols,xls_data_rows,cols_data)
     df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows,cols_exp)
     df_costs_comp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_comp_cols,xls_comp_rows,cols_comp)
     df_costs_mut=get_data_from_excel(uploaded_file,"Tableaux",1,xls_mut_cols,xls_mut_rows,cols_mut)
     df_costs_mut_full=get_data_from_excel(uploaded_file,"Valeurs",0,xls_mut_full_cols,xls_mut_full_rows,cols_mut_full)
     
+    # st.dataframe(df_pal_data)
     # st.dataframe(df_costs_exp)
     # st.dataframe(df_costs_comp)
     # st.dataframe(df_costs_mut)
