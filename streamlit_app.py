@@ -9,6 +9,7 @@ import statistics
 from openpyxl import load_workbook
 # import xlsxwriter
 # from openpyxl.utils.dataframe import dataframe_to_rows
+import locale
 
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
 excel_loaded=False
@@ -147,7 +148,8 @@ if df_chart is not None:
     total_cost = int(df.Cost.sum())
     total_cost2= int(df.Cost.sum()).style.format(thousands=" ", precision=0)
     st.markdown(f":orange-badge[{total_col} : {total_cost}]")
-    st.markdown(f"{total_cost:,d}")
+    locale.setlocale(locale.LC_ALL, "fr_FR.utf8")
+    st.write(locale.format_string("%.2f", n, grouping=True))
 
 
 
