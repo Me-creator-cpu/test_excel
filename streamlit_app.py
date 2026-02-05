@@ -91,8 +91,8 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
     return df
 
 df_xls
-st.write(df_xls.row[0][1])
-st.write(df_xls.row[1][1])
+st.write(df_xls[0][1])
+st.write(df_xls[1][1])
 #for row in df_xls.itertuples(name="Workbook"):
 #    #"Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"
 #    st.write(row[0],row[1],row[2],row[3],row[4],row[5]) 
