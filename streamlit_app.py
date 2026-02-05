@@ -141,10 +141,13 @@ for i in range(row):
 df_chart=df_xls["DataFrame"][idx_comp]
 if df_chart is not None:
     st.bar_chart(df_chart, x="Level from", y="Cost")
+    sel_min=1
+    sel_max=30
     selection = st.slider(
         label="Costs from :",
-        min_value=1,
-        max_value=30,
+        min_value=sel_min,
+        max_value=sel_max,
+        value=(sel_min,sel_max),
         step=1
     )
     st.write(selection)
