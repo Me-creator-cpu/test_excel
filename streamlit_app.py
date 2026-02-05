@@ -35,6 +35,12 @@ df_costs_comp=None
 df_costs_mut=None
 df_costs_mut_full=None
 
+idx_palmon=0
+idx_costs=1
+idx_comp=2
+idx_mut=3
+idx_val=4
+
 data = { #                    0              1                  2                3                4
         "Worksheet":      ["Palmon",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs"            ],
         "DisplayName":    ["Palmons",   "Update costs",    "Competencies", "Mutation costs",   "Valeurs Réf."       ],
@@ -132,8 +138,9 @@ row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
 
-if df_costs_comp is not None:
-    st.bar_chart(df_costs_comp) #, x="Level from", y="Cost")
+df_chart=df_xls["DataFrame"][idx_comp]
+if df_chart is not None:
+    st.bar_chart(df_chart) #, x="Level from", y="Cost")
 
 
 
