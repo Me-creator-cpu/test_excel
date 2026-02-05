@@ -139,7 +139,7 @@ if uploaded_file is not None:
     else:
         excel_loaded=False
     
-
+if 1 == 2:
     #                get_data_from_excel(    xls_file,    xls_sheet,    skip,    rng_cols,    rng_rows,    rencols=None)
     df_pal_data=get_data_from_excel(uploaded_file,"Palmon",1,xls_data_cols,xls_data_rows,cols_data)
     df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows,cols_exp)
@@ -170,10 +170,10 @@ js_script = """
     """
 st.markdown(js_script, unsafe_allow_html=True)
   
-get_data(uploaded_file,4)
+
 row, col = df_xls.shape
 for i in range(row):
-    st.write(i)
+    get_data(uploaded_file,i)
 
     #df3 = pd.read_excel(uploaded_file, sheet_name='Probe 1', header = [0, 1, 2], decimal =',')
     #st.dataframe(df3)
