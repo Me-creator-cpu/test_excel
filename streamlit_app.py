@@ -31,14 +31,14 @@ cols_mut_full = ['Cost type', 'Cost']
 
 df_xls = pd.DataFrame(
     {
-       #"Sample":          ["Worksheet", "DisplayName",     "Range", "SkipRows", "UpToRow", "DisplayColumns"],
-        "Palmons":         ["Palmon",    "Palmons",         "B:N",    1,         40,         cols_data ],
-        "EXP":             ["Tableaux",  "Update costs",    "A:C",    1,         302,        cols_exp ],
-        "Competencies":    ["Tableaux",  "Competencies",    "H:I",    1,         31,         cols_comp ],
-        "Mutation":        ["Tableaux",  "Mutation costs",  "N:Q",    1,         224,        cols_mut ],
-        "MaxCosts":        ["Valeurs",   "Valeurs Réf.",    "A:B",    0,         5,          cols_mut_full ],
+        "Worksheet":      ["Palmon",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs" ],
+        "DisplayName":    ["Palmons",   "Update costs",    "Competencies", "Mutation costs",   "Valeurs Réf."],
+        "Range":          ["B:N",       "A:C",             "H:I",          "N:Q",              "A:B" ],
+        "SkipRows":       [1,           1,                 1,              1,                  0 ],
+        "UpToRow":        [40,          302,               31,             224,                5],
+        "DisplayColumns": [cols_data,   cols_exp,          cols_comp,      cols_mut,           cols_mut_full ],
     },
-    index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
+    #index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
 )
 
 df_costs_exp=None
