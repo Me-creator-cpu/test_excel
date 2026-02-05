@@ -51,6 +51,8 @@ df_xls = pd.DataFrame(data,
 df_xls
 
 st.write(df_xls["DataFrame"][4])
+df_xls["DataFrame"][4]=pd.DataFrame(data)
+st.write(df_xls["DataFrame"][4])
 
 df_costs_exp=None
 xls_exp_cols='A:C'
