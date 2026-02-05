@@ -35,7 +35,7 @@ df_costs_comp=None
 df_costs_mut=None
 df_costs_mut_full=None
 
-data = { #    0                   1         2                3                4                 5
+data = { #                    0              1                  2                3                4
         "Worksheet":      ["Palmon",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs"            ],
         "DisplayName":    ["Palmons",   "Update costs",    "Competencies", "Mutation costs",   "Valeurs Réf."       ],
         "Range":          ["B:N",       "A:C",             "H:I",          "N:Q",              "A:B"                ],
@@ -57,7 +57,7 @@ for i in columns:
     with cell2:
         st.write(df_xls[i][2])
 
-st.write(df_xls["Worksheet"][5])
+st.write(df_xls["Worksheet"][4])
 
 df_costs_exp=None
 xls_exp_cols='A:C'
