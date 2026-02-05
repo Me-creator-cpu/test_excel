@@ -32,7 +32,7 @@ df_xls = pd.DataFrame(
         "Mutation":        ["Tableaux",  "Mutation costs",  "N:Q",    1,         224,        ['Level', 'Step', 'Substep', 'Cost level']    ],
         "MaxCosts":        ["Valeurs",   "Valeurs Réf."     "A:B",    0,         5,          ['Cost type', 'Cost']                         ],
     },
-    index=["Name", "Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
+    index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
 )
 
 df_costs_exp=None
