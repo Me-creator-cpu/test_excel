@@ -148,7 +148,7 @@ if df_chart is not None:
     total_cost = int(df.Cost.sum())
     #total_cost2= int(df.Cost.sum()).style.format(thousands=" ", precision=0)
     st.markdown(f":orange-badge[{total_col} : {total_cost}]")
-    locale.setlocale(locale.LC_ALL, "fr_FR.utf8")
+    locale.setlocale(locale.LC_ALL, "fr_FR")
     st.write(locale.format_string("%.2f", total_cost, grouping=True))
 
 
