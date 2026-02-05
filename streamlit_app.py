@@ -97,6 +97,13 @@ def get_data(file,idx,show_table=False):
                                                 show_table=show_table
                                                 )  
 
+def large_num_format(value):
+    locale.setlocale(locale.LC_ALL, "fr_FR")
+    try:
+        return locale.format_string("%.0f", int(value), grouping=True)
+    except:
+        return None
+
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
     if file is not None:
@@ -149,6 +156,8 @@ if df_chart is not None:
     locale.setlocale(locale.LC_ALL, "fr_FR")
     #st.write(locale.format_string("%.0f", total_cost, grouping=True))
     st.markdown(f":orange-badge[{total_col} : {locale.format_string("%.0f", total_cost, grouping=True)}]")
+    st.markdown(f":orange-badge[{total_col} : {large_num_format(total_cost)}]")
+    
 
 
 
