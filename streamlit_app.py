@@ -51,6 +51,7 @@ df_xls = pd.DataFrame(data,
 df_xls
 columns = list(df_xls)
 for i in columns:
+    st.write(i)
     st.write(df_xls[i][2])
         
 df_costs_exp=None
