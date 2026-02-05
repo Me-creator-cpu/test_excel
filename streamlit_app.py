@@ -44,33 +44,9 @@ data = { #                    0              1                  2               
         "DisplayColumns": [cols_data,   cols_exp,          cols_comp,      cols_mut,           cols_mut_full        ],
         "DataFrame":      [df_pal_data, df_costs_exp,      df_costs_comp,  df_costs_mut,       df_costs_mut_full    ],
        }
-df_xls = pd.DataFrame(data,
-    #index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
-)
+df_xls = pd.DataFrame(data)
 
-df_xls
-
-
-
-df_costs_exp=None
-xls_exp_cols='A:C'
-xls_exp_rows=302
-
-df_costs_comp=None
-xls_comp_cols='H:I'
-xls_comp_rows=31
-
-df_costs_mut=None
-xls_mut_cols='N:Q'
-xls_mut_rows=224
-
-df_pal_data=None
-xls_data_cols='B:N'
-xls_data_rows=40
-
-df_costs_mut_full=None
-xls_mut_full_cols='A:B'
-xls_mut_full_rows=5
+#df_xls
 # ======================================================================================================
 
 def test_df_xls():
@@ -84,11 +60,11 @@ def test_df_xls():
 
 def write_js_script():
     js_script="""
-        <script language=javascript>alert('Hello workd');</script>
+        <script language=javascript>alert('Hello world');</script>
     """
     st.markdown(js_script, unsafe_allow_html=True)
 
-def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
+def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
     try:
         df = pd.read_excel(
             io=xls_file,
@@ -103,21 +79,23 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None):
                 df.columns = rencols
             except:
                 df=df
-        with st.expander(xls_sheet, expanded=False, icon=':material/table_view:', width='stretch'):
-            st.dataframe(df)
+        if show_table == True:
+            with st.expander(xls_sheet, expanded=False, icon=':material/table_view:', width='stretch'):
+                st.dataframe(df)
     except:
         df = None
     #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
     return df
 
-def get_data(file,idx):
+def get_data(file,idx,show_table=False):
     df_xls["DataFrame"][idx]=get_data_from_excel(
                                                 xls_file=file,
                                                 xls_sheet=df_xls["Worksheet"][idx],
                                                 skip=df_xls["SkipRows"][idx],
                                                 rng_cols=df_xls["Range"][idx],
                                                 rng_rows=df_xls["UpToRow"][idx],
-                                                rencols=df_xls["DisplayColumns"][idx]
+                                                rencols=df_xls["DisplayColumns"][idx],
+                                                show_table=show_table
                                                 )  
 
 if uploaded_file is not None:
@@ -139,22 +117,6 @@ if uploaded_file is not None:
     else:
         excel_loaded=False
     
-if 1 == 2:
-    #                get_data_from_excel(    xls_file,    xls_sheet,    skip,    rng_cols,    rng_rows,    rencols=None)
-    df_pal_data=get_data_from_excel(uploaded_file,"Palmon",1,xls_data_cols,xls_data_rows,cols_data)
-    df_costs_exp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_exp_cols,xls_exp_rows,cols_exp)
-    df_costs_comp=get_data_from_excel(uploaded_file,"Tableaux",1,xls_comp_cols,xls_comp_rows,cols_comp)
-    df_costs_mut=get_data_from_excel(uploaded_file,"Tableaux",1,xls_mut_cols,xls_mut_rows,cols_mut)
-    df_costs_mut_full=get_data_from_excel(uploaded_file,"Valeurs",0,xls_mut_full_cols,xls_mut_full_rows,cols_mut_full)
-    
-    # st.dataframe(df_pal_data)
-    # st.dataframe(df_costs_exp)
-    # st.dataframe(df_costs_comp)
-    # st.dataframe(df_costs_mut)
-    # st.dataframe(df_costs_mut_full)
-
-    
-
 # ---- HIDE STREAMLIT STYLE ----
 #hide_st_style = """
 #            <style>
@@ -164,16 +126,22 @@ if 1 == 2:
 #            </style>
 #            """
 #st.markdown(hide_st_style, unsafe_allow_html=True)
-write_js_script()
-js_script = """
-    </div><script language='javascript'>alert('Hello world');</script><div>
-    """
-st.markdown(js_script, unsafe_allow_html=True)
   
 
 row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i)
+
+
+
+
+
+
+
+
+
+
+
 
     #df3 = pd.read_excel(uploaded_file, sheet_name='Probe 1', header = [0, 1, 2], decimal =',')
     #st.dataframe(df3)
