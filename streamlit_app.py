@@ -34,7 +34,7 @@ df_xls = pd.DataFrame(
         "Mutation":        ["Tableaux",  "Mutation costs",  "N:Q",    1,         224,        None ],
         "MaxCosts":        ["Valeurs",   "Valeurs Réf.",    "A:B",    0,         5,          None ],
     },
-    #index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
+    index=["Worksheet", "DisplayName", "Range", "SkipRows", "UpToRow", "DisplayColumns"]
 )
 
 df_costs_exp=None
