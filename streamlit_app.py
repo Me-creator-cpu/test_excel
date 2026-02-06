@@ -57,8 +57,11 @@ column_config={
         max_value=250,
         color="#006699"
     ),
-    "Step": st.column_config.TextColumn( #st.column_config.NumberColumn(
+    "Step": st.column_config.NumberColumn(
         "Step",
+        min_value=0,
+        max_value=5,
+        format="%d ⭐",
     ),
     "Achievement": st.column_config.NumberColumn(
         "Achievement",
