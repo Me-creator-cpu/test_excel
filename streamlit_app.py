@@ -61,7 +61,8 @@ column_config={
         "Step",
         min_value=0,
         max_value=5,
-        format="%d ⭐",
+        format=f(":star:*int(round(%d,0))"),
+        #format="%d ⭐",
     ),
     "Achievement": st.column_config.NumberColumn(
         "Achievement",
