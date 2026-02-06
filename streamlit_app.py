@@ -199,7 +199,7 @@ def format_stars(x): #⭐
 # ======================================================================================================
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
 excel_loaded=False
-cols_data
+
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
     if file is not None:
@@ -269,6 +269,7 @@ with tab4:
 with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon])
+        df_xls["DataFrame"][idx_palmon].columns = cols_data
         st.dataframe(
             df_xls["DataFrame"][idx_palmon],
             column_config=column_config,
