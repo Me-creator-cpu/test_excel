@@ -189,18 +189,24 @@ with tab1:
     if df_xls["DataFrame"][idx_palmon] is not None: 
         st.header(df_xls["DisplayName"][idx_costs])
         build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(300))
+        with st.expander("Data graph", expanded=False, width="stretch"):
+            build_table_any(df_xls["DataFrame"][idx_costs])
     else:
         file_err()
 with tab2:
     if df_xls["DataFrame"][idx_palmon] is not None:   
         st.header(df_xls["DisplayName"][idx_comp])
         build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
+        with st.expander("Data graph", expanded=False, width="stretch"):
+            build_table_any(df_xls["DataFrame"][idx_comp])
     else:
         file_err()
 with tab3:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_mut]) 
         build_chart_bar(df_xls["DataFrame"][idx_mut],'Level','Cost level','Mutation costs from level:',int(1),int(30))
+        with st.expander("Data graph", expanded=False, width="stretch"):
+            build_table_any(df_xls["DataFrame"][idx_mut])
     else:
         file_err()
 with tab4:
