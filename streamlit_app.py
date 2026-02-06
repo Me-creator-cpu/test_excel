@@ -30,11 +30,11 @@ idx_costs=1
 idx_comp=2
 idx_mut=3
 idx_val=4
-#"B:N"=>"B:AK"
+#"B:N"=>"A:AK"
 data = { #                    0              1                  2                3                4
         "Worksheet":      ["Palmon",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs"            ],
         "DisplayName":    ["Palmons",   "Upgrade costs",   "Competencies", "Mutation costs",   "Upgrade full costs"       ],
-        "Range":          ["B:AK",      "A:C",             "H:I",          "N:Q",              "A:B"                ],
+        "Range":          ["A:AK",      "A:C",             "H:I",          "N:Q",              "A:B"                ],
         "SkipRows":       [1,           1,                 1,              1,                  0                    ],
         "UpToRow":        [41,          302,               31,             224,                5                    ],
         "DisplayColumns": [cols_data,   cols_exp,          cols_comp,      cols_mut,           cols_mut_full        ],
