@@ -152,8 +152,12 @@ if uploaded_file is not None:
             st.dataframe(df1)
             excel_loaded=True
     else:
-        excel_loaded=False
         uploaded_file=None
+        if df_xls["DataFrame"][idx_costs] is not None:
+            excel_loaded=True
+        else:
+            excel_loaded=False
+            
 
 row, col = df_xls.shape
 for i in range(row):
