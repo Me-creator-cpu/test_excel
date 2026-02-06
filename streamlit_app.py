@@ -44,7 +44,7 @@ df_xls = pd.DataFrame(data)
 
 #df_xls
 # ======================================================================================================
-
+#format="%d ⭐",
 column_config={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
     "Type": st.column_config.TextColumn( "Type", pinned = True ),
@@ -62,7 +62,6 @@ column_config={
         min_value=0,
         max_value=5,
         format_func=lambda x: ':star:*int(round(x,0))',
-        #format="%d ⭐",
     ),
     "Achievement": st.column_config.NumberColumn(
         "Achievement",
