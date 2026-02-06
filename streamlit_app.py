@@ -164,7 +164,7 @@ row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
 
-tabs=[]
+tabs={}
 tabs=st.tabs("t1","t2","t3")
 
 
