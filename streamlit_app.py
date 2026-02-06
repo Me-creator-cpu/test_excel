@@ -164,7 +164,12 @@ row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
 
-tab1, tab2, tab3 = st.tabs([df_xls["DisplayName"][idx_costs],df_xls["DisplayName"][idx_comp],df_xls["DisplayName"][idx_mut]])
+tab1, tab2, tab3, tab4 = st.tabs([
+                            df_xls["DisplayName"][idx_costs],
+                            df_xls["DisplayName"][idx_comp],
+                            df_xls["DisplayName"][idx_mut],
+                            df_xls["DisplayName"][idx_val]
+                            ])
 with tab1:
     if df_xls["DataFrame"][idx_palmon] is not None: 
         st.header(df_xls["DisplayName"][idx_costs])
@@ -183,7 +188,12 @@ with tab3:
         build_chart_bar(df_xls["DataFrame"][idx_mut],'Level','Cost level','Mutation costs from level:',int(1),int(30))
     else:
         file_err()
-
+with tab4:
+    if df_xls["DataFrame"][idx_palmon] is not None:  
+        st.header(df_xls["DisplayName"][idx_val]) 
+        df_xls["DataFrame"][idx_val]
+    else:
+        file_err()
 
 
 
