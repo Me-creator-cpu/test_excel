@@ -104,6 +104,21 @@ def large_num_format(value):
     except:
         return None
 
+def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30):
+    st.bar_chart(df_chart, x=xField, y=yField)
+    sel_min=selMin
+    sel_max=selMax
+    range_level_min, range_level_max= st.slider(
+        label=sLabel,
+        min_value=sel_min,
+        max_value=sel_max,
+        value=(sel_min,sel_max),
+        step=1
+    )
+    df = df_chart.loc[(df_chart[xField] >= int(range_level_min)) & (df_chart[xField] <= int(range_level_max))]
+    total_col = f"Total cost from {range_level_min} to {range_level_max}"
+    st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df.Cost.sum()))}]")
+    
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
     if file is not None:
@@ -138,13 +153,17 @@ row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
 
-df_chart=df_xls["DataFrame"][idx_comp]
-if df_chart is not None:
+
+build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Costs from level:',int(1),int(30))
+
+#df_chart=df_xls["DataFrame"][idx_comp]
+#if df_chart is not None:
+if 1 == 2:
     st.bar_chart(df_chart, x="Level from", y="Cost")
     sel_min=1
     sel_max=30
     range_level_min, range_level_max= st.slider(
-        label="Costs from leve:",
+        label="Costs from level:",
         min_value=sel_min,
         max_value=sel_max,
         value=(sel_min,sel_max),
