@@ -85,7 +85,15 @@ column_config={
     "URL Mutation": st.column_config.ImageColumn(
         "Mutation preview",
         width="small"
-    )
+    ),
+    "Unused1": st.column_config.Column(disabled=True),
+    "Unused2": st.column_config.Column(disabled=True),
+    "Unused3": st.column_config.Column(disabled=True),
+    "Unused4": st.column_config.Column(disabled=True),
+    "Unused5": st.column_config.Column(disabled=True),
+    "Unused6": st.column_config.Column(disabled=True),
+    "Unused7": st.column_config.Column(disabled=True),
+    "Unused8": st.column_config.Column(disabled=True)
 }
 # ======================================================================================================
 
