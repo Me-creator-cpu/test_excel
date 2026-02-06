@@ -36,7 +36,7 @@ idx_val=4
 
 data = { #                    0              1                  2                3                4
         "Worksheet":      ["Palmon",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs"            ],
-        "DisplayName":    ["Palmons",   "Upgrade costs",   "Competencies", "Mutation costs",   "Valeurs Réf."       ],
+        "DisplayName":    ["Palmons",   "Upgrade costs",   "Competencies", "Mutation costs",   "Upgrade full costs"       ],
         "Range":          ["B:N",       "A:C",             "H:I",          "N:Q",              "A:B"                ],
         "SkipRows":       [1,           1,                 1,              1,                  0                    ],
         "UpToRow":        [41,          302,               31,             224,                5                    ],
@@ -191,7 +191,19 @@ with tab3:
 with tab4:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_val]) 
-        df_xls["DataFrame"][idx_val]
+        st.data_editor(
+            df_xls["DataFrame"][idx_val],
+            column_config={
+               "Cost": st.column_config.NumberColumn(
+                     "Costs",
+                     min_value=0,
+                     max_value=10000000,
+                     step=1,
+                     format="compact",
+               )
+            },
+            hide_index=True,
+         )            
     else:
         file_err()
 
