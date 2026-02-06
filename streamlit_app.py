@@ -214,7 +214,7 @@ if uploaded_file is not None:
                 df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
             else:
                 df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                if option == "Palmon":
+                if option == "Palmon_data":
                     df1.columns = cols_data
             st.dataframe(df1)
             excel_loaded=True
