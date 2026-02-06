@@ -189,7 +189,14 @@ def build_table_any(df):
                )
             },
             hide_index=True,
-         )         
+         )    
+
+def format_stars(x): #⭐
+    try:
+        return f":star: * round(int(x),0)"
+    except:
+        return x
+
 # ======================================================================================================
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
 excel_loaded=False
@@ -264,10 +271,11 @@ with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon])
         df=df_xls["DataFrame"][idx_palmon]
-        df['Step'] = df.apply(lambda x: f":star:*int(round(x,0))", axis=1)
+        df['Step'] = df.apply(lambda x: format_stars(x), axis=1)
+        #df['Step'] = df.apply(lambda x: f":star: * int(round(x,0))", axis=1)
         st.dataframe(
             df,
-            column_config=column_config,
+            #column_config=column_config,
             hide_index=True,
          )               
     else:
