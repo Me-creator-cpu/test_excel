@@ -165,19 +165,19 @@ with tab1:
         st.header(df_xls["DisplayName"][idx_costs])
         build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(300))
     else:
-        file_err
+        file_err()
 with tab2:
     if excel_loaded==True:    
         st.header(df_xls["DisplayName"][idx_comp])
         build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
     else:
-        file_err
+        file_err()
 with tab3:
     if excel_loaded==True:  
         st.header(df_xls["DisplayName"][idx_mut]) 
         build_chart_bar(df_xls["DataFrame"][idx_mut],'Level','Cost level','Mutation costs from level:',int(1),int(30))
     else:
-        file_err
+        file_err()
 
 
 
