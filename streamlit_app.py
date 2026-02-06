@@ -156,7 +156,7 @@ for i in range(row):
 tab1, tab2, tab3 = st.tabs([df_xls["DisplayName"][1],df_xls["DisplayName"][2],df_xls["DisplayName"][3]])
 with tab1:
     st.header(df_xls["DisplayName"][1])
-    build_chart_bar(df_xls["DataFrame"][idx_cost],'Level from','Cost','Upgrade costs from level:',int(1),int(300))
+    build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(300))
 with tab2:
     st.header(df_xls["DisplayName"][2])
     build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
