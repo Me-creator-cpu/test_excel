@@ -69,12 +69,7 @@ column_config={
         max_value=5,
         format="%d ⭐",
     ),
-    "Achievement": st.column_config.NumberColumn(
-        "Achievement",
-        min_value=0,
-        max_value=100,
-        format="percent",
-    ),
+    "Achievement": col_pct,
     "Cost to max": st.column_config.NumberColumn(
         "Cost to max",
         #format="localized",
