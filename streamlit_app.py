@@ -210,29 +210,29 @@ def format_stars(x): #⭐
         return x
 
 # ======================================================================================================
-uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
-excel_loaded=False
-
-if uploaded_file is not None:
-    file = pd.ExcelFile(uploaded_file)
-    if file is not None:
-        option = st.selectbox(
-            "Worksheet to open",
-            file.sheet_names,
-            index=None,
-            placeholder="Select Worksheet...",
-        )
-        if option is not None:
-            if option == "Tableaux":
-                df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-            else:
-                df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                if option == "Palmon_data":
-                    df1.columns = cols_data
-            st.dataframe(df1)
-            excel_loaded=True
-    else:
-        uploaded_file=None
+with st.expander("Excel file", expanded=True, width="stretch"):
+    uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
+    excel_loaded=False
+    if uploaded_file is not None:
+        file = pd.ExcelFile(uploaded_file)
+        if file is not None:
+            option = st.selectbox(
+                "Worksheet to open",
+                file.sheet_names,
+                index=None,
+                placeholder="Select Worksheet...",
+            )
+            if option is not None:
+                if option == "Tableaux":
+                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                else:
+                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                    if option == "Palmon_data":
+                        df1.columns = cols_data
+                st.dataframe(df1)
+                excel_loaded=True
+        else:
+            uploaded_file=None
 
 
 if df_xls["DataFrame"][idx_costs] is not None:
