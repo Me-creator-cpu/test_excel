@@ -73,6 +73,9 @@ def write_js_menu(): # ---- HIDE STREAMLIT STYLE ----
                 """
     st.markdown(hide_st_style, unsafe_allow_html=True)    
 
+def file_err():
+   st.markdown(":orange-badge[⚠️ No file loaded]")
+    
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
     try:
         df = pd.read_excel(
@@ -154,17 +157,25 @@ row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
 
-tab1, tab2, tab3 = st.tabs([df_xls["DisplayName"][1],df_xls["DisplayName"][2],df_xls["DisplayName"][3]])
+tab1, tab2, tab3 = st.tabs([df_xls["DisplayName"][idx_costs],df_xls["DisplayName"][idx_comp],df_xls["DisplayName"][idx_mut]])
 with tab1:
-    st.header(df_xls["DisplayName"][1])
-    build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(300))
+    if excel_loaded==True:
+        st.header(df_xls["DisplayName"][idx_costs])
+        build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(300))
+    else:
+        file_err
 with tab2:
-    st.header(df_xls["DisplayName"][2])
-    build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
+    if excel_loaded==True:    
+        st.header(df_xls["DisplayName"][idx_comp])
+        build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
+    else:
+        file_err
 with tab3:
-    st.header(df_xls["DisplayName"][idx_mut]) 
-    build_chart_bar(df_xls["DataFrame"][idx_mut],'Level','Cost level','Mutation costs from level:',int(1),int(30))
-
+    if excel_loaded==True:  
+        st.header(df_xls["DisplayName"][idx_mut]) 
+        build_chart_bar(df_xls["DataFrame"][idx_mut],'Level','Cost level','Mutation costs from level:',int(1),int(30))
+    else:
+        file_err
 
 
 
