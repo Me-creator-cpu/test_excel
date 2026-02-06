@@ -39,7 +39,7 @@ data = { #                    0              1                  2               
         "DisplayName":    ["Palmons",   "Upgrade costs",   "Competencies", "Mutation costs",   "Valeurs Réf."       ],
         "Range":          ["B:N",       "A:C",             "H:I",          "N:Q",              "A:B"                ],
         "SkipRows":       [1,           1,                 1,              1,                  0                    ],
-        "UpToRow":        [40,          302,               31,             224,                5                    ],
+        "UpToRow":        [41,          302,               31,             224,                5                    ],
         "DisplayColumns": [cols_data,   cols_exp,          cols_comp,      cols_mut,           cols_mut_full        ],
         "DataFrame":      [df_pal_data, df_costs_exp,      df_costs_comp,  df_costs_mut,       df_costs_mut_full    ],
        }
@@ -163,10 +163,6 @@ else:
 row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
-
-tabs=[]
-tabs=st.tabs("t1","t2","t3")
-
 
 tab1, tab2, tab3 = st.tabs([df_xls["DisplayName"][idx_costs],df_xls["DisplayName"][idx_comp],df_xls["DisplayName"][idx_mut]])
 with tab1:
