@@ -86,7 +86,7 @@ column_config={
         "Mutation preview",
         width="small"
     ),
-    "Unused1": st.column_config.Column(disabled=True),
+    "Unused1": None,
     "Unused2": st.column_config.Column(disabled=True),
     "Unused3": st.column_config.Column(disabled=True),
     "Unused4": st.column_config.Column(disabled=True),
