@@ -164,6 +164,10 @@ row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
 
+tabs=[]
+tabs=st.tabs("t1","t2","t3")
+
+
 tab1, tab2, tab3 = st.tabs([df_xls["DisplayName"][idx_costs],df_xls["DisplayName"][idx_comp],df_xls["DisplayName"][idx_mut]])
 with tab1:
     if excel_loaded==True:
