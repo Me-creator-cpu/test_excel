@@ -152,6 +152,7 @@ if uploaded_file is not None:
             excel_loaded=True
     else:
         excel_loaded=False
+        uploaded_file=None
 
 row, col = df_xls.shape
 for i in range(row):
