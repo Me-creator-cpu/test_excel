@@ -63,7 +63,8 @@ def write_js_script():
     """
     st.markdown(js_script, unsafe_allow_html=True)
 
-def write_js_menu(): # ---- HIDE STREAMLIT STYLE ----
+def write_js_menu(): 
+    # ---- HIDE STREAMLIT STYLE ----
     hide_st_style = """
                 <style>
                 #MainMenu {visibility: hidden;}
