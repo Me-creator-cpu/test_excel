@@ -162,7 +162,7 @@ with tab2:
     st.header(df_xls["DisplayName"][2])
     build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
 with tab3:
-    st.header(df_xls["DisplayName"][3])    
+    st.header(df_xls["DisplayName"][idx_mut]) 
     build_chart_bar(df_xls["DataFrame"][idx_mut],'Level','Cost level','Mutation costs from level:',int(1),int(30))
 
 
