@@ -134,7 +134,22 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30):
         total_col = f"Total cost from {range_level_min} to {range_level_max}"
         st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[yField].sum()))}]")
         excel_loaded=True
-    
+
+def build_table_any(df):
+        st.data_editor(
+            df,
+            column_config={
+               "Cost": st.column_config.NumberColumn(
+                     "Costs",
+                     min_value=0,
+                     max_value=10000000,
+                     step=1,
+                     format="compact",
+               )
+            },
+            hide_index=True,
+         )         
+
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
     if file is not None:
@@ -191,19 +206,7 @@ with tab3:
 with tab4:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_val]) 
-        st.data_editor(
-            df_xls["DataFrame"][idx_val],
-            column_config={
-               "Cost": st.column_config.NumberColumn(
-                     "Costs",
-                     min_value=0,
-                     max_value=10000000,
-                     step=1,
-                     format="compact",
-               )
-            },
-            hide_index=True,
-         )            
+        build_table_any(df_xls["DataFrame"][idx_val])
     else:
         file_err()
 
