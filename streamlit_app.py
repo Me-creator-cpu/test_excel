@@ -283,6 +283,7 @@ with tab5:
         st.dataframe(
             df_xls["DataFrame"][idx_palmon],
             column_config=column_config,
+            selection_mode="single-row"
             hide_index=True,
          )               
     else:
