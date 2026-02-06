@@ -129,6 +129,8 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
             nrows=int(rng_rows),
         )
         if rencols is not None:
+            df.columns = rencols
+        if rencols is not None:
             try:
                 df.columns = rencols
             except:
