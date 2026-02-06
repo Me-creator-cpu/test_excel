@@ -63,6 +63,16 @@ def write_js_script():
     """
     st.markdown(js_script, unsafe_allow_html=True)
 
+def write_js_menu(): # ---- HIDE STREAMLIT STYLE ----
+    hide_st_style = """
+                <style>
+                #MainMenu {visibility: hidden;}
+                footer {visibility: hidden;}
+                header {visibility: hidden;}
+                </style>
+                """
+    st.markdown(hide_st_style, unsafe_allow_html=True)    
+
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
     try:
         df = pd.read_excel(
@@ -138,43 +148,19 @@ if uploaded_file is not None:
             excel_loaded=True
     else:
         excel_loaded=False
-    
-# ---- HIDE STREAMLIT STYLE ----
-#hide_st_style = """
-#            <style>
-#            #MainMenu {visibility: hidden;}
-#            footer {visibility: hidden;}
-#            header {visibility: hidden;}
-#            </style>
-#            """
-#st.markdown(hide_st_style, unsafe_allow_html=True)
-  
 
 row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
 
-
-build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
-
-#df_chart=df_xls["DataFrame"][idx_comp]
-#if df_chart is not None:
-if 1 == 2:
-    st.bar_chart(df_chart, x="Level from", y="Cost")
-    sel_min=1
-    sel_max=30
-    range_level_min, range_level_max= st.slider(
-        label="Costs from level:",
-        min_value=sel_min,
-        max_value=sel_max,
-        value=(sel_min,sel_max),
-        step=1
-    )
-    df = df_chart.loc[(df_chart['Level from'] >= int(range_level_min)) & (df_chart['Level from'] <= int(range_level_max))]
-    total_col = f"Total cost from {range_level_min} to {range_level_max}"
-    st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df.Cost.sum()))}]")
-    
-
+tab1, tab2, tab3 = st.tabs([df_xls["DisplayName"][1],df_xls["DisplayName"][2],df_xls["DisplayName"][3]])
+with tab1:
+    st.header(df_xls["DisplayName"][1])
+    build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
+with tab2:
+    st.header(df_xls["DisplayName"][2])
+with tab3:
+    st.header(df_xls["DisplayName"][3])    
 
 
 
