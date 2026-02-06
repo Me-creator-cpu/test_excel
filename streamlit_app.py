@@ -263,7 +263,11 @@ with tab4:
 with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon]) 
-        build_table_any(df_xls["DataFrame"][idx_palmon])
+        st.dataframe(
+            df_xls["DataFrame"][idx_palmon],
+            column_config=column_config,
+            hide_index=True,
+         )               
     else:
         file_err()
 
