@@ -177,7 +177,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30):
         excel_loaded=True
 
 def build_table_any(df):
-        st.data_editor(
+        st.dataframe(
             df,
             column_config={
                "Cost": st.column_config.NumberColumn(
