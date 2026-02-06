@@ -199,7 +199,7 @@ def format_stars(x): #⭐
 # ======================================================================================================
 uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
 excel_loaded=False
-
+cols_data
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
     if file is not None:
