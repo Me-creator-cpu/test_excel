@@ -45,6 +45,12 @@ df_xls = pd.DataFrame(data)
 #df_xls
 # ======================================================================================================
 #format="%d ⭐",
+col_pct=st.column_config.NumberColumn(
+        "Achievement",
+        min_value=0,
+        max_value=100,
+        format="percent",
+    )
 column_config={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
     "Type": st.column_config.TextColumn( "Type", pinned = True ),
@@ -86,6 +92,11 @@ column_config={
         "Mutation preview",
         width="small"
     ),
+    "Comp 1": col_pct,
+    "Comp 2": col_pct,
+    "Comp 3": col_pct,
+    "Comp 4": col_pct,
+    "Comp 5": col_pct,
     "Unused1": None,
     "Unused2": None,
     "Unused3": None,
