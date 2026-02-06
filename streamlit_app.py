@@ -46,7 +46,6 @@ df_xls = pd.DataFrame(data)
 # ======================================================================================================
 #format="%d ⭐",
 col_pct=st.column_config.NumberColumn(
-        "Achievement",
         min_value=0,
         max_value=100,
         format="percent",
