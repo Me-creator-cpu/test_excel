@@ -11,9 +11,6 @@ from openpyxl import load_workbook
 # from openpyxl.utils.dataframe import dataframe_to_rows
 import locale
 
-uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
-excel_loaded=False
-
 # ======================================================================================================
 # Définitions DataFrame et Excel
 cols_data = ['Name','Type','Skill','Level','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Cost to max','Upgradable','RankPower','Rank','Team','URL','URL Mutation','Mutation 1','Mutation 2']
@@ -46,6 +43,50 @@ data = { #                    0              1                  2               
 df_xls = pd.DataFrame(data)
 
 #df_xls
+# ======================================================================================================
+
+column_config={
+    "Name": st.column_config.TextColumn( "Name", pinned = True ),
+    "Type": st.column_config.TextColumn( "Type", pinned = True ),
+    "Skill": st.column_config.TextColumn( "Skill", pinned = True ),
+    "Level": st.column_config.ProgressColumn(
+        "Level",
+        help="Palmon level",
+        format="%f",
+        min_value=100,
+        max_value=250,
+        color="#006699"
+    ),
+    "Step": st.column_config.NumberColumn(
+        "Step",
+        min_value=0,
+        max_value=5,
+        format="%d ⭐",
+    ),
+    "Achievement": st.column_config.NumberColumn(
+        "Achievement",
+        min_value=0,
+        max_value=100,
+        format="percent",
+    ),
+    "Cost to max": st.column_config.NumberColumn(
+        "Cost to max",
+        #format="localized",
+        format="compact",
+    ),
+    "RankPower": st.column_config.NumberColumn(
+        "RankPower",
+        format="localized",
+    ),
+    "URL": st.column_config.ImageColumn(
+        "Base preview",
+        width="small"
+    ),
+    "URL Mutation": st.column_config.ImageColumn(
+        "Mutation preview",
+        width="small"
+    )
+}
 # ======================================================================================================
 
 def test_df_xls():
@@ -149,6 +190,9 @@ def build_table_any(df):
             },
             hide_index=True,
          )         
+# ======================================================================================================
+uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
+excel_loaded=False
 
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
@@ -179,11 +223,12 @@ row, col = df_xls.shape
 for i in range(row):
     get_data(uploaded_file,i,False)
 
-tab1, tab2, tab3, tab4 = st.tabs([
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
                             df_xls["DisplayName"][idx_costs],
                             df_xls["DisplayName"][idx_comp],
                             df_xls["DisplayName"][idx_mut],
-                            df_xls["DisplayName"][idx_val]
+                            df_xls["DisplayName"][idx_val],
+                            df_xls["DisplayName"][idx_palmon]
                             ])
 with tab1:
     if df_xls["DataFrame"][idx_palmon] is not None: 
@@ -215,7 +260,12 @@ with tab4:
         build_table_any(df_xls["DataFrame"][idx_val])
     else:
         file_err()
-
+with tab5:
+    if df_xls["DataFrame"][idx_palmon] is not None:  
+        st.header(df_xls["DisplayName"][idx_palmon]) 
+        build_table_any(df_xls["DataFrame"][idx_palmon])
+    else:
+        file_err()
 
 
 
