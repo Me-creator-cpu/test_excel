@@ -87,13 +87,13 @@ column_config={
         width="small"
     ),
     "Unused1": None,
-    "Unused2": st.column_config.Column(disabled=True),
-    "Unused3": st.column_config.Column(disabled=True),
-    "Unused4": st.column_config.Column(disabled=True),
-    "Unused5": st.column_config.Column(disabled=True),
-    "Unused6": st.column_config.Column(disabled=True),
-    "Unused7": st.column_config.Column(disabled=True),
-    "Unused8": st.column_config.Column(disabled=True)
+    "Unused2": None,
+    "Unused3": None,
+    "Unused4": None,
+    "Unused5": None,
+    "Unused6": None,
+    "Unused7": None,
+    "Unused8": None
 }
 # ======================================================================================================
 
