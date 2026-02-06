@@ -128,7 +128,8 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30):
         )
         df = df_chart.loc[(df_chart[xField] >= int(range_level_min)) & (df_chart[xField] <= int(range_level_max))]
         total_col = f"Total cost from {range_level_min} to {range_level_max}"
-        st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df.Cost.sum()))}]")
+        st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[yField].sum()))}]")
+        #st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df.Cost.sum()))}]")
     
 if uploaded_file is not None:
     file = pd.ExcelFile(uploaded_file)
