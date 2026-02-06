@@ -264,7 +264,7 @@ with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon])
         df=df_xls["DataFrame"][idx_palmon]
-        df['Step'] = df.apply(lambda x: f':star:*int(round(x,0))', axis=1)
+        df['Step'] = df.apply(lambda x: f":star:*int(round(x,0))", axis=1)
         st.dataframe(
             df,
             column_config=column_config,
