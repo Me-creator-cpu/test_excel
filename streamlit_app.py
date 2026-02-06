@@ -166,19 +166,19 @@ for i in range(row):
 
 tab1, tab2, tab3 = st.tabs([df_xls["DisplayName"][idx_costs],df_xls["DisplayName"][idx_comp],df_xls["DisplayName"][idx_mut]])
 with tab1:
-    if excel_loaded==True:
+    if df_xls["DataFrame"][idx_palmon] is not None: 
         st.header(df_xls["DisplayName"][idx_costs])
         build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(300))
     else:
         file_err()
 with tab2:
-    if excel_loaded==True:    
+    if df_xls["DataFrame"][idx_palmon] is not None:   
         st.header(df_xls["DisplayName"][idx_comp])
         build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
     else:
         file_err()
 with tab3:
-    if excel_loaded==True:  
+    if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_mut]) 
         build_chart_bar(df_xls["DataFrame"][idx_mut],'Level','Cost level','Mutation costs from level:',int(1),int(30))
     else:
