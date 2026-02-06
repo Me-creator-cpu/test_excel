@@ -119,7 +119,8 @@ def file_err():
    st.markdown(":orange-badge[⚠️ No file loaded]")
     
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
-    try:
+    if 1 == 1:
+    #try:
         df = pd.read_excel(
             io=xls_file,
             engine="openpyxl",
@@ -138,9 +139,9 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
         if show_table == True:
             with st.expander(xls_sheet, expanded=False, icon=':material/table_view:', width='stretch'):
                 st.dataframe(df)
-    except:
+    else:
+    #except:
         df = None
-    #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
     return df
 
 def get_data(file,idx,show_table=False):
