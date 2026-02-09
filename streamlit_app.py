@@ -303,12 +303,20 @@ with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon])
         #df_xls["DataFrame"][idx_palmon].columns = cols_data
-        st.dataframe(
+        event = st.dataframe(
             df_xls["DataFrame"][idx_palmon],
             column_config=column_config,
+            on_select="rerun",
             selection_mode="single-row",
             hide_index=True,
-         )               
+        )
+        palmon = event.selection.rows
+        filtered_df = df_xls["DataFrame"][idx_palmon].iloc[palmon]
+        st.dataframe(
+            filtered_df,
+            column_config=column_config,
+            hide_index=True,
+        )
     else:
         file_err()
 
