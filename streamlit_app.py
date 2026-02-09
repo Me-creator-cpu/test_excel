@@ -206,8 +206,16 @@ def build_table_any(df):
             hide_index=True,
          )    
 
+def human_format(num, round_to=1):
+    magnitude = 0
+    while abs(num) >= 1000:
+        magnitude += 1
+        num = round(num / 1000.0, round_to)
+    return '{:.{}f}{}'.format(num, round_to, ['', 'K', 'M', 'B', 'G'][magnitude])
+#df.style.format({"stars": human_format})
+
 def build_table_full_costs(df_src):
-    st.write(':material/thumb_up:')
+    st.markdown(':material/thumb_up:')
     df=df_src.copy()
     df['NewCol']=f":material/thumb_up:" #df['Cost type']
     df['Cost type'] = df['Cost type'].replace('Level300', f':material/thumb_up: Dummy')
