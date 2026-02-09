@@ -42,6 +42,8 @@ data = { #                    0                  1                  2           
        }
 df_xls = pd.DataFrame(data)
 
+option_skill=["⚔ Attack","🛡 Defend"]
+
 #df_xls
 # ======================================================================================================
 #format="%d ⭐",
@@ -53,7 +55,7 @@ col_pct=st.column_config.NumberColumn(
 column_config={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
     "Type": st.column_config.TextColumn( "Type", pinned = True ),
-    "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=["⚔ Attack","🛡 Defend"] ),
+    "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=option_skill ),
     #"Skill": st.column_config.TextColumn( "Skill", pinned = True ),
     "Level": st.column_config.ProgressColumn(
         "Level",
