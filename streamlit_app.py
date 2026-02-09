@@ -259,7 +259,7 @@ with tab1:
         df = df_xls["DataFrame"][idx_palmon]
         #df.loc[(df_chart["Cost"] >= 1)]
         st.header(df_xls["DisplayName"][idx_costs])
-        max_upg=df.loc[(df_chart["Cost"] >= 1)]["Level from"].max()
+        max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
         build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(max_upg))
         #build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(300))
         with st.expander("Data graph", expanded=False, width="stretch"):
