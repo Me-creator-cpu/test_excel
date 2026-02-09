@@ -60,9 +60,7 @@ col_pct=st.column_config.NumberColumn(
 column_config={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
     "Type": st.column_config.SelectboxColumn( "Type", pinned = True,options=option_type ),
-    #"Type": st.column_config.TextColumn( "Type", pinned = True ),
     "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=option_skill ),
-    #"Skill": st.column_config.TextColumn( "Skill", pinned = True ),
     "Level": st.column_config.ProgressColumn(
         "Level",
         help="Palmon level",
@@ -76,6 +74,9 @@ column_config={
         min_value=0,
         max_value=5,
         format="%d ⭐",
+    ),
+    "Steps": st.column_config.TextColumn(
+        "Steps",
     ),
     "Achievement": col_pct,
     "Cost to max": st.column_config.NumberColumn(
@@ -283,7 +284,7 @@ def show_details(palmon,df):
         #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
         filtered_df['Cost to max']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
         filtered_df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
-        
+        filtered_df = filtered_df.style.hide_columns(['Step'])
         st.dataframe(
             filtered_df,
             column_config=column_config,
