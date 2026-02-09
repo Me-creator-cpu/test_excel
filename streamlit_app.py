@@ -272,7 +272,7 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
 
 def show_details(palmon,df):
     df_costs = df_xls["DataFrame"][idx_costs]
-    max_upg=df.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
+    max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
     filtered_df = df.copy().iloc[palmon]
     filtered_df['Cost upgrade']=df['Cost to max'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
     st.dataframe(
