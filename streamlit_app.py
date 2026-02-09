@@ -44,6 +44,10 @@ df_xls = pd.DataFrame(data)
 #df_xls
 option_skill=["⚔ Attack","🛡 Defend"]
 option_type=["💧Water","🔥Fire","⚡Electricity","🪵Wood"]
+data_type={
+    "Type":["Water","Fire","Electricity","Wood"],
+    "Icon":["💧","🔥","⚡","🪵"]
+}
 
 # ======================================================================================================
 #format="%d ⭐",
@@ -348,7 +352,8 @@ with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon])
         #df_xls["DataFrame"][idx_palmon].columns = cols_data
-        df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[0] if b=='Fire' else option_type[1])
+        #df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[0] if b=='Fire' else option_type[1])
+        df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: data_type.loc[(data_type[Skill"] == b)]["Icon"])
         df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
         event = st.dataframe(
             df_xls["DataFrame"][idx_palmon],
