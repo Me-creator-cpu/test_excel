@@ -205,19 +205,19 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30):
         excel_loaded=True
 
 def build_table_any(df):
-        st.dataframe(
-            df,
-            column_config={
-               "Cost": st.column_config.NumberColumn(
-                     "Costs",
-                     min_value=0,
-                     max_value=10000000,
-                     step=1,
-                     format="compact",
-               )
-            },
-            hide_index=True,
-         )    
+    st.dataframe(
+        df,
+        column_config={
+           "Cost": st.column_config.NumberColumn(
+                 "Costs",
+                 min_value=0,
+                 max_value=10000000,
+                 step=1,
+                 format="compact",
+           )
+        },
+        hide_index=True,
+     )    
 
 def human_format(num, round_to=1):
     magnitude = 0
@@ -275,17 +275,21 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
         return None
 
 def show_details(palmon,df):
-    df_costs = df_xls["DataFrame"][idx_costs]
-    max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
-    filtered_df = df.copy().iloc[palmon]
-    #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
-    filtered_df['Cost upgrade']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
-    st.dataframe(
-        filtered_df,
-        column_config=column_config,
-        hide_index=True,
-    )
-
+    if palmon is not None:
+        df_costs = df_xls["DataFrame"][idx_costs]
+        max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
+        filtered_df = df.copy().iloc[palmon]
+        #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
+        filtered_df['Cost to max']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
+        filtered_df['Step']=df['Step'].apply(lambda b: format_stars(b)) )
+        
+        st.dataframe(
+            filtered_df,
+            column_config=column_config,
+            hide_index=True,
+        )
+    else:
+        st.empty()
         #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(b,max_upg))}]")
 
 
