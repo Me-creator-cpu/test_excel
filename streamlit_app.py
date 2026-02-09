@@ -278,7 +278,7 @@ def show_details(palmon,df):
     st.markdown(f":orange-badge[max_upg : {max_upg}]")
     
     filtered_df = df.copy().iloc[palmon]
-    filtered_df['Cost upgrade']=df['Cost to max'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
+    filtered_df['Cost upgrade']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
     st.dataframe(
         filtered_df,
         column_config=column_config,
