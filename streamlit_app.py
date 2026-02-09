@@ -208,7 +208,7 @@ def build_table_any(df):
 
 def build_table_full_costs(df_src):
     df=df_src.copy()
-    df['Cost type'] = df['Cost type'].replace('Energy', 'Dummy')
+    df['Cost type'] = df['Cost type'].replace('Level300', 'Dummy')
     st.dataframe(
             df,
             column_config={
