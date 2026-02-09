@@ -217,7 +217,7 @@ def human_format(num, round_to=1):
 def build_table_full_costs(df_src):
     sel_options=[
         "📊 Data Exploration",
-        "📈 :material/thumb_up:",
+        f"📈 :material/thumb_up:",
         "🤖 LLM",
     ]
     st.markdown(':material/thumb_up:')
