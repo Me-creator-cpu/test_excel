@@ -223,7 +223,7 @@ def build_table_full_costs(df_src):
     st.markdown(':material/thumb_up:')
     df=df_src.copy()
     df['NewCol']=f":material/thumb_up:" #df['Cost type']
-    df['NewCol']=df['Cost type'].apply(lambda b: ':material/thumb_up:' if b=='Level300' else ':material/pivot_table_chart:')
+    df['NewCol']=df['Cost type'].apply(lambda b: sel_options[1] if b=='Level300' else sel_options[2])
     df['Cost type'] = df['Cost type'].replace('Level300', f':material/thumb_up: Dummy')
     st.dataframe(
             df,
