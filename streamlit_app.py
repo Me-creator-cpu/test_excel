@@ -281,7 +281,7 @@ def show_details(palmon,df):
         filtered_df = df.copy().iloc[palmon]
         #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
         filtered_df['Cost to max']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
-        filtered_df['Step']=df['Step'].apply(lambda b: format_stars(b) )
+        filtered_df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
         
         st.dataframe(
             filtered_df,
