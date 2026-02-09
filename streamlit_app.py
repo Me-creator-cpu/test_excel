@@ -206,6 +206,26 @@ def build_table_any(df):
             hide_index=True,
          )    
 
+def build_table_full_costs(df_src):
+    df=df_src.copy()
+    df['Cost type'] = df['Cost type'].replace('Energy', 'Dummy')
+    st.dataframe(
+            df,
+            column_config={
+               "Cost type": st.column_config.TextColumn(
+                     "Cost type",
+               )                
+               "Cost": st.column_config.NumberColumn(
+                     "Costs",
+                     min_value=0,
+                     max_value=10000000,
+                     step=1,
+                     format="compact",
+               )
+            },
+            hide_index=True,
+         )  
+
 def format_stars(x): #⭐
     try:
         return f":star: * round(int(x),0)"
@@ -296,7 +316,7 @@ with tab3:
 with tab4:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_val]) 
-        build_table_any(df_xls["DataFrame"][idx_val])
+        build_table_full_costs(df_xls["DataFrame"][idx_val])
     else:
         file_err()
 with tab5:
