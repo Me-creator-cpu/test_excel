@@ -270,6 +270,15 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
     else:
         return None
 
+def show_details(palmon):
+    if df_xls["DataFrame"][idx_palmon] is not None:
+        filtered_df = df_xls["DataFrame"][idx_palmon].iloc[palmon]
+        st.dataframe(
+            filtered_df,
+            column_config=column_config,
+            hide_index=True,
+        )
+    
 # ======================================================================================================
 with st.expander("Excel file", expanded=True, width="stretch"):
     uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
@@ -352,20 +361,7 @@ with tab4:
 with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon])
-
-        st.write(
-            df_data_type.loc[(df_data_type['Type'] == 'Fire')]['Icon']
-        )
-        st.write(
-            df_data_type.loc[(df_data_type['Type'] == 'Fire')]['Icon']
-        )
-        
-        #df_xls["DataFrame"][idx_palmon].columns = cols_data
-        
-        #df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[0] if b=='Fire' else option_type[1])
-        #df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: df_data_type.loc[(df_data_type['Type'] == b)]['Icon'])
         df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-        
         df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
         event = st.dataframe(
             df_xls["DataFrame"][idx_palmon],
@@ -374,13 +370,7 @@ with tab5:
             selection_mode="single-row",
             hide_index=True,
         )
-        palmon = event.selection.rows
-        filtered_df = df_xls["DataFrame"][idx_palmon].iloc[palmon]
-        st.dataframe(
-            filtered_df,
-            column_config=column_config,
-            hide_index=True,
-        )
+        show_details(event.selection.rows)
     else:
         file_err()
 
