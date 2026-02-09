@@ -215,6 +215,11 @@ def human_format(num, round_to=1):
 #df.style.format({"stars": human_format})
 
 def build_table_full_costs(df_src):
+    sel_options=[
+        "📊 Data Exploration",
+        "📈 Data Visualization",
+        "🤖 LLM",
+    ]
     st.markdown(':material/thumb_up:')
     df=df_src.copy()
     df['NewCol']=f":material/thumb_up:" #df['Cost type']
@@ -223,16 +228,21 @@ def build_table_full_costs(df_src):
     st.dataframe(
             df,
             column_config={
-               "Cost type": st.column_config.TextColumn(
-                     "Cost type",
-               ),                
-               "Cost": st.column_config.NumberColumn(
-                     "Costs",
-                     min_value=0,
-                     max_value=10000000,
-                     step=1,
-                     format="compact",
-               )
+                "Cost type": st.column_config.TextColumn(
+                    "Cost type",
+                ),                
+                "Cost": st.column_config.NumberColumn(
+                    "Costs",
+                    min_value=0,
+                    max_value=10000000,
+                    step=1,
+                    format="compact",
+                ),
+                "NewCol": st.column_config.SelectboxColumn(
+                    "New column",
+                    disabled=True,
+                    options=sel_options
+                ),
             },
             hide_index=True,
          )  
