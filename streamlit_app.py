@@ -352,6 +352,11 @@ with tab4:
 with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon])
+
+        st.write(
+            df_data_type.loc[(df_data_type['Type'] == 'Fire')]['Icon']
+        )
+        
         #df_xls["DataFrame"][idx_palmon].columns = cols_data
         #df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[0] if b=='Fire' else option_type[1])
         df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: df_data_type.loc[(df_data_type['Type'] == b)]['Icon'])
