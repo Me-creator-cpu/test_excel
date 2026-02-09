@@ -209,7 +209,7 @@ def build_table_any(df):
 def build_table_full_costs(df_src):
     st.write(':material/thumb_up:')
     df=df_src.copy()
-    df['NewCol']=df['Cost type']
+    df['NewCol']=df['Cost type' & ':material/thumb_up:']
     df['Cost type'] = df['Cost type'].replace('Level300', f':material/thumb_up: Dummy')
     st.dataframe(
             df,
