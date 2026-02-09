@@ -43,11 +43,12 @@ data = { #                    0                  1                  2           
 df_xls = pd.DataFrame(data)
 #df_xls
 option_skill=["⚔ Attack","🛡 Defend"]
-option_type=["💧Water","🔥Fire","⚡Electricity","🪵Wood"]
+#option_type=["💧Water","🔥Fire","⚡Electricity","🪵Wood"]
 data_type={
     "Type":["Water","Fire","Electricity","Wood"],
     "Icon":["💧","🔥","⚡","🪵"]
 }
+option_type=data_type['Icon']
 df_data_type = pd.DataFrame(data_type)
 # ======================================================================================================
 #format="%d ⭐",
