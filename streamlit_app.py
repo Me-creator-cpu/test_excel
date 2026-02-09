@@ -277,6 +277,7 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
         return None
 
 def show_details(palmon,df):
+    st.markdown(f":orange-badge[palmon : {palmon}]")
     if palmon is not None:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
