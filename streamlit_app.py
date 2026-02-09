@@ -214,7 +214,7 @@ def build_table_full_costs(df_src):
             column_config={
                "Cost type": st.column_config.TextColumn(
                      "Cost type",
-               )                
+               ),                
                "Cost": st.column_config.NumberColumn(
                      "Costs",
                      min_value=0,
