@@ -212,6 +212,14 @@ def format_stars(x): #⭐
     except:
         return x
 
+def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
+    if df_xls["DataFrame"][idx_palmon] is not None:
+        df = df_xls["DataFrame"][idx_costs]
+        val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
+        return val_cost
+    else:
+        return None
+
 # ======================================================================================================
 with st.expander("Excel file", expanded=True, width="stretch"):
     uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
@@ -259,6 +267,9 @@ with tab1:
         df = df_xls["DataFrame"][idx_costs]
         df_pal=df_xls["DataFrame"][idx_palmon]
         st.header(df_xls["DisplayName"][idx_costs])
+        
+        st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(240,259))}]")
+        
         min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
         max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
         build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
