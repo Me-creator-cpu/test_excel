@@ -353,7 +353,7 @@ with tab5:
         st.header(df_xls["DisplayName"][idx_palmon])
         #df_xls["DataFrame"][idx_palmon].columns = cols_data
         #df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[0] if b=='Fire' else option_type[1])
-        df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: df_data_type.loc[(df_data_type['Skill'] == b)]['Icon'])
+        df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: df_data_type.loc[(df_data_type['Type'] == b)]['Icon'])
         df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
         event = st.dataframe(
             df_xls["DataFrame"][idx_palmon],
