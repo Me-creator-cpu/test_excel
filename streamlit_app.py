@@ -53,7 +53,7 @@ col_pct=st.column_config.NumberColumn(
 column_config={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
     "Type": st.column_config.TextColumn( "Type", pinned = True ),
-    "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True ),
+    "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=["⚔ Attack","🛡 Defend"] ),
     #"Skill": st.column_config.TextColumn( "Skill", pinned = True ),
     "Level": st.column_config.ProgressColumn(
         "Level",
