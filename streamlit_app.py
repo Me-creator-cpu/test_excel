@@ -257,12 +257,10 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 with tab1:
     if df_xls["DataFrame"][idx_palmon] is not None:
         df = df_xls["DataFrame"][idx_costs]
-        df
-        #df.loc[(df_chart["Cost"] >= 1)]
         st.header(df_xls["DisplayName"][idx_costs])
+        min_upg=df.loc[(df_xls["DataFrame"][idx_palmon]["Level"] >= 1)]["Level from"].min()
         max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
-        build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(max_upg))
-        #build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(1),int(300))
+        build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
         with st.expander("Data graph", expanded=False, width="stretch"):
             build_table_any(df_xls["DataFrame"][idx_costs])
     else:
