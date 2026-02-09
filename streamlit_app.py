@@ -257,6 +257,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 with tab1:
     if df_xls["DataFrame"][idx_palmon] is not None:
         df = df_xls["DataFrame"][idx_palmon]
+        df
         #df.loc[(df_chart["Cost"] >= 1)]
         st.header(df_xls["DisplayName"][idx_costs])
         max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
