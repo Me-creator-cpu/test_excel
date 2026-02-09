@@ -53,7 +53,8 @@ col_pct=st.column_config.NumberColumn(
 column_config={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
     "Type": st.column_config.TextColumn( "Type", pinned = True ),
-    "Skill": st.column_config.TextColumn( "Skill", pinned = True ),
+    "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True ),
+    #"Skill": st.column_config.TextColumn( "Skill", pinned = True ),
     "Level": st.column_config.ProgressColumn(
         "Level",
         help="Palmon level",
@@ -344,6 +345,7 @@ with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon])
         #df_xls["DataFrame"][idx_palmon].columns = cols_data
+        df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b:  "⚔ Attack" if b=='Attack' else "🛡 Defend")
         event = st.dataframe(
             df_xls["DataFrame"][idx_palmon],
             column_config=column_config,
