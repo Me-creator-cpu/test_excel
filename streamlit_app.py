@@ -108,7 +108,7 @@ column_config={
     "Unused6": None,
     "Unused7": None,
     "Unused8": None,
-    "Cost upgrade":: st.column_config.NumberColumn(
+    "Cost upgrade": st.column_config.NumberColumn(
         "Cost upgrade",
         format="compact",
     )
