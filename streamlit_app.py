@@ -262,7 +262,8 @@ def build_table_full_costs(df_src):
 
 def format_stars(x): #⭐
     try:
-        return f"⭐ * round(int(x),0)"
+        #return f"⭐ * round(int(x),0)"
+        return ("⭐" * int(x))[0:int(x)]
     except:
         return x
 
