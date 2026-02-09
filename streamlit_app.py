@@ -41,10 +41,10 @@ data = { #                    0                  1                  2           
         "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,  df_costs_mut,       df_costs_mut_full    ],
        }
 df_xls = pd.DataFrame(data)
-
-option_skill=["⚔ Attack","🛡 Defend"]
-
 #df_xls
+option_skill=["⚔ Attack","🛡 Defend"]
+option_type=["💧Water","🔥Fire","⚡Electricity","🪵Wood"]
+
 # ======================================================================================================
 #format="%d ⭐",
 col_pct=st.column_config.NumberColumn(
@@ -54,7 +54,8 @@ col_pct=st.column_config.NumberColumn(
     )
 column_config={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
-    "Type": st.column_config.TextColumn( "Type", pinned = True ),
+    "Type": st.column_config.SelectboxColumn( "Type", pinned = True,options=option_type ),
+    #"Type": st.column_config.TextColumn( "Type", pinned = True ),
     "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=option_skill ),
     #"Skill": st.column_config.TextColumn( "Skill", pinned = True ),
     "Level": st.column_config.ProgressColumn(
@@ -347,7 +348,8 @@ with tab5:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_palmon])
         #df_xls["DataFrame"][idx_palmon].columns = cols_data
-        df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b:  "⚔ Attack" if b=='Attack' else "🛡 Defend")
+        df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[0] if b=='Fire' else option_type[1])
+        df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
         event = st.dataframe(
             df_xls["DataFrame"][idx_palmon],
             column_config=column_config,
