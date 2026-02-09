@@ -270,15 +270,21 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
     else:
         return None
 
-def show_details(palmon):
-    if df_xls["DataFrame"][idx_palmon] is not None:
-        filtered_df = df_xls["DataFrame"][idx_palmon].iloc[palmon]
-        st.dataframe(
-            filtered_df,
-            column_config=column_config,
-            hide_index=True,
-        )
-    
+def show_details(palmon,df):
+    df_costs = df_xls["DataFrame"][idx_costs]
+    max_upg=df.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
+    filtered_df = df.copy().iloc[palmon]
+    filtered_df['Cost upgrade']=df['Cost to max'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
+    st.dataframe(
+        filtered_df,
+        column_config=column_config,
+        hide_index=True,
+    )
+
+        #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(b,max_upg))}]")
+
+
+
 # ======================================================================================================
 with st.expander("Excel file", expanded=True, width="stretch"):
     uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
@@ -370,7 +376,7 @@ with tab5:
             selection_mode="single-row",
             hide_index=True,
         )
-        show_details(event.selection.rows)
+        show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
     else:
         file_err()
 
