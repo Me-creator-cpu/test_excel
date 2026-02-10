@@ -106,7 +106,7 @@ column_config={
         "Mutation preview",
         width="small"
     ),
-    "Comp 1": col_pct,
+    "Comp 1": col_progress(0,100,"Comp 1","Comp 1"),
     "Comp 2": col_pct,
     "Comp 3": col_pct,
     "Comp 4": col_pct,
