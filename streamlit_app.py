@@ -120,10 +120,6 @@ column_config={
     "Unused6": None,
     "Unused7": None,
     "Unused8": None,
-    "Rank": None,
-    "Team": None,
-    "Mutation 1": None,
-    "Mutation 2": None,    
     "Cost upgrade": st.column_config.NumberColumn(
         "Cost upgrade",
         format="compact",
@@ -165,6 +161,10 @@ column_config_lst={
     "Unused6": None,
     "Unused7": None,
     "Unused8": None,
+    "Rank": None,
+    "Team": None,
+    "Mutation 1": None,
+    "Mutation 2": None,        
     "Cost upgrade": st.column_config.NumberColumn(
         "Cost upgrade",
         format="compact",
