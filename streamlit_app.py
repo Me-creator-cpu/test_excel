@@ -57,11 +57,11 @@ col_pct=st.column_config.NumberColumn(
         max_value=100,
         format="percent",
     )
-def col_progress(mini=0,maxi=100,label="Level",tooltip="Palmon level"):
+def col_progress(mini=0,maxi=100,label="Level",tooltip="Palmon level",numformat="%f"):
     return st.column_config.ProgressColumn(
         label,
         help=tooltip,
-        format="%f",
+        format=numformat,
         min_value=mini,
         max_value=maxi,
         color="#006699"
@@ -106,7 +106,7 @@ column_config={
         "Mutation preview",
         width="small"
     ),
-    "Comp 1": col_progress(0,1,"Comp 1","Comp 1"),
+    "Comp 1": col_progress(0,1,"Comp 1","Comp 1","percent"),
     "Comp 2": col_pct,
     "Comp 3": col_pct,
     "Comp 4": col_pct,
