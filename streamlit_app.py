@@ -116,7 +116,7 @@ column_config={
     "Comp 1": st.column_config.NumberColumn(format="compact"),
     "Comp 2": st.column_config.NumberColumn(format="compact"),
     "Comp 3": st.column_config.NumberColumn(format="compact"),
-    "Comp 4": st.column_config.TextColumn("Comp 4")
+    "Comp 4": st.column_config.TextColumn("Comp 4"),
     "Comp 5": st.column_config.NumberColumn(format="compact"),
     "Unused1": None,
     "Unused2": None,
