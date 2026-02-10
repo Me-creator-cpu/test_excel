@@ -348,6 +348,12 @@ def show_details(palmon,df):
     else:
         st.empty()
 
+def get_cell_detail(df,fld):
+    try:
+        return df.at[0, fld]
+    except:
+        return empty()
+
 def pal_deltail(df):
     col_border=True
     df_t=df.reset_index().T
@@ -356,6 +362,10 @@ def pal_deltail(df):
 
     with row0[1]:
         st.image(df.at[0, 'URL'], caption=df.at[0, 'Name'])
+    with row1[0]:
+        get_cell_detail('Type')
+    with row1[1]:
+        get_cell_detail('Skill')
     df_t
 
 
