@@ -347,7 +347,6 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
 def show_details(palmon,df):
     st.markdown(f":orange-badge[palmon : {palmon}]")
     try:
-        pal_test=int(palmon)
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
         filtered_df = df.copy().iloc[palmon]
@@ -457,7 +456,8 @@ with tab5:
             selection_mode="single-row",
             hide_index=True,
         )
-        show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
+        if event is not None:
+            show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
     else:
         file_err()
 
