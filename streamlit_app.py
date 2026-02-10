@@ -257,7 +257,8 @@ def large_num_format(value):
         return None
 def percent_format(value):
     try:
-        return f"{value:.2f}%"  # "12.34%"
+        ret=value*100
+        return f"{ret:.2f}%"  # "12.34%"
     except:
         return empty()
         
@@ -385,7 +386,7 @@ def pal_deltail(palmon,df):
         st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'])
     with row0[1]:
         df_info=df[['Type','Skill','Steps','Achievement','Level','Cost to max']]
-        df_info.loc[df.index[0], 'Achievement'] = percent_format(df_info.loc[df.index[0]*100, 'Achievement'])
+        df_info.loc[df.index[0], 'Achievement'] = percent_format(df_info.loc[df.index[0], 'Achievement'])
         df_info.loc[df.index[0], 'Cost to max'] = large_num_format(df_info.loc[df.index[0], 'Cost to max'])
         df_info=df_info.reset_index().T
         st.dataframe(df_info,
