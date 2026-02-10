@@ -372,18 +372,13 @@ def pal_deltail(palmon,df):
 
     df
     
-    row0 = st.columns([1, 3, 1], border=col_border)
+    row0 = st.columns([2, 1], border=col_border)
     row1 = st.columns(2,border=col_border, width="stretch")
     row2 = st.columns(2,border=col_border, width="stretch")
 
     with row0[0]:
-        st.empty()
-    with row0[1]:
         st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'])
-    with row0[2]:
-        df.loc[df.index[0], 'Type']
-        df.loc[df.index[0], 'Skill']
-        df.loc[df.index[0], 'Steps']
+    with row0[1]:
         df_info=df[['Type','Skill','Steps','Achievement','Level','Cost to max']]
         df_info=df_info.reset_index().T
         df_info
