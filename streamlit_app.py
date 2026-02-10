@@ -333,7 +333,7 @@ def show_details(palmon,df):
     st.markdown(f":orange-badge[palmon : {palmon}]")
     if 1 == 1:
         df_costs = df_xls["DataFrame"][idx_costs]
-        max_upg=df_costs.loc[(df_costs["Costs"] >= 1)]["Level from"].max()
+        max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
         filtered_df = df.copy().iloc[palmon]
         if len(filtered_df) > 0:
             st.markdown(f":orange-badge[test_len : {test_len}]")
