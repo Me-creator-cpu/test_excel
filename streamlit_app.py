@@ -363,9 +363,9 @@ def pal_deltail(df):
     with row0[1]:
         st.image(df.at[0, 'URL'], caption=df.at[0, 'Name'])
     with row1[0]:
-        get_cell_detail(df,'Type')
+        df.at[0, 'Type']
     with row1[1]:
-        get_cell_detail(df,'Skill')
+        df.at[0, 'Skill']
     df_t
 
 
