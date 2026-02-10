@@ -10,7 +10,8 @@ from openpyxl import load_workbook
 # import xlsxwriter
 # from openpyxl.utils.dataframe import dataframe_to_rows
 import locale
-
+# ======================================================================================================
+# URL: https://testexcel-xwu5zapqqz8ukerpqqvxhu.streamlit.app/
 # ======================================================================================================
 # Définitions DataFrame et Excel
 cols_data = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Stock','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Unused1','Star 1','Star 2','Star 3','Star 4','Star 5','Achievement','Needs','Unused2','Cost to max','Unused3','Unused4','RankPower','Rank','Team','Unused5','URL','URL Mutation','Unused6','Unused7','Mutation 1','Mutation 2','Unused8']
@@ -111,6 +112,47 @@ column_config={
     "Comp 3": col_pct_1,
     "Comp 4": col_pct_1,
     "Comp 5": st.column_config.TextColumn("Comp 5"),
+    "Unused1": None,
+    "Unused2": None,
+    "Unused3": None,
+    "Unused4": None,
+    "Unused5": None,
+    "Unused6": None,
+    "Unused7": None,
+    "Unused8": None,
+    "Cost upgrade": st.column_config.NumberColumn(
+        "Cost upgrade",
+        format="compact",
+    )
+}
+column_config_lst={
+    "Name": st.column_config.TextColumn( "Name", pinned = True ),
+    "Type": st.column_config.SelectboxColumn( "Type", pinned = True,options=option_type ),
+    "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=option_skill ),
+    "Level":col_progress(100,250,"Level","Palmon level"),
+    "Step": st.column_config.NumberColumn(
+        "Step",
+        min_value=0,
+        max_value=5,
+        format="%d ⭐",
+    ),
+    "Steps": st.column_config.TextColumn(
+        "Steps",
+    ),
+    "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),
+    "Cost to max": st.column_config.NumberColumn(
+        "Cost to max",
+        #format="localized",
+        format="compact",
+    ),
+    "RankPower": None,
+    "URL": None,
+    "URL Mutation": None,
+    "Comp 1": None,
+    "Comp 2": None,
+    "Comp 3": None,
+    "Comp 4": None,
+    "Comp 5": None,
     "Unused1": None,
     "Unused2": None,
     "Unused3": None,
@@ -393,8 +435,8 @@ with tab5:
         #cols_palmon
         df_display=df_xls["DataFrame"][idx_palmon][cols_palmon]
         event = st.dataframe(
-            df_display, #df_xls["DataFrame"][idx_palmon],
-            column_config=column_config,
+            df_xls["DataFrame"][idx_palmon],
+            column_config=column_config_lst,
             on_select="rerun",
             selection_mode="single-row",
             hide_index=True,
