@@ -276,12 +276,12 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30):
         )
         df = df_chart.loc[(df_chart[xField] >= int(range_level_min)) & (df_chart[xField] <= int(range_level_max))]
         total_col = f"Total cost from {range_level_min} to {range_level_max}"
-        return range_level_min, range_level_max
         try:
             st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[yField].sum()))}]")
         except:
             st.markdown(f":orange-badge[{total_col} : {int(df[yField].sum())}]")
         excel_loaded=True
+        return range_level_min, range_level_max
 
 def build_table_any(df):
     st.dataframe(
