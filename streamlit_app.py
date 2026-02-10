@@ -350,7 +350,7 @@ def show_details(palmon,df):
 
 def pal_deltail(df):  
     df_t=df.reset_index().T
-    df_t.columns = df_t.loc[0]
+    #df_t.columns = df_t.loc[0]
     df_t = df_t.drop(0)
 
 
