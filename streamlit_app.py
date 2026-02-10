@@ -490,10 +490,15 @@ with tab3:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_mut]) 
         df = df_xls["DataFrame"][idx_mut]
-        range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_mut],'Level','Cost level','Mutation costs from level:',int(1),int(30))
+        df_energy=df.loc[(df['Step'] > 0)]
+        df_crystal=df.loc[(df['Step'] == 0)]        
+        st.header("Energy")
+        range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(1),int(30))
+        st.header("Crystals")
+        build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(1),int(30))
         with st.expander("Data graph", expanded=False, width="stretch"):
-            df=df.loc[(df['Step'] > 0)]
-            build_table_any(df.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
+            build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
+            build_table_any(df_energy.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
     else:
         file_err()
 with tab4:
