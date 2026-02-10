@@ -462,9 +462,9 @@ with tab4:
         df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
         #df_stars['Total']=df_stars['Unit cost'].apply(lambda b: int(b)*5 )
-        #build_table_any(df_stars)       
+        build_table_any(df_stars)       
         #df_xls["DataFrame"][idx_stars]
-        df_stars.reset_index()
+        #df_stars
     else:
         file_err()
 with tab5:
