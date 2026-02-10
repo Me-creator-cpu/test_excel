@@ -360,6 +360,7 @@ def get_cell_detail(df,fld):
 def pal_deltail(palmon,df):
     col_border=True
     df_t=df.reset_index().T
+    df.reset_index()
     row0 = st.columns([1, 3, 1], border=col_border)
     row1 = st.columns(2,border=col_border, width="stretch")
     row2 = st.columns(2,border=col_border, width="stretch")
