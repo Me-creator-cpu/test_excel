@@ -331,23 +331,25 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
 
 def show_details(palmon,df):
     st.markdown(f":orange-badge[palmon : {palmon}]")
-    if 1 == 1:
+    try:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
         filtered_df = df.copy().iloc[palmon]
         if len(filtered_df) > 0:
-            st.markdown(f":orange-badge[test_len : {len(filtered_df)}]")
-        #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
-        filtered_df['Cost to max']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
-        filtered_df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
-        st.dataframe(
-            filtered_df,
-            column_config=column_config,
-            hide_index=True,
-        )
-    else:
+            #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
+            filtered_df['Cost to max']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
+            filtered_df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
+            st.dataframe(
+                filtered_df,
+                column_config=column_config,
+                hide_index=True,
+            )
+            pal_deltail(filtered_df):
+    except:
         st.empty()
 
+def pal_deltail(df):
+    df.reset_index().T
 
 
 # ======================================================================================================
