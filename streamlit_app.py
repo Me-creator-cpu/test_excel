@@ -344,7 +344,7 @@ def show_details(palmon,df):
                 column_config=column_config,
                 hide_index=True,
             )
-            pal_deltail(filtered_df):
+            pal_deltail(filtered_df)
     except:
         st.empty()
 
