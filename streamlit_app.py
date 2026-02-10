@@ -347,7 +347,7 @@ def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
         return None
 
 def show_details(palmon,df):
-    st.markdown(f":orange-badge[palmon : {palmon}]")
+    #st.markdown(f":orange-badge[palmon : {palmon}]")
     if 1 == 1:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
@@ -376,7 +376,7 @@ def pal_deltail(palmon,df):
     df_t=df.reset_index().T
     df.reset_index()
 
-    df
+    #df
     
     row0 = st.columns([2, 1], border=col_border)
     row1 = st.columns(2,border=col_border, width="stretch")
@@ -416,7 +416,7 @@ def pal_deltail(palmon,df):
         df_comp_u.loc[df.index[0], 'Comp 5'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 5'],10 )
         
         build_table_any(df_comp_u[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
-    df_t
+    #df_t
 
 
 # ======================================================================================================
