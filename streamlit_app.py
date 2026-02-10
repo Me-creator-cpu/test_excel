@@ -332,6 +332,14 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
     else:
         return None
 
+def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
+    if df_xls["DataFrame"][idx_palmon] is not None:
+        df = df_xls["DataFrame"][idx_comp]
+        val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
+        return val_cost
+    else:
+        return None
+
 def show_details(palmon,df):
     st.markdown(f":orange-badge[palmon : {palmon}]")
     if 1 == 1:
@@ -361,19 +369,25 @@ def pal_deltail(palmon,df):
     col_border=True
     df_t=df.reset_index().T
     df.reset_index()
+
+    df
+    
     row0 = st.columns([1, 3, 1], border=col_border)
     row1 = st.columns(2,border=col_border, width="stretch")
     row2 = st.columns(2,border=col_border, width="stretch")
 
+    with row0[0]:
+        st.empty()
     with row0[1]:
-        df
-    with row0[2]: # remettre à 1 
         st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'])
-    with row1[0]:
+    with row0[2]:
         df.loc[df.index[0], 'Type']
-    with row1[1]:
-        #df['Type'].apply(lambda b: data_type[0,option_type.index(b)])
         df.loc[df.index[0], 'Skill']
+        df.loc[df.index[0], 'Steps']
+    with row1[0]:
+        st.empty()
+    with row1[1]:
+        st.empty()
     with row2[0]:
         st.write('Competencies')
         build_table_any(df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
@@ -390,13 +404,6 @@ def pal_deltail(palmon,df):
         build_table_any(df_comp_u[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
     df_t
 
-def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
-    if df_xls["DataFrame"][idx_palmon] is not None:
-        df = df_xls["DataFrame"][idx_comp]
-        val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
-        return val_cost
-    else:
-        return None
 
 # ======================================================================================================
 with st.expander("Excel file", expanded=True, width="stretch"):
