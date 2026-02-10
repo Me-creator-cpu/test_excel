@@ -26,27 +26,30 @@ cols_exp = ['Level from', 'Level to', 'Cost']
 cols_comp = ['Level from', 'Cost']
 cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
 cols_mut_full = ['Cost type', 'Cost']
+cols_stars = ['Stars level', 'Unit Cost']
 
 df_pal_data=None
 df_costs_exp=None
 df_costs_comp=None
 df_costs_mut=None
 df_costs_mut_full=None
+df_costs_stars=None
 
 idx_palmon=0
 idx_costs=1
 idx_comp=2
 idx_mut=3
 idx_val=4
+idx_stars=5
 
-data = { #                    0                  1                  2                3                4
-        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs"            ],
-        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies", "Mutation costs",   "Upgrade full costs"       ],
-        "Range":          ["A:AJ",           "A:C",             "H:I",          "N:Q",              "A:B"                ],
-        "SkipRows":       [1,                1,                 1,              1,                  0                    ],
-        "UpToRow":        [41,               302,               31,             224,                5                    ],
-        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,      cols_mut,           cols_mut_full        ],
-        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,  df_costs_mut,       df_costs_mut_full    ],
+data = { #                    0                  1                  2                3                4                        5
+        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs",                "Valeurs"     ],
+        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies", "Mutation costs",   "Upgrade full costs",     "Stars"       ],
+        "Range":          ["A:AJ",           "A:C",             "H:I",          "N:Q",              "A:B",                    "D:E"         ],
+        "SkipRows":       [1,                1,                 1,              1,                  0,                        0             ],
+        "UpToRow":        [41,               302,               31,             224,                5,                        6             ],
+        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,      cols_mut,           cols_mut_full,            cols_stars    ],
+        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,  df_costs_mut,       df_costs_mut_full,        df_costs_stars],
        }
 df_xls = pd.DataFrame(data)
 option_skill=["⚔ Attack","🛡 Defend"]
@@ -452,6 +455,9 @@ with tab4:
     if df_xls["DataFrame"][idx_palmon] is not None:  
         st.header(df_xls["DisplayName"][idx_val]) 
         build_table_full_costs(df_xls["DataFrame"][idx_val])
+        st.divider()
+        st.header(df_xls["DisplayName"][idx_stars]) 
+        build_table_full_costs(df_xls["DataFrame"][idx_stars])        
     else:
         file_err()
 with tab5:
