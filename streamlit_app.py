@@ -276,6 +276,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30):
         )
         df = df_chart.loc[(df_chart[xField] >= int(range_level_min)) & (df_chart[xField] <= int(range_level_max))]
         total_col = f"Total cost from {range_level_min} to {range_level_max}"
+        return range_level_min, range_level_max
         try:
             st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[yField].sum()))}]")
         except:
@@ -471,9 +472,9 @@ with tab1:
         #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(240,259))}]")
         min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
         max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
-        build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
+        range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
         with st.expander("Data graph", expanded=False, width="stretch"):
-            build_table_any(df.loc[(df['Level from'] >= min_upg) & (df['Level from'] <= max_upg)])
+            build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
     else:
         file_err()
 with tab2:
