@@ -72,14 +72,6 @@ column_config={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
     "Type": st.column_config.SelectboxColumn( "Type", pinned = True,options=option_type ),
     "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=option_skill ),
-#    "Level": st.column_config.ProgressColumn(
-#        "Level",
-#        help="Palmon level",
-#        format="%f",
-#        min_value=100,
-#        max_value=250,
-#        color="#006699"
-#    ),
     "Level":col_progress(100,250,"Level","Palmon level"),
     "Step": st.column_config.NumberColumn(
         "Step",
@@ -90,7 +82,7 @@ column_config={
     "Steps": st.column_config.TextColumn(
         "Steps",
     ),
-    "Achievement": col_pct,
+    "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),
     "Cost to max": st.column_config.NumberColumn(
         "Cost to max",
         #format="localized",
@@ -108,11 +100,11 @@ column_config={
         "Mutation preview",
         width="small"
     ),
-    "Comp 1": col_progress(0,1,"Comp 1","Comp 1","percent"),
-    "Comp 2": col_progress(0,1,"Comp 2","Comp 2","percent"),
-    "Comp 3": col_progress(0,1,"Comp 3","Comp 3","percent"),
-    "Comp 4": col_progress(0,1,"Comp 4","Comp 4","percent"),
-    "Comp 5": col_progress(0,1,"Comp 5","Comp 5","percent"),
+    "Comp 1": col_pct,
+    "Comp 2": col_pct,
+    "Comp 3": col_pct,
+    "Comp 4": col_pct,
+    "Comp 5": col_pct,
     "Unused1": None,
     "Unused2": None,
     "Unused3": None,
