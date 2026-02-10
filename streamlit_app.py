@@ -458,7 +458,7 @@ with tab4:
         st.divider()
         st.header(df_xls["DisplayName"][idx_stars])
         #df_starts['Total']=df_costs_stars['Unit cost'].apply(lambda b: int(b)*5 )
-        build_table_any(df_costs_stars)        
+        build_table_any(df_xls["DataFrame"][idx_stars])       
     else:
         file_err()
 with tab5:
