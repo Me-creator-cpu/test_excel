@@ -349,7 +349,13 @@ def show_details(palmon,df):
         st.empty()
 
 def pal_deltail(df):
+    col_border=True
     df_t=df.reset_index().T
+    row0 = st.columns([1, 3, 1], border=col_border)
+    row1 = st.columns(2,border=col_border, width="stretch")
+
+    with row0[1]:
+        st.image(df.at[0, 'URL'], caption=df.at[0, 'Name'])
     df_t
 
 
