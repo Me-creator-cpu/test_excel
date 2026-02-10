@@ -57,18 +57,28 @@ col_pct=st.column_config.NumberColumn(
         max_value=100,
         format="percent",
     )
+def col_progress(mini=0,maxi=100,label="Level",tooltip="Palmon level"):
+    return st.column_config.ProgressColumn(
+        label,
+        help=tooltip,
+        format="%f",
+        min_value=mini,
+        max_value=maxi,
+        color="#006699"
+    )
 column_config={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
     "Type": st.column_config.SelectboxColumn( "Type", pinned = True,options=option_type ),
     "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=option_skill ),
-    "Level": st.column_config.ProgressColumn(
-        "Level",
-        help="Palmon level",
-        format="%f",
-        min_value=100,
-        max_value=250,
-        color="#006699"
-    ),
+#    "Level": st.column_config.ProgressColumn(
+#        "Level",
+#        help="Palmon level",
+#        format="%f",
+#        min_value=100,
+#        max_value=250,
+#        color="#006699"
+#    ),
+    "Level":col_progress(100,250,"Level","Palmon level"),
     "Step": st.column_config.NumberColumn(
         "Step",
         min_value=0,
