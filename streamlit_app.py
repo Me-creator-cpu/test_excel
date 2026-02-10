@@ -43,9 +43,9 @@ idx_val=4
 idx_stars=5
 
 data = { #                    0                  1                  2                3                4                        5
-        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs",                "Valeurs"     ],
+        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs",                "Stars"       ],
         "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies", "Mutation costs",   "Upgrade full costs",     "Stars"       ],
-        "Range":          ["A:AJ",           "A:C",             "H:I",          "N:Q",              "A:B",                    "D:E"         ],
+        "Range":          ["A:AJ",           "A:C",             "H:I",          "N:Q",              "A:B",                    "A:B"         ],
         "SkipRows":       [1,                1,                 1,              1,                  0,                        0             ],
         "UpToRow":        [41,               302,               31,             224,                5,                        6             ],
         "DisplayColumns": [cols_data,        cols_exp,          cols_comp,      cols_mut,           cols_mut_full,            cols_stars    ],
