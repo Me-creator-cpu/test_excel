@@ -365,7 +365,7 @@ def pal_deltail(df):
     row2 = st.columns(2,border=col_border, width="stretch")
 
     with row0[1]:
-        st.image(df.at[0, 'URL'], caption=df.at[0, 'Name'])
+        st.image(df.at[0, 'Base preview'], caption=df.at[0, 'Name'])
     with row1[0]:
         df.at[0, 'Type']
     with row1[1]:
