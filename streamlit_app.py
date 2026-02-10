@@ -393,7 +393,7 @@ def pal_deltail(palmon,df):
                     column_config={
                         "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),                     
                      },
-                     hide_index=True) 
+                     hide_index=False) 
     
     with row1[0]:
         st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
