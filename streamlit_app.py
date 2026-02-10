@@ -359,15 +359,21 @@ def pal_deltail(df):
     df_t=df.reset_index().T
     row0 = st.columns([1, 3, 1], border=col_border)
     row1 = st.columns(2,border=col_border, width="stretch")
+    row2 = st.columns(2,border=col_border, width="stretch")
 
     with row0[1]:
         st.image(df.at[0, 'URL'], caption=df.at[0, 'Name'])
     with row1[0]:
         df.at[0, 'Type']
     with row1[1]:
-        df['Type'].apply(lambda b: data_type[0,option_type.index(b)])
+        #df['Type'].apply(lambda b: data_type[0,option_type.index(b)])
         df.at[0, 'Skill']
-      
+    with row2[0]:
+        st.write('Competencies')
+    with row2[1]:
+        #df['Type'].apply(lambda b: data_type[0,option_type.index(b)])
+        df.columns = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
+        df
     df_t
 
 
