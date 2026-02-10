@@ -388,7 +388,11 @@ def pal_deltail(palmon,df):
         df_info.loc[df.index[0], 'Achievement'] = percent_format(df_info.loc[df.index[0], 'Achievement'])
         df_info.loc[df.index[0], 'Cost to max'] = large_num_format(df_info.loc[df.index[0], 'Cost to max'])
         df_info=df_info.reset_index().T
-        st.dataframe(df_info, hide_index=True) 
+        st.dataframe(df_info, 
+                     config_column={
+                           "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),
+                     },
+                     hide_index=True) 
     
     with row1[0]:
         st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
