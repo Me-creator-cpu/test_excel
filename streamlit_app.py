@@ -336,7 +336,7 @@ def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
     if df_xls["DataFrame"][idx_palmon] is not None:
         df = df_xls["DataFrame"][idx_comp]
         val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
-        return val_cost
+        return large_num_format(val_cost)
     else:
         return None
 
