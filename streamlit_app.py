@@ -380,7 +380,9 @@ def pal_deltail(palmon,df):
         st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'])
     with row0[1]:
         df_info=df[['Type','Skill','Steps','Achievement','Level','Cost to max']]
+        df_info.loc[df.index[0], 'Cost to max'] = large_num_format(df_info.loc[df.index[0], 'Cost to max'])
         df_info=df_info.reset_index().T
+        df_info.pop(0)
         df_info
     with row1[0]:
         st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
