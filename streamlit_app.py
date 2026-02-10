@@ -53,7 +53,8 @@ df_data_type = pd.DataFrame(data_type)
 # ======================================================================================================
 #format="%d ⭐",
 
-columns_pal=[]
+cols_palmon = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Achievement','Needs','Cost to max']
+
 col_pct=st.column_config.NumberColumn(
         min_value=0,
         max_value=100,
@@ -389,8 +390,10 @@ with tab5:
         st.header(df_xls["DisplayName"][idx_palmon])
         df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
+        #cols_palmon
+        df_display=df_xls["DataFrame"][idx_palmon][cols_palmon]
         event = st.dataframe(
-            df_xls["DataFrame"][idx_palmon],
+            df_display, #df_xls["DataFrame"][idx_palmon],
             column_config=column_config,
             on_select="rerun",
             selection_mode="single-row",
