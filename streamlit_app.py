@@ -47,7 +47,7 @@ data = { #                    0                  1                  2           
         "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies", "Mutation costs",   "Upgrade full costs",     "Stars"       ],
         "Range":          ["A:AJ",           "A:C",             "H:I",          "N:Q",              "A:B",                    "A:C"         ],
         "SkipRows":       [1,                1,                 1,              1,                  0,                        0             ],
-        "UpToRow":        [41,               302,               31,             224,                5,                        6             ],
+        "UpToRow":        [41,               302,               31,             224,                5,                        7             ],
         "DisplayColumns": [cols_data,        cols_exp,          cols_comp,      cols_mut,           cols_mut_full,            cols_stars    ],
         "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,  df_costs_mut,       df_costs_mut_full,        df_costs_stars],
        }
