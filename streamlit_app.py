@@ -481,7 +481,7 @@ with tab2:
     if df_xls["DataFrame"][idx_palmon] is not None:   
         st.header(df_xls["DisplayName"][idx_comp])
         df = df_xls["DataFrame"][idx_comp]
-        range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
+        range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
         with st.expander("Data graph", expanded=False, width="stretch"):
             build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
     else:
