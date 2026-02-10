@@ -257,7 +257,7 @@ def large_num_format(value):
         return None
 def percent_format(value):
     try:
-        return = f"{value:.2f}%"  # "12.34%"
+        return f"{value:.2f}%"  # "12.34%"
     except:
         return empty()
         
