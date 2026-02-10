@@ -379,7 +379,7 @@ def pal_deltail(palmon,df):
     with row2[1]:
         #df['Type'].apply(lambda b: data_type[0,option_type.index(b)])
         #df.columns = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
-        df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']]
+        build_table_any(df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
     df_t
 
 
