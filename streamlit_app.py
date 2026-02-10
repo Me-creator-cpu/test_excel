@@ -10,6 +10,11 @@ from openpyxl import load_workbook
 # import xlsxwriter
 # from openpyxl.utils.dataframe import dataframe_to_rows
 import locale
+
+
+logging.getLogger(“streamlit”).setLevel(logging.WARNING)
+
+
 # ======================================================================================================
 # URL: https://testexcel-xwu5zapqqz8ukerpqqvxhu.streamlit.app/
 # ======================================================================================================
@@ -87,9 +92,7 @@ column_config={
         max_value=5,
         format="%d ⭐",
     ),
-    "Steps": st.column_config.TextColumn(
-        "Steps",
-    ),
+    "Steps": st.column_config.TextColumn("Steps"),
     "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),
     "Cost to max": st.column_config.NumberColumn(
         "Cost to max",
@@ -142,9 +145,7 @@ column_config_lst={
         max_value=5,
         format="%d ⭐",
     ),
-    "Steps": st.column_config.TextColumn(
-        "Steps",
-    ),
+    "Steps": st.column_config.TextColumn("Steps"),
     "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),
     "Cost to max": st.column_config.NumberColumn(
         "Cost to max",
@@ -331,7 +332,6 @@ def build_table_full_costs(df_src):
 
 def format_stars(x): #⭐
     try:
-        #return f"⭐ * round(int(x),0)"
         return ("⭐" * int(x))[0:int(x)]
     except:
         return x
