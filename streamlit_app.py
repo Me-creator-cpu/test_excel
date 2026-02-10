@@ -385,9 +385,11 @@ def pal_deltail(palmon,df):
         df.loc[df.index[0], 'Skill']
         df.loc[df.index[0], 'Steps']
     with row1[0]:
-        st.empty()
+        df.loc[df.index[0], 'Level']
     with row1[1]:
-        st.empty()
+        df_costs = df_xls["DataFrame"][idx_costs]
+        max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
+        st.write( calcul_upgrade_costs(df.loc[df.index[0], 'Level'],max_upg) )
     with row2[0]:
         st.write('Competencies')
         build_table_any(df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
