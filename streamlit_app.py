@@ -367,12 +367,12 @@ def pal_deltail(palmon,df):
     with row0[1]:
         df
     with row0[2]: # remettre à 1
-        st.image(df.at[palmon, 'URL'], caption=df.at[0, 'Name'])
+        st.image(df.at[0, 'URL'], caption=df.at[0, 'Name'])
     with row1[0]:
-        df.at[palmon, 'Type']
+        df.at[0, 'Type']
     with row1[1]:
         #df['Type'].apply(lambda b: data_type[0,option_type.index(b)])
-        df.at[palmon, 'Skill']
+        df.at[0, 'Skill']
     with row2[0]:
         st.write('Competencies')
     with row2[1]:
