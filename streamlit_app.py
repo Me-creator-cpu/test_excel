@@ -49,9 +49,7 @@ data = { #                    0                  1                  2           
         "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,  df_costs_mut,       df_costs_mut_full    ],
        }
 df_xls = pd.DataFrame(data)
-#df_xls
 option_skill=["⚔ Attack","🛡 Defend"]
-#option_type=["💧Water","🔥Fire","⚡Electricity","🪵Wood"]
 data_type={
     "Type":["Water","Fire","Electricity","Wood"],
     "Icon":["💧","🔥","⚡","🪵"]
@@ -299,16 +297,7 @@ def human_format(num, round_to=1):
 #df.style.format({"stars": human_format})
 
 def build_table_full_costs(df_src):
-    sel_options=[
-        "📊 Data Exploration",
-        f"📈 :material/thumb_up:",
-        "🤖 LLM",
-    ]
-    st.markdown(':material/thumb_up:')
     df=df_src.copy()
-    df['NewCol']=f":material/thumb_up:" #df['Cost type']
-    df['NewCol']=df['Cost type'].apply(lambda b: sel_options[1] if b=='Level300' else sel_options[2])
-    df['Cost type'] = df['Cost type'].replace('Level300', f':material/thumb_up: Dummy')
     st.dataframe(
             df,
             column_config={
@@ -321,11 +310,6 @@ def build_table_full_costs(df_src):
                     max_value=10000000,
                     step=1,
                     format="compact",
-                ),
-                "NewCol": st.column_config.SelectboxColumn(
-                    "New column",
-                    disabled=True,
-                    options=sel_options
                 ),
             },
             hide_index=True,
@@ -413,9 +397,7 @@ with tab1:
         df = df_xls["DataFrame"][idx_costs]
         df_pal=df_xls["DataFrame"][idx_palmon]
         st.header(df_xls["DisplayName"][idx_costs])
-        
-        st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(240,259))}]")
-        
+        #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(240,259))}]")
         min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
         max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
         build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
