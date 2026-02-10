@@ -11,8 +11,9 @@ from openpyxl import load_workbook
 # from openpyxl.utils.dataframe import dataframe_to_rows
 import locale
 
-
-logging.getLogger("streamlit").setLevel(logging.WARNING)
+import logging
+st_logger = logging.getLogger('streamlit')
+st_logger.setLevel(logging.WARNING)
 
 
 # ======================================================================================================
