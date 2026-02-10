@@ -457,9 +457,10 @@ with tab4:
         build_table_full_costs(df_xls["DataFrame"][idx_val])
         st.divider()
         st.header(df_xls["DisplayName"][idx_stars])
-        df_starts=df_xls["DataFrame"][idx_stars]
-        df_starts['Total']=df_starts['Unit cost'].apply(lambda b: int(b)*5 )
-        build_table_any(df_starts)       
+        df_stars=df_xls["DataFrame"][idx_stars].copy
+        df_stars.columns = cols_stars
+        df_stars['Total']=df_stars['Unit cost'].apply(lambda b: int(b)*5 )
+        build_table_any(df_stars)       
     else:
         file_err()
 with tab5:
