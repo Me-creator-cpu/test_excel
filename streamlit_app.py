@@ -348,8 +348,9 @@ def show_details(palmon,df):
     else:
         st.empty()
 
-def pal_deltail(df):  
+def pal_deltail(df):
     df_t=df.reset_index().T
+    df_t(header=False)
 
 
 # ======================================================================================================
