@@ -384,6 +384,9 @@ def pal_deltail(palmon,df):
         df.loc[df.index[0], 'Type']
         df.loc[df.index[0], 'Skill']
         df.loc[df.index[0], 'Steps']
+        df_info=df[['Type','Skill','Steps','Achievement','Level','Cost to max']]
+        df_info=df_info.reset_index().T
+        df_info
     with row1[0]:
         st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
     with row1[1]:
