@@ -365,7 +365,9 @@ def pal_deltail(df):
     with row1[0]:
         df.at[0, 'Type']
     with row1[1]:
+        df['Type'].apply(lambda b: data_type[0,option_type.index(b)])
         df.at[0, 'Skill']
+      
     df_t
 
 
