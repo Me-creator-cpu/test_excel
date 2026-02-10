@@ -385,6 +385,7 @@ def pal_deltail(palmon,df):
         df_comp_u.loc[df.index[0], 'Comp 1'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 1'] )
         df_comp_u.loc[df.index[0], 'Comp 2'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 2'] )
         df_comp_u.loc[df.index[0], 'Comp 3'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 3'] )
+        df_comp_u.loc[df.index[0], 'Comp 5'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 5'],10 )
         
         build_table_any(df_comp_u[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
     df_t
