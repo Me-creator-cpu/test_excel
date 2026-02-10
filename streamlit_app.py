@@ -262,26 +262,29 @@ def percent_format(value):
     except:
         return empty()
         
-def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30):
+def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True):
     if df_chart is not None:
         st.bar_chart(df_chart, x=xField, y=yField)
-        sel_min=selMin
-        sel_max=selMax
-        range_level_min, range_level_max= st.slider(
-            label=sLabel,
-            min_value=sel_min,
-            max_value=sel_max,
-            value=(sel_min,sel_max),
-            step=1
-        )
-        df = df_chart.loc[(df_chart[xField] >= int(range_level_min)) & (df_chart[xField] <= int(range_level_max))]
-        total_col = f"Total cost from {range_level_min} to {range_level_max}"
-        try:
-            st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[yField].sum()))}]")
-        except:
-            st.markdown(f":orange-badge[{total_col} : {int(df[yField].sum())}]")
-        excel_loaded=True
-        return range_level_min, range_level_max
+        if with_slider==True:
+            sel_min=selMin
+            sel_max=selMax
+            range_level_min, range_level_max= st.slider(
+                label=sLabel,
+                min_value=sel_min,
+                max_value=sel_max,
+                value=(sel_min,sel_max),
+                step=1
+            )
+            df = df_chart.loc[(df_chart[xField] >= int(range_level_min)) & (df_chart[xField] <= int(range_level_max))]
+            total_col = f"Total cost from {range_level_min} to {range_level_max}"
+            try:
+                st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[yField].sum()))}]")
+            except:
+                st.markdown(f":orange-badge[{total_col} : {int(df[yField].sum())}]")
+            excel_loaded=True
+            return range_level_min, range_level_max
+        else:
+            return selMin,selMax
 
 def build_table_any(df):
     st.dataframe(
@@ -495,7 +498,7 @@ with tab3:
         st.header("Energy")
         range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(1),int(30))
         st.header("Crystals")
-        build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(1),int(30))
+        build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(1),int(30),False)
         with st.expander("Data graph", expanded=False, width="stretch"):
             build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
             build_table_any(df_energy.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
