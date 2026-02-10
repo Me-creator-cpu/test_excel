@@ -336,7 +336,7 @@ def show_details(palmon,df):
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
         filtered_df = df.copy().iloc[palmon]
         if len(filtered_df) > 0:
-            st.markdown(f":orange-badge[test_len : {test_len}]")
+            st.markdown(f":orange-badge[test_len : {len(filtered_df)}]")
         #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
         filtered_df['Cost to max']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
         filtered_df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
