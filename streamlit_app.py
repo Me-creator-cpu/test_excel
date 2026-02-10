@@ -26,7 +26,7 @@ cols_exp = ['Level from', 'Level to', 'Cost']
 cols_comp = ['Level from', 'Cost']
 cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
 cols_mut_full = ['Cost type', 'Cost']
-cols_stars = ['Stars level', 'Unit Cost']
+cols_stars = ['Stars level', 'Unit Cost', 'Total']
 
 df_pal_data=None
 df_costs_exp=None
@@ -45,7 +45,7 @@ idx_stars=5
 data = { #                    0                  1                  2                3                4                        5
         "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs",                "Stars"       ],
         "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies", "Mutation costs",   "Upgrade full costs",     "Stars"       ],
-        "Range":          ["A:AJ",           "A:C",             "H:I",          "N:Q",              "A:B",                    "A:B"         ],
+        "Range":          ["A:AJ",           "A:C",             "H:I",          "N:Q",              "A:B",                    "A:C"         ],
         "SkipRows":       [1,                1,                 1,              1,                  0,                        0             ],
         "UpToRow":        [41,               302,               31,             224,                5,                        6             ],
         "DisplayColumns": [cols_data,        cols_exp,          cols_comp,      cols_mut,           cols_mut_full,            cols_stars    ],
