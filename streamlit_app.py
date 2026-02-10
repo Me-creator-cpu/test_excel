@@ -276,7 +276,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
                 step=1
             )
             df = df_chart.loc[(df_chart[xField] >= int(range_level_min)) & (df_chart[xField] <= int(range_level_max))]
-            total_col = f"Total cost from {range_level_min} to {range_level_max}"
+            total_col = f"Total Energy cost from {range_level_min} to {range_level_max}"
             try:
                 st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[yField].sum()))}]")
             except:
@@ -285,7 +285,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             return range_level_min, range_level_max
         else:
             df = df_chart.loc[(df_chart[xField] >= int(selMin)) & (df_chart[xField] <= int(selMax))]
-            total_col = f"Total cost from {selMin} to {selMax}"
+            total_col = f"Total Crystals cost from {selMin} to {selMax}"
             st.markdown(f":orange-badge[{total_col} : {int(df[yField].sum())}]")
             return selMin,selMax
 
