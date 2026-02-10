@@ -464,7 +464,7 @@ with tab4:
         #df_stars['Total']=df_stars['Unit cost'].apply(lambda b: int(b)*5 )
         #build_table_any(df_stars)       
         #df_xls["DataFrame"][idx_stars]
-        df_stars(index=["1","2","3","4","5"])
+        df_stars.reset_index()
     else:
         file_err()
 with tab5:
