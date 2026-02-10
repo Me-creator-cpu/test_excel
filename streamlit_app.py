@@ -459,7 +459,7 @@ with tab4:
         build_table_full_costs(df_xls["DataFrame"][idx_val])
         st.divider()
         st.header(df_xls["DisplayName"][idx_stars])
-        df_stars=df_xls["DataFrame"][idx_stars].copy
+        df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
         #df_stars['Total']=df_stars['Unit cost'].apply(lambda b: int(b)*5 )
         #build_table_any(df_stars)       
         #df_xls["DataFrame"][idx_stars]
