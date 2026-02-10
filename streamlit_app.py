@@ -52,6 +52,8 @@ option_type=data_type['Icon']
 df_data_type = pd.DataFrame(data_type)
 # ======================================================================================================
 #format="%d ⭐",
+
+columns_pal=[]
 col_pct=st.column_config.NumberColumn(
         min_value=0,
         max_value=100,
@@ -303,7 +305,6 @@ def show_details(palmon,df):
         )
     except:
         st.empty()
-        #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(b,max_upg))}]")
 
 
 
