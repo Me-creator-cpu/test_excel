@@ -473,7 +473,7 @@ with tab1:
         max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
         build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
         with st.expander("Data graph", expanded=False, width="stretch"):
-            build_table_any(df_xls["DataFrame"][idx_costs])
+            build_table_any(df.loc[(df['Level from'] >= min_upg) & (df['Level from'] <= max_upg)])
     else:
         file_err()
 with tab2:
@@ -500,10 +500,7 @@ with tab4:
         st.header(df_xls["DisplayName"][idx_stars])
         df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
-        #df_stars['Total']=df_stars['Unit cost'].apply(lambda b: int(b)*5 )
         build_table_any(df_stars)       
-        #df_xls["DataFrame"][idx_stars]
-        #df_stars
     else:
         file_err()
 with tab5:
