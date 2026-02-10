@@ -381,7 +381,7 @@ def pal_deltail(palmon,df):
         st.write('Competencies upgrade costs')
         df_comp_u=df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']]
         df_comp_costs = df_xls["DataFrame"][idx_costs]
-        df_comp_u['Comp 1'].apply(lambda b: df_comp_costs.loc[(df_comp_costs["Cost"] > b)]["Level from"].sum() )
+        df_comp_u['Comp 1'].apply(lambda b: df_comp_costs.loc[(df_comp_costs["Level from"] > b)]["Cost"].sum() )
         build_table_any(df_comp_u[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
     df_t
 
