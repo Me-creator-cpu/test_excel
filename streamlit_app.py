@@ -12,7 +12,7 @@ from openpyxl import load_workbook
 import locale
 
 
-logging.getLogger(“streamlit”).setLevel(logging.WARNING)
+logging.getLogger("streamlit").setLevel(logging.WARNING)
 
 
 # ======================================================================================================
