@@ -382,13 +382,20 @@ def pal_deltail(palmon,df):
         df_comp_u=df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']]
         df_comp_costs = df_xls["DataFrame"][idx_costs]
         
-        df_comp_u['Comp 1'].apply(lambda b: df_comp_costs.loc[(df_comp_costs["Level from"] > b)]["Cost"].sum() )
-        df_comp_u['Comp 2'].apply(lambda b: b * 100) 
-        df_comp_u.loc[df.index[0], 'Comp 3'] = 95
+        df_comp_u.loc[df.index[0], 'Comp 1'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 1'] )
+        df_comp_u.loc[df.index[0], 'Comp 2'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 2'] )
+        df_comp_u.loc[df.index[0], 'Comp 3'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 3'] )
         
         build_table_any(df_comp_u[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
     df_t
 
+def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
+    if df_xls["DataFrame"][idx_palmon] is not None:
+        df = df_xls["DataFrame"][idx_comp]
+        val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
+        return val_cost
+    else:
+        return None
 
 # ======================================================================================================
 with st.expander("Excel file", expanded=True, width="stretch"):
