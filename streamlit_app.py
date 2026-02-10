@@ -460,6 +460,7 @@ with tab4:
         st.divider()
         st.header(df_xls["DisplayName"][idx_stars])
         df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
+        df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
         #df_stars['Total']=df_stars['Unit cost'].apply(lambda b: int(b)*5 )
         #build_table_any(df_stars)       
         #df_xls["DataFrame"][idx_stars]
