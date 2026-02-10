@@ -400,6 +400,8 @@ with st.expander("Excel file", expanded=True, width="stretch"):
                     df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
                     if option == "Palmon_data":
                         df1.columns = cols_data
+                    if option == "Stars":
+                        df1.columns = cols_stars                        
                 st.dataframe(df1)
                 excel_loaded=True
         else:
