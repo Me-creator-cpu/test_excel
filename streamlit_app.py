@@ -347,7 +347,7 @@ def show_details(palmon,df):
                 column_config=column_config,
                 hide_index=True,
             )
-            pal_deltail(filtered_df)
+            pal_deltail(palmon,filtered_df)
     else:
         st.empty()
 
@@ -357,7 +357,7 @@ def get_cell_detail(df,fld):
     except:
         return empty()
 
-def pal_deltail(df):
+def pal_deltail(palmon,df):
     col_border=True
     df_t=df.reset_index().T
     row0 = st.columns([1, 3, 1], border=col_border)
@@ -367,18 +367,18 @@ def pal_deltail(df):
     with row0[1]:
         df
     with row0[2]: # remettre à 1
-        st.image(df.at[0, 'URL'], caption=df.at[0, 'Name'])
+        st.image(df.at[palmon, 'URL'], caption=df.at[0, 'Name'])
     with row1[0]:
-        df.at[0, 'Type']
+        df.at[palmon, 'Type']
     with row1[1]:
         #df['Type'].apply(lambda b: data_type[0,option_type.index(b)])
-        df.at[0, 'Skill']
+        df.at[palmon, 'Skill']
     with row2[0]:
         st.write('Competencies')
     with row2[1]:
         #df['Type'].apply(lambda b: data_type[0,option_type.index(b)])
-        df.columns = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
-        df
+        #df.columns = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
+        df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']]
     df_t
 
 
