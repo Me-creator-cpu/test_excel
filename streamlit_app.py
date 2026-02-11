@@ -446,8 +446,11 @@ def page1():
 
 def page2():
     st.title("Second page")
+    st.header("os.environ")
     os.environ
+    st.header("os.sysconf_names")
     os.sysconf_names
+    st.header("os.stat")
     os.stat()
 
 def page_loadxls():
