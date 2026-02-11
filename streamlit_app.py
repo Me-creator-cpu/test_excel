@@ -460,17 +460,20 @@ def page_loadxls():
                 )
                 if option is not None:
                     df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                    match option:
-                        case "Tableaux":
-                            do_nothing()
-                        case "Palmon_data":
-                            df1.columns = cols_data
-                        case "Stars":
-                            df1.columns = cols_stars 
-                        case _:
-                            do_nothing()
-                    st.dataframe(df1)
-                    excel_loaded=True
+                    try:
+                        match option:
+                            case "Tableaux":
+                                do_nothing()
+                            case "Palmon_data":
+                                df1.columns = cols_data
+                            case "Stars":
+                                df1.columns = cols_stars 
+                            case _:
+                                do_nothing()
+                        st.dataframe(df1)
+                        excel_loaded=True
+                    except:
+                        file_err()
 
                     if 1 == 2:        
                         if option == "Tableaux":
@@ -492,8 +495,8 @@ def page_loadxls():
         excel_loaded=False
     
     row, col = df_xls.shape
-    write_info('row',row)
-    write_info('col',col)
+    #write_info('row',row)
+    #write_info('col',col)
     for i in range(row):
         get_data(uploaded_file,i,False)
 
@@ -510,7 +513,6 @@ def page_tabs():
             df = df_xls["DataFrame"][idx_costs]
             df_pal=df_xls["DataFrame"][idx_palmon]
             st.header(df_xls["DisplayName"][idx_costs])
-            #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(240,259))}]")
             min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
             max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
             range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
@@ -558,7 +560,6 @@ def page_tabs():
             st.header(df_xls["DisplayName"][idx_palmon])
             df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
             df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
-            #cols_palmon
             df_display=df_xls["DataFrame"][idx_palmon][cols_palmon]
             event = st.dataframe(
                 df_xls["DataFrame"][idx_palmon],
