@@ -464,7 +464,15 @@ def page_loadxls():
                     excel_loaded=True
             else:
                 uploaded_file=None    
-
+    if df_xls["DataFrame"][idx_costs] is not None:
+        excel_loaded=True
+    else:
+        excel_loaded=False
+    
+    row, col = df_xls.shape
+    for i in range(row):
+        get_data(uploaded_file,i,False)
+        
 # ======================================================================================================
 #
 #    Start MAIN page
@@ -521,15 +529,14 @@ if 1 == 2:
             else:
                 uploaded_file=None
 
-
-if df_xls["DataFrame"][idx_costs] is not None:
-    excel_loaded=True
-else:
-    excel_loaded=False
-
-row, col = df_xls.shape
-for i in range(row):
-    get_data(uploaded_file,i,False)
+    if df_xls["DataFrame"][idx_costs] is not None:
+        excel_loaded=True
+    else:
+        excel_loaded=False
+    
+    row, col = df_xls.shape
+    for i in range(row):
+        get_data(uploaded_file,i,False)
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
                             df_xls["DisplayName"][idx_costs],
