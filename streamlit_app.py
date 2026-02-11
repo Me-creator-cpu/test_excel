@@ -8,6 +8,7 @@ from openpyxl import load_workbook
 import locale
 import logging
 import os
+from stat import *
 # import matplotlib.pyplot as plt
 # import statistics Library
 # import xlsxwriter
@@ -446,6 +447,8 @@ def page1():
 def page2():
     st.title("Second page")
     os.environ
+    os.sysconf_names
+    os.stat()
 
 def page_loadxls():
     with st.expander("Excel file", expanded=True, width="stretch"):
