@@ -217,7 +217,9 @@ def write_js_menu():
                 </style>
                 """
     st.markdown(hide_st_style, unsafe_allow_html=True)    
-
+def do_nothing():
+    return None
+    
 def file_err():
    st.markdown(":orange-badge[⚠️ No file loaded]")
 
@@ -457,16 +459,31 @@ def page_loadxls():
                     placeholder="Select Worksheet...",
                 )
                 if option is not None:
-                    if option == "Tableaux":
-                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                    else:
-                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                        if option == "Palmon_data":
+                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                    match option:
+                        case "Tableaux":
+                            do_nothing()
+                        case "Palmon_data":
                             df1.columns = cols_data
-                        if option == "Stars":
-                            df1.columns = cols_stars                        
+                        case "Stars":
+                            df1.columns = cols_stars 
+                        case _:
+                            do_nothing()
                     st.dataframe(df1)
                     excel_loaded=True
+
+                    if 1 == 2:        
+                        if option == "Tableaux":
+                            df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                        else:
+                            df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                            if option == "Palmon_data":
+                                df1.columns = cols_data
+                            if option == "Stars":
+                                df1.columns = cols_stars                        
+                        st.dataframe(df1)
+                        excel_loaded=True
+                    
             else:
                 uploaded_file=None    
     if df_xls["DataFrame"][idx_costs] is not None:
@@ -475,6 +492,8 @@ def page_loadxls():
         excel_loaded=False
     
     row, col = df_xls.shape
+    write_info('row',row)
+    write_info('col',col)
     for i in range(row):
         get_data(uploaded_file,i,False)
 
