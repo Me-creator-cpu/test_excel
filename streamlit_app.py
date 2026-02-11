@@ -447,7 +447,9 @@ st.set_page_config(
     }
 )
 st.title(f"Welcome to My {app_title} App")
-
+# Widgets shared by all the pages
+st.sidebar.selectbox("Foo", ["A", "B", "C"], key="foo")
+st.sidebar.checkbox("Bar", key="bar")
 
 with st.expander("Excel file", expanded=True, width="stretch"):
     uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
