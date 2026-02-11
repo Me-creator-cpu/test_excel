@@ -9,6 +9,7 @@ import locale
 import logging
 import os
 import platform
+from user_agents import parse
 
 # import matplotlib.pyplot as plt
 # import statistics Library
@@ -451,10 +452,10 @@ def page2():
     os.environ
     st.header("os.sysconf_names")
     os.sysconf_names
-    st.header("platform.node")
+    st.header("user_agent")
     #os.stat
-    test=platform.node()
-    app.on_connect(lambda: print(ui.context.client.request.headers['user-agent']))
+    user_agent = request.headers.get('User-Agent')
+    user_agent_parsed = parse(user_agent)
 
 def page_loadxls():
     with st.expander("Excel file", expanded=True, width="stretch"):
