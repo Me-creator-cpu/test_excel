@@ -8,7 +8,8 @@ from openpyxl import load_workbook
 import locale
 import logging
 import os
-from stat import *
+import platform
+
 # import matplotlib.pyplot as plt
 # import statistics Library
 # import xlsxwriter
@@ -450,9 +451,9 @@ def page2():
     os.environ
     st.header("os.sysconf_names")
     os.sysconf_names
-    st.header("stat.FILE_ATTRIBUTE_DEVICE")
+    st.header("platform.node")
     #os.stat
-    stat.FILE_ATTRIBUTE_DEVICE
+    platform.node()
 
 def page_loadxls():
     with st.expander("Excel file", expanded=True, width="stretch"):
