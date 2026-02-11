@@ -451,7 +451,7 @@ def page2():
     st.header("os.sysconf_names")
     os.sysconf_names
     st.header("os.stat")
-    os.stat()
+    os.stat
 
 def page_loadxls():
     with st.expander("Excel file", expanded=True, width="stretch"):
