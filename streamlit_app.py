@@ -440,13 +440,13 @@ st.set_page_config(
     page_icon="🧊",
     layout="wide",
     initial_sidebar_state="expanded",
-    menu_items={
+    menu_items={    #top right menu (triple dots) near GitHub icon
         'Get Help': 'https://www.extremelycoolapp.com/help',
         'Report a bug': "https://www.extremelycoolapp.com/bug",
         'About': "# This is a header. This is an *extremely* cool app!"
     }
 )
-st.title(f"Welcome to My {app_title} App")
+st.title(f"{app_title} App")
 # Widgets shared by all the pages
 st.sidebar.selectbox("Foo", ["A", "B", "C"], key="foo")
 st.sidebar.checkbox("Bar", key="bar")
