@@ -450,8 +450,9 @@ def page2():
     os.environ
     st.header("os.sysconf_names")
     os.sysconf_names
-    st.header("os.stat")
-    os.stat
+    st.header("stat.FILE_ATTRIBUTE_DEVICE")
+    #os.stat
+    stat.FILE_ATTRIBUTE_DEVICE
 
 def page_loadxls():
     with st.expander("Excel file", expanded=True, width="stretch"):
