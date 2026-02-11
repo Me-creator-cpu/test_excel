@@ -215,7 +215,10 @@ def write_js_menu():
 
 def file_err():
    st.markdown(":orange-badge[⚠️ No file loaded]")
-    
+
+def write_info(msg,val):
+    return st.markdown(f":orange-badge[{msg} : {val}]")
+
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
     try:
         df = pd.read_excel(
@@ -427,6 +430,25 @@ def pal_deltail(palmon,df):
 
 
 # ======================================================================================================
+#
+#    Start MAIN page
+#
+# ======================================================================================================
+app_title='Test Excel File'
+st.set_page_config(
+    page_title=app_title,
+    page_icon="🧊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+)
+st.title(f"Welcome to My {app_title} App")
+
+
 with st.expander("Excel file", expanded=True, width="stretch"):
     uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
     excel_loaded=False
