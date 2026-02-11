@@ -19,6 +19,11 @@ st_logger.setLevel(logging.WARNING)
 # ======================================================================================================
 # URL: https://testexcel-xwu5zapqqz8ukerpqqvxhu.streamlit.app/
 # ======================================================================================================
+
+# Définitions variables
+uploaded_file = None
+excel_loaded=False
+
 # Définitions DataFrame et Excel
 #cols_data = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Unused1','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Unused2','Cost to max','Unused3','Unused4','RankPower','Rank','Team','Unused5','URL','URL Mutation','Unused6','Unused7','Mutation 1','Mutation 2','Unused8']
 cols_data = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Stock','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Unused1','Star 1','Star 2','Star 3','Star 4','Star 5','Achievement','Needs','Unused2','Cost to max','Unused3','Unused4','RankPower','Rank','Team','Unused5','URL','URL Mutation','Unused6','Unused7','Mutation 1','Mutation 2','Unused8']
@@ -440,8 +445,8 @@ def page2():
 
 def page_loadxls():
     with st.expander("Excel file", expanded=True, width="stretch"):
-        uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
-        excel_loaded=False
+        uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
+        excel_loaded = False
         if uploaded_file is not None:
             file = pd.ExcelFile(uploaded_file)
             if file is not None:
