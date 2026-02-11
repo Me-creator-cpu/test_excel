@@ -454,7 +454,7 @@ def page2():
     st.header("platform.node")
     #os.stat
     test=platform.node()
-    test
+    app.on_connect(lambda: print(ui.context.client.request.headers['user-agent']))
 
 def page_loadxls():
     with st.expander("Excel file", expanded=True, width="stretch"):
