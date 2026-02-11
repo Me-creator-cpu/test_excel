@@ -473,6 +473,7 @@ def page_loadxls():
                         st.dataframe(df1)
                         excel_loaded=True
                     except:
+                        uploaded_file=None 
                         file_err()
 
                     if 1 == 2:        
@@ -501,6 +502,7 @@ def page_loadxls():
         get_data(uploaded_file,i,False)
 
 def page_tabs():
+    write_info('uploaded_file',uploaded_file)
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
                                 df_xls["DisplayName"][idx_costs],
                                 df_xls["DisplayName"][idx_comp],
