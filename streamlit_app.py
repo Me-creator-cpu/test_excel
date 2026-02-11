@@ -437,7 +437,34 @@ def page1():
 
 def page2():
     st.title("Second page")
-    
+
+def page_loadxls():
+    with st.expander("Excel file", expanded=True, width="stretch"):
+        uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
+        excel_loaded=False
+        if uploaded_file is not None:
+            file = pd.ExcelFile(uploaded_file)
+            if file is not None:
+                option = st.selectbox(
+                    "Worksheet to open",
+                    file.sheet_names,
+                    index=None,
+                    placeholder="Select Worksheet...",
+                )
+                if option is not None:
+                    if option == "Tableaux":
+                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                    else:
+                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                        if option == "Palmon_data":
+                            df1.columns = cols_data
+                        if option == "Stars":
+                            df1.columns = cols_stars                        
+                    st.dataframe(df1)
+                    excel_loaded=True
+            else:
+                uploaded_file=None    
+
 # ======================================================================================================
 #
 #    Start MAIN page
@@ -463,34 +490,36 @@ st.sidebar.checkbox("Bar", key="bar")
 pg = st.navigation([
     st.Page(page1, title="First page", icon="🔥"),
     st.Page(page2, title="Second page", icon=":material/favorite:"),
+    st.Page(page_loadxls, title="Load Excel file", icon=":material/favorite:"),
 ])
 pg.run()
 
-with st.expander("Excel file", expanded=True, width="stretch"):
-    uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
-    excel_loaded=False
-    if uploaded_file is not None:
-        file = pd.ExcelFile(uploaded_file)
-        if file is not None:
-            option = st.selectbox(
-                "Worksheet to open",
-                file.sheet_names,
-                index=None,
-                placeholder="Select Worksheet...",
-            )
-            if option is not None:
-                if option == "Tableaux":
-                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                else:
-                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                    if option == "Palmon_data":
-                        df1.columns = cols_data
-                    if option == "Stars":
-                        df1.columns = cols_stars                        
-                st.dataframe(df1)
-                excel_loaded=True
-        else:
-            uploaded_file=None
+if 1 == 2:
+    with st.expander("Excel file", expanded=True, width="stretch"):
+        uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
+        excel_loaded=False
+        if uploaded_file is not None:
+            file = pd.ExcelFile(uploaded_file)
+            if file is not None:
+                option = st.selectbox(
+                    "Worksheet to open",
+                    file.sheet_names,
+                    index=None,
+                    placeholder="Select Worksheet...",
+                )
+                if option is not None:
+                    if option == "Tableaux":
+                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                    else:
+                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                        if option == "Palmon_data":
+                            df1.columns = cols_data
+                        if option == "Stars":
+                            df1.columns = cols_stars                        
+                    st.dataframe(df1)
+                    excel_loaded=True
+            else:
+                uploaded_file=None
 
 
 if df_xls["DataFrame"][idx_costs] is not None:
