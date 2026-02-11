@@ -459,8 +459,8 @@ def page_loadxls():
                     placeholder="Select Worksheet...",
                 )
                 if option is not None:
-                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
                     try:
+                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
                         match option:
                             case "Tableaux":
                                 do_nothing()
