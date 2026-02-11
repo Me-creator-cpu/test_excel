@@ -2,16 +2,17 @@ import streamlit as st
 import pandas as pd
 import datetime
 import numpy as np
-# import matplotlib.pyplot as plt
 from io import StringIO
-# import statistics Library
 import statistics
 from openpyxl import load_workbook
+import locale
+import logging
+import os
+# import matplotlib.pyplot as plt
+# import statistics Library
 # import xlsxwriter
 # from openpyxl.utils.dataframe import dataframe_to_rows
-import locale
 
-import logging
 st_logger = logging.getLogger('streamlit')
 st_logger.setLevel(logging.WARNING)
 
@@ -444,6 +445,7 @@ def page1():
 
 def page2():
     st.title("Second page")
+    os.environ
 
 def page_loadxls():
     with st.expander("Excel file", expanded=True, width="stretch"):
