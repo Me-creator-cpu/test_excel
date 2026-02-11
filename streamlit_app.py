@@ -433,7 +433,7 @@ def pal_deltail(palmon,df):
 #
 # ======================================================================================================
 def page1(app_title):
-    st.title(f"{app_title} App")
+    st.title(f"{app_title} 1st page")
 
 def page2():
     st.title("Second page")
