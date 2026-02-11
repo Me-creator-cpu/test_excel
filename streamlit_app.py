@@ -427,8 +427,14 @@ def pal_deltail(palmon,df):
         
         build_table_any(df_comp_u[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
     #df_t
-
-
+# ======================================================================================================
+#
+#    Definition PAGES
+#
+# ======================================================================================================
+def page2():
+    st.title("Second page")
+    
 # ======================================================================================================
 #
 #    Start MAIN page
@@ -450,6 +456,12 @@ st.title(f"{app_title} App")
 # Widgets shared by all the pages
 st.sidebar.selectbox("Foo", ["A", "B", "C"], key="foo")
 st.sidebar.checkbox("Bar", key="bar")
+
+pg = st.navigation([
+    st.Page("page1.py", title="First page", icon="🔥"),
+    st.Page(page2, title="Second page", icon=":material/favorite:"),
+])
+pg.run()
 
 with st.expander("Excel file", expanded=True, width="stretch"):
     uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
