@@ -453,7 +453,8 @@ def page2():
     os.sysconf_names
     st.header("platform.node")
     #os.stat
-    platform.node()
+    test=platform.node()
+    test
 
 def page_loadxls():
     with st.expander("Excel file", expanded=True, width="stretch"):
