@@ -410,9 +410,9 @@ def get_cell_detail(df,fld):
 
 @st.dialog("Details")
 def pal_deltail_dialog(palmon,df):
-    pal_deltail(palmon,df)
+    pal_deltail(palmon,df,200)
 
-def pal_deltail(palmon,df):
+def pal_deltail(palmon,df,pic_width=300):
     col_border=True
     df_t=df.reset_index().T
     df.reset_index()
@@ -432,7 +432,7 @@ def pal_deltail(palmon,df):
     with row0[0]:
         try:
             with st.container(horizontal_alignment="center", vertical_alignment="center"):
-                st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'], width=300)
+                st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'], width=pic_width)
         except:
             st.empty()
     with row0[1]:
