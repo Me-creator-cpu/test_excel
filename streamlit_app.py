@@ -750,9 +750,10 @@ if 1 == 1:
         if df_xls["DataFrame"][idx_palmon] is not None:  
             st.header(df_xls["DisplayName"][idx_palmon])
             
-            df_all = df_xls["DataFrame"][idx_palmon]
+            #df_all = df_xls["DataFrame"][idx_palmon]
             #df = df_all.loc[(df_all['RankPower'] >= 1)]
-            df = df_xls["DataFrame"][idx_palmon].loc[(df_xls["DataFrame"][idx_palmon]['RankPower'] >= 1)]
+            #df = df_xls["DataFrame"][idx_palmon].loc[(df_xls["DataFrame"][idx_palmon]['RankPower'] >= 1)]
+            df = df_xls["DataFrame"][idx_palmon]
             
             #df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
             #df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
