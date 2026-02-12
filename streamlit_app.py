@@ -196,6 +196,10 @@ column_config_lst={
 }
 # ======================================================================================================
 
+#def init_session():
+if 'df_data' not in st.session_state:
+    st.session_state.df_data = df_xls
+        
 def test_df_xls():
     columns = list(df_xls)
     for i in columns:
@@ -221,6 +225,7 @@ def write_js_menu():
                 </style>
                 """
     st.markdown(hide_st_style, unsafe_allow_html=True)    
+    
 def do_nothing():
     return None
     
@@ -261,7 +266,7 @@ def get_data(file,idx,show_table=False):
                                                 rng_rows=df_xls["UpToRow"][idx],
                                                 rencols=df_xls["DisplayColumns"][idx],
                                                 show_table=show_table
-                                                )  
+                                                )
 
 def large_num_format(value):
     locale.setlocale(locale.LC_ALL, "fr_FR")
@@ -269,6 +274,7 @@ def large_num_format(value):
         return locale.format_string("%.0f", int(value), grouping=True)
     except:
         return None
+        
 def percent_format(value):
     try:
         ret=value*100
@@ -438,6 +444,8 @@ def pal_deltail(palmon,df):
         
         build_table_any(df_comp_u[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
     #df_t
+
+
 # ======================================================================================================
 #
 #    Definition PAGES
@@ -513,6 +521,7 @@ def page_loadxls():
     for i in range(row):
         get_data(uploaded_file,i,False)
     write_info('uploaded_file',uploaded_file)
+    st.session_state.df_data = df_xls
     df_xls
     
 def page_tabs():
