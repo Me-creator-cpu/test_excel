@@ -631,15 +631,15 @@ st.title(f"{app_title} App")
 st.sidebar.selectbox("Foo", ["A", "B", "C"], key="foo")
 st.sidebar.checkbox("Bar", key="bar")
 
-pg = st.navigation([
-    st.Page(page_loadxls, title="Load Excel file", icon=":material/favorite:"),
-    st.Page(page_tabs,title="Data", icon=":material/favorite:"),
-    st.Page(page1, title="First page", icon="🔥"),
-    st.Page(page2, title="Second page", icon=":material/favorite:"),
-])
+#pg = st.navigation([
+#    st.Page(page_loadxls, title="Load Excel file", icon=":material/favorite:"),
+#    st.Page(page_tabs,title="Data", icon=":material/favorite:"),
+#    st.Page(page1, title="First page", icon="🔥"),
+#    st.Page(page2, title="Second page", icon=":material/favorite:"),
+#])
 #pg.run()
 
-if 1 == 2:
+if 1 == 1:
     with st.expander("Excel file", expanded=True, width="stretch"):
         uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
         excel_loaded=False
