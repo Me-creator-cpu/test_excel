@@ -288,7 +288,7 @@ def icon_upgradable(value):
     try:
         if int(value)==1:
             return "✅"
-        if value == None:
+        else:
             return "🟥"            
     except:
         return value
