@@ -429,7 +429,7 @@ def pal_deltail_dialog(palmon,df):
 
 def del_session_variable(var_key):
     try:
-        del del st.session_state[var_key]
+        del st.session_state[var_key]
     except:
         return None
 
