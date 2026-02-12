@@ -397,7 +397,8 @@ def show_details(palmon,df):
                 column_config=column_config,
                 hide_index=True,
             )
-            pal_deltail(palmon,filtered_df)
+            #pal_deltail(palmon,filtered_df)
+            pal_deltail_dialog(palmon,filtered_df)
     else:
         st.empty()
 
@@ -406,6 +407,10 @@ def get_cell_detail(df,fld):
         return df.at[0, fld]
     except:
         return empty()
+
+@st.dialog("Details")
+def pal_deltail_dialog(palmon,df):
+    pal_deltail(palmon,df)
 
 def pal_deltail(palmon,df):
     col_border=True
