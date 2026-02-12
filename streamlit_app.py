@@ -627,7 +627,7 @@ if 1 == 1:
             #df = df_all.loc[(df_all['RankPower'] >= 1)]
             #df = df_xls["DataFrame"][idx_palmon].loc[(df_xls["DataFrame"][idx_palmon]['RankPower'] >= 1)]
             df = df_xls["DataFrame"][idx_palmon]
-            
+            df = df.sort('Level', ascending=False)
             #df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
             #df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
             df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
@@ -635,7 +635,7 @@ if 1 == 1:
             df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
             #cols_palmon
             #df_display=df_xls["DataFrame"][idx_palmon][cols_palmon]
-            df_display=df[cols_palmon].sort('Level', ascending=False)
+            df_display=df[cols_palmon]
             event = None
             with st.expander("List", expanded=True, width="stretch"):
                 event = st.dataframe(
