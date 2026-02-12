@@ -436,7 +436,7 @@ def pal_deltail(palmon,df):
                      hide_index=False) 
     
     with row1[0]:
-        st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
+        #st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
         df_cost = df_xls["DataFrame"][idx_costs]
         level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level from"].max()
         st.metric("Level", df.loc[df.index[0], 'Level'], level_max)
@@ -444,7 +444,8 @@ def pal_deltail(palmon,df):
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
         cost_upg=calcul_upgrade_costs(df.loc[df.index[0], 'Level'],max_upg)
-        st.markdown(f"cost to {max_upg}: {large_num_format(cost_upg)}")
+        #st.markdown(f"cost to {max_upg}: {large_num_format(cost_upg)}")
+        st.metric("Cost", cost_upg, max_upg)
     with row2[0]:
         st.write('Competencies')
         build_table_any(df[cols_comp])
