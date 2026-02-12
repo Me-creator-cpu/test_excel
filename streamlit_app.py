@@ -418,9 +418,9 @@ def get_cell_detail(df,fld):
 @st.dialog("Details")
 def pal_deltail_dialog(palmon,df):
     open_popup=False
-    if "event_a" is in st.session_state:
+    if "event_a" in st.session_state:
         open_popup = True
-    if "event_d" is in st.session_state:
+    if "event_d" in st.session_state:
         open_popup = True        
     if open_popup == True:
         pal_deltail(palmon,df,200)
