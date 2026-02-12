@@ -665,7 +665,8 @@ if 1 == 1:
                     excel_loaded=True
             else:
                 uploaded_file=None
-
+        expanded=False
+        
     if df_xls["DataFrame"][idx_costs] is not None:
         excel_loaded=True
     else:
