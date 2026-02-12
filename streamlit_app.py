@@ -445,7 +445,7 @@ def pal_deltail(palmon,df):
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
         cost_upg=calcul_upgrade_costs(df.loc[df.index[0], 'Level'],max_upg)
         #st.markdown(f"cost to {max_upg}: {large_num_format(cost_upg)}")
-        st.metric("Cost", cost_upg, max_upg)
+        st.metric("Cost", large_num_format(cost_upg), max_upg)
     with row2[0]:
         st.write('Competencies')
         build_table_any(df[cols_comp])
