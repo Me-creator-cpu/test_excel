@@ -424,8 +424,14 @@ def pal_deltail_dialog(palmon,df):
         open_popup = True        
     if open_popup == True:
         pal_deltail(palmon,df,200)
-    del st.session_state["event_a"]
-    del st.session_state["event_d"]
+    del_session_variable("event_a")
+    del_session_variable("event_d")
+
+def del_session_variable(var_key):
+    try:
+        del del st.session_state[var_key]
+    except:
+        return None
 
 def pal_deltail(palmon,df,pic_width=300):
     col_border=True
