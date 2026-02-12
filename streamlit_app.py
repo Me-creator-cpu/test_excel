@@ -647,13 +647,13 @@ if 1 == 1:
             df=df_xls["DataFrame"][idx_palmon]
             df1=df.copy()
             df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
-            df_a = df[(df['Skill'] == '⚔ Attack')]
-            df_d = df[(df['Skill'] != '⚔ Attack')]
+            df_a = df[(df['Skill'] == '⚔ Attack')].head(7)
+            df_d = df[(df['Skill'] != '⚔ Attack')].head(7)
             st.subheader('⚔ Attack')
-            df_a.head(7)
+            df_a
             st.divider()
             st.subheader('🛡 Defend')
-            df_d.head(7)
+            df_d
         else:
             file_err()
             
