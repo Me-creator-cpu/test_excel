@@ -750,13 +750,15 @@ if 1 == 1:
             #cols_palmon
             #df_display=df_xls["DataFrame"][idx_palmon][cols_palmon]
             df_display=df[cols_palmon]
-            event = st.dataframe(
-                df_xls["DataFrame"][idx_palmon],
-                column_config=column_config_lst,
-                on_select="rerun",
-                selection_mode="single-row",
-                hide_index=True,
-            )
+            event = None
+            with st.expander("List", expanded=True, width="stretch"):
+                event = st.dataframe(
+                    df_xls["DataFrame"][idx_palmon],
+                    column_config=column_config_lst,
+                    on_select="rerun",
+                    selection_mode="single-row",
+                    hide_index=True,
+                )
             if event is not None:
                 show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         else:
