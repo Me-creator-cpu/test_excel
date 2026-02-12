@@ -643,30 +643,32 @@ if 1 == 1:
             file_err()
     with tab6:
         if df_xls["DataFrame"][idx_palmon] is not None:
+            col_border=False
             st.header("Dashboard")
             df=df_xls["DataFrame"][idx_palmon]
             df1=df.copy()
             df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
             df_a = df[(df['Skill'] == '⚔ Attack')].head(7)
             df_d = df[(df['Skill'] != '⚔ Attack')].head(7)
-            
-            st.subheader('⚔ Attack top 7')
-            st.dataframe(
-                    df_a[['Name','Type','Level','Upgradable','Step','Achievement']],
-                    column_config=column_config_lst,
-                    hide_index=True,
-                )
-            
-            #st.divider()
-            
-            st.subheader('🛡 Defend top 7')
-            st.dataframe(
-                    df_d[['Name','Type','Level','Upgradable','Step','Achievement']],
-                    column_config=column_config_lst,
-                    hide_index=True,
-                )
 
-            col_border=False
+            row_d0 = st.columns(2,border=col_border, width="stretch")
+            with row_d0[0]:
+                st.subheader('⚔ Attack top 7')
+                st.dataframe(
+                        df_a[['Name','Type','Level','Upgradable','Step','Achievement']],
+                        column_config=column_config_lst,
+                        hide_index=True,
+                    )
+
+            
+            with row_d0[1]:
+                st.subheader('🛡 Defend top 7')
+                st.dataframe(
+                        df_d[['Name','Type','Level','Upgradable','Step','Achievement']],
+                        column_config=column_config_lst,
+                        hide_index=True,
+                    )
+                
             row_d1 = st.columns(2,border=col_border, width="stretch")
             with row_d1[0]:
                 st.subheader('Average Level by Type')
