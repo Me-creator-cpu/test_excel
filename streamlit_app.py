@@ -533,7 +533,7 @@ def page_loadxls():
     df_xls
     
 def page_tabs():
-    write_info('st.session_state.uploaded_file',st.session_state.uploaded_file)
+    #write_info('st.session_state.uploaded_file',st.session_state.uploaded_file)
     df_xls = st.session_state.df_data
     uploaded_file = st.session_state.uploaded_file
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
@@ -637,7 +637,7 @@ pg = st.navigation([
     st.Page(page1, title="First page", icon="🔥"),
     st.Page(page2, title="Second page", icon=":material/favorite:"),
 ])
-pg.run()
+#pg.run()
 
 if 1 == 2:
     with st.expander("Excel file", expanded=True, width="stretch"):
