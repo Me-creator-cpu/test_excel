@@ -418,6 +418,12 @@ def pal_deltail(palmon,df):
     row1 = st.columns(2,border=col_border, width="stretch")
     row2 = st.columns(2,border=col_border, width="stretch")
 
+    df_cost = df_xls["DataFrame"][idx_costs]
+    level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level from"].max()
+    level_pal=df.loc[df.index[0], 'Level']
+    if level_pal >= level_max:
+        level_max = 0
+    
     with row0[0]:
         try:
             with st.container(horizontal_alignment="center", vertical_alignment="center"):
@@ -434,18 +440,20 @@ def pal_deltail(palmon,df):
                         "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),                     
                      },
                      hide_index=False) 
-    
     with row1[0]:
         #st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
-        df_cost = df_xls["DataFrame"][idx_costs]
-        level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level from"].max()
-        st.metric("Level", df.loc[df.index[0], 'Level'], level_max)
+        #df_cost = df_xls["DataFrame"][idx_costs]
+        #level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level from"].max()
+        #level_pal=df.loc[df.index[0], 'Level']
+        #if level_pal >= level_max:
+        #    level_max = 0
+        st.metric("Level", level_pal, level_max)
     with row1[1]:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
         cost_upg=calcul_upgrade_costs(df.loc[df.index[0], 'Level'],max_upg)
         #st.markdown(f"cost to {max_upg}: {large_num_format(cost_upg)}")
-        st.metric("Cost", large_num_format(cost_upg), max_upg)
+        st.metric("Cost", large_num_format(cost_upg), level_max)
     with row2[0]:
         st.write('Competencies')
         build_table_any(df[cols_comp])
@@ -486,147 +494,7 @@ def page2():
     user_agent = request.headers.get('User-Agent')
     user_agent_parsed = parse(user_agent)
 
-def page_loadxls():
-    with st.expander("Excel file", expanded=True, width="stretch"):
-        uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
-        excel_loaded = False
-        if uploaded_file is not None:
-            file = pd.ExcelFile(uploaded_file)
-            if file is not None:
-                option = st.selectbox(
-                    "Worksheet to open",
-                    file.sheet_names,
-                    index=None,
-                    placeholder="Select Worksheet...",
-                )
-                if option is not None:
-                    try:
-                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                        match option:
-                            case "Tableaux":
-                                do_nothing()
-                            case "Palmon_data":
-                                df1.columns = cols_data
-                            case "Stars":
-                                df1.columns = cols_stars 
-                            case _:
-                                do_nothing()
-                        st.dataframe(df1)
-                        excel_loaded=True
-                    except:
-                        uploaded_file=None 
-                        file_err()
 
-                    if 1 == 2:        
-                        if option == "Tableaux":
-                            df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                        else:
-                            df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                            if option == "Palmon_data":
-                                df1.columns = cols_data
-                            if option == "Stars":
-                                df1.columns = cols_stars                        
-                        st.dataframe(df1)
-                        excel_loaded=True
-                    
-            else:
-                uploaded_file=None
-    
-    if df_xls["DataFrame"][idx_costs] is not None:
-        excel_loaded=True
-    else:
-        excel_loaded=False
-    
-    row, col = df_xls.shape
-    #write_info('row',row)
-    #write_info('col',col)
-    for i in range(row):
-        get_data(uploaded_file,i,False)
-    write_info('uploaded_file',uploaded_file)
-    write_info('df_xls',None)
-    st.session_state.df_data = df_xls
-    st.session_state.df_data
-    write_info('uploaded_file',None)
-    st.session_state.uploaded_file = uploaded_file
-    st.session_state.uploaded_file
-    df_xls
-    
-def page_tabs():
-    #write_info('st.session_state.uploaded_file',st.session_state.uploaded_file)
-    df_xls = st.session_state.df_data
-    uploaded_file = st.session_state.uploaded_file
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
-                                df_xls["DisplayName"][idx_costs],
-                                df_xls["DisplayName"][idx_comp],
-                                df_xls["DisplayName"][idx_mut],
-                                df_xls["DisplayName"][idx_val],
-                                df_xls["DisplayName"][idx_palmon]
-                                ])
-    with tab1:
-        if df_xls["DataFrame"][idx_palmon] is not None:
-            df = df_xls["DataFrame"][idx_costs]
-            df_pal=df_xls["DataFrame"][idx_palmon]
-            st.header(df_xls["DisplayName"][idx_costs])
-            min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
-            max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
-            range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
-            with st.expander("Data graph", expanded=False, width="stretch"):
-                build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
-        else:
-            file_err()
-    with tab2:
-        if df_xls["DataFrame"][idx_palmon] is not None:   
-            st.header(df_xls["DisplayName"][idx_comp])
-            df = df_xls["DataFrame"][idx_comp]
-            range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
-            with st.expander("Data graph", expanded=False, width="stretch"):
-                build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
-        else:
-            file_err()
-    with tab3:
-        if df_xls["DataFrame"][idx_palmon] is not None:  
-            st.header(df_xls["DisplayName"][idx_mut]) 
-            df = df_xls["DataFrame"][idx_mut]
-            df_energy=df.loc[(df['Step'] > 0)]
-            df_crystal=df.loc[(df['Step'] == 0)]        
-            st.header("Energy")
-            range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(1),int(30))
-            st.header("Crystals")
-            build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(1),int(30),False)
-            with st.expander("Data graph", expanded=False, width="stretch"):
-                build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
-                build_table_any(df_energy.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
-        else:
-            file_err()
-    with tab4:
-        if df_xls["DataFrame"][idx_palmon] is not None:  
-            st.header(df_xls["DisplayName"][idx_val]) 
-            build_table_full_costs(df_xls["DataFrame"][idx_val])
-            st.divider()
-            st.header(df_xls["DisplayName"][idx_stars])
-            df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
-            df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
-            build_table_any(df_stars)       
-        else:
-            file_err()
-    with tab5:
-        if df_xls["DataFrame"][idx_palmon] is not None:  
-            st.header(df_xls["DisplayName"][idx_palmon])
-            df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-            df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
-            df_display=df_xls["DataFrame"][idx_palmon][cols_palmon]
-            event = st.dataframe(
-                df_xls["DataFrame"][idx_palmon],
-                column_config=column_config_lst,
-                on_select="rerun",
-                selection_mode="single-row",
-                hide_index=True,
-            )
-            if event is not None:
-                show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
-        else:
-            file_err()
-#df_xls
 
 # ======================================================================================================
 #
@@ -781,9 +649,9 @@ if 1 == 1:
                 show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         else:
             file_err()
-    with tab5:
+    with tab6:
         if df_xls["DataFrame"][idx_palmon] is not None:  
-            st.header(df_xls["DisplayName"][idx_palmon])
+            st.header("Dashboard")
         else:
             file_err()
             
