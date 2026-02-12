@@ -655,7 +655,7 @@ if 1 == 1:
             with row_d0[0]:
                 st.subheader('⚔ Attack top 7')
                 st.dataframe(
-                        df_a[['Name','Type','Level','Upgradable','Step','Achievement']],
+                        df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
                         column_config=column_config_lst,
                         hide_index=True,
                     )
@@ -664,7 +664,7 @@ if 1 == 1:
             with row_d0[1]:
                 st.subheader('🛡 Defend top 7')
                 st.dataframe(
-                        df_d[['Name','Type','Level','Upgradable','Step','Achievement']],
+                        df_d[['Name','Type','Level','Upgradable','Steps','Achievement']],
                         column_config=column_config_lst,
                         hide_index=True,
                     )
