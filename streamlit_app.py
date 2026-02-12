@@ -665,7 +665,7 @@ if 1 == 1:
                 avg_lvl_df
             with row_d1[1]:
                 st.subheader('Average power by Type')
-                avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('RankPower')
+                avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
                 avg_pwr_df
             
         else:
