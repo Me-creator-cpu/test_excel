@@ -635,7 +635,7 @@ if 1 == 1:
             df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
             #cols_palmon
             #df_display=df_xls["DataFrame"][idx_palmon][cols_palmon]
-            df_display=df[cols_palmon]
+            df_display=df[cols_palmon].sort('Level', ascending=False)
             event = None
             with st.expander("List", expanded=True, width="stretch"):
                 event = st.dataframe(
