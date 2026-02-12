@@ -426,7 +426,6 @@ def pal_deltail_dialog(palmon,df):
         pal_deltail(palmon,df,200)
     del_session_variable("event_a")
     del_session_variable("event_d")
-    st.rerun()
 
 def del_session_variable(var_key):
     try:
