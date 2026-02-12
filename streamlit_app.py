@@ -654,7 +654,7 @@ if 1 == 1:
             st.header("Dashboard")
             df=df_xls["DataFrame"][idx_palmon]
             df1=df.copy()
-            df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ignore_index=True)
+            df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
             df_a = df[(df['Skill'] == '⚔ Attack')]
             df_d = df[(df['Skill'] != '⚔ Attack')]
             st.subheader('⚔ Attack')
