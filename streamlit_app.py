@@ -459,7 +459,7 @@ def pal_deltail(palmon,df):
         #build_table_any(df_comp_u[cols_comp])
 
         comp1, comp2, comp3, comp4, comp5 = st.columns(5)
-        comp1.metric("Comp 1", df_comp_u.loc[df.index[0], 'Comp 1'], calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 1'] ))
+        comp1.metric("Comp 1", df_comp_u.loc[df.index[0], 'Comp 1'], df_comp_u.loc[df.index[0], 'Comp 1'])
         comp2.metric("Comp 2", "9 mph", "-8%")
         comp3.metric("Comp 3", "86%", "4%")
         comp4.metric("Comp 4", "86%", "4%")
