@@ -683,7 +683,7 @@ if 1 == 1:
                         hide_index=True,
                     )
                 if event_d is not None:
-                    show_details(event.selection.rows,df_d,True)
+                    show_details(event_d.selection.rows,df_d,True)
                     event_d = None                
                 
             row_d1 = st.columns(2,border=col_border, width="stretch")
