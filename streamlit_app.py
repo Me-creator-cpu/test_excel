@@ -651,11 +651,20 @@ if 1 == 1:
             df_d = df[(df['Skill'] != '⚔ Attack')].head(7)
             
             st.subheader('⚔ Attack top 7')
-            df_a[['Name','Type','Level','Upgradable','Step','Achievement']]
+            st.dataframe(
+                    df_a[['Name','Type','Level','Upgradable','Step','Achievement']],
+                    column_config=column_config_lst,
+                    hide_index=True,
+                )
+            
             #st.divider()
             
             st.subheader('🛡 Defend top 7')
-            df_d[['Name','Type','Level','Upgradable','Step','Achievement']]
+            st.dataframe(
+                    df_d[['Name','Type','Level','Upgradable','Step','Achievement']],
+                    column_config=column_config_lst,
+                    hide_index=True,
+                )
 
             col_border=False
             row_d1 = st.columns(2,border=col_border, width="stretch")
