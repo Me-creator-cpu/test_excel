@@ -750,6 +750,7 @@ if 1 == 1:
         if df_xls["DataFrame"][idx_palmon] is not None:  
             st.header(df_xls["DisplayName"][idx_palmon])
             df = df_xls["DataFrame"][idx_palmon]
+            df = df.loc[(df['Level'] >= 1)]
             #df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
             #df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
             df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
