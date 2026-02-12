@@ -414,13 +414,14 @@ def pal_deltail(palmon,df):
     cols_comp = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
     #df
     
-    row0 = st.columns([2, 1], border=col_border, vertical_alignment="center")
+    row0 = st.columns([2, 1], border=col_border)
     row1 = st.columns(2,border=col_border, width="stretch")
     row2 = st.columns(2,border=col_border, width="stretch")
 
     with row0[0]:
         try:
-            st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'], width=300)
+            with st.container(horizontal_alignment="left", vertical_alignment="center"):
+                st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'], width=300)
         except:
             st.empty()
     with row0[1]:
