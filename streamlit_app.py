@@ -657,6 +657,7 @@ if 1 == 1:
             st.subheader('🛡 Defend top 7')
             df_d[['Name','Type','Level','Upgradable','Step','Achievement']]
 
+            col_border=False
             row_d1 = st.columns(2,border=col_border, width="stretch")
             with row_d1[0]:
                 st.subheader('Average Level by Type')
