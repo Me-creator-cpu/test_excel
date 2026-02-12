@@ -675,7 +675,7 @@ if 1 == 1:
             
             with row_d0[1]:
                 st.subheader('🛡 Defend top 7')
-                st.dataframe(
+                event = st.dataframe(
                         df_d[['Name','Type','Level','Upgradable','Steps','Achievement']],
                         column_config=column_config_lst,
                         on_select="rerun",
