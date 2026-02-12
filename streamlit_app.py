@@ -383,7 +383,7 @@ def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
         return None
 
 def show_details(palmon,df,popup=False):
-    #st.markdown(f":orange-badge[palmon : {palmon}]")
+    st.markdown(f":orange-badge[palmon : {palmon}]")
     if 1 == 1:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
@@ -392,14 +392,14 @@ def show_details(palmon,df,popup=False):
             #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
             filtered_df['Cost to max']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
             filtered_df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
-            st.dataframe(
-                filtered_df,
-                column_config=column_config,
-                hide_index=True,
-            )
-            if popup:
+            if popup==True:
                 pal_deltail_dialog(palmon,filtered_df)
             else:
+                st.dataframe(
+                    filtered_df,
+                    column_config=column_config,
+                    hide_index=True,
+                )                
                 pal_deltail(palmon,filtered_df)
     else:
         st.empty()
