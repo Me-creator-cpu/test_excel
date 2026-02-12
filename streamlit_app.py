@@ -419,7 +419,10 @@ def pal_deltail(palmon,df):
     row2 = st.columns(2,border=col_border, width="stretch")
 
     with row0[0]:
-        st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'], width=200)
+        try:
+            st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'], width=200)
+        except:
+            st.empty()
     with row0[1]:
         df_info=df[['Type','Skill','Steps','Achievement','Level','Cost to max']]
         df_info.loc[df.index[0], 'Achievement'] = percent_format(df_info.loc[df.index[0], 'Achievement'])
