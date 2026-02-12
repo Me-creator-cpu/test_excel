@@ -418,8 +418,11 @@ def pal_deltail(palmon,df,pic_width=300):
     df.reset_index()
     cols_comp = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
     #df
-    
-    row0 = st.columns([2, 1], border=col_border)
+    if pic_width == 300:
+        cell_pic=2
+    else:
+        cell_pic=1
+    row0 = st.columns([cell_pic, 1], border=col_border)
     row1 = st.columns(2,border=col_border, width="stretch")
     row2 = st.columns(2,border=col_border, width="stretch")
 
