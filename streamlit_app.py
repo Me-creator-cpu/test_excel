@@ -586,6 +586,7 @@ def page_tabs():
                 show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         else:
             file_err()
+df_xls
 
 # ======================================================================================================
 #
