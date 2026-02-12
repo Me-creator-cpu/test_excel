@@ -437,6 +437,9 @@ def pal_deltail(palmon,df):
     
     with row1[0]:
         st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
+        df_cost = df_xls["DataFrame"][idx_costs]
+        level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level from"].max()
+        st.metric("Level", df.loc[df.index[0], level_max)
     with row1[1]:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
@@ -691,12 +694,13 @@ if 1 == 1:
     for i in range(row):
         get_data(uploaded_file,i,False)
 
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
                                 df_xls["DisplayName"][idx_costs],
                                 df_xls["DisplayName"][idx_comp],
                                 df_xls["DisplayName"][idx_mut],
                                 df_xls["DisplayName"][idx_val],
-                                df_xls["DisplayName"][idx_palmon]
+                                df_xls["DisplayName"][idx_palmon],
+                                "Dashboard"
                                 ])
     with tab1:
         if df_xls["DataFrame"][idx_palmon] is not None:
@@ -776,9 +780,18 @@ if 1 == 1:
                 show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         else:
             file_err()
-
-
+    with tab5:
+        if df_xls["DataFrame"][idx_palmon] is not None:  
+            st.header(df_xls["DisplayName"][idx_palmon])
+        else:
+            file_err()
+            
 write_js_menu()
+# ======================================================================================================
+#
+#    End MAIN page
+#
+# ======================================================================================================
 
 
     #df3 = pd.read_excel(uploaded_file, sheet_name='Probe 1', header = [0, 1, 2], decimal =',')
