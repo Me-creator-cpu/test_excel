@@ -778,7 +778,7 @@ if 1 == 1:
             file_err()
 
 
-
+write_js_menu()
 
 
     #df3 = pd.read_excel(uploaded_file, sheet_name='Probe 1', header = [0, 1, 2], decimal =',')
