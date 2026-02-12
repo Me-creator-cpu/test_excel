@@ -683,7 +683,7 @@ if 1 == 1:
                         hide_index=True,
                     )
                 if event is not None:
-                    show_details(event.selection.rows,df_d,True)
+                    show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon],True)
                     event = None                
                 
             row_d1 = st.columns(2,border=col_border, width="stretch")
