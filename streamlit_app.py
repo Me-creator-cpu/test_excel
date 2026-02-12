@@ -287,11 +287,9 @@ def percent_format(value):
 def icon_upgradable(value):
     try:
         if int(value)==1:
-            return "✅"
-        else:
-            return "🟥"            
+            return "✅"       
     except:
-        return value
+        return "🟥" 
 
 def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True):
     if df_chart is not None:
@@ -616,7 +614,7 @@ def page_tabs():
                 show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         else:
             file_err()
-df_xls
+#df_xls
 
 # ======================================================================================================
 #
