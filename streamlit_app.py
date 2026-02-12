@@ -439,7 +439,7 @@ def pal_deltail(palmon,df):
         st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
         df_cost = df_xls["DataFrame"][idx_costs]
         level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level from"].max()
-        st.metric("Level", df.loc[df.index[0], level_max)
+        st.metric("Level", df.loc[df.index[0], 'Level'], level_max)
     with row1[1]:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
