@@ -448,7 +448,7 @@ def pal_deltail(palmon,df):
         df_comp_u=df[cols_comp]
         df_comp_costs = df_xls["DataFrame"][idx_costs]
         for i in [1,2,3,5]:
-            df_comp_u.loc[df.index[0], f'Comp {i}'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else None )
+            df_comp_u.loc[df.index[0], f'Comp {i}'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
         
         #df_comp_u.loc[df.index[0], 'Comp 1'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 1'] )
         #df_comp_u.loc[df.index[0], 'Comp 2'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 2'] )
