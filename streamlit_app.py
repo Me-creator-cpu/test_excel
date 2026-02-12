@@ -411,7 +411,7 @@ def pal_deltail(palmon,df):
     col_border=True
     df_t=df.reset_index().T
     df.reset_index()
-
+    cols_comp = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
     #df
     
     row0 = st.columns([2, 1], border=col_border)
@@ -440,18 +440,23 @@ def pal_deltail(palmon,df):
         st.markdown(f"cost to {max_upg}: {large_num_format(cost_upg)}")
     with row2[0]:
         st.write('Competencies')
-        build_table_any(df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
+        #build_table_any(df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
+        build_table_any(df[cols_comp])
     with row2[1]:
         st.write('Competencies upgrade costs')
-        df_comp_u=df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']]
+        #df_comp_u=df[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']]
+        df_comp_u=df[cols_comp]
         df_comp_costs = df_xls["DataFrame"][idx_costs]
+        for i in [1,2,3,5]:
+            df_comp_u.loc[df.index[0], 'Comp ' & str(i)] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp ' & str(i)],10 if i==5 else None )
         
-        df_comp_u.loc[df.index[0], 'Comp 1'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 1'] )
-        df_comp_u.loc[df.index[0], 'Comp 2'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 2'] )
-        df_comp_u.loc[df.index[0], 'Comp 3'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 3'] )
-        df_comp_u.loc[df.index[0], 'Comp 5'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 5'],10 )
+        #df_comp_u.loc[df.index[0], 'Comp 1'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 1'] )
+        #df_comp_u.loc[df.index[0], 'Comp 2'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 2'] )
+        #df_comp_u.loc[df.index[0], 'Comp 3'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 3'] )
+        #df_comp_u.loc[df.index[0], 'Comp 5'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], 'Comp 5'],10 )
         
-        build_table_any(df_comp_u[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
+        #build_table_any(df_comp_u[['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']])
+        build_table_any(df_comp_u[cols_comp])
     #df_t
 
 
