@@ -650,8 +650,18 @@ if 1 == 1:
         else:
             file_err()
     with tab6:
-        if df_xls["DataFrame"][idx_palmon] is not None:  
+        if df_xls["DataFrame"][idx_palmon] is not None:
             st.header("Dashboard")
+            df=df_xls["DataFrame"][idx_palmon]
+            df1=df.copy()
+            df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ignore_index=True)
+            df_a = df[(df['Skill'] == '⚔ Attack')]
+            df_d = df[(df['Skill'] != '⚔ Attack')]
+            st.subheader('⚔ Attack')
+            df_a
+            st.divider()
+            st.subheader('🛡 Defend')
+            df_d
         else:
             file_err()
             
