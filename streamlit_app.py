@@ -675,16 +675,16 @@ if 1 == 1:
             
             with row_d0[1]:
                 st.subheader('🛡 Defend top 7')
-                event = st.dataframe(
+                event_d = st.dataframe(
                         df_d[['Name','Type','Level','Upgradable','Steps','Achievement']],
                         column_config=column_config_lst,
                         on_select="rerun",
                         selection_mode="single-row",                    
                         hide_index=True,
                     )
-                if event is not None:
-                    show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon],True)
-                    event = None                
+                if event_d is not None:
+                    show_details(event.selection.rows,df_d,True)
+                    event_d = None                
                 
             row_d1 = st.columns(2,border=col_border, width="stretch")
             with row_d1[0]:
