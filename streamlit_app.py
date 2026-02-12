@@ -649,11 +649,22 @@ if 1 == 1:
             df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
             df_a = df[(df['Skill'] == '⚔ Attack')].head(7)
             df_d = df[(df['Skill'] != '⚔ Attack')].head(7)
+            
             st.subheader('⚔ Attack top 7')
             df_a[['Name','Type','Level','Upgradable','Step','Achievement']]
-            st.divider()
+            #st.divider()
+            
             st.subheader('🛡 Defend top 7')
             df_d[['Name','Type','Level','Upgradable','Step','Achievement']]
+
+            st.subheader('Average Level by Type')
+            avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
+            avg_lvl_df
+            
+            st.subheader('Average power by Type')
+            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
+            avg_pwr_df
+            
         else:
             file_err()
             
