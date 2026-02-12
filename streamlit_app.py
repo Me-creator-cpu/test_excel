@@ -419,7 +419,7 @@ def pal_deltail(palmon,df):
     row2 = st.columns(2,border=col_border, width="stretch")
 
     df_cost = df_xls["DataFrame"][idx_costs]
-    level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level from"].max()
+    level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level to"].max()
     level_pal=df.loc[df.index[0], 'Level']
     if level_pal >= level_max:
         level_max = 0
@@ -450,7 +450,7 @@ def pal_deltail(palmon,df):
         st.metric("Level", level_pal, level_max)
     with row1[1]:
         df_costs = df_xls["DataFrame"][idx_costs]
-        max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
+        max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level to"].max()
         cost_upg=calcul_upgrade_costs(df.loc[df.index[0], 'Level'],max_upg)
         #st.markdown(f"cost to {max_upg}: {large_num_format(cost_upg)}")
         st.metric("Cost", large_num_format(cost_upg), level_max)
@@ -578,10 +578,10 @@ if 1 == 1:
             st.header(df_xls["DisplayName"][idx_costs])
             #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(240,259))}]")
             min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
-            max_upg=df.loc[(df["Cost"] >= 1)]["Level from"].max()
+            max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
             range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
             with st.expander("Data graph", expanded=False, width="stretch"):
-                build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
+                build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level to'] <= range_level_max)])
         else:
             file_err()
     with tab2:
