@@ -417,11 +417,15 @@ def get_cell_detail(df,fld):
 
 @st.dialog("Details")
 def pal_deltail_dialog(palmon,df):
-    if event is not None or event_a is not None or event_d is not None:
+    open_popup=False
+    if "event_a" is in st.session_state:
+        open_popup = True
+    if "event_d" is in st.session_state:
+        open_popup = True        
+    if open_popup == True:
         pal_deltail(palmon,df,200)
-    event = None
-    event_a = None
-    event_d = None
+    del st.session_state["event_a"]
+    del st.session_state["event_d"]
 
 def pal_deltail(palmon,df,pic_width=300):
     col_border=True
@@ -681,6 +685,7 @@ if 1 == 1:
                         hide_index=True,
                     )
                 if event_a is not None:
+                    st.session_state["event_a"]=event_a.selection.rows
                     show_details(event_a.selection.rows,df_a,True)
                     #if 'event_a' not in st.session.state:
                     event_a = None  
@@ -695,6 +700,7 @@ if 1 == 1:
                         hide_index=True,
                     )
                 if event_d is not None:
+                    st.session_state["event_d"]=event_d.selection.rows
                     show_details(event_d.selection.rows,df_d,True)
                     #if 'event_d' not in st.session.state:
                     event_d = None                
