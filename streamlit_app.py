@@ -412,7 +412,11 @@ def get_cell_detail(df,fld):
 
 @st.dialog("Details")
 def pal_deltail_dialog(palmon,df):
-    pal_deltail(palmon,df,200)
+    if event is not None or event_a is not None or event_d is not None:
+        pal_deltail(palmon,df,200)
+    event = None
+    event_a = None
+    event_d = None
 
 def pal_deltail(palmon,df,pic_width=300):
     col_border=True
@@ -503,8 +507,6 @@ def page2():
     #os.stat
     user_agent = request.headers.get('User-Agent')
     user_agent_parsed = parse(user_agent)
-
-
 
 # ======================================================================================================
 #
@@ -666,12 +668,17 @@ if 1 == 1:
             row_d0 = st.columns(2,border=col_border, width="stretch")
             with row_d0[0]:
                 st.subheader('⚔ Attack top 7')
-                st.dataframe(
+                event_a = st.dataframe(
                         df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
                         column_config=column_config_lst,
+                        on_select="rerun",
+                        selection_mode="single-row",                    
                         hide_index=True,
                     )
-
+                if event_a is not None:
+                    show_details(event_a.selection.rows,df_a,True)
+                    #if 'event_a' not in st.session.state:
+                    event_a = None  
             
             with row_d0[1]:
                 st.subheader('🛡 Defend top 7')
@@ -684,6 +691,7 @@ if 1 == 1:
                     )
                 if event_d is not None:
                     show_details(event_d.selection.rows,df_d,True)
+                    #if 'event_d' not in st.session.state:
                     event_d = None                
                 
             row_d1 = st.columns(2,border=col_border, width="stretch")
