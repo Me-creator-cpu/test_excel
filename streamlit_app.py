@@ -533,7 +533,7 @@ def page_loadxls():
     df_xls
     
 def page_tabs():
-    write_info('uploaded_file',uploaded_file)
+    write_info('st.session_state.uploaded_file',st.session_state.uploaded_file)
     df_xls = st.session_state.df_data
     uploaded_file = st.session_state.uploaded_file
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
