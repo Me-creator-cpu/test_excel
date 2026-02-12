@@ -647,6 +647,7 @@ if 1 == 1:
             st.header("Dashboard")
             df=df_xls["DataFrame"][idx_palmon]
             df1=df.copy()
+            df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
             df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
             df_a = df[(df['Skill'] == '⚔ Attack')].head(7)
             df_d = df[(df['Skill'] != '⚔ Attack')].head(7)
