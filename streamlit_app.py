@@ -382,7 +382,7 @@ def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
     else:
         return None
 
-def show_details(palmon,df):
+def show_details(palmon,df,popup=False):
     #st.markdown(f":orange-badge[palmon : {palmon}]")
     if 1 == 1:
         df_costs = df_xls["DataFrame"][idx_costs]
@@ -397,8 +397,10 @@ def show_details(palmon,df):
                 column_config=column_config,
                 hide_index=True,
             )
-            #pal_deltail(palmon,filtered_df)
-            pal_deltail_dialog(palmon,filtered_df)
+            if popup:
+                pal_deltail_dialog(palmon,filtered_df)
+            else:
+                pal_deltail(palmon,filtered_df)
     else:
         st.empty()
 
@@ -647,6 +649,7 @@ if 1 == 1:
                 )
             if event is not None:
                 show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
+                #event = None
         else:
             file_err()
     with tab6:
@@ -675,8 +678,13 @@ if 1 == 1:
                 st.dataframe(
                         df_d[['Name','Type','Level','Upgradable','Steps','Achievement']],
                         column_config=column_config_lst,
+                        on_select="rerun",
+                        selection_mode="single-row",                    
                         hide_index=True,
                     )
+                if event is not None:
+                    show_details(event.selection.rows,df_d,True)
+                    event = None                
                 
             row_d1 = st.columns(2,border=col_border, width="stretch")
             with row_d1[0]:
