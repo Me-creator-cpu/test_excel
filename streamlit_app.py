@@ -512,7 +512,9 @@ def page_loadxls():
     #write_info('col',col)
     for i in range(row):
         get_data(uploaded_file,i,False)
-
+    write_info('uploaded_file',uploaded_file)
+    df_xls
+    
 def page_tabs():
     write_info('uploaded_file',uploaded_file)
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
