@@ -199,7 +199,9 @@ column_config_lst={
 #def init_session():
 if 'df_data' not in st.session_state:
     st.session_state.df_data = df_xls
-        
+if 'uploaded_file' not in st.session_state:
+    st.session_state.uploaded_file = uploaded_file
+    
 def test_df_xls():
     columns = list(df_xls)
     for i in columns:
@@ -509,7 +511,8 @@ def page_loadxls():
                         excel_loaded=True
                     
             else:
-                uploaded_file=None    
+                uploaded_file=None
+    
     if df_xls["DataFrame"][idx_costs] is not None:
         excel_loaded=True
     else:
@@ -521,7 +524,10 @@ def page_loadxls():
     for i in range(row):
         get_data(uploaded_file,i,False)
     write_info('uploaded_file',uploaded_file)
+    write_info('df_xls',None)
     st.session_state.df_data = df_xls
+    write_info('uploaded_file',None)
+    st.session_state.uploaded_file = uploaded_file
     df_xls
     
 def page_tabs():
