@@ -283,7 +283,14 @@ def percent_format(value):
         return f"{ret:.2f}%"  # "12.34%"
     except:
         return empty()
-        
+
+def icon_upgradable(value):
+    try:
+        if int(value)==1:
+            return "✅"
+    except:
+        return value
+
 def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True):
     if df_chart is not None:
         st.bar_chart(df_chart, x=xField, y=yField)
@@ -734,10 +741,15 @@ if 1 == 1:
     with tab5:
         if df_xls["DataFrame"][idx_palmon] is not None:  
             st.header(df_xls["DisplayName"][idx_palmon])
-            df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-            df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
+            df = df_xls["DataFrame"][idx_palmon]
+            #df_xls["DataFrame"][idx_palmon]['Type']=df_xls["DataFrame"][idx_palmon]['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+            #df_xls["DataFrame"][idx_palmon]['Skill']=df_xls["DataFrame"][idx_palmon]['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1])
+            df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+            df['Skill']=df['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1]) 
+            df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
             #cols_palmon
-            df_display=df_xls["DataFrame"][idx_palmon][cols_palmon]
+            #df_display=df_xls["DataFrame"][idx_palmon][cols_palmon]
+            df_display=df[cols_palmon]
             event = st.dataframe(
                 df_xls["DataFrame"][idx_palmon],
                 column_config=column_config_lst,
