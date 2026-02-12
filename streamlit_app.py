@@ -650,10 +650,10 @@ if 1 == 1:
             df_a = df[(df['Skill'] == '⚔ Attack')]
             df_d = df[(df['Skill'] != '⚔ Attack')]
             st.subheader('⚔ Attack')
-            df_a
+            df_a.head(7)
             st.divider()
             st.subheader('🛡 Defend')
-            df_d
+            df_d.head(7)
         else:
             file_err()
             
