@@ -649,11 +649,11 @@ if 1 == 1:
             df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
             df_a = df[(df['Skill'] == '⚔ Attack')].head(7)
             df_d = df[(df['Skill'] != '⚔ Attack')].head(7)
-            st.subheader('⚔ Attack')
-            df_a
+            st.subheader('⚔ Attack top 7')
+            df_a[['Name','Type','Level','Upgradable','Step','Achievement']]
             st.divider()
-            st.subheader('🛡 Defend')
-            df_d
+            st.subheader('🛡 Defend top 7')
+            df_d[['Name','Type','Level','Upgradable','Step','Achievement']]
         else:
             file_err()
             
