@@ -420,7 +420,7 @@ def pal_deltail(palmon,df):
 
     with row0[0]:
         try:
-            with st.container(horizontal_alignment="left", vertical_alignment="center"):
+            with st.container(horizontal_alignment="center", vertical_alignment="center"):
                 st.image(df.loc[df.index[0], 'URL'], caption=df.loc[df.index[0], 'Name'], width=300)
         except:
             st.empty()
