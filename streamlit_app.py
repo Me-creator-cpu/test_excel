@@ -29,6 +29,7 @@ st_logger.setLevel(logging.WARNING)
 df_xls = None
 uploaded_file = None
 excel_loaded=False
+tabs_data=[]
 tabs = None
 
 #def init_session():
@@ -564,11 +565,14 @@ def menu_build_tabs():
                     df_xls["DisplayName"][idx_palmon],   #4
                     "Dashboard"                          #5
                     ])    
-    chosen_id = stx.tab_bar(data=[
-        stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
-        stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
-        stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
-    ], default=1)
+    
+    tabs_data=tabs_data+tabs_fixed
+    chosen_id = stx.tab_bar(data=tabs_data, default=1)
+    #chosen_id = stx.tab_bar(data=[
+    #    stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
+    #    stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
+    #    stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
+    #], default=1)
     st.info(f"{chosen_id=}")
 
 def menu_tab_costs():
