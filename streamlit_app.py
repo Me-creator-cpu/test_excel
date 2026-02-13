@@ -253,6 +253,9 @@ def file_err():
 def write_info(msg,val):
     return st.markdown(f":orange-badge[{msg} : {val}]")
 
+def write_one_info(msg):
+    return st.info(f"{msg}")
+    
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
     try:
         df = pd.read_excel(
@@ -586,18 +589,33 @@ def menu_build_tabs():
     #    stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
     #    stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
     #], default=1)
-    st.info(f"{chosen_id=}")
+    #st.info(f"{chosen_id=}")
     menu_tab_show(chosen_id)
 
 def menu_tab_show(idx):
     write_info("chosen_id=",int(idx))
     match int(idx):
-        case 0:
-            return st.empty()
-        case 1:
+        case idx_comp:
+            menu_tab_comp()
+        case idx_costs:
             menu_tab_costs()
+        case idx_mut:
+            menu_tab_mut()
+        case idx_val:
+            menu_tab_val()
+        case idx_palmon:
+            menu_tab_palmons()
+        case 100:
+            menu_tab_dashboards()
         case _:
             return st.empty()
+
+def menu_tab_comp():
+    st.header(df_xls["DisplayName"][idx_comp])
+    df = df_xls["DataFrame"][idx_comp]
+    range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
+    with st.expander("Data graph", expanded=False, width="stretch"):
+        build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
     
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
@@ -608,6 +626,101 @@ def menu_tab_costs():
     range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
     with st.expander("Data graph", expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level to'] <= range_level_max)])    
+
+def menu_tab_mut():
+    st.header(df_xls["DisplayName"][idx_mut]) 
+    df = df_xls["DataFrame"][idx_mut]
+    df_energy=df.loc[(df['Step'] > 0)]
+    df_crystal=df.loc[(df['Step'] == 0)]        
+    st.header("Energy")
+    range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(1),int(30))
+    st.header("Crystals")
+    build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(1),int(30),False)
+    with st.expander("Data graph", expanded=False, width="stretch"):
+        build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
+        build_table_any(df_energy.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
+
+def menu_tab_val():
+    st.header(df_xls["DisplayName"][idx_val]) 
+    build_table_full_costs(df_xls["DataFrame"][idx_val])
+    st.divider()
+    st.header(df_xls["DisplayName"][idx_stars])
+    df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
+    df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
+    build_table_any(df_stars)       
+
+def menu_tab_palmons():
+    st.header(df_xls["DisplayName"][idx_palmon])
+    df = df_xls["DataFrame"][idx_palmon]
+    #df = df.sort_values(by=['Level','Achievement'],ascending=False,ignore_index=True)
+    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+    df['Skill']=df['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1]) 
+    df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
+    df_display=df[cols_palmon]
+    event = None
+    with st.expander("List", expanded=True, width="stretch"):
+        event = st.dataframe(
+            df_xls["DataFrame"][idx_palmon],
+            column_config=column_config_lst,
+            on_select="rerun",
+            selection_mode="single-row",
+            hide_index=True,
+        )
+    if event is not None:
+        show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
+        #event = None    
+
+def menu_tab_dashboards():
+    col_border=False
+    st.header("Dashboard")
+    df=df_xls["DataFrame"][idx_palmon]
+    df1=df.copy()
+    df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
+    df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
+    df_a = df[(df['Skill'] == '⚔ Attack')].head(7)
+    df_d = df[(df['Skill'] != '⚔ Attack')].head(7)
+
+    row_d0 = st.columns(2,border=col_border, width="stretch")
+    with row_d0[0]:
+        st.subheader('⚔ Attack top 7')
+        event_a = st.dataframe(
+                df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                column_config=column_config_lst,
+                on_select="rerun",
+                selection_mode="single-row",                    
+                hide_index=True,
+            )
+        if event_a is not None:
+            st.session_state["event_a"]=event_a.selection.rows
+            show_details(event_a.selection.rows,df_a,True)
+            #if 'event_a' not in st.session.state:
+            event_a = None  
+    
+    with row_d0[1]:
+        st.subheader('🛡 Defend top 7')
+        event_d = st.dataframe(
+                df_d[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                column_config=column_config_lst,
+                on_select="rerun",
+                selection_mode="single-row",                    
+                hide_index=True,
+            )
+        if event_d is not None:
+            st.session_state["event_d"]=event_d.selection.rows
+            show_details(event_d.selection.rows,df_d,True)
+            #if 'event_d' not in st.session.state:
+            event_d = None                
+        
+    row_d1 = st.columns(2,border=col_border, width="stretch")
+    with row_d1[0]:
+        st.subheader('Average Level by Type')
+        avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
+        avg_lvl_df
+    with row_d1[1]:
+        st.subheader('Average power by Type')
+        avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
+        avg_pwr_df    
+
 # ======================================================================================================
 #
 #    Definition PAGES
