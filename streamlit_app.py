@@ -590,7 +590,7 @@ def menu_build_tabs():
     menu_tab_show(chosen_id)
 
 def menu_tab_show(idx):
-    write_info("chosen_id=",idx)
+    write_info("chosen_id=",int(idx))
     match idx:
         case 0:
             return st.empty()
