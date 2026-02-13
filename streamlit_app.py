@@ -583,7 +583,7 @@ def menu_build_tabs():
                     ])    
     
     tabs_data=get_session_variable("tabs_data")+tabs_fixed
-    chosen_id = stx.tab_bar(data=tabs_data, default=1)
+    chosen_id = stx.tab_bar(data=tabs_data, default=0)
     #chosen_id = stx.tab_bar(data=[
     #    stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
     #    stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
