@@ -10,7 +10,7 @@ import logging
 import os
 import platform
 from user_agents import parse
-import extra_streamlit_components as stx
+import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 
 # import matplotlib.pyplot as plt
 # import statistics Library
@@ -541,11 +541,21 @@ def menu_load_excel():
     else:
         excel_loaded=False
     
+    tabs_data=None
     row, col = df_xls.shape
     for i in range(row):
-        get_data(uploaded_file,i,False)   
+        get_data(uploaded_file,i,False)
+        tabs_data.append(stx.TabBarItemData(id=i, 
+                                            title=df_xls["DisplayName"][i], 
+                                            description="") )
 
 def menu_build_tabs():
+    tabs_fixed=[stx.TabBarItemData(id=100, title="Dashboard", description="List of Dashboards"),
+                stx.TabBarItemData(id=101, title="Downloads", description="CSV download"),
+               ]
+    
+    rows,cols=df_xls.shape
+    
     tabs = st.tabs([
                     df_xls["DisplayName"][idx_costs],    #0
                     df_xls["DisplayName"][idx_comp],     #1
@@ -554,6 +564,12 @@ def menu_build_tabs():
                     df_xls["DisplayName"][idx_palmon],   #4
                     "Dashboard"                          #5
                     ])    
+    chosen_id = stx.tab_bar(data=[
+    stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
+    stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
+    stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
+], default=1)
+st.info(f"{chosen_id=}")
 
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
