@@ -28,6 +28,7 @@ st_logger.setLevel(logging.WARNING)
 df_xls = None
 uploaded_file = None
 excel_loaded=False
+tabs = None
 
 #def init_session():
 if 'df_data' not in st.session_state:
@@ -543,6 +544,16 @@ def menu_load_excel():
     for i in range(row):
         get_data(uploaded_file,i,False)   
 
+def menu_build_tabs():
+    tabs = st.tabs([
+                    df_xls["DisplayName"][idx_costs],    #0
+                    df_xls["DisplayName"][idx_comp],     #1
+                    df_xls["DisplayName"][idx_mut],      #2
+                    df_xls["DisplayName"][idx_val],      #3
+                    df_xls["DisplayName"][idx_palmon],   #4
+                    "Dashboard"                          #5
+                    ])    
+
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
     df_pal=df_xls["DataFrame"][idx_palmon]
@@ -605,7 +616,9 @@ st.title(f"{app_title} App")
 if 1 == 1:
     with st.sidebar:
         menu_load_excel()
-    
+    if df_xls["DisplayName"][idx_palmon] is not None:
+        menu_build_tabs()
+
 if 1 == 2:
     with st.sidebar:
         with st.expander("Excel file", expanded=True, width="stretch"):
