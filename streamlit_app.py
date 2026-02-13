@@ -592,11 +592,11 @@ def menu_build_tabs():
 def menu_tab_show(idx):
     match idx:
         case 0:
-            return empty()
+            return st.empty()
         case 1:
             menu_tab_costs()
         case _:
-            return empty()
+            return st.empty()
     
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
