@@ -652,7 +652,7 @@ if 1 == 2:
         )
 
 
-if df_xls["DisplayName"][idx_palmon] is not None:    
+if df_xls["DisplayName"][idx_palmon] is not None and 1 == 2:    
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
                                 df_xls["DisplayName"][idx_costs],
                                 df_xls["DisplayName"][idx_comp],
