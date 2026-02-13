@@ -587,6 +587,7 @@ def menu_build_tabs():
     #    stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
     #], default=1)
     st.info(f"{chosen_id=}")
+    menu_tab_show(chosen_id)
 
 def menu_tab_show(idx):
     match idx:
