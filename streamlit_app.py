@@ -603,7 +603,7 @@ def menu_tab_show(idx):
             menu_tab_mut()
         case int(idx_val):
             menu_tab_val()
-        case int(idx_palmon):
+        case 0:
             menu_tab_palmons()
         case 100:
             menu_tab_dashboards()
