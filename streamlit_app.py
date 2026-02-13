@@ -562,7 +562,6 @@ def menu_load_excel():
                                             title=df_xls["DisplayName"][i], 
                                             description="") )
     add_session_variable("tabs_data",tabs_data)
-    #st.session_state.tabs_data = tabs_data
 
 def menu_build_tabs():
     tabs_fixed=[stx.TabBarItemData(id=100, title="Dashboard", description="List of Dashboards"),
@@ -589,11 +588,19 @@ def menu_build_tabs():
     #], default=1)
     st.info(f"{chosen_id=}")
 
+def menu_tab_show(idx):
+    match idx:
+        case 0:
+            return empty()
+        case 1:
+            menu_tab_costs()
+        case _:
+            return empty()
+    
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
     df_pal=df_xls["DataFrame"][idx_palmon]
     st.header(df_xls["DisplayName"][idx_costs])
-    #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(240,259))}]")
     min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
     max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
     range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
@@ -658,7 +665,7 @@ if 1 == 1:
 
     
 
-if 1 == 2:
+if 1 == 2:    # <==================
     with st.sidebar:
         with st.expander("Excel file", expanded=True, width="stretch"):
             uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
@@ -704,7 +711,7 @@ if 1 == 2:
         )
 
 
-if df_xls["DisplayName"][idx_palmon] is not None and 1 == 2:    
+if df_xls["DisplayName"][idx_palmon] is not None and 1 == 2:    # <==================
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
                                 df_xls["DisplayName"][idx_costs],
                                 df_xls["DisplayName"][idx_comp],
