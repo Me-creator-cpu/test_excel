@@ -501,15 +501,58 @@ def pal_deltail(palmon,df,pic_width=300):
         
         build_table_any(df_comp_u[cols_comp])
 
-        #comp1, comp2, comp3, comp4, comp5 = st.columns(5)
-        #comp1.metric("Comp 1", df_comp_u.loc[df.index[0], 'Comp 1'], df_comp_u.loc[df.index[0], 'Comp 1'])
-        #comp2.metric("Comp 2", "9 mph", "-8%")
-        #comp3.metric("Comp 3", "86%", "4%")
-        #comp4.metric("Comp 4", "86%", "4%")
-        #comp5.metric("Comp 5", "86%", "4%")
-    #df_t
+# ======================================================================================================
+#
+#    Definition fonctions pages/menu
+#
+# ======================================================================================================
+def menu_load_excel():
+    with st.expander("Excel file", expanded=True, width="stretch"):
+        uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
+        excel_loaded=False
+        if uploaded_file is not None:
+            file = pd.ExcelFile(uploaded_file)
+            if file is not None:
+                option = st.selectbox(
+                    "Worksheet to open",
+                    file.sheet_names,
+                    index=None,
+                    placeholder="Select Worksheet...",
+                )
+                if option is not None:
+                    if option == "Tableaux":
+                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                    else:
+                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                        if option == "Palmon_data":
+                            df1.columns = cols_data
+                        if option == "Stars":
+                            df1.columns = cols_stars                        
+                    st.dataframe(df1)
+                    excel_loaded=True
+            else:
+                uploaded_file=None
+        expanded=False
+        
+    if df_xls["DataFrame"][idx_costs] is not None:
+        excel_loaded=True
+    else:
+        excel_loaded=False
+    
+    row, col = df_xls.shape
+    for i in range(row):
+        get_data(uploaded_file,i,False)   
 
-
+def menu_tab_costs():
+    df = df_xls["DataFrame"][idx_costs]
+    df_pal=df_xls["DataFrame"][idx_palmon]
+    st.header(df_xls["DisplayName"][idx_costs])
+    #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(240,259))}]")
+    min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
+    max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
+    range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
+    with st.expander("Data graph", expanded=False, width="stretch"):
+        build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level to'] <= range_level_max)])    
 # ======================================================================================================
 #
 #    Definition PAGES
@@ -560,6 +603,10 @@ st.title(f"{app_title} App")
 #pg.run()
 
 if 1 == 1:
+    with st.sidebar:
+        menu_load_excel()
+    
+if 1 == 2:
     with st.sidebar:
         with st.expander("Excel file", expanded=True, width="stretch"):
             uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
