@@ -39,6 +39,8 @@ if 'uploaded_file' not in st.session_state:
     st.session_state.uploaded_file = uploaded_file
 if "excel_loaded" not in st.session_state:
     st.session_state.excel_loaded = False
+if "tabs_data" not in st.session_state:
+    st.session_state.tabs_data = tabs_data
 
 # Définitions variables de sélection de dataframes
 event = None
@@ -442,6 +444,16 @@ def del_session_variable(var_key):
     except:
         return None
 
+def add_session_variable(var_key,var_value):
+    del_session_variable(var_key)
+    st.session_state[var_key]=var_value
+
+def get_session_variable(var_key):
+    try:
+        return st.session_state[var_key]
+    except:
+        return None
+        
 def pal_deltail(palmon,df,pic_width=300):
     col_border=True
     df_t=df.reset_index().T
@@ -549,6 +561,8 @@ def menu_load_excel():
         tabs_data.append(stx.TabBarItemData(id=i, 
                                             title=df_xls["DisplayName"][i], 
                                             description="") )
+    add_session_variable("tabs_data",tabs_data)
+    #st.session_state.tabs_data = tabs_data
 
 def menu_build_tabs():
     tabs_fixed=[stx.TabBarItemData(id=100, title="Dashboard", description="List of Dashboards"),
@@ -566,7 +580,7 @@ def menu_build_tabs():
                     "Dashboard"                          #5
                     ])    
     
-    tabs_data=tabs_data+tabs_fixed
+    tabs_data=get_session_variable("tabs_data")+tabs_fixed
     chosen_id = stx.tab_bar(data=tabs_data, default=1)
     #chosen_id = stx.tab_bar(data=[
     #    stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
