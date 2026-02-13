@@ -561,9 +561,10 @@ def menu_load_excel():
     row, col = df_xls.shape
     for i in range(row):
         get_data(uploaded_file,i,False)
-        tabs_data.append(stx.TabBarItemData(id=i, 
-                                            title=df_xls["DisplayName"][i], 
-                                            description="") )
+        if i<>idx_stars:
+            tabs_data.append(stx.TabBarItemData(id=i, 
+                                                title=df_xls["DisplayName"][i], 
+                                                description="") )
     add_session_variable("tabs_data",tabs_data)
 
 def menu_build_tabs():
@@ -599,11 +600,11 @@ def menu_tab_show(idx):
             menu_tab_palmons()   
         case 1:         #int(idx_costs):
             menu_tab_costs()            
-        case int(idx_comp):
+        case 2:        #int(idx_comp):
             menu_tab_comp()
-        case int(idx_mut):
+        case 3:        #int(idx_mut):
             menu_tab_mut()
-        case int(idx_val):
+        case 4:        #int(idx_val):
             menu_tab_val()
         case 100:
             menu_tab_dashboards()
@@ -669,7 +670,7 @@ def menu_tab_palmons():
     if event is not None:
         show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         #event = None    
-
+   
 def menu_tab_dashboards():
     col_border=False
     st.header("Dashboard")
