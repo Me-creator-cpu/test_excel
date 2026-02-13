@@ -554,42 +554,44 @@ st.sidebar.checkbox("Bar", key="bar")
 #pg.run()
 
 if 1 == 1:
-    with st.expander("Excel file", expanded=True, width="stretch"):
-        uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
-        excel_loaded=False
-        if uploaded_file is not None:
-            file = pd.ExcelFile(uploaded_file)
-            if file is not None:
-                option = st.selectbox(
-                    "Worksheet to open",
-                    file.sheet_names,
-                    index=None,
-                    placeholder="Select Worksheet...",
-                )
-                if option is not None:
-                    if option == "Tableaux":
-                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                    else:
-                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                        if option == "Palmon_data":
-                            df1.columns = cols_data
-                        if option == "Stars":
-                            df1.columns = cols_stars                        
-                    st.dataframe(df1)
-                    excel_loaded=True
-            else:
-                uploaded_file=None
-        expanded=False
+    with st.sidebar:
+        with st.expander("Excel file", expanded=True, width="stretch"):
+            uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
+            excel_loaded=False
+            if uploaded_file is not None:
+                file = pd.ExcelFile(uploaded_file)
+                if file is not None:
+                    option = st.selectbox(
+                        "Worksheet to open",
+                        file.sheet_names,
+                        index=None,
+                        placeholder="Select Worksheet...",
+                    )
+                    if option is not None:
+                        if option == "Tableaux":
+                            df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                        else:
+                            df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                            if option == "Palmon_data":
+                                df1.columns = cols_data
+                            if option == "Stars":
+                                df1.columns = cols_stars                        
+                        st.dataframe(df1)
+                        excel_loaded=True
+                else:
+                    uploaded_file=None
+            expanded=False
+            
+        if df_xls["DataFrame"][idx_costs] is not None:
+            excel_loaded=True
+        else:
+            excel_loaded=False
         
-    if df_xls["DataFrame"][idx_costs] is not None:
-        excel_loaded=True
-    else:
-        excel_loaded=False
-    
-    row, col = df_xls.shape
-    for i in range(row):
-        get_data(uploaded_file,i,False)
+        row, col = df_xls.shape
+        for i in range(row):
+            get_data(uploaded_file,i,False)
 
+if df_xls["DisplayName"][idx_palmon] is not None:    
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
                                 df_xls["DisplayName"][idx_costs],
                                 df_xls["DisplayName"][idx_comp],
