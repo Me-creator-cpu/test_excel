@@ -25,8 +25,17 @@ st_logger.setLevel(logging.WARNING)
 # ======================================================================================================
 
 # Définitions variables
+df_xls = None
 uploaded_file = None
 excel_loaded=False
+
+#def init_session():
+if 'df_data' not in st.session_state:
+    st.session_state.df_data = df_xls
+if 'uploaded_file' not in st.session_state:
+    st.session_state.uploaded_file = uploaded_file
+if "excel_loaded" not in st.session_state:
+    st.session_state.excel_loaded = False
 
 # Définitions variables de sélection de dataframes
 event = None
@@ -201,12 +210,9 @@ column_config_lst={
 }
 # ======================================================================================================
 
-#def init_session():
-if 'df_data' not in st.session_state:
-    st.session_state.df_data = df_xls
-if 'uploaded_file' not in st.session_state:
-    st.session_state.uploaded_file = uploaded_file
-    
+def toggle_excel_loaded():
+    st.session_state.excel_loaded = not st.session_state.excel_loaded
+
 def test_df_xls():
     columns = list(df_xls)
     for i in columns:
@@ -542,8 +548,8 @@ st.set_page_config(
 )
 st.title(f"{app_title} App")
 # Widgets shared by all the pages
-st.sidebar.selectbox("Foo", ["A", "B", "C"], key="foo")
-st.sidebar.checkbox("Bar", key="bar")
+#st.sidebar.selectbox("Foo", ["A", "B", "C"], key="foo")
+#st.sidebar.checkbox("Bar", key="bar")
 
 #pg = st.navigation([
 #    st.Page(page_loadxls, title="Load Excel file", icon=":material/favorite:"),
@@ -590,6 +596,14 @@ if 1 == 1:
         row, col = df_xls.shape
         for i in range(row):
             get_data(uploaded_file,i,False)
+
+        st.button(
+            "Start excel_loaded", disabled=st.session_state.excel_loaded, on_click=toggle_excel_loaded
+        )
+        st.button(
+            "Stop excel_loaded", disabled=not st.session_state.excel_loaded, on_click=toggle_excel_loaded
+        )
+
 
 if df_xls["DisplayName"][idx_palmon] is not None:    
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
