@@ -10,6 +10,7 @@ import logging
 import os
 import platform
 from user_agents import parse
+import extra_streamlit_components as stx
 
 # import matplotlib.pyplot as plt
 # import statistics Library
@@ -618,6 +619,10 @@ if 1 == 1:
         menu_load_excel()
     if df_xls["DisplayName"][idx_palmon] is not None:
         menu_build_tabs()
+    else:
+        file_err()
+    match tabs:
+    
 
 if 1 == 2:
     with st.sidebar:
