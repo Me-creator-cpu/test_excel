@@ -561,7 +561,7 @@ def menu_load_excel():
     row, col = df_xls.shape
     for i in range(row):
         get_data(uploaded_file,i,False)
-        if i<>idx_stars:
+        if int(i)!=int(idx_stars):
             tabs_data.append(stx.TabBarItemData(id=i, 
                                                 title=df_xls["DisplayName"][i], 
                                                 description="") )
