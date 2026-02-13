@@ -541,7 +541,7 @@ def menu_load_excel():
     else:
         excel_loaded=False
     
-    tabs_data=None
+    tabs_data=[]
     row, col = df_xls.shape
     for i in range(row):
         get_data(uploaded_file,i,False)
