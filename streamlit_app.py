@@ -595,16 +595,16 @@ def menu_build_tabs():
 def menu_tab_show(idx):
     write_info("chosen_id=",int(idx))
     match int(idx):
+        case 0:         #int(idx_palmon)
+            menu_tab_palmons()   
+        case 1:         #int(idx_costs):
+            menu_tab_costs()            
         case int(idx_comp):
             menu_tab_comp()
-        case int(idx_costs):
-            menu_tab_costs()
         case int(idx_mut):
             menu_tab_mut()
         case int(idx_val):
             menu_tab_val()
-        case 0:
-            menu_tab_palmons()
         case 100:
             menu_tab_dashboards()
         case _:
