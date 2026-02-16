@@ -598,7 +598,11 @@ def menu_build_tabs():
 
 def menu_tab_show(idx):
     write_info("chosen_id=",int(idx))
-    match int(idx):
+    if df_xls["DisplayName"][idx_palmon] is not None:
+        idx_tab = idx
+    else:
+        idx_tab = 999
+    match int(idx_tab):
         case 0:         #int(idx_palmon)
             menu_tab_palmons()   
         case 1:         #int(idx_costs):
