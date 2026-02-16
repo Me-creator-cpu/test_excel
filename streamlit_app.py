@@ -921,7 +921,7 @@ st.title(f"{app_title} App")
 if 1 == 1:    # <==================
     with st.sidebar:
         menu_load_excel()
-if 1 == 2:     :    # <==================   
+if 1 == 2:    # <==================   
     if df_xls["DisplayName"][idx_palmon] is not None:
         menu_build_tabs()
     else:
