@@ -315,7 +315,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
         try:
             switch_axis = st.toggle("Switch axis")
         except:
-            x_Field = xField
+            switch_axis = False
         x_Field = xField
         y_Field = yField
         if switch_axis:
