@@ -685,7 +685,7 @@ def menu_tab_dashboards():
     with row_d0[0]:
         st.subheader('⚔ Attack top 7')
         event_a = st.dataframe(
-                df1[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                df_a[['Name','Level','Upgradable','Steps','Achievement']],
                 column_config=column_config_lst,
                 on_select="rerun",
                 selection_mode="single-row",                    
@@ -700,7 +700,7 @@ def menu_tab_dashboards():
     with row_d0[1]:
         st.subheader('🛡 Defend top 7')
         event_d = st.dataframe(
-                df_d[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                df_d[['Name','Level','Upgradable','Steps','Achievement']],
                 column_config=column_config_lst,
                 on_select="rerun",
                 selection_mode="single-row",                    
