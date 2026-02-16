@@ -863,7 +863,11 @@ def menu_tab_downloads():
 # ======================================================================================================
 def pg_home():
     st.title(f"{app_title}")
-
+    if df_xls["DisplayName"][idx_palmon] is not None:
+        menu_build_tabs()
+    else:
+        file_err()
+        
 def pg_menu_0():
     menu_tab_show(0)
 
@@ -917,6 +921,7 @@ st.title(f"{app_title} App")
 if 1 == 1:    # <==================
     with st.sidebar:
         menu_load_excel()
+if 1 == 2:     :    # <==================   
     if df_xls["DisplayName"][idx_palmon] is not None:
         menu_build_tabs()
     else:
@@ -929,191 +934,17 @@ if 1 == 1:    # <==================
             st.Page(pg_menu_0, title="Full list"),
             st.Page(pg_menu_200, title="CSV downloads"),
         ],
+        "Tests": [
+            st.Page(page1, title="Page 1"),
+            st.Page(page2, title="Page 2"),
+        ],
     }
-    
     pg = st.navigation(pages)
     pg.run()    
 
-if 1 == 2:    # <==================
-    with st.sidebar:
-        with st.expander("Excel file", expanded=True, width="stretch"):
-            uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
-            excel_loaded=False
-            if uploaded_file is not None:
-                file = pd.ExcelFile(uploaded_file)
-                if file is not None:
-                    option = st.selectbox(
-                        "Worksheet to open",
-                        file.sheet_names,
-                        index=None,
-                        placeholder="Select Worksheet...",
-                    )
-                    if option is not None:
-                        if option == "Tableaux":
-                            df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                        else:
-                            df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                            if option == "Palmon_data":
-                                df1.columns = cols_data
-                            if option == "Stars":
-                                df1.columns = cols_stars                        
-                        st.dataframe(df1)
-                        excel_loaded=True
-                else:
-                    uploaded_file=None
-            expanded=False
-            
-        if df_xls["DataFrame"][idx_costs] is not None:
-            excel_loaded=True
-        else:
-            excel_loaded=False
-        
-        row, col = df_xls.shape
-        for i in range(row):
-            get_data(uploaded_file,i,False)
-
-        st.button(
-            "Start excel_loaded", disabled=st.session_state.excel_loaded, on_click=toggle_excel_loaded
-        )
-        st.button(
-            "Stop excel_loaded", disabled=not st.session_state.excel_loaded, on_click=toggle_excel_loaded
-        )
 
 
-if df_xls["DisplayName"][idx_palmon] is not None and 1 == 2:    # <==================
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
-                                df_xls["DisplayName"][idx_costs],
-                                df_xls["DisplayName"][idx_comp],
-                                df_xls["DisplayName"][idx_mut],
-                                df_xls["DisplayName"][idx_val],
-                                df_xls["DisplayName"][idx_palmon],
-                                "Dashboard"
-                                ])
-    with tab1:
-        if df_xls["DataFrame"][idx_palmon] is not None:
-            df = df_xls["DataFrame"][idx_costs]
-            df_pal=df_xls["DataFrame"][idx_palmon]
-            st.header(df_xls["DisplayName"][idx_costs])
-            #st.markdown(f":orange-badge[Total : {int(calcul_upgrade_costs(240,259))}]")
-            min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
-            max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
-            range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
-            with st.expander("Data graph", expanded=False, width="stretch"):
-                build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level to'] <= range_level_max)])
-        else:
-            file_err()
-    with tab2:
-        if df_xls["DataFrame"][idx_palmon] is not None:   
-            st.header(df_xls["DisplayName"][idx_comp])
-            df = df_xls["DataFrame"][idx_comp]
-            range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
-            with st.expander("Data graph", expanded=False, width="stretch"):
-                build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
-        else:
-            file_err()
-    with tab3:
-        if df_xls["DataFrame"][idx_palmon] is not None:  
-            st.header(df_xls["DisplayName"][idx_mut]) 
-            df = df_xls["DataFrame"][idx_mut]
-            df_energy=df.loc[(df['Step'] > 0)]
-            df_crystal=df.loc[(df['Step'] == 0)]        
-            st.header("Energy")
-            range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(1),int(30))
-            st.header("Crystals")
-            build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(1),int(30),False)
-            with st.expander("Data graph", expanded=False, width="stretch"):
-                build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
-                build_table_any(df_energy.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
-        else:
-            file_err()
-    with tab4:
-        if df_xls["DataFrame"][idx_palmon] is not None:  
-            st.header(df_xls["DisplayName"][idx_val]) 
-            build_table_full_costs(df_xls["DataFrame"][idx_val])
-            st.divider()
-            st.header(df_xls["DisplayName"][idx_stars])
-            df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
-            df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
-            build_table_any(df_stars)       
-        else:
-            file_err()
-    with tab5:
-        if df_xls["DataFrame"][idx_palmon] is not None:  
-            st.header(df_xls["DisplayName"][idx_palmon])
-            df = df_xls["DataFrame"][idx_palmon]
-            #df = df.sort_values(by=['Level','Achievement'],ascending=False,ignore_index=True)
-            df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-            df['Skill']=df['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1]) 
-            df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
-            df_display=df[cols_palmon]
-            event = None
-            with st.expander("List", expanded=True, width="stretch"):
-                event = st.dataframe(
-                    df_xls["DataFrame"][idx_palmon],
-                    column_config=column_config_lst,
-                    on_select="rerun",
-                    selection_mode="single-row",
-                    hide_index=True,
-                )
-            if event is not None:
-                show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
-                #event = None
-        else:
-            file_err()
-    with tab6:
-        if df_xls["DataFrame"][idx_palmon] is not None:
-            col_border=False
-            st.header("Dashboard")
-            df=df_xls["DataFrame"][idx_palmon]
-            df1=df.copy()
-            df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
-            df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
-            df_a = df[(df['Skill'] == '⚔ Attack')].head(7)
-            df_d = df[(df['Skill'] != '⚔ Attack')].head(7)
 
-            row_d0 = st.columns(2,border=col_border, width="stretch")
-            with row_d0[0]:
-                st.subheader('⚔ Attack top 7')
-                event_a = st.dataframe(
-                        df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
-                        column_config=column_config_lst,
-                        on_select="rerun",
-                        selection_mode="single-row",                    
-                        hide_index=True,
-                    )
-                if event_a is not None:
-                    st.session_state["event_a"]=event_a.selection.rows
-                    show_details(event_a.selection.rows,df_a,True)
-                    #if 'event_a' not in st.session.state:
-                    event_a = None  
-            
-            with row_d0[1]:
-                st.subheader('🛡 Defend top 7')
-                event_d = st.dataframe(
-                        df_d[['Name','Type','Level','Upgradable','Steps','Achievement']],
-                        column_config=column_config_lst,
-                        on_select="rerun",
-                        selection_mode="single-row",                    
-                        hide_index=True,
-                    )
-                if event_d is not None:
-                    st.session_state["event_d"]=event_d.selection.rows
-                    show_details(event_d.selection.rows,df_d,True)
-                    #if 'event_d' not in st.session.state:
-                    event_d = None                
-                
-            row_d1 = st.columns(2,border=col_border, width="stretch")
-            with row_d1[0]:
-                st.subheader('Average Level by Type')
-                avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
-                avg_lvl_df
-            with row_d1[1]:
-                st.subheader('Average power by Type')
-                avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
-                avg_pwr_df
-            
-        else:
-            file_err()
             
 #write_js_menu()
 # ======================================================================================================
