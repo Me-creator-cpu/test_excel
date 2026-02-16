@@ -312,7 +312,13 @@ def icon_upgradable(value):
 
 def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True):
     if df_chart is not None:
-        st.bar_chart(df_chart, x=xField, y=yField)
+        switch_axis = st.toggle("Switch axis")
+        x_Field = xField
+        y_Field = yField
+        if switch_axis:
+            x_Field = yField
+            y_Field = xField            
+        st.bar_chart(df_chart, x=x_Field, y=y_Field)
         if with_slider==True:
             sel_min=selMin
             sel_max=selMax
@@ -323,12 +329,12 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
                 value=(sel_min,sel_max),
                 step=1
             )
-            df = df_chart.loc[(df_chart[xField] >= int(range_level_min)) & (df_chart[xField] <= int(range_level_max))]
+            df = df_chart.loc[(df_chart[x_Field] >= int(range_level_min)) & (df_chart[x_Field] <= int(range_level_max))]
             total_col = f"Total Energy cost from {range_level_min} to {range_level_max}"
             try:
-                st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[yField].sum()))}]")
+                st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[y_Field].sum()))}]")
             except:
-                st.markdown(f":orange-badge[{total_col} : {int(df[yField].sum())}]")
+                st.markdown(f":orange-badge[{total_col} : {int(df[y_Field].sum())}]")
             excel_loaded=True
             return range_level_min, range_level_max
         else:
