@@ -399,7 +399,7 @@ def build_graph_select():
         df_selection=None #=df_srv #=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
     if df_selection is not None:
         #data_to_tiles(df_selection)
-        menu_tab_palmons(df_source=df_selection)
+        menu_tab_palmons(df_source=df_selection,with_event=False)
         #build_table_any(df_selection)
 
 def build_table_any(df):
@@ -748,7 +748,7 @@ def menu_tab_val():
     df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
     build_table_any(df_stars)       
 
-def menu_tab_palmons(df_source=None):
+def menu_tab_palmons(df_source=None,with_event=True):
     if df_source is None:
         st.header(df_xls["DisplayName"][idx_palmon])
         df = df_xls["DataFrame"][idx_palmon]
@@ -768,7 +768,7 @@ def menu_tab_palmons(df_source=None):
             selection_mode="single-row",
             hide_index=True,
         )
-    if event is not None and df_source is not None:
+    if event is not None and with_event:
         show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         #event = None    
    
