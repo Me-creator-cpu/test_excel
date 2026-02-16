@@ -70,14 +70,15 @@ idx_mut=3
 idx_val=4
 idx_stars=5
 
-data = { #                    0                  1                  2                3                4                        5
-        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",     "Tableaux",         "Valeurs",                "Stars"       ],
-        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies", "Mutation costs",   "Upgrade full costs",     "Stars"       ],
-        "Range":          ["A:AJ",           "A:C",             "H:I",          "N:Q",              "A:B",                    "A:C"         ],
-        "SkipRows":       [0,                1,                 1,              1,                  0,                        0             ],
-        "UpToRow":        [41,               302,               31,             224,                5,                        7             ],
-        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,      cols_mut,           cols_mut_full,            cols_stars    ],
-        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,  df_costs_mut,       df_costs_mut_full,        df_costs_stars],
+data = { #                    0                  1                  2                    3                4                        5
+        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars"        ],
+        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars"        ],
+        "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C"          ],
+        "SkipRows":       [0,                1,                 1,                  1,                  0,                        0              ],
+        "UpToRow":        [41,               302,               31,                 224,                5,                        7              ],
+        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars     ],
+        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars ],
+        "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs"],
        }
 df_xls = pd.DataFrame(data)
 option_skill=["⚔ Attack","🛡 Defend"]
@@ -659,7 +660,7 @@ def menu_load_excel():
         if int(i)!=int(idx_stars):
             tabs_data.append(stx.TabBarItemData(id=i, 
                                                 title=df_xls["DisplayName"][i], 
-                                                description="") )
+                                                description=df_xls["Description"][i], ) )
     add_session_variable("tabs_data",tabs_data)
 
 def menu_build_tabs():
