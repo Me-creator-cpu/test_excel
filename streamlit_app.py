@@ -594,12 +594,6 @@ def menu_build_tabs():
     
     tabs_data=get_session_variable("tabs_data")+tabs_fixed
     chosen_id = stx.tab_bar(data=tabs_data, default=0)
-    #chosen_id = stx.tab_bar(data=[
-    #    stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
-    #    stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
-    #    stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
-    #], default=1)
-    #st.info(f"{chosen_id=}")
     menu_tab_show(chosen_id)
 
 def menu_tab_show(idx):
@@ -617,6 +611,8 @@ def menu_tab_show(idx):
             menu_tab_val()
         case 100:
             menu_tab_dashboards()
+        case 101:
+            menu_tab_downloads()
         case _:
             return st.empty()
 
@@ -735,6 +731,33 @@ def menu_tab_dashboards():
         st.subheader('Average power by Type')
         avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
         avg_pwr_df    
+
+def menu_tab_downloads()
+   st.title(body="Download file data test", text_alignment="center")
+   st.subheader("Choose local data (csv)", divider=False)
+
+   range_cols = st.columns(3)
+   range_cols[0].download_button(
+    label="Palmons data",
+    data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
+    file_name="base_data.csv",
+    mime="text/csv",
+    icon=":material/download:",
+   )
+   range_cols[1].download_button(
+    label="EXP costs",
+    data=df_xls["DataFrame"][idx_costs].to_csv().encode("utf-8"),
+    file_name="exp_data.csv",
+    mime="text/csv",
+    icon=":material/download:",
+   )
+   range_cols[2].download_button(
+    label="COMP costs",
+    data=df_xls["DataFrame"][idx_comp].to_csv().encode("utf-8"),
+    file_name="comp_data.csv",
+    mime="text/csv",
+    icon=":material/download:",
+   )    
 
 # ======================================================================================================
 #
