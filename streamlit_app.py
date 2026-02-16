@@ -398,7 +398,8 @@ def build_graph_select():
     except:
         df_selection=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
     #data_to_tiles(df_selection)
-    menu_tab_palmons(df_source=df_selection)
+    if df_selection is not None:
+        menu_tab_palmons(df_source=df_selection)
 
 def build_table_any(df):
     st.dataframe(
