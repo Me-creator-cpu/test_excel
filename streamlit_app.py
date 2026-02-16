@@ -761,7 +761,7 @@ def menu_tab_palmons(df_source=None):
     event = None
     with st.expander("List", expanded=True, width="stretch"):
         event = st.dataframe(
-            df_xls["DataFrame"][idx_palmon],
+            df, #df_xls["DataFrame"][idx_palmon],
             column_config=column_config_lst,
             on_select="rerun",
             selection_mode="single-row",
