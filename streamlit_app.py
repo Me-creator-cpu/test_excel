@@ -689,7 +689,7 @@ def menu_tab_dashboards():
     df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_a=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_d=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
-    #df_a = df_a[(df_a['Skill'] == '⚔ Attack')].head(7)
+    df_a = df_a[(df_a['Skill'] == '⚔ Attack')].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True).head(7)
     df_d = df_d[(df_d['Skill'] != '⚔ Attack')].head(7)
 
     row_d0 = st.columns(2,border=col_border, width="stretch")
