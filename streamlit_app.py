@@ -94,7 +94,7 @@ cols_palmon = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Achiev
 
 col_pct=st.column_config.NumberColumn(
         min_value=0,
-        max_value=100,e
+        max_value=100,
         format="percent",
     )
 col_pct_1=st.column_config.NumberColumn(
