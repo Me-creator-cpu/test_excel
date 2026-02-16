@@ -663,7 +663,8 @@ def menu_load_excel():
                                                 description=df_xls["Description"][i], ) )
     add_session_variable("tabs_data",tabs_data)
 
-def menu_build_tabs():
+def menu_build_tabs(idx_selected=0):
+    
     tabs_fixed=[stx.TabBarItemData(id=100, title="Dashboard", description="List of Dashboards"),
                 stx.TabBarItemData(id=150, title="Graph", description="Visual selection"),
                 stx.TabBarItemData(id=200, title="Downloads", description="CSV download"),
@@ -671,17 +672,11 @@ def menu_build_tabs():
     
     rows,cols=df_xls.shape
     
-    #tabs = st.tabs([
-    #                df_xls["DisplayName"][idx_costs],    #0
-    #                df_xls["DisplayName"][idx_comp],     #1
-    #                df_xls["DisplayName"][idx_mut],      #2
-    #                df_xls["DisplayName"][idx_val],      #3
-    #                df_xls["DisplayName"][idx_palmon],   #4
-    #                "Dashboard"                          #5
-    #                ])    
-    
     tabs_data=get_session_variable("tabs_data")+tabs_fixed
-    chosen_id = stx.tab_bar(data=tabs_data, default=0)
+    try:
+        chosen_id = stx.tab_bar(data=tabs_data, default=idx_selected)
+    except:
+        chosen_id = stx.tab_bar(data=tabs_data, default=0)
     menu_tab_show(chosen_id)
 
 def menu_tab_show(idx):
@@ -830,31 +825,31 @@ def menu_tab_dashboards():
         avg_pwr_df    
 
 def menu_tab_downloads():
-   #st.title(body="Download file data test", text_alignment="center")
-   st.subheader("Choose local data (csv)", divider=False)
-
-   range_cols = st.columns(3)
-   range_cols[0].download_button(
-    label="Palmons data",
-    data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
-    file_name="base_data.csv",
-    mime="text/csv",
-    icon=":material/download:",
-   )
-   range_cols[1].download_button(
-    label="EXP costs",
-    data=df_xls["DataFrame"][idx_costs].to_csv().encode("utf-8"),
-    file_name="exp_data.csv",
-    mime="text/csv",
-    icon=":material/download:",
-   )
-   range_cols[2].download_button(
-    label="COMP costs",
-    data=df_xls["DataFrame"][idx_comp].to_csv().encode("utf-8"),
-    file_name="comp_data.csv",
-    mime="text/csv",
-    icon=":material/download:",
-   )    
+    #st.title(body="Download file data test", text_alignment="center")
+    st.subheader("Choose local data (csv)", divider=False)
+    
+    range_cols = st.columns(3)
+    range_cols[0].download_button(
+        label="Palmons data",
+        data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
+        file_name="base_data.csv",
+        mime="text/csv",
+        icon=":material/download:",
+    )
+    range_cols[1].download_button(
+        label="EXP costs",
+        data=df_xls["DataFrame"][idx_costs].to_csv().encode("utf-8"),
+        file_name="exp_data.csv",
+        mime="text/csv",
+        icon=":material/download:",
+    )
+    range_cols[2].download_button(
+        label="COMP costs",
+        data=df_xls["DataFrame"][idx_comp].to_csv().encode("utf-8"),
+        file_name="comp_data.csv",
+        mime="text/csv",
+        icon=":material/download:",
+    )    
 
 # ======================================================================================================
 #
@@ -899,7 +894,7 @@ st.set_page_config(
     page_icon="🧊",
     layout="wide",
     initial_sidebar_state="expanded",
-    menu_items={    #top right menu (triple dots) near GitHub icon
+    menu_items={        # <===================================== #top right menu (triple dots) near GitHub icon
         'Get Help': 'https://www.extremelycoolapp.com/help',
         'Report a bug': "https://www.extremelycoolapp.com/bug",
         'About': "# This is a header. This is an *extremely* cool app!"
@@ -918,16 +913,16 @@ st.title(f"{app_title} App")
 #])
 #pg.run()
 
-if 1 == 1:    # <==================
+if 1 == 1:    # <=====================================
     with st.sidebar:
         menu_load_excel()
-if 1 == 2:    # <==================   
+if 1 == 2:    # <=====================================   
     if df_xls["DisplayName"][idx_palmon] is not None:
         menu_build_tabs()
     else:
         file_err()
 
-if 1 == 1:    # <==================
+if 1 == 1:    # <=====================================
     pages = {
         "Home":[ st.Page(pg_home, title="Home", icon=":material/home:") ],
         "Resources": [
