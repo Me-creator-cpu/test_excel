@@ -684,9 +684,8 @@ def menu_tab_dashboards():
     row_d0 = st.columns(2,border=col_border, width="stretch")
     with row_d0[0]:
         st.subheader('⚔ Attack top 7')
-        df_a[['Name','Type','Level','Upgradable','Steps','Achievement']]
         event_a = st.dataframe(
-                df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                df_1[['Name','Type','Level','Upgradable','Steps','Achievement']],
                 column_config=column_config_lst,
                 on_select="rerun",
                 selection_mode="single-row",                    
