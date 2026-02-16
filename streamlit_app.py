@@ -379,6 +379,15 @@ def build_table_full_costs(df_src):
             hide_index=True,
          )  
 
+def build_table_dashboard(df):
+    return st.dataframe(
+                df[['Name','Level','Upgradable','Steps','Achievement']],
+                column_config=column_config_lst,
+                on_select="rerun",
+                selection_mode="single-row",                    
+                hide_index=True,
+            )
+
 def format_stars(x): #⭐
     try:
         return ("⭐" * int(x))[0:int(x)]
@@ -456,7 +465,7 @@ def get_session_variable(var_key):
         return st.session_state[var_key]
     except:
         return None
-        
+
 def pal_deltail(palmon,df,pic_width=300):
     col_border=True
     df_t=df.reset_index().T
@@ -686,13 +695,14 @@ def menu_tab_dashboards():
     row_d0 = st.columns(2,border=col_border, width="stretch")
     with row_d0[0]:
         st.subheader('⚔ Attack top 7')
-        event_a = st.dataframe(
-                df_a[['Name','Level','Upgradable','Steps','Achievement']],
-                column_config=column_config_lst,
-                on_select="rerun",
-                selection_mode="single-row",                    
-                hide_index=True,
-            )
+        event_a = build_table_dashboard(df_a)
+        #event_a = st.dataframe(
+        #        df_a[['Name','Level','Upgradable','Steps','Achievement']],
+        #        column_config=column_config_lst,
+        #        on_select="rerun",
+        #        selection_mode="single-row",                    
+        #        hide_index=True,
+        #    )
         if event_a is not None:
             st.session_state["event_a"]=event_a.selection.rows
             show_details(event_a.selection.rows,df_a,True)
@@ -701,13 +711,14 @@ def menu_tab_dashboards():
     
     with row_d0[1]:
         st.subheader('🛡 Defend top 7')
-        event_d = st.dataframe(
-                df_d[['Name','Level','Upgradable','Steps','Achievement']],
-                column_config=column_config_lst,
-                on_select="rerun",
-                selection_mode="single-row",                    
-                hide_index=True,
-            )
+        event_d = build_table_dashboard(df_d)
+        #event_d = st.dataframe(
+        #        df_d[['Name','Level','Upgradable','Steps','Achievement']],
+        #        column_config=column_config_lst,
+        #        on_select="rerun",
+        #        selection_mode="single-row",                    
+        #        hide_index=True,
+        #    )
         if event_d is not None:
             st.session_state["event_d"]=event_d.selection.rows
             show_details(event_d.selection.rows,df_d,True)
