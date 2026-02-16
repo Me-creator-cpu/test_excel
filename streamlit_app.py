@@ -397,7 +397,8 @@ def build_graph_select():
         df_selection = df_selection[(df_selection['Stars'] >= min_val_stars) & (df_selection['Stars'] <= max_val_stars)]
     except:
         df_selection=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
-    data_to_tiles(df_selection)
+    #data_to_tiles(df_selection)
+    df_selection
 
 def build_table_any(df):
     st.dataframe(
