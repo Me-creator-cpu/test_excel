@@ -94,7 +94,7 @@ cols_palmon = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Achiev
 
 col_pct=st.column_config.NumberColumn(
         min_value=0,
-        max_value=100,
+        max_value=100,e
         format="percent",
     )
 col_pct_1=st.column_config.NumberColumn(
@@ -427,7 +427,7 @@ def get_df_base():
 
 def data_to_tiles(df_data=None): #<================================================================================================================================================
     df_srv = get_df_base().copy()
-    source = df_srv[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
+    source = df_srv #df_srv[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL','Upgradable']]
     if df_data is not None:
         source = df_srv[df_srv['Name'].isin(df_data['Name'])] 
     source.reset_index(drop=True)
