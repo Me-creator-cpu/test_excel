@@ -430,7 +430,7 @@ def data_to_tiles(df_data=None):
     source = df_srv #df_srv[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL','Upgradable']]
     if df_data is not None:
         source = df_srv[df_srv['Name'].isin(df_data['Name'])] 
-    source.reset_index(drop=True)
+    #source.reset_index(drop=True)
     for i, source_row in source.iterrows():
         with st.container(horizontal_alignment="center", 
                           vertical_alignment="center", 
