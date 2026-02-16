@@ -397,7 +397,7 @@ def build_graph_select():
         df_selection = df_selection[(df_selection['Stars'] >= min_val_stars) & (df_selection['Stars'] <= max_val_stars)]
     except:
         df_selection=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
-    #data_to_tiles(df_selection)
+    data_to_tiles(df_selection)
 
 def build_table_any(df):
     st.dataframe(
@@ -423,6 +423,16 @@ def get_df_base():
     except:
         return None
 
+def data_to_tiles(df_data=None): #<================================================================================================================================================
+    df_srv = get_df_base().copy()
+    source = df_srv[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
+    if df_data is not None:
+        source = df_srv[df_srv['Name'].isin(df_data['Name'])] 
+    source.reset_index(drop=True)
+    for i, source_row in source.iterrows():
+        with st.container(border=True):
+            pal_deltail(source_row['Name'],source_row,pic_width=200)
+    
 def human_format(num, round_to=1):
     magnitude = 0
     while abs(num) >= 1000:
