@@ -583,14 +583,14 @@ def menu_build_tabs():
     
     rows,cols=df_xls.shape
     
-    tabs = st.tabs([
-                    df_xls["DisplayName"][idx_costs],    #0
-                    df_xls["DisplayName"][idx_comp],     #1
-                    df_xls["DisplayName"][idx_mut],      #2
-                    df_xls["DisplayName"][idx_val],      #3
-                    df_xls["DisplayName"][idx_palmon],   #4
-                    "Dashboard"                          #5
-                    ])    
+    #tabs = st.tabs([
+    #                df_xls["DisplayName"][idx_costs],    #0
+    #                df_xls["DisplayName"][idx_comp],     #1
+    #                df_xls["DisplayName"][idx_mut],      #2
+    #                df_xls["DisplayName"][idx_val],      #3
+    #                df_xls["DisplayName"][idx_palmon],   #4
+    #                "Dashboard"                          #5
+    #                ])    
     
     tabs_data=get_session_variable("tabs_data")+tabs_fixed
     chosen_id = stx.tab_bar(data=tabs_data, default=0)
@@ -733,7 +733,7 @@ def menu_tab_dashboards():
         avg_pwr_df    
 
 def menu_tab_downloads():
-   st.title(body="Download file data test", text_alignment="center")
+   #st.title(body="Download file data test", text_alignment="center")
    st.subheader("Choose local data (csv)", divider=False)
 
    range_cols = st.columns(3)
