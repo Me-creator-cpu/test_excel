@@ -312,7 +312,8 @@ def icon_upgradable(value):
 
 def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True):
     if df_chart is not None:
-        switch_axis = st.toggle("Switch axis")
+        try:
+            switch_axis = st.toggle("Switch axis")
         x_Field = xField
         y_Field = yField
         if switch_axis:
