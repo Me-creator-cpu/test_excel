@@ -398,7 +398,7 @@ def build_graph_select():
     except:
         df_selection=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
     #data_to_tiles(df_selection)
-    df_selection
+    menu_tab_palmons(df_source=df_selection)
 
 def build_table_any(df):
     st.dataframe(
@@ -746,9 +746,12 @@ def menu_tab_val():
     df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
     build_table_any(df_stars)       
 
-def menu_tab_palmons():
-    st.header(df_xls["DisplayName"][idx_palmon])
-    df = df_xls["DataFrame"][idx_palmon]
+def menu_tab_palmons(df_source=None):
+    if df_source is None:
+        st.header(df_xls["DisplayName"][idx_palmon])
+        df = df_xls["DataFrame"][idx_palmon]
+    else:
+        df = df_source
     #df = df.sort_values(by=['Level','Achievement'],ascending=False,ignore_index=True)
     df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
     df['Skill']=df['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1]) 
