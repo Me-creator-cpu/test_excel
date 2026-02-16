@@ -768,7 +768,7 @@ def menu_tab_palmons(df_source=None):
             selection_mode="single-row",
             hide_index=True,
         )
-    if event is not None:
+    if event is not None and df_source is not None:
         show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         #event = None    
    
