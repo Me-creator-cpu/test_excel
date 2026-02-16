@@ -430,9 +430,9 @@ def data_to_tiles(df_data=None): #<=============================================
         source = df_srv[df_srv['Name'].isin(df_data['Name'])] 
     source.reset_index(drop=True)
     for i, source_row in source.iterrows():
-        with with st.container(horizontal_alignment="center", 
-                               vertical_alignment="center", 
-                               border=True):
+        with st.container(horizontal_alignment="center", 
+                          vertical_alignment="center", 
+                          border=True):
             pal_deltail(source_row['Name'],source_row,pic_width=200)
     
 def human_format(num, round_to=1):
