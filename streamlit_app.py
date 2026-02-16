@@ -398,8 +398,9 @@ def build_graph_select():
     except:
         df_selection=None #=df_srv #=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
     if df_selection is not None:
-        data_to_tiles(df_selection)
+        #data_to_tiles(df_selection)
         #menu_tab_palmons(df_source=df_selection)
+        build_table_any(df_selection)
 
 def build_table_any(df):
     st.dataframe(
