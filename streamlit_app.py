@@ -687,15 +687,15 @@ def menu_tab_dashboards():
     df1=df.copy()
     df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
     df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
-    df_a=df.copy()
-    df_d=df.copy()
+    df_a=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
+    df_d=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_a = df_a[(df_a['Skill'] == '⚔ Attack')].head(7)
     df_d = df_d[(df_d['Skill'] != '⚔ Attack')].head(7)
 
     row_d0 = st.columns(2,border=col_border, width="stretch")
     with row_d0[0]:
         st.subheader('⚔ Attack top 7')
-        event_a = build_table_dashboard(df)
+        event_a = build_table_dashboard(df_a)
         #event_a = st.dataframe(
         #        df_a[['Name','Level','Upgradable','Steps','Achievement']],
         #        column_config=column_config_lst,
