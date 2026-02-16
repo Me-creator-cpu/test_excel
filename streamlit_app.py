@@ -861,6 +861,12 @@ def menu_tab_downloads():
 #    Definition PAGES
 #
 # ======================================================================================================
+def pg_home():
+    st.title(f"{app_title}")
+
+def pg_menu(idx):
+    menu_tab_show(idx)
+    
 def page1():
     st.title(f"{app_title} 1st page")
 
@@ -905,7 +911,7 @@ st.title(f"{app_title} App")
 #])
 #pg.run()
 
-if 1 == 1:
+if 1 == 1:    # <==================
     with st.sidebar:
         menu_load_excel()
     if df_xls["DisplayName"][idx_palmon] is not None:
@@ -913,7 +919,17 @@ if 1 == 1:
     else:
         file_err()
 
+if 1 == 1:    # <==================
+    pages = {
+        "Home":[ st.Page(pg_home, title="Home", icon=":material/home:") ],
+        "Resources": [
+            st.Page(pg_menu(0), title="Full list"),
+            st.Page(pg_menu(200), title="CSV downloads"),
+        ],
+    }
     
+    pg = st.navigation(pages)
+    pg.run()    
 
 if 1 == 2:    # <==================
     with st.sidebar:
