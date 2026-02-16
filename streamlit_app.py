@@ -280,6 +280,7 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
     return df
 
 def get_data(file,idx,show_table=False):
+    # voir pour remplacer avec: df.loc[row_indexer, "col"] = values
     df_xls["DataFrame"][idx]=get_data_from_excel(
                                                 xls_file=file,
                                                 xls_sheet=df_xls["Worksheet"][idx],
