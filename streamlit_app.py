@@ -346,6 +346,59 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             st.markdown(f":orange-badge[{total_col} : {int(df[yField].sum())}]")
             return selMin,selMax
 
+def build_graph_select():
+    st.set_page_config(
+        #page_title="yFiles Graphs for Streamlit",
+        layout="wide",
+    )
+    field_x = 'Level'
+    field_y = 'Stars'
+    on = st.toggle(f'Switch axis {field_x}/{field_y}')
+    if on:
+        field_y = 'Level'
+        field_x = 'Stars'
+    else:
+        field_x = 'Level'
+        field_y = 'Stars'
+    df_srv = get_df_base().copy()
+    #Graphe per type
+    chart = {
+        "mark": "point",
+        "params": [
+            {"name": "interval_selection", "select": "interval"},
+            {"name": "point_selection", "select": "point"},
+        ],
+        "encoding": {
+            "x": {
+                "field": field_x,
+                "type": "quantitative",
+            },
+            "y": {
+                "field": field_y,
+                "type": "quantitative",
+            },
+                "size": {"field": "Achievement", "type": "quantitative"},
+                "color": {"field": "Skill", "type": "nominal"},
+                "shape": {"field": "Type", "type": "nominal"},
+        },
+    }
+    
+    column='Type'
+    options = st.multiselect(f"Filter values for {column}:", df_srv[column].unique(), default=list(df_srv[column].unique()))
+    source = df_srv[df_srv[column].isin(options)]
+    #st.vega_lite_chart(source, chart, theme="streamlit", width="stretch")     
+    event = st.vega_lite_chart(source, chart, theme=None, on_select="rerun", width="stretch") 
+    try:
+        df_level = event.selection.interval_selection.Level
+        df_stars = event.selection.interval_selection.Stars
+        min_val_level, max_val_level = df_level[0], df_level[1]
+        min_val_stars, max_val_stars = df_stars[0], df_stars[1]
+        df_selection = df_srv[(df_srv['Level'] >= min_val_level) & (df_srv['Level'] <= max_val_level)]
+        df_selection = df_selection[(df_selection['Stars'] >= min_val_stars) & (df_selection['Stars'] <= max_val_stars)]
+    except:
+        df_selection=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
+    #data_to_tiles(df_selection)
+
 def build_table_any(df):
     st.dataframe(
         df,
@@ -360,6 +413,15 @@ def build_table_any(df):
         },
         hide_index=True,
      )    
+
+def get_df_base():
+    try:
+        if df_xls["DataFrame"][idx_palmon] is not None:
+            return df_xls["DataFrame"][idx_palmon]
+        else:
+            return None
+    except:
+        return None
 
 def human_format(num, round_to=1):
     magnitude = 0
@@ -587,7 +649,8 @@ def menu_load_excel():
 
 def menu_build_tabs():
     tabs_fixed=[stx.TabBarItemData(id=100, title="Dashboard", description="List of Dashboards"),
-                stx.TabBarItemData(id=101, title="Downloads", description="CSV download"),
+                stx.TabBarItemData(id=150, title="Graph", description="Visual selection"),
+                stx.TabBarItemData(id=200, title="Downloads", description="CSV download"),
                ]
     
     rows,cols=df_xls.shape
@@ -624,7 +687,9 @@ def menu_tab_show(idx):
             menu_tab_val()
         case 100:
             menu_tab_dashboards()
-        case 101:
+        case 150:
+            build_graph_select()
+        case 200:
             menu_tab_downloads()
         case _:
             return st.empty()
