@@ -396,7 +396,8 @@ def build_graph_select():
         df_selection = df_srv[(df_srv['Level'] >= min_val_level) & (df_srv['Level'] <= max_val_level)]
         df_selection = df_selection[(df_selection['Stars'] >= min_val_stars) & (df_selection['Stars'] <= max_val_stars)]
     except:
-        df_selection=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
+        df_selection=df_srv
+        #df_selection=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
     #data_to_tiles(df_selection)
     if df_selection is not None:
         menu_tab_palmons(df_source=df_selection)
