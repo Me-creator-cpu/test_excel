@@ -86,8 +86,15 @@ data_type={
     "Type":["Water","Fire","Electricity","Wood"],
     "Icon":["💧","🔥","⚡","🪵"]
 }
+data_values={
+    "Value":["Energy","Crystals","Pieces","Level300"],
+    "Icon":["🟢","💎","🧩","🔝"],
+}
+
 option_type=data_type['Icon']
 df_data_type = pd.DataFrame(data_type)
+option_values=data_values['Icon']
+df_data_values = pd.DataFrame(data_values)
 # ======================================================================================================
 #format="%d ⭐",
 
@@ -312,6 +319,12 @@ def icon_upgradable(value):
     except:
         return "🟥" 
 
+def icon_full_cost(value):
+    try:
+        df_data_values
+    except:
+        return value
+
 def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True):
     if df_chart is not None:
         try:
@@ -450,6 +463,7 @@ def human_format(num, round_to=1):
 
 def build_table_full_costs(df_src):
     df=df_src.copy()
+    df['Cost type']=df['Cost type'].apply(lambda b: option_values[data_values['Value'].index(b)])
     st.dataframe(
             df,
             column_config={
