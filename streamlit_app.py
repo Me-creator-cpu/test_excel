@@ -846,11 +846,13 @@ def menu_tab_dashboards():
     row_d1 = st.columns(2,border=col_border, width="stretch")
     with row_d1[0]:
         st.subheader('Average Level by Type')
-        df1['Type'] = df1['Type'].map(map_values)
+        df_avg=df1.copy(deep=True)
+        df_avg['Type'] = df_avg['Type'].map(map_values)
         avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
         #avg_lvl_df['Type']=avg_lvl_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         #map_values
         avg_lvl_df
+        df_avg
     with row_d1[1]:
         st.subheader('Average power by Type')
         avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
