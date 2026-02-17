@@ -851,10 +851,11 @@ def menu_tab_dashboards():
         avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
         #avg_lvl_df['Type']=avg_lvl_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         #map_values
-        avg_lvl_df
+        #avg_lvl_df
+        avg_lvl_df.index.names = ['Type']
         #avg_lvl_df = avg_lvl_df.set_index('Type')
-        avg_lvl_df.index.names = ['index']
-        avg_lvl_df.columns.names = ['column']
+        #avg_lvl_df.index.names = ['index']
+        #avg_lvl_df.columns.names = ['column']
         test=avg_lvl_df.columns.values.tolist()
         st.info(test, icon="ℹ️", width="stretch")
         avg_lvl_df
