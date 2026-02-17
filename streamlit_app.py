@@ -858,6 +858,7 @@ def menu_tab_downloads():
 #
 # ======================================================================================================
 def pg_home():
+    st.title(f"{app_title} App")
     if df_xls["DisplayName"][idx_palmon] is not None:
         menu_build_tabs()
     else:
