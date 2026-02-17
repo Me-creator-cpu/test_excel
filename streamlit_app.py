@@ -463,8 +463,8 @@ def human_format(num, round_to=1):
 
 def build_table_full_costs(df_src):
     df=df_src.copy()
-    write_info("build_table_full_costs","")
-    df['Cost type']=df['Cost type'].apply(lambda b: option_values[data_values['Value'].index(b)])
+    #write_info("build_table_full_costs","")
+    df['Cost type']=df['Cost type'].apply(lambda b: option_values[data_values['Value'].index(b)]+' '+b)
     st.dataframe(
             df,
             column_config={
