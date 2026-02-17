@@ -853,6 +853,7 @@ def menu_tab_dashboards():
         #map_values
         #avg_lvl_df
         avg_lvl_df.index.names = ['Type']
+        avg_lvl_df['Types']=avg_lvl_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         #avg_lvl_df = avg_lvl_df.set_index('Type')
         #avg_lvl_df.index.names = ['index']
         #avg_lvl_df.columns.names = ['column']
