@@ -488,7 +488,7 @@ def build_table_full_costs(df_src):
 
 def build_table_dashboard(df):
     return st.dataframe(
-                df[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                df[['Name','Level','Upgradable','Steps','Achievement']],
                 column_config=column_config_lst,
                 on_select="rerun",
                 selection_mode="single-row",                    
