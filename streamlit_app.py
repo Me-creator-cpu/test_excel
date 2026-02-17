@@ -499,7 +499,7 @@ def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
         return None
 
 def show_details(palmon,df,popup=False):
-    st.markdown(f":orange-badge[palmon : {palmon}]")
+    #st.markdown(f":orange-badge[palmon : {palmon}]")
     if 1 == 1:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
@@ -681,7 +681,7 @@ def menu_build_tabs(idx_selected=0):
     menu_tab_show(chosen_id)
 
 def menu_tab_show(idx):
-    write_info("chosen_id=",int(idx))
+    #write_info("chosen_id=",int(idx))
     if df_xls["DataFrame"][idx_palmon] is not None:
         idx_tab = idx
     else:
