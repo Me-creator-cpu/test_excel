@@ -780,7 +780,7 @@ def menu_tab_palmons(df_source=None,with_event=True):
     else:
         df = df_source
     #df = df.sort_values(by=['Level','Achievement'],ascending=False,ignore_index=True)
-    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
     df['Skill']=df['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1]) 
     df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
     df_display=df[cols_palmon]
@@ -803,7 +803,7 @@ def menu_tab_dashboards():
     df=df_xls["DataFrame"][idx_palmon]
     df1=df.copy()
     df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
-    df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+    df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
     df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_a=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_d=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
