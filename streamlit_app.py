@@ -803,6 +803,7 @@ def menu_tab_dashboards():
     df=df_xls["DataFrame"][idx_palmon]
     df1=df.copy()
     df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
+    df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
     df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_a=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_d=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
@@ -846,16 +847,12 @@ def menu_tab_dashboards():
     row_d1 = st.columns(2,border=col_border, width="stretch")
     with row_d1[0]:
         st.subheader('Average Level by Type')
-        #df_avg=df1.copy(deep=True)
-        #df_avg['Type'] = df_avg['Type'].map(map_values)
+        #df1c=avg_lvl_df['Types']=avg_lvl_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
-        #avg_lvl_df['Type']=avg_lvl_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-        #map_values
         avg_lvl_df
         #avg_lvl_df.index.names = ['Type']
         #avg_lvl_df['Types']=avg_lvl_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-        
-        avg_lvl_df
+
     with row_d1[1]:
         st.subheader('Average power by Type')
         avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
