@@ -765,6 +765,7 @@ def menu_tab_val():
         build_table_full_costs(df_xls["DataFrame"][idx_val])
     with rowval[1]:
         st.header(df_xls["DisplayName"][idx_stars])
+        df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
         build_table_any(df_stars)
 
