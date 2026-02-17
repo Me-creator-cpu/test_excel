@@ -90,6 +90,10 @@ data_values={
     "Value":["Energy","Crystals","Pieces","Level300"],
     "Icon":["🟢","💎","🧩","🔝"],
 }
+map_values={"Energy":"🟢Energy",
+            "Crystals":"💎Crystals",
+            "Pieces":"🧩Pieces",
+            "Level300":"🔝Level300" }
 
 option_type=data_type['Icon']
 df_data_type = pd.DataFrame(data_type)
@@ -843,12 +847,14 @@ def menu_tab_dashboards():
     with row_d1[0]:
         st.subheader('Average Level by Type')
         avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
-        avg_lvl_df['Type']=avg_lvl_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+        #avg_lvl_df['Type']=avg_lvl_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+        #map_values
+        avg_lvl_df['Type2'] = avg_lvl_df['Type'].map(map_values)
         avg_lvl_df
     with row_d1[1]:
         st.subheader('Average power by Type')
         avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
-        avg_pwr_df['Type']=avg_pwr_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+        #avg_pwr_df['Type']=avg_pwr_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         avg_pwr_df    
 
 def menu_tab_downloads():
