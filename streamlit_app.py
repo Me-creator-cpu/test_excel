@@ -852,7 +852,8 @@ def menu_tab_dashboards():
         #avg_lvl_df['Type']=avg_lvl_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         #map_values
         avg_lvl_df
-        avg_lvl_df.columns.values.tolist()
+        test=avg_lvl_df.columns.values.tolist()
+        test
     with row_d1[1]:
         st.subheader('Average power by Type')
         avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
