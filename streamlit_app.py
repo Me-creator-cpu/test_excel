@@ -858,7 +858,6 @@ def menu_tab_downloads():
 #
 # ======================================================================================================
 def pg_home():
-    st.title(f"{app_title}")
     if df_xls["DisplayName"][idx_palmon] is not None:
         menu_build_tabs()
     else:
@@ -901,7 +900,7 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }
 )
-st.title(f"{app_title} App")
+#st.title(f"{app_title} App")
 # Widgets shared by all the pages
 #st.sidebar.selectbox("Foo", ["A", "B", "C"], key="foo")
 #st.sidebar.checkbox("Bar", key="bar")
