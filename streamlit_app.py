@@ -492,7 +492,7 @@ def build_table_dashboard(df):
                 column_config=column_config_lst,
                 on_select="rerun",
                 selection_mode="single-row",                    
-                hide_index=False,
+                hide_index=True,
             )
 
 def format_stars(x): #⭐
