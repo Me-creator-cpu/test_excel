@@ -853,8 +853,10 @@ def menu_tab_dashboards():
     st.subheader('df2')
     df2
     
-    df_a = df2[df2['Skill'].isin(['⚔ Attack','Attack'])].head(7)
-    df_d = df2[df2['Skill'].isin(['🛡 Defend','Defend'])].head(7)
+    df_a=df2.copy()
+    df_d=df2.copy()
+    df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack'])].head(7)
+    df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend'])].head(7)
     apply_cols_icons(df_a)
     apply_cols_icons(df_d)
     
