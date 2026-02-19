@@ -833,7 +833,8 @@ def menu_tab_dashboards():
     df1['Skill']=df1['Skill'].apply(lambda b: icon_skill(b)) 
     df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
 
-    df2=df.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False)
+    df2=df.copy()
+    df2=df2.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False)
     
     df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_a=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
