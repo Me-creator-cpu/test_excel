@@ -856,8 +856,8 @@ def menu_tab_dashboards():
     
     df_a=df2.copy()
     df_d=df2.copy()
-    df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack'])].head(7)
-    df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend'])].head(7)
+    df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(7)
+    df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(7)
     st.subheader('df_a')
     df_a
     st.subheader('df_d')
