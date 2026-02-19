@@ -861,10 +861,12 @@ def menu_tab_dashboards():
     df_d=df2.copy()
     df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(7)
     df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(7)
-    st.subheader('df_a')
-    df_a
-    st.subheader('df_d')
-    df_d
+    #st.subheader('df_a')
+    #df_a
+    #st.subheader('df_d')
+    #df_d
+    
+    st.subheader('⚔ Attack top 7')
     df_a = apply_cols_icons(df_a)
     st.dataframe(
                 df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
@@ -873,40 +875,43 @@ def menu_tab_dashboards():
                 selection_mode="single-row",                    
                 hide_index=True,
             )
-    apply_cols_icons(df_d)
-    
-    row_d0 = st.columns(2,border=col_border, width="stretch")
-    with row_d0[0]:
-        st.subheader('⚔ Attack top 7')
-        event_a = build_table_dashboard(df_a)
-        #event_a = st.dataframe(
-        #        df_a[['Name','Level','Upgradable','Steps','Achievement']],
-        #        column_config=column_config_lst,
-        #        on_select="rerun",
-        #        selection_mode="single-row",                    
-        #        hide_index=True,
-        #    )
-        if event_a is not None:
-            st.session_state["event_a"]=event_a.selection.rows
-            show_details(event_a.selection.rows,df_a,True)
-            #if 'event_a' not in st.session.state:
-            event_a = None  
-    
-    with row_d0[1]:
-        st.subheader('🛡 Defend top 7')
-        event_d = build_table_dashboard(df_d)
-        #event_d = st.dataframe(
-        #        df_d[['Name','Level','Upgradable','Steps','Achievement']],
-        #        column_config=column_config_lst,
-        #        on_select="rerun",
-        #        selection_mode="single-row",                    
-        #        hide_index=True,
-        #    )
-        if event_d is not None:
-            st.session_state["event_d"]=event_d.selection.rows
-            show_details(event_d.selection.rows,df_d,True)
-            #if 'event_d' not in st.session.state:
-            event_d = None                
+    st.subheader('🛡 Defend top 7')
+    df_d = apply_cols_icons(df_d)
+    build_table_dashboard(df_d)
+
+    if 1 == 2:
+        row_d0 = st.columns(2,border=col_border, width="stretch")
+        with row_d0[0]:
+            st.subheader('⚔ Attack top 7')
+            event_a = build_table_dashboard(df_a)
+            #event_a = st.dataframe(
+            #        df_a[['Name','Level','Upgradable','Steps','Achievement']],
+            #        column_config=column_config_lst,
+            #        on_select="rerun",
+            #        selection_mode="single-row",                    
+            #        hide_index=True,
+            #    )
+            if event_a is not None:
+                st.session_state["event_a"]=event_a.selection.rows
+                show_details(event_a.selection.rows,df_a,True)
+                #if 'event_a' not in st.session.state:
+                event_a = None  
+        
+        with row_d0[1]:
+            st.subheader('🛡 Defend top 7')
+            event_d = build_table_dashboard(df_d)
+            #event_d = st.dataframe(
+            #        df_d[['Name','Level','Upgradable','Steps','Achievement']],
+            #        column_config=column_config_lst,
+            #        on_select="rerun",
+            #        selection_mode="single-row",                    
+            #        hide_index=True,
+            #    )
+            if event_d is not None:
+                st.session_state["event_d"]=event_d.selection.rows
+                show_details(event_d.selection.rows,df_d,True)
+                #if 'event_d' not in st.session.state:
+                event_d = None                
         
     row_d1 = st.columns(2,border=col_border, width="stretch")
     with row_d1[0]:
