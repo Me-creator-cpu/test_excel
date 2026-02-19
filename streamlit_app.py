@@ -879,7 +879,8 @@ def menu_tab_dashboards():
                 show_details(event_d.selection.rows,df_d,True)
                 #if 'event_d' not in st.session.state:
                 event_d = None                
-        
+    # End 1==2
+    
     row_d1 = st.columns(2,border=col_border, width="stretch")
     with row_d1[0]:
         st.subheader('Average Level by Type')
@@ -897,12 +898,12 @@ def menu_tab_dashboards():
 
     df2
     build_chart_bar(df_chart=df2,
-                    xField='Type',
-                    yField='Level',
+                    xField='Level',
+                    yField='Type',
                     sLabel='sLabel',
                     selMin=1,
                     selMax=300,
-                    with_slider=True)
+                    with_slider=False)
     
     
 def menu_tab_graph():
