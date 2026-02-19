@@ -828,6 +828,7 @@ def menu_tab_val():
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
         build_table_any(df_stars)
 
+@st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
     if df_source is None:
         st.header(df_xls["DisplayName"][idx_palmon])
