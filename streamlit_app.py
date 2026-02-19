@@ -84,6 +84,10 @@ data = { #                    0                  1                  2           
        }
 df_xls = pd.DataFrame(data)
 option_skill=["⚔ Attack","🛡 Defend"]
+data_skills={
+    "Skill":["Attack","Defend"],
+    "Icon":option_skill
+}
 data_type={
     "Type":["Water","Fire","Electricity","Wood"],
     "Icon":["💧","🔥","⚡","🪵"]
@@ -325,6 +329,12 @@ def percent_format(value):
         return f"{ret:.2f}%"  # "12.34%"
     except:
         return empty()
+
+def icon_skill(value):
+    try:
+        return option_skill[data_skills['Skill'].index(value)]+value
+    except:
+        return value
 
 def icon_upgradable(value):
     try:
@@ -810,11 +820,14 @@ def menu_tab_palmons(df_source=None,with_event=True):
 def menu_tab_dashboards():
     col_border=False
     st.header("Dashboard")
+    
     df=df_xls["DataFrame"][idx_palmon]
     df1=df.copy()
     df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
     df1['Upgradable']=df1['Upgradable'].apply(lambda b: icon_upgradable(b)) 
+    df1['Skill']=df1['Skill'].apply(lambda b: icon_skill(b)) 
     df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+    
     df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_a=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_d=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
