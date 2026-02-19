@@ -903,6 +903,11 @@ def menu_tab_dashboards():
         avg_pwr_df    
 
     df2
+    scale = alt.Scale( 
+        domain=["Water", "Fire", "Wood", "Electricity"],
+        range=["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4"],
+    )
+    color = alt.Color("Type:N", scale=scale)    
     brush = alt.selection_interval(encodings=["x"])
     click = alt.selection_multi(encodings=["color"])
     points = (
@@ -915,7 +920,7 @@ def menu_tab_dashboards():
                 title="Level",
                 scale=alt.Scale(domain=[0, 300]),
             ),
-            color=alt.condition(brush, gr_color, alt.value("lightgray")),
+            color=alt.condition(brush, color, alt.value("lightgray")),
             #size=alt.Size("Type:T", scale=alt.Scale(range=[5, 200])),
         )
         .properties(width=550, height=300)
@@ -927,8 +932,8 @@ def menu_tab_dashboards():
         .mark_bar()
         .encode(
             x="count()",
-            y="Type:N",
-            color=alt.condition(click, gr_color, alt.value("lightgray")),
+            y="Level:N",
+            color=alt.condition(click, color, alt.value("lightgray")),
         )
         .transform_filter(brush)
         .properties(
