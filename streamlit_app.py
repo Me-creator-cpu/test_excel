@@ -830,7 +830,7 @@ def menu_tab_dashboards():
     df1=df.copy()
     df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
     df1['Upgradable']=df1['Upgradable'].apply(lambda b: icon_upgradable(b)) 
-    df1['Skill']=df1['Skill'].apply(lambda b: icon_skill(b)) 
+    #df1['Skill']=df1['Skill'].apply(lambda b: icon_skill(b)) 
     df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
 
     df2=df.copy()
