@@ -941,7 +941,21 @@ def menu_tab_dashboards():
         avg_pwr_df  
         avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
         st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
-    
+
+    df_a=df2.copy()
+    df_d=df2.copy()
+    df_a = df_a[df_a[column].isin(options)]
+    df_d = df_d[df_d[column].isin(options)]    
+    df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(4)
+    df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(3)
+    df_t1=df_d+df_a
+    row_d2 = st.columns(2,border=col_border, width="stretch")
+    with row_d1[0]:
+        st.subheader('Team 1')
+        df_t1
+    with row_d1[1]:
+        st.subheader('Team 2')
+
 def menu_tab_graph():
     build_graph_select()
 
