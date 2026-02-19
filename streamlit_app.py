@@ -916,7 +916,7 @@ def menu_tab_dashboards():
         .encode(
             alt.X("Type:T", title="Type"),
             alt.Y(
-                "Level:Q",
+                "Level:N",
                 title="Level",
                 scale=alt.Scale(domain=[0, 300]),
             ),
@@ -932,7 +932,7 @@ def menu_tab_dashboards():
         .mark_bar()
         .encode(
             x="count()",
-            y="Level:N",
+            y="Type:T",
             color=alt.condition(click, color, alt.value("lightgray")),
         )
         .transform_filter(brush)
