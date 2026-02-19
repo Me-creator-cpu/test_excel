@@ -106,13 +106,6 @@ option_type=data_type['Icon']
 df_data_type = pd.DataFrame(data_type)
 option_values=data_values['Icon']
 df_data_values = pd.DataFrame(data_values)
-
-# ======================================================================================================
-gr_scale = alt.Scale(
-    domain=["Water", "Fire", "Wood", "Electricity"],
-    range=["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4"],
-)
-gr_color = alt.Color("Type:N", scale=gr_scale)
 # ======================================================================================================
 #format="%d ⭐",
  
