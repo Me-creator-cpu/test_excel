@@ -855,7 +855,8 @@ def menu_tab_dashboards():
     
     df_a = df2[df2['Skill'].isin(['⚔ Attack','Attack'])].head(7)
     df_d = df2[df2['Skill'].isin(['🛡 Defend','Defend'])].head(7)
-    #apply_cols_icons
+    apply_cols_icons(df_a)
+    apply_cols_icons(df_d)
     
     row_d0 = st.columns(2,border=col_border, width="stretch")
     with row_d0[0]:
