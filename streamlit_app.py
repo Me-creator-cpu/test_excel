@@ -828,8 +828,11 @@ def apply_cols_icons(df):
 def menu_tab_dashboards():
     col_border=False
     st.header("Dashboard")
-    
     df=df_xls["DataFrame"][idx_palmon]
+    
+    column='Type'
+    options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
+    
     df1=df.copy()
     df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
     df1['Upgradable']=df1['Upgradable'].apply(lambda b: icon_upgradable(b)) 
@@ -844,6 +847,9 @@ def menu_tab_dashboards():
     df_d=df2.copy()
     df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(7)
     df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(7)
+    
+    df_a = df_a[df_a[column].isin(options)]
+    df_d = df_d[df_d[column].isin(options)]
     
     st.subheader('⚔ Attack top 7')
     df_a = apply_cols_icons(df_a)
