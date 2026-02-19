@@ -942,12 +942,12 @@ def menu_tab_dashboards():
         avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
         st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
 
-    df_t1a=df2.copy()
-    df_t1d=df2.copy()
+    df_t1a=df.copy()
+    df_t1d=df.copy()
     df_t1a = df_t1a[df_t1a[column].isin(options)]
     df_t1d = df_t1d[df_t1d[column].isin(options)]    
-    df_t1a = df_t1a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(4)
-    df_t1d = df_t1d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(3)
+    df_t1a = df_t1a[df['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(4)
+    df_t1d = df_t1d[df['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(3)
     df_t1=df_t1d+df_t1a
     row_d2 = st.columns(2,border=col_border, width="stretch")
     with row_d1[0]:
