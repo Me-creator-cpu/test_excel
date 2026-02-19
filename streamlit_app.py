@@ -985,7 +985,7 @@ def pg_menu_0():
     menu_tab_show(0)
 
 def pg_menu_150():
-    build_graph_select()
+    menu_tab_dashboards()
 
 def pg_menu_200():
     menu_tab_show(200)
