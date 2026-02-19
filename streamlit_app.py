@@ -897,7 +897,7 @@ def menu_tab_dashboards():
         avg_pwr_df    
 
     graph_colors=["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd"]
-    st.bar_chart(avg_pwr_df, y='Power', color=graph_colors, horizontal=True)
+    st.bar_chart(avg_pwr_df, y='Power', horizontal=True)
     
     build_chart_bar(df_chart=avg_pwr_df,
                     xField='Power',
