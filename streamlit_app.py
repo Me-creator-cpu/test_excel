@@ -467,7 +467,7 @@ def build_graph_select():
         df_selection=None #=df_srv #=source[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL']]
     if df_selection is not None:
         #data_to_tiles(df_selection)
-        menu_tab_palmons(df_source=df_selection,with_event=False)
+        menu_tab_palmons(df_source=df_selection,with_event=False,with_expander=True)
         #build_table_any(df_selection)
 
 def build_table_any(df):
@@ -762,7 +762,7 @@ def menu_tab_show(idx):
         idx_tab = 999
     match int(idx_tab):
         case 0:         #int(idx_palmon)
-            menu_tab_palmons()   
+            menu_tab_palmons(with_expander=False)   
         case 1:         #int(idx_costs):
             menu_tab_costs()            
         case 2:        #int(idx_comp):
