@@ -184,8 +184,10 @@ column_config={
 }
 column_config_lst={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
-    "Type": st.column_config.SelectboxColumn( "Type", pinned = True,options=option_type ),
-    "Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=option_skill ),
+    "Type": st.column_config.TextColumn( "Type", pinned = True ),
+    "Skill": st.column_config.TextColumn( "Skill", pinned = True ),
+    #"Type": st.column_config.SelectboxColumn( "Type", pinned = True,options=option_type ),
+    #"Skill": st.column_config.SelectboxColumn( "Skill", pinned = True,options=option_skill ),
     "Level":col_progress(100,250,"Level","Palmon level"),
     "Step": st.column_config.NumberColumn(
         "Step",
