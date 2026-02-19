@@ -697,8 +697,10 @@ def pal_deltail(palmon,df,pic_width=300):
         df_comp_costs = df_xls["DataFrame"][idx_costs]
         total_comp_costs=0
         for i in [1,2,3,5]:
-            df_comp_u.loc[df.index[0], f'Comp {i}'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
-            total_comp_costs=int(total_comp_costs)+int(get_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 ))
+            comp_cost=get_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
+            df_comp_u.loc[df.index[0], f'Comp {i}']=large_num_format(comp_cost)
+            total_comp_costs=total_comp_costs+comp_cost
+            #df_comp_u.loc[df.index[0], f'Comp {i}']=calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
         build_table_any(df_comp_u[cols_comp])
         write_info('Total competencies cost',large_num_format(total_comp_costs))
 
