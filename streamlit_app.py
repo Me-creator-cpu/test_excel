@@ -914,7 +914,7 @@ def menu_tab_dashboards():
                 title="Level",
                 scale=alt.Scale(domain=[0, 300]),
             ),
-            color=alt.condition(brush, color, alt.value("lightgray")),
+            color=alt.condition(brush, gr_color, alt.value("lightgray")),
             #size=alt.Size("Type:T", scale=alt.Scale(range=[5, 200])),
         )
         .properties(width=550, height=300)
