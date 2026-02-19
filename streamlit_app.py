@@ -272,6 +272,32 @@ def write_js_menu():
                 </style>
                 """
     st.markdown(hide_st_style, unsafe_allow_html=True)    
+
+def write_css_round_img():
+    round_st_style = """
+                <style>    
+                    .circular_image {
+                      width: 200px;
+                      height: 200px;
+                      border-radius: 50%;
+                      overflow: hidden;
+                      background-color: blue;
+                      /* commented for demo
+                      float: left;
+                      margin-left: 125px;
+                      margin-top: 20px;
+                      */
+                      
+                      /*for demo*/
+                      display:inline-block;
+                      vertical-align:middle;
+                    }
+                    .circular_image img{
+                      width:100%;
+                    }    
+                </style>
+                """
+    st.markdown(round_st_style, unsafe_allow_html=True)  
     
 def do_nothing():
     return None
@@ -1029,7 +1055,7 @@ if 1 == 1:    # <=====================================
 
 
 
-            
+write_js_script()            
 #write_js_menu()
 # ======================================================================================================
 #
