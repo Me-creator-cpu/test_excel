@@ -9,8 +9,8 @@ import locale
 import logging
 import os
 import platform
-from flask import Flask, request
-import requests
+#from flask import Flask, request
+#import requests
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 
@@ -241,13 +241,13 @@ def test_df_xls():
         with cell2:
             st.write(df_xls[i][2])
 
-def get_device_type():
-    user_agent = request.headers.get('User-Agent')
-    user_agent_parsed = parse(user_agent)
-    device_type = ("Mobile" if user_agent_parsed.is_mobile else
-                   "Tablet" if user_agent_parsed.is_tablet else
-                   "Desktop")
-    return f"Device Type: {device_type}, Browser: {user_agent_parsed.browser.family}"
+#def get_device_type():
+#    user_agent = request.headers.get('User-Agent')
+#    user_agent_parsed = parse(user_agent)
+#    device_type = ("Mobile" if user_agent_parsed.is_mobile else
+#                   "Tablet" if user_agent_parsed.is_tablet else
+#                   "Desktop")
+#    return f"Device Type: {device_type}, Browser: {user_agent_parsed.browser.family}"
 
 def write_js_script():
     js_script="""
@@ -904,7 +904,7 @@ def menu_tab_downloads():
 # ======================================================================================================
 def pg_home():
     st.title(f"{app_title} App")
-    write_one_info(get_device_type())
+    #write_one_info(get_device_type())
     if df_xls["DisplayName"][idx_palmon] is not None:
         menu_build_tabs()
     else:
