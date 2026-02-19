@@ -686,9 +686,10 @@ def pal_deltail(palmon,df,pic_width=300):
         st.write('Competencies upgrade costs')
         df_comp_u=df[cols_comp]
         df_comp_costs = df_xls["DataFrame"][idx_costs]
+        total_comp_costs=0
         for i in [1,2,3,5]:
             df_comp_u.loc[df.index[0], f'Comp {i}'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
-        
+            total_comp_costs=total_comp_costs+df_comp_u.loc[df.index[0], f'Comp {i}']
         build_table_any(df_comp_u[cols_comp])
 
 # ======================================================================================================
