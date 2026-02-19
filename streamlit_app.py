@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import datetime
 import numpy as np
+import altair as alt
 from io import StringIO
 import statistics
 from openpyxl import load_workbook
@@ -105,6 +106,13 @@ option_type=data_type['Icon']
 df_data_type = pd.DataFrame(data_type)
 option_values=data_values['Icon']
 df_data_values = pd.DataFrame(data_values)
+
+# ======================================================================================================
+gr_scale = alt.Scale(
+    domain=["Water", "Fire", "Wood", "Electricity"],
+    range=["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4"],
+)
+gr_color = alt.Color("Type:N", scale=gr_scale)
 # ======================================================================================================
 #format="%d ⭐",
  
@@ -894,6 +902,42 @@ def menu_tab_dashboards():
         #avg_pwr_df['Type']=avg_pwr_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         avg_pwr_df    
 
+    brush = alt.selection_interval(encodings=["x"])
+    click = alt.selection_multi(encodings=["color"])
+    points = (
+        alt.Chart()
+        .mark_point()
+        .encode(
+            alt.X("Type:T", title="Type"),
+            alt.Y(
+                "Level:Q",
+                title="Level",
+                scale=alt.Scale(domain=[0, 300]),
+            ),
+            color=alt.condition(brush, color, alt.value("lightgray")),
+            #size=alt.Size("Type:T", scale=alt.Scale(range=[5, 200])),
+        )
+        .properties(width=550, height=300)
+        .add_selection(brush)
+        .transform_filter(click)
+    )
+    bars = (
+        alt.Chart()
+        .mark_bar()
+        .encode(
+            x="count()",
+            y="Type:N",
+            color=alt.condition(click, gr_color, alt.value("lightgray")),
+        )
+        .transform_filter(brush)
+        .properties(
+            width=550,
+        )
+        .add_selection(click)
+    )
+    chart = alt.vconcat(points, bars, data=df2, title="Test graph")
+    st.altair_chart(chart, theme="streamlit", use_container_width=True)
+    
 def menu_tab_graph():
     build_graph_select()
 
