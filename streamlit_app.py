@@ -838,43 +838,17 @@ def menu_tab_dashboards():
 
     df2=df.copy()
     df2=df2.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False)
-    
     df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
-    df_a=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
-    df_d=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
-    #df_a = df_a[(df_a['Skill'] == '⚔ Attack')].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True).head(7)
-    df_a = df1[(df1['Skill'] != '🛡 Defend')].head(7)
-    df_d = df1[(df1['Skill'] != '⚔ Attack')].head(7)
 
-    st.subheader('df')
-    df
-    st.subheader('df1')
-    df1
-    
-    #df2['Skill']=df2['Skill'].apply(lambda b: icon_skill(b)) 
-    #df2=df2[(df2['Skill'] == '🛡 Defend')].head(7)
-    #df2=df2[df2['Skill'].isin(['🛡 Defend','Defend'])].head(7)
-    st.subheader('df2')
-    df2
-    
     df_a=df2.copy()
     df_d=df2.copy()
     df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(7)
     df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(7)
-    #st.subheader('df_a')
-    #df_a
-    #st.subheader('df_d')
-    #df_d
     
     st.subheader('⚔ Attack top 7')
     df_a = apply_cols_icons(df_a)
-    st.dataframe(
-                df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
-                #column_config=column_config_lst,
-                on_select="rerun",
-                selection_mode="single-row",                    
-                hide_index=True,
-            )
+    build_table_dashboard(df_a)
+    
     st.subheader('🛡 Defend top 7')
     df_d = apply_cols_icons(df_d)
     build_table_dashboard(df_d)
