@@ -863,6 +863,13 @@ def menu_tab_dashboards():
     st.subheader('df_d')
     df_d
     apply_cols_icons(df_a)
+    st.dataframe(
+                df_a[['Name','Level','Upgradable','Steps','Achievement']],
+                column_config=column_config_lst,
+                on_select="rerun",
+                selection_mode="single-row",                    
+                hide_index=True,
+            )
     apply_cols_icons(df_d)
     
     row_d0 = st.columns(2,border=col_border, width="stretch")
