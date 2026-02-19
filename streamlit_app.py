@@ -498,7 +498,7 @@ def build_table_full_costs(df_src):
 
 def build_table_dashboard(df):
     return st.dataframe(
-                df[['Name','Level','Upgradable','Steps','Achievement']],
+                df[['Name','Type','Level','Upgradable','Steps','Achievement']],
                 column_config=column_config_lst,
                 on_select="rerun",
                 selection_mode="single-row",                    
@@ -814,7 +814,7 @@ def menu_tab_dashboards():
     df1=df.copy()
     df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
     df1['Upgradable']=df1['Upgradable'].apply(lambda b: icon_upgradable(b)) 
-    df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+    #df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
     df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_a=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     df_d=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
