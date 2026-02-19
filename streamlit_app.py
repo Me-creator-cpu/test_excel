@@ -841,7 +841,7 @@ def menu_tab_dashboards():
     df_d=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     #df_a = df_a[(df_a['Skill'] == '⚔ Attack')].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True).head(7)
     df_a = df1[(df1['Skill'] != '🛡 Defend')].head(7)
-    df_d = df1[(df_d['Skill'] != '⚔ Attack')].head(7)
+    df_d = df1[(df1['Skill'] != '⚔ Attack')].head(7)
 
     st.subheader('df')
     df
