@@ -9,7 +9,8 @@ import locale
 import logging
 import os
 import platform
-from flask import Flask, request
+from flask import Flask
+import requests
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 
@@ -102,7 +103,7 @@ option_values=data_values['Icon']
 df_data_values = pd.DataFrame(data_values)
 # ======================================================================================================
 #format="%d ⭐",
-
+ 
 cols_palmon = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Achievement','Needs','Cost to max']
 
 col_pct=st.column_config.NumberColumn(
