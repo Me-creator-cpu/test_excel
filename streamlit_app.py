@@ -866,7 +866,7 @@ def menu_tab_dashboards():
     df_a = apply_cols_icons(df_a)
     st.dataframe(
                 df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
-                column_config=column_config_lst,
+                #column_config=column_config_lst,
                 on_select="rerun",
                 selection_mode="single-row",                    
                 hide_index=True,
