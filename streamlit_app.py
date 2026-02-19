@@ -847,9 +847,9 @@ def menu_tab_dashboards():
     st.subheader('df1')
     df1
     
-    #df2['Skill']=df2['Skill'].apply(lambda b: icon_skill(b)) 
+    df2['Skill']=df2['Skill'].apply(lambda b: icon_skill(b)) 
     #df2=df2[(df2['Skill'] == '🛡 Defend')].head(7)
-    df2=df2[df2['Skill'].isin(['🛡 Defend','Defend'])].head(7)
+    #df2=df2[df2['Skill'].isin(['🛡 Defend','Defend'])].head(7)
     st.subheader('df2')
     df2
     
