@@ -834,7 +834,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
         df = df_xls["DataFrame"][idx_palmon]
     else:
         df = df_source
-    df = df.sort_values(by=['Level','Achievement'],ascending=False,ignore_index=True)
+    df = df.sort_values(by=['Level','Achievement'],ascending=False,ignore_index=False)
     df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
     df['Skill']=df['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1]) 
     df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
