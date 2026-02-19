@@ -897,15 +897,12 @@ def menu_tab_dashboards():
         avg_pwr_df    
 
     graph_colors=["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd"]
+    avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
     st.bar_chart(avg_pwr_df, y='Power', horizontal=False)
+    avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
+    st.bar_chart(avg_lvl_df, y='Level', horizontal=False)
     
-    build_chart_bar(df_chart=avg_pwr_df,
-                    xField='Power',
-                    yField='Type',
-                    sLabel='sLabel',
-                    selMin=1,
-                    selMax=300,
-                    with_slider=False)
+
     
     
 def menu_tab_graph():
