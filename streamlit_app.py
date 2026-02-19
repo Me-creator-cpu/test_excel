@@ -852,7 +852,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
             on_select='rerun',
             selection_mode='single-row',
             hide_index=True,
-            height='stretch'
+            height='content'
         )
     if event is not None and with_event:
         show_details(event.selection.rows,df)
