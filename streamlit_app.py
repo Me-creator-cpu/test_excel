@@ -844,7 +844,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
     if with_expander:
         container=st.expander('List',expanded=True, width='stretch')
     else:
-        container = st.container(border=False, width='stretch', height='stretch')
+        container = st.container(border=False, width='stretch', height='content')
     with container:
         event = st.dataframe(
             df, 
