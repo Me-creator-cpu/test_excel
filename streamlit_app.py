@@ -952,6 +952,7 @@ def menu_tab_dashboards():
     row_d2 = st.columns(2,border=col_border, width="stretch")
     with row_d1[0]:
         st.subheader('Team 1')
+        df_t1=df_d.head(3)+df_a.head(4)
         df_t1
     with row_d1[1]:
         st.subheader('Team 2')
