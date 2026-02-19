@@ -896,8 +896,7 @@ def menu_tab_dashboards():
         #avg_pwr_df['Type']=avg_pwr_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         avg_pwr_df    
 
-    df2
-    build_chart_bar(df_chart=df2,
+    build_chart_bar(df_chart=avg_pwr_df,
                     xField='Level',
                     yField='Type',
                     sLabel='sLabel',
