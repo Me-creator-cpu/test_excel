@@ -4,5 +4,3 @@ user_agents
 streamlit_dynamic_filters
 openpyxl
 extra_streamlit_components
-flask
-request
