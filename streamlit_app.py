@@ -567,9 +567,18 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
 
 def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
     if df_xls["DataFrame"][idx_palmon] is not None:
+        #df = df_xls["DataFrame"][idx_comp]
+        #val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
+        val_cost=get_upgrade_comp_costs(from_lvl,to_lvl)
+        return large_num_format(val_cost)
+    else:
+        return None
+
+def get_upgrade_comp_costs(from_lvl=1,to_lvl=30):
+    if df_xls["DataFrame"][idx_palmon] is not None:
         df = df_xls["DataFrame"][idx_comp]
         val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
-        return large_num_format(val_cost)
+        return int(val_cost)
     else:
         return None
 
@@ -689,8 +698,9 @@ def pal_deltail(palmon,df,pic_width=300):
         total_comp_costs=0
         for i in [1,2,3,5]:
             df_comp_u.loc[df.index[0], f'Comp {i}'] =  calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
-            total_comp_costs=total_comp_costs+df_comp_u.loc[df.index[0], f'Comp {i}']
+            total_comp_costs=total_comp_costs+get_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
         build_table_any(df_comp_u[cols_comp])
+        write_info('Total competencies cost',total_comp_costs)
 
 # ======================================================================================================
 #
