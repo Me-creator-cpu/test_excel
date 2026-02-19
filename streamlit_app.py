@@ -853,7 +853,8 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
             hide_index=True,
         )
     if event is not None and with_event:
-        show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
+        show_details(event.selection.rows,df)
+        #show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         #event = None    
 
 def menu_tab_dashboards():
