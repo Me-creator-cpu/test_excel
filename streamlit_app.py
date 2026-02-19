@@ -517,6 +517,13 @@ def build_table_dashboard(df):
                 hide_index=True,
             )
 
+def apply_cols_icons(df):
+    df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
+    df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
+    #df['Skill']=df['Skill'].apply(lambda b: icon_skill(b)) 
+    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+    return df
+    
 def format_stars(x): #⭐
     try:
         return ("⭐" * int(x))[0:int(x)]
@@ -740,7 +747,7 @@ def menu_tab_show(idx):
         case 100:
             menu_tab_dashboards()
         case 150:
-            build_graph_select()
+            menu_tab_graph()
         case 200:
             menu_tab_downloads()
         case _:
@@ -818,13 +825,6 @@ def menu_tab_palmons(df_source=None,with_event=True):
         show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         #event = None    
 
-def apply_cols_icons(df):
-    df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
-    df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
-    #df['Skill']=df['Skill'].apply(lambda b: icon_skill(b)) 
-    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-    return df
-
 def menu_tab_dashboards():
     col_border=False
     st.header("Dashboard")
@@ -864,13 +864,6 @@ def menu_tab_dashboards():
         with row_d0[0]:
             st.subheader('⚔ Attack top 7')
             event_a = build_table_dashboard(df_a)
-            #event_a = st.dataframe(
-            #        df_a[['Name','Level','Upgradable','Steps','Achievement']],
-            #        column_config=column_config_lst,
-            #        on_select="rerun",
-            #        selection_mode="single-row",                    
-            #        hide_index=True,
-            #    )
             if event_a is not None:
                 st.session_state["event_a"]=event_a.selection.rows
                 show_details(event_a.selection.rows,df_a,True)
@@ -880,13 +873,6 @@ def menu_tab_dashboards():
         with row_d0[1]:
             st.subheader('🛡 Defend top 7')
             event_d = build_table_dashboard(df_d)
-            #event_d = st.dataframe(
-            #        df_d[['Name','Level','Upgradable','Steps','Achievement']],
-            #        column_config=column_config_lst,
-            #        on_select="rerun",
-            #        selection_mode="single-row",                    
-            #        hide_index=True,
-            #    )
             if event_d is not None:
                 st.session_state["event_d"]=event_d.selection.rows
                 show_details(event_d.selection.rows,df_d,True)
@@ -907,6 +893,9 @@ def menu_tab_dashboards():
         avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
         #avg_pwr_df['Type']=avg_pwr_df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
         avg_pwr_df    
+
+def menu_tab_graph():
+    build_graph_select()
 
 def menu_tab_downloads():
     #st.title(body="Download file data test", text_alignment="center")
@@ -950,6 +939,9 @@ def pg_home():
         
 def pg_menu_0():
     menu_tab_show(0)
+
+def pg_menu_150():
+    build_graph_select()
 
 def pg_menu_200():
     menu_tab_show(200)
@@ -1012,6 +1004,7 @@ if 1 == 1:    # <=====================================
         "Home":[ st.Page(pg_home, title="Home", icon=":material/home:") ],
         "Resources": [
             st.Page(pg_menu_0, title="Full list"),
+            st.Page(pg_menu_150, title="Dashboards"),
             st.Page(pg_menu_200, title="CSV downloads"),
         ],
         "Tests": [
