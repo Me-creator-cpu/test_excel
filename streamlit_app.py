@@ -815,7 +815,13 @@ def menu_tab_palmons(df_source=None,with_event=True):
     if event is not None and with_event:
         show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
         #event = None    
-   
+
+def apply_cols_icons(df):
+    df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
+    df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
+    df['Skill']=df['Skill'].apply(lambda b: icon_skill(b)) 
+    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+
 def menu_tab_dashboards():
     col_border=False
     st.header("Dashboard")
@@ -846,6 +852,10 @@ def menu_tab_dashboards():
     df2=df2[df2['Skill'].isin(['🛡 Defend','Defend'])].head(7)
     st.subheader('df2')
     df2
+    
+    df_a = df2[df2['Skill'].isin(['⚔ Attack','Attack'])].head(7)
+    df_d = df2[df2['Skill'].isin(['🛡 Defend','Defend'])].head(7)
+    #apply_cols_icons
     
     row_d0 = st.columns(2,border=col_border, width="stretch")
     with row_d0[0]:
