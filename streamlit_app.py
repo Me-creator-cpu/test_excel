@@ -828,7 +828,7 @@ def menu_tab_val():
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
         build_table_any(df_stars)
 
-def menu_tab_palmons(df_source=None,with_event=True):
+def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
     if df_source is None:
         st.header(df_xls["DisplayName"][idx_palmon])
         df = df_xls["DataFrame"][idx_palmon]
@@ -840,7 +840,12 @@ def menu_tab_palmons(df_source=None,with_event=True):
     df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
     df_display=df[cols_palmon]
     event = None
-    with st.expander("List", expanded=True, width="stretch"):
+    if with_expander:
+        container=st.expander("List", expanded=True, width="stretch")
+    else:
+        container = st.container(border=True)
+    #with st.expander("List", expanded=True, width="stretch"):
+    with container:
         event = st.dataframe(
             df, #df_xls["DataFrame"][idx_palmon],
             column_config=column_config_lst,
@@ -1055,7 +1060,7 @@ if 1 == 1:    # <=====================================
 
 
 
-write_js_script()            
+#write_js_script()            
 #write_js_menu()
 # ======================================================================================================
 #
