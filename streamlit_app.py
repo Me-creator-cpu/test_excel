@@ -820,7 +820,7 @@ def apply_cols_icons(df):
     df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
     df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
     df['Skill']=df['Skill'].apply(lambda b: icon_skill(b)) 
-    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+    #df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
 
 def menu_tab_dashboards():
     col_border=False
