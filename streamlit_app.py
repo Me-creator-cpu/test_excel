@@ -821,6 +821,7 @@ def apply_cols_icons(df):
     df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
     df['Skill']=df['Skill'].apply(lambda b: icon_skill(b)) 
     #df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+    return df
 
 def menu_tab_dashboards():
     col_border=False
@@ -862,7 +863,7 @@ def menu_tab_dashboards():
     df_a
     st.subheader('df_d')
     df_d
-    apply_cols_icons(df_a)
+    df_a = apply_cols_icons(df_a)
     st.dataframe(
                 df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
                 column_config=column_config_lst,
