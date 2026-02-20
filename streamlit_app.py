@@ -230,7 +230,8 @@ column_config_lst={
     "Rank": None,
     "Team": None,
     "Mutation 1": None,
-    "Mutation 2": None,        
+    "Mutation 2": None,
+    "Type_txt": None,
     "Cost upgrade": st.column_config.NumberColumn(
         "Cost upgrade",
         format="compact",
