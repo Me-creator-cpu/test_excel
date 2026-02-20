@@ -430,6 +430,7 @@ def build_graph_select():
         field_y = 'Stars'
     df_srv = get_df_base().copy()
     max_upg=df_srv.loc[(df_srv["Level"] >= 1)].Level.max()
+    write_info('max_upg',max_upg)
     #Graphe per type
     chart = {
         "mark": "point",
