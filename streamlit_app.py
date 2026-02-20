@@ -861,21 +861,23 @@ def menu_tab_val():
         build_table_any(df_stars)
 
 def build_pivot_table(raw_data,val_value: str, val_index: str, val_columns: str,title_expander=None):
-  if title_expander==None:
-     title_expander="Pivot table"
-  palmon_types_df = raw_data.pivot_table(values=val_value, index=val_index, columns=val_columns)
-  with st.expander(title_expander, expanded=True, width="stretch"):
-    st.dataframe(
-       palmon_types_df.style.highlight_max(axis=0),
-       column_config={
-          "Type": st.column_config.TextColumn( "Type", pinned = True ),
-          "Attack": st.column_config.NumberColumn( "⚔ Attack", step=".01" ), #:crossed_swords:
-          "Defend": st.column_config.NumberColumn( "🛡 Defend", step=".01" ), #:shield:
-          "Level": st.column_config.NumberColumn( "Level", step=".01" ),
-        },
-       width="stretch",
-       hide_index=None,
-    )
+    if title_expander==None:
+        container = st.expander(title_expander, expanded=True, width="stretch")
+    else:
+        container = st.container(border=False, width='stretch', height='content')
+    palmon_types_df = raw_data.pivot_table(values=val_value, index=val_index, columns=val_columns)
+    with container:
+        st.dataframe(
+            palmon_types_df.style.highlight_max(axis=0),
+            column_config={
+                "Type": st.column_config.TextColumn( "Type", pinned = True ),
+                "Attack": st.column_config.NumberColumn( "⚔ Attack", step=".01" ), #:crossed_swords:
+                "Defend": st.column_config.NumberColumn( "🛡 Defend", step=".01" ), #:shield:
+                "Level": st.column_config.NumberColumn( "Level", step=".01" ),
+            },
+            width="stretch",
+            hide_index=None,
+        )
       
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
@@ -933,7 +935,6 @@ def menu_tab_dashboards():
 
         df_test=df2.copy()
         df_test=df_test[["Type","Skill","Level"]]
-        #df_test.groupby(["Type","Skill"])[["Level"]].mean()
         build_pivot_table(df_test,'Level','Type','Skill')
         
         df_a=df2.copy()
