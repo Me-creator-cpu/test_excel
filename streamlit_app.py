@@ -1015,27 +1015,21 @@ class Palmon:
         self.name = name
         self.data = data
     def __repr__(self):
-        return self.name
-    def valueOf(self,fieldName):
-        try:
-            return self.data[fieldName].values[0]
-        except:
-            return None        
+        return self.name       
     def get_type(self):
         try:
-            #ret_val=self.data.Type.values[0]+self.data.Type_txt.values[0]
-            ret_val=valueOf('Type')+valueOf('Type_txt')
+            ret_val=self.data.Type.values[0]+self.data.Type_txt.values[0]
             return ret_val
         except:
             return None
     def get_level(self):
         try:
-            return int(self.data['Level'])
+            return int(self.data.Level)
         except:
             return None
     def get_image(self):
         try:
-            return self.data['URL'].values[0]
+            return self.data.URL.values[0]
         except:
             return None
 
