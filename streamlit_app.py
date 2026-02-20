@@ -547,6 +547,26 @@ def build_table_full_costs(df_src):
             hide_index=True,
          )  
 
+def build_pivot_table(raw_data,val_value: str, val_index: str, val_columns: str,title_expander=None):
+    if title_expander is not None:
+        container_tb = st.expander(title_expander, expanded=True, width="stretch")
+    else:
+        container_tb = st.container(border=False, width='stretch', height='content')
+    palmon_types_df = raw_data.pivot_table(values=val_value, index=val_index, columns=val_columns)
+    with container_tb:
+        st.dataframe(
+            palmon_types_df.style.highlight_max(axis=0),
+            column_config={
+                "Type": st.column_config.TextColumn( "Type", pinned = True ),
+                "Attack": st.column_config.NumberColumn( "⚔ Attack", step=".01" ), #:crossed_swords:
+                "Defend": st.column_config.NumberColumn( "🛡 Defend", step=".01" ), #:shield:
+                "Level": st.column_config.NumberColumn( "Level", step=".01" ),
+                "Level": st.column_config.NumberColumn( "Count", step="0" ),
+            },
+            width="stretch",
+            hide_index=None,
+        )
+
 def build_table_dashboard(df):
     return st.dataframe(
                 df[['Name','Type','Level','Upgradable','Steps','Achievement']],
@@ -859,25 +879,6 @@ def menu_tab_val():
         df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
         build_table_any(df_stars)
-
-def build_pivot_table(raw_data,val_value: str, val_index: str, val_columns: str,title_expander=None):
-    if title_expander is not None:
-        container_tb = st.expander(title_expander, expanded=True, width="stretch")
-    else:
-        container_tb = st.container(border=False, width='stretch', height='content')
-    palmon_types_df = raw_data.pivot_table(values=val_value, index=val_index, columns=val_columns)
-    with container_tb:
-        st.dataframe(
-            palmon_types_df.style.highlight_max(axis=0),
-            column_config={
-                "Type": st.column_config.TextColumn( "Type", pinned = True ),
-                "Attack": st.column_config.NumberColumn( "⚔ Attack", step=".01" ), #:crossed_swords:
-                "Defend": st.column_config.NumberColumn( "🛡 Defend", step=".01" ), #:shield:
-                "Level": st.column_config.NumberColumn( "Level", step=".01" ),
-            },
-            width="stretch",
-            hide_index=None,
-        )
       
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
@@ -933,9 +934,11 @@ def menu_tab_dashboards():
     
         df2=df2[(df2['Level'] >= 100)]
 
-        df_test=df2.copy()
-        df_test=df_test[["Type","Skill","Level"]]
-        build_pivot_table(df_test,'Level','Type','Skill')
+        df_tcd1=df2.copy()
+        df_tcd2=df2.copy()
+        df_tcd1=df_tcd1[["Type","Skill","Level"]]
+        df_tcd2=df_tcd2[["Type","Skill","Level"]]
+        df_tcd2.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
         
         df_a=df2.copy()
         df_d=df2.copy()
@@ -988,8 +991,14 @@ def menu_tab_dashboards():
             avg_pwr_df  
             avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
             st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
+
+        st.subheader('Average Skill')
+        build_pivot_table(df_tcd1,'Level','Type','Skill')
+        st.subheader('Average Level')
+        build_table_dashboard(df_tcd2)
     except:
         st.empty()
+
         
 def menu_tab_graph():
     build_graph_select()
