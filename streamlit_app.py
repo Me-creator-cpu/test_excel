@@ -651,19 +651,20 @@ def pal_deltail(palmon,df,pic_width=300):
     df_t=df.reset_index().T
     df.reset_index()
     cols_comp = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
-
-    #pal_test=None
-    pal_test=testClass(df.loc[df.index[0], 'Name'],df)
-    if st.button("Test class"):
-        write_info('pal_test',pal_test)
-        write_info('pal_test.get_type()',pal_test.get_type()) 
-    if pal_test is not None:
-        if st.button("Get from class"):
-            write_info('pal_test',pal_test) 
-            write_info('pal_test.get_type()',pal_test.get_type())
-            write_info('pal_test.get_level()',pal_test.get_level())
-            write_info('pal_test.get_image()',pal_test.get_image())
-    #df
+    
+    if 1 == 2:
+        #pal_test=None
+        pal_test=testClass(df.loc[df.index[0], 'Name'],df)
+        if st.button("Test class"):
+            write_info('pal_test',pal_test)
+            write_info('pal_test.get_type()',pal_test.get_type()) 
+        if pal_test is not None:
+            if st.button("Get from class"):
+                write_info('pal_test',pal_test) 
+                write_info('pal_test.get_type()',pal_test.get_type())
+                write_info('pal_test.get_level()',pal_test.get_level())
+                write_info('pal_test.get_image()',pal_test.get_image())
+    
     if pic_width == 300:
         cell_pic=2
     else:
@@ -1118,7 +1119,10 @@ if 1 == 2:    # <=====================================
 
 if 1 == 1:    # <=====================================
     pages = {
-        "Home":[ st.Page(pg_home, title="Home", icon=":material/home:") ],
+        "Home":[ 
+            st.Page(pg_home, title="Home", icon=":material/home:"),
+            st.Page(menu_load_excel, title="Load Excel", icon="📅"),
+        ],
         "Resources": [
             st.Page(pg_menu_0, title="Full list"),
             st.Page(pg_menu_150, title="Dashboards"),
