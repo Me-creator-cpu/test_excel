@@ -949,12 +949,14 @@ def menu_tab_dashboards():
 
         df_tcd1=df2.copy()
         df_tcd2=df2.copy()
+        df_tcd3=df2.copy()
         df_tcd1=df_tcd1[["Type","Skill","Level"]]
         df_tcd2=df_tcd2[["Type","Skill","Level"]]
+        df_tcd3=df_tcd3[["Type","Skill","Level"]]
         #df_tcd2.set_index('Type').groupby(['Type','Skill']).apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Level')
         #df_tcd2.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
         df_tcd2=df_tcd2.groupby(["Type", "Skill"]).agg("count").reset_index()
-        df_tcd3=df_tcd2.groupby(["Type", "Skill"]).agg("mean").reset_index()
+        df_tcd3=df_tcd3.groupby(["Type", "Skill"]).agg("mean").reset_index()
         
         df_a=df2.copy()
         df_d=df2.copy()
