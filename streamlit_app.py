@@ -1125,7 +1125,7 @@ if 1 == 1:    # <=====================================
         ],
         "Resources": [
             st.Page(pg_menu_0, title="Full list",icon="🗂️"),
-            st.Page(pg_menu_150, title="Dashboards",icon="📊📈"),
+            st.Page(pg_menu_150, title="Dashboards",icon="📊"),
             st.Page(pg_menu_200, title="CSV downloads",icon="📥"),
         ],
         "Tests": [
