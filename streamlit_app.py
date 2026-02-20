@@ -442,7 +442,7 @@ def build_graph_select():
             "x": {
                 "field": field_x,
                 "type": "quantitative",
-                "scale": {"domain": [100, max_upg]},
+                "scale": {"domain": [100, int(max_upg)]},
             },
             "y": {
                 "field": field_y,
