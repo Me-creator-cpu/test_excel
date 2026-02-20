@@ -1015,10 +1015,16 @@ class Palmon:
         self.name = name
         self.data = data
     def __repr__(self):
-        return self.name        
+        return self.name
+    def valueOf(self,fieldName):
+        try:
+            return self.data[fieldName].values[0]
+        except:
+            return None        
     def get_type(self):
         try:
-            ret_val=self.data.Type.values[0]+self.data.Type_txt.values[0]
+            #ret_val=self.data.Type.values[0]+self.data.Type_txt.values[0]
+            ret_val=valueOf('Type')+valueOf('Type_txt')
             return ret_val
         except:
             return None
