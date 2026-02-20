@@ -989,8 +989,26 @@ class Animal:
 class Dog(Animal):
     def sound(self):
         print("Woof!")
+#Yoki = Dog("Yoki", 4)
+#print(Yoki.name) # => YOKI
+#print(Yoki.legs) # => 4
+#Yoki.sound()     # => Woof!
 
-
+Class Palmon:
+    def __init__(self, name, data):
+        self.name = name
+        self.data = data
+    def get_type(self):
+        try:
+            return self.data['Type']
+        except:
+            return None
+    def get_level(self):
+        try:
+            return int(self.data['Level'])
+        except:
+            return None
+        
 # ======================================================================================================
 #
 #    Definition PAGES
