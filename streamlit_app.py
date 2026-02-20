@@ -649,7 +649,7 @@ def pal_deltail(palmon,df,pic_width=300):
     else:
         cell_pic=1
     row0 = st.columns([cell_pic, 1], border=col_border)
-    row1 = st.columns(2,border=col_border, width="stretch")
+    row1 = st.columns(3,border=col_border, width="stretch")
     row2 = st.columns(2,border=col_border, width="stretch")
 
     df_cost = df_xls["DataFrame"][idx_costs]
@@ -675,18 +675,11 @@ def pal_deltail(palmon,df,pic_width=300):
                      },
                      hide_index=False) 
     with row1[0]:
-        #st.markdown(f"Level: {df.loc[df.index[0], 'Level']}")
-        #df_cost = df_xls["DataFrame"][idx_costs]
-        #level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level from"].max()
-        #level_pal=df.loc[df.index[0], 'Level']
-        #if level_pal >= level_max:
-        #    level_max = 0
         st.metric("Level", level_pal, level_max)
     with row1[1]:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level to"].max()
         cost_upg=calcul_upgrade_costs(df.loc[df.index[0], 'Level'],max_upg)
-        #st.markdown(f"cost to {max_upg}: {large_num_format(cost_upg)}")
         st.metric("Cost", large_num_format(cost_upg), level_max)
     with row2[0]:
         st.write('Competencies')
@@ -705,6 +698,8 @@ def pal_deltail(palmon,df,pic_width=300):
         #df_comp_u.loc[df.index[0], 'Comp 1']+df_comp_u.loc[df.index[0], 'Comp 2']
         build_table_any(df_comp_u[cols_comp])
         write_info('Total competencies cost',large_num_format(total_comp_costs))
+    with row1[2]:
+        st.metric("Competencies cost", large_num_format(total_comp_costs), 30)
 
 # ======================================================================================================
 #
