@@ -954,6 +954,7 @@ def menu_tab_dashboards():
         #df_tcd2.set_index('Type').groupby(['Type','Skill']).apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Level')
         #df_tcd2.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
         df_tcd2=df_tcd2.groupby(["Type", "Skill"]).agg("count").reset_index()
+        df_tcd3=df_tcd2.groupby(["Type", "Skill"]).agg("mean").reset_index()
         
         df_a=df2.copy()
         df_d=df2.copy()
@@ -1011,7 +1012,7 @@ def menu_tab_dashboards():
         build_pivot_table(df_tcd1,'Level','Type','Skill')
         st.subheader('Average Level')
         #build_main_chart(df_tcd2,None,'Type','Level')
-        build_pivot_table(df_tcd2,'Level','Type','Skill')
+        build_pivot_table(df_tcd3,'Level','Type','Skill')
         #df_tcd2
 
     except:
