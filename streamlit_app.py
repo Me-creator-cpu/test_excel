@@ -656,7 +656,7 @@ def pal_deltail(palmon,df,pic_width=300):
     pal_test=testClass(df.loc[df.index[0], 'Name'],df)
     if st.button("Test class"):
         write_info('pal_test',pal_test)
-        write_info('pal_test.get_type()',pal_test.get_type()) 
+        write_info('pal_test.get_type()',pal_test.get_type) 
     if pal_test is not None:
         if st.button("Get from class"):
             write_info('pal_test',pal_test) 
