@@ -953,6 +953,8 @@ def menu_tab_dashboards():
         if "event_detail" in st.session_state:
             if st.session_state.event_detail is not None:
                 show_details(st.session_state.event_detail,st.session_state.event_df,True)
+                del_session_variable("event_detail")
+                del_session_variable("event_df")
         
         row_d1 = st.columns(2,border=col_border, width="stretch")
         with row_d1[0]:
