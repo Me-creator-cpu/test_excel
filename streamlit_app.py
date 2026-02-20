@@ -900,70 +900,73 @@ def menu_tab_dashboards():
     df=df_xls["DataFrame"][idx_palmon]
     
     column='Type'
-    options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
-    
-    df1=df.copy()
-    df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
-    df1['Upgradable']=df1['Upgradable'].apply(lambda b: icon_upgradable(b)) 
-    #df1['Skill']=df1['Skill'].apply(lambda b: icon_skill(b)) 
-    df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-
-    df2=df.copy()
-    df2=df2.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False)
-    df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
-
-    df2=df2[(df2['Level'] >= 100)]
-    df_a=df2.copy()
-    df_d=df2.copy()
-    df_a = df_a[df_a[column].isin(options)]
-    df_d = df_d[df_d[column].isin(options)]    
-    df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(7)
-    df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(7)
-    
-    st.subheader('⚔ Attack top 7')
-    df_a = apply_cols_icons(df_a)
-    build_table_dashboard(df_a)
-    
-    st.subheader('🛡 Defend top 7')
-    df_d = apply_cols_icons(df_d)
-    build_table_dashboard(df_d)
-
-    if 1 == 2: # ================================= Reprendre Events =================================
-        row_d0 = st.columns(2,border=col_border, width="stretch")
-        with row_d0[0]:
-            st.subheader('⚔ Attack top 7')
-            event_a = build_table_dashboard(df_a)
-            if event_a is not None:
-                st.session_state["event_a"]=event_a.selection.rows
-                show_details(event_a.selection.rows,df_a,True)
-                #if 'event_a' not in st.session.state:
-                event_a = None  
+    try:
+        options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
         
-        with row_d0[1]:
-            st.subheader('🛡 Defend top 7')
-            event_d = build_table_dashboard(df_d)
-            if event_d is not None:
-                st.session_state["event_d"]=event_d.selection.rows
-                show_details(event_d.selection.rows,df_d,True)
-                #if 'event_d' not in st.session.state:
-                event_d = None                
-    # End 1==2
+        df1=df.copy()
+        df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
+        df1['Upgradable']=df1['Upgradable'].apply(lambda b: icon_upgradable(b)) 
+        #df1['Skill']=df1['Skill'].apply(lambda b: icon_skill(b)) 
+        df1['Type']=df1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
     
-    row_d1 = st.columns(2,border=col_border, width="stretch")
-    with row_d1[0]:
-        st.subheader('Average Level by Type')
-        avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
-        avg_lvl_df
-        avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
-        st.bar_chart(avg_lvl_df, y='Level', horizontal=True)
+        df2=df.copy()
+        df2=df2.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False)
+        df=df1.iloc[:-1,:].sort_values(by=['Skill','Level','Achievement'],ascending=False,ignore_index=True)
     
-    with row_d1[1]:
-        st.subheader('Average power by Type')
-        avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
-        avg_pwr_df  
-        avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
-        st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
-
+        df2=df2[(df2['Level'] >= 100)]
+        df_a=df2.copy()
+        df_d=df2.copy()
+        df_a = df_a[df_a[column].isin(options)]
+        df_d = df_d[df_d[column].isin(options)]    
+        df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(7)
+        df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(7)
+        
+        st.subheader('⚔ Attack top 7')
+        df_a = apply_cols_icons(df_a)
+        build_table_dashboard(df_a)
+        
+        st.subheader('🛡 Defend top 7')
+        df_d = apply_cols_icons(df_d)
+        build_table_dashboard(df_d)
+    
+        if 1 == 2: # ================================= Reprendre Events =================================
+            row_d0 = st.columns(2,border=col_border, width="stretch")
+            with row_d0[0]:
+                st.subheader('⚔ Attack top 7')
+                event_a = build_table_dashboard(df_a)
+                if event_a is not None:
+                    st.session_state["event_a"]=event_a.selection.rows
+                    show_details(event_a.selection.rows,df_a,True)
+                    #if 'event_a' not in st.session.state:
+                    event_a = None  
+            
+            with row_d0[1]:
+                st.subheader('🛡 Defend top 7')
+                event_d = build_table_dashboard(df_d)
+                if event_d is not None:
+                    st.session_state["event_d"]=event_d.selection.rows
+                    show_details(event_d.selection.rows,df_d,True)
+                    #if 'event_d' not in st.session.state:
+                    event_d = None                
+        # End 1==2
+        
+        row_d1 = st.columns(2,border=col_border, width="stretch")
+        with row_d1[0]:
+            st.subheader('Average Level by Type')
+            avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
+            avg_lvl_df
+            avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
+            st.bar_chart(avg_lvl_df, y='Level', horizontal=True)
+        
+        with row_d1[1]:
+            st.subheader('Average power by Type')
+            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
+            avg_pwr_df  
+            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
+            st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
+    except:
+        st.empty()
+        
 def menu_tab_graph():
     build_graph_select()
 
