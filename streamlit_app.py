@@ -1114,7 +1114,7 @@ st.set_page_config(
 #])
 #pg.run()
 
-if 1 == 2:    # <=====================================
+if 1 == 1:    # <=====================================
     with st.sidebar:
         menu_load_excel()
 if 1 == 2:    # <=====================================   
@@ -1127,7 +1127,7 @@ if 1 == 1:    # <=====================================
     pages = {
         "Home":[ 
             st.Page(pg_home, title="Home", icon="🏠"),
-            st.Page(menu_load_excel, title="Load Excel", icon="📅"),
+            #st.Page(menu_load_excel, title="Load Excel", icon="📅"),
         ],
         "Resources": [
             st.Page(pg_menu_0, title="Full list",icon="🗂️"),
