@@ -994,10 +994,12 @@ class Dog(Animal):
 #print(Yoki.legs) # => 4
 #Yoki.sound()     # => Woof!
 
-Class Palmon:
+class Palmon:
     def __init__(self, name, data):
         self.name = name
         self.data = data
+    def __repr__(self):
+        return self.name        
     def get_type(self):
         try:
             return self.data['Type']
@@ -1008,7 +1010,15 @@ Class Palmon:
             return int(self.data['Level'])
         except:
             return None
-        
+
+# ======================================================================================================
+#
+#    Test Classes
+#
+# ======================================================================================================
+def testClass(name,df)
+    testPal=Palmon(name,df)
+
 # ======================================================================================================
 #
 #    Definition PAGES
