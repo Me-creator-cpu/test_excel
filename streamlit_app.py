@@ -862,11 +862,11 @@ def menu_tab_val():
 
 def build_pivot_table(raw_data,val_value: str, val_index: str, val_columns: str,title_expander=None):
     if title_expander==None:
-        container = st.expander(title_expander, expanded=True, width="stretch")
+        container_tb = st.expander(title_expander, expanded=True, width="stretch")
     else:
-        container = st.container(border=False, width='stretch', height='content')
+        container_tb = st.container(border=False, width='stretch', height='content')
     palmon_types_df = raw_data.pivot_table(values=val_value, index=val_index, columns=val_columns)
-    with container:
+    with container_tb:
         st.dataframe(
             palmon_types_df.style.highlight_max(axis=0),
             column_config={
