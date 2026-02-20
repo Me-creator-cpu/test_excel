@@ -1018,7 +1018,7 @@ class Palmon:
         return self.name        
     def get_type(self):
         try:
-            ret_val=self.data.Type+self.data.Type_txt.item()
+            ret_val=self.data.Type+self.data.Type_txt.values[0]
             return ret_val
         except:
             return None
