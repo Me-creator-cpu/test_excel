@@ -53,6 +53,7 @@ if "tabs_data" not in st.session_state:
 event = None
 event_a = None
 event_d = None
+event_detail = None
 
 # Définitions DataFrame et Excel
 #cols_data = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Unused1','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Unused2','Cost to max','Unused3','Unused4','RankPower','Rank','Team','Unused5','URL','URL Mutation','Unused6','Unused7','Mutation 1','Mutation 2','Unused8']
@@ -627,11 +628,15 @@ def pal_deltail_dialog(palmon,df):
     if "event_a" in st.session_state:
         open_popup = True
     if "event_d" in st.session_state:
-        open_popup = True        
+        open_popup = True
+    if "event_detail" in st.session_state:
+        open_popup = True
     if open_popup == True:
         pal_deltail(palmon,df,200)
     del_session_variable("event_a")
     del_session_variable("event_d")
+    del_session_variable("event_detail")
+    del_session_variable("event_df")
 
 def del_session_variable(var_key):
     try:
@@ -928,19 +933,27 @@ def menu_tab_dashboards():
         df_a = apply_cols_icons(df_a)
         event_a = build_table_dashboard(df_a)
         if event_a is not None:
-            st.session_state["event_a"]=event_a.selection.rows
-            show_details(event_a.selection.rows,df_a,True)
-            event_a = None         
-        
+            st.session_state["event_detail"]=event_a.selection.rows
+            st.session_state["event_df"]=df_a
+            #st.session_state["event_a"]=event_a.selection.rows
+            #show_details(event_a.selection.rows,df_a,True)
+            #event_a = None   
+        #event_detail    st.session_state.event_detail
         st.subheader('🛡 Defend top 7')
         df_d = apply_cols_icons(df_d)
         event_d = build_table_dashboard(df_d)
         if event_d is not None:
-            st.session_state["event_d"]=event_d.selection.rows
-            show_details(event_d.selection.rows,df_d,True)
-            event_a = None
-            event_d = None  
-           
+            st.session_state["event_detail"]=event_d.selection.rows
+            st.session_state["event_df"]=df_d
+            #st.session_state["event_d"]=event_d.selection.rows
+            #show_details(event_d.selection.rows,df_d,True)
+            #event_a = None
+            #event_d = None  
+
+        if "event_detail" in st.session_state:
+            if st.session_state.event_detail is not None:
+                show_details(st.session_state.event_detail,st.session_state.event_df,True)
+        
         row_d1 = st.columns(2,border=col_border, width="stretch")
         with row_d1[0]:
             st.subheader('Average Level by Type')
