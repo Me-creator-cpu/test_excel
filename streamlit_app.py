@@ -675,7 +675,7 @@ def pal_deltail(palmon,df,pic_width=300):
                      },
                      hide_index=False) 
     with row1[0]:
-        st.metric("Level", level_pal, level_max)
+        st.metric("Level upgrade", level_pal, level_max)
     with row1[1]:
         df_costs = df_xls["DataFrame"][idx_costs]
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level to"].max()
@@ -699,7 +699,7 @@ def pal_deltail(palmon,df,pic_width=300):
         build_table_any(df_comp_u[cols_comp])
         write_info('Total competencies cost',large_num_format(total_comp_costs))
     with row1[2]:
-        st.metric("Competencies cost", large_num_format(total_comp_costs), 30)
+        st.metric("Competencies cost", large_num_format(total_comp_costs), 'Max')
 
 # ======================================================================================================
 #
