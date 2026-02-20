@@ -651,8 +651,8 @@ def pal_deltail(palmon,df,pic_width=300):
     cols_comp = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
 
     #pal_test=None
+    pal_test=testClass(df.loc[df.index[0], 'Name'],df)
     if st.button("Test class"):
-        pal_test=testClass(df.loc[df.index[0], 'Name'],df)
         write_info('pal_test',pal_test)
         write_info('pal_test.get_type()',pal_test.get_type()) 
     if pal_test is not None:
