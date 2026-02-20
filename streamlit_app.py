@@ -179,6 +179,7 @@ column_config={
     "Unused6": None,
     "Unused7": None,
     "Unused8": None,
+    "Type_txt": None,
     "Cost upgrade": st.column_config.NumberColumn(
         "Cost upgrade",
         format="compact",
