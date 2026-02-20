@@ -850,13 +850,6 @@ def menu_tab_mut():
         build_table_any(df_energy.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
 
 def menu_tab_val():
-    #st.header(df_xls["DisplayName"][idx_val]) 
-    #build_table_full_costs(df_xls["DataFrame"][idx_val])
-    #st.divider()
-    #st.header(df_xls["DisplayName"][idx_stars])
-    #df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
-    #df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
-    #build_table_any(df_stars)
     rowval = st.columns(2,border=False, width="stretch")
     with rowval[0]:
         st.header(df_xls["DisplayName"][idx_val]) 
@@ -898,9 +891,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
             height='content'
         )
     if event is not None and with_event:
-        show_details(event.selection.rows,df)
-        #show_details(event.selection.rows,df_xls["DataFrame"][idx_palmon])
-        #event = None    
+        show_details(event.selection.rows,df) 
 
 def menu_tab_dashboards():
     col_border=False
