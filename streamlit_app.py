@@ -1018,9 +1018,7 @@ class Palmon:
         return self.name        
     def get_type(self):
         try:
-            #return self.data['Type']
-            ret_val=self.data.Type+self.data.Type_txt
-            ret_val=self.loc[self.index[0], 'Type']+self.loc[self.index[0], 'Type_txt']
+            ret_val=self.data.Type+self.data.Type_txt.item()
             return ret_val
         except:
             return None
@@ -1031,7 +1029,7 @@ class Palmon:
             return None
     def get_image(self):
         try:
-            return self.data['URL']
+            return self.data['URL'].item()
         except:
             return None
 
