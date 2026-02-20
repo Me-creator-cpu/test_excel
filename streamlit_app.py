@@ -938,6 +938,7 @@ def menu_tab_dashboards():
         if event_d is not None:
             st.session_state["event_d"]=event_d.selection.rows
             show_details(event_d.selection.rows,df_d,True)
+            event_a = None
             event_d = None  
            
         row_d1 = st.columns(2,border=col_border, width="stretch")
