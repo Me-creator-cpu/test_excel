@@ -430,7 +430,8 @@ def build_graph_select():
         field_y = 'Stars'
     df_srv = get_df_base().copy()
     max_upg=df_srv.loc[(df_srv["Level"] >= 1)].Level.max()
-    write_info('max_upg',max_upg)
+    min_upg=df_srv.loc[(df_srv["Level"] >= 1)].Level.min()
+    #write_info('max_upg',max_upg)
     #Graphe per type
     chart = {
         "mark": "point",
@@ -442,7 +443,7 @@ def build_graph_select():
             "x": {
                 "field": field_x,
                 "type": "quantitative",
-                "scale": {"domain": [100, int(max_upg)]},
+                "scale": {"domain": [int(min_upg), int(max_upg)]},
             },
             "y": {
                 "field": field_y,
@@ -457,7 +458,7 @@ def build_graph_select():
     column='Type'
     options = st.multiselect(f"Filter values for {column}:", df_srv[column].unique(), default=list(df_srv[column].unique()))
     #source = df_srv[df_srv[column].isin(options)]
-    source = df_srv[(df_srv[column].isin(options)) & (df_srv['Level'] >= 100)]
+    source = df_srv[(df_srv[column].isin(options)) & (df_srv['Level'] >= int(min_upg)]
     #st.vega_lite_chart(source, chart, theme="streamlit", width="stretch")     
     event = st.vega_lite_chart(source, chart, theme=None, on_select="rerun", width="stretch") 
     try:
