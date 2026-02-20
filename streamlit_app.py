@@ -915,7 +915,8 @@ def menu_tab_dashboards():
         df2=df2[(df2['Level'] >= 100)]
 
         df_test=df2.copy()
-        df_test.groupby(["Type", "Skill"])[["Level"]].mean()
+        df_test=df_test[["Type","Skill","Level"]]
+        df_test.groupby(["Type","Skill"])[["Level"]].mean()
         df_test
         
         df_a=df2.copy()
