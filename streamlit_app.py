@@ -926,7 +926,13 @@ def menu_tab_dashboards():
         
         st.subheader('⚔ Attack top 7')
         df_a = apply_cols_icons(df_a)
-        build_table_dashboard(df_a)
+        #build_table_dashboard(df_a)
+        event_a = build_table_dashboard(df_a)
+        if event_a is not None:
+            st.session_state["event_a"]=event_a.selection.rows
+            show_details(event_a.selection.rows,df_a,True)
+            #if 'event_a' not in st.session.state:
+            event_a = None         
         
         st.subheader('🛡 Defend top 7')
         df_d = apply_cols_icons(df_d)
