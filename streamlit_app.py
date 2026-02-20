@@ -811,10 +811,10 @@ def menu_tab_mut():
     st.header(df_xls["DisplayName"][idx_mut]) 
     df = df_xls["DataFrame"][idx_mut]
     df_energy=df.loc[(df['Step'] > 0)]
-    df_crystal=df.loc[(df['Step'] == 0)]        
-    st.header("Energy")
+    df_crystal=df.loc[(df['Step'] == 0)]  
+    st.header("🟢Energy")
     range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(1),int(30))
-    st.header("Crystals")
+    st.header("💎Crystals")
     build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(1),int(30),False)
     with st.expander("Data graph", expanded=False, width="stretch"):
         build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
