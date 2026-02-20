@@ -1010,8 +1010,8 @@ def menu_tab_dashboards():
         st.subheader('Average Skill')
         build_pivot_table(df_tcd1,'Level','Type','Skill')
         st.subheader('Average Level')
-        #build_main_chart(df_tcd2,None,'Type','Level')
-        df_tcd2
+        build_main_chart(df_tcd2,None,'Type','Level')
+        #df_tcd2
 
     except:
         st.empty()
