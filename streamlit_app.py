@@ -23,6 +23,7 @@ import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extr
 st_logger = logging.getLogger('streamlit')
 st_logger.setLevel(logging.WARNING)
 
+pal_test=None    # Test pour class
 
 # ======================================================================================================
 # URL: https://testexcel-xwu5zapqqz8ukerpqqvxhu.streamlit.app/
@@ -649,7 +650,7 @@ def pal_deltail(palmon,df,pic_width=300):
     df.reset_index()
     cols_comp = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
 
-    pal_test=None
+    #pal_test=None
     if st.button("Test class"):
         pal_test=testClass(df.loc[df.index[0], 'Name'],df)
         write_info('pal_test',pal_test)
@@ -657,7 +658,8 @@ def pal_deltail(palmon,df,pic_width=300):
     if pal_test is not None:
         if st.button("Get from class"):
             write_info('pal_test',pal_test) 
-            write_info('pal_test.get_type()',pal_test.get_type()) 
+            write_info('pal_test.get_type()',pal_test.get_type())
+            write_info('pal_test.get_level()',pal_test.get_level())
     #df
     if pic_width == 300:
         cell_pic=2
