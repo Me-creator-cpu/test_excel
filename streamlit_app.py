@@ -1018,7 +1018,7 @@ class Palmon:
     def get_type(self):
         try:
             #return self.data['Type']
-            return self.data.Type
+            return self.data.Type self.data.Type_txt
         except:
             return None
     def get_level(self):
