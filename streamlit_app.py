@@ -458,7 +458,7 @@ def build_graph_select():
     column='Type'
     options = st.multiselect(f"Filter values for {column}:", df_srv[column].unique(), default=list(df_srv[column].unique()))
     #source = df_srv[df_srv[column].isin(options)]
-    source = df_srv[(df_srv[column].isin(options)) & (df_srv['Level'] >= int(min_upg)]
+    source = df_srv[(df_srv[column].isin(options)) & (df_srv['Level'] >= int(min_upg))]
     #st.vega_lite_chart(source, chart, theme="streamlit", width="stretch")     
     event = st.vega_lite_chart(source, chart, theme=None, on_select="rerun", width="stretch") 
     try:
