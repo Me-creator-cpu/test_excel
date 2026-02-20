@@ -430,7 +430,7 @@ def build_graph_select():
         field_y = 'Stars'
     df_srv = get_df_base().copy()
     max_upg=df_srv.loc[(df_srv["Level"] >= 1)].Level.max()+10
-    min_upg=df_srv.loc[(df_srv["Level"] >= 1)].Level.min()-10
+    min_upg=df_srv.loc[(df_srv["Level"] >= 10)].Level.min()-10
     #write_info('max_upg',max_upg)
     #Graphe per type
     chart = {
