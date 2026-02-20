@@ -931,7 +931,8 @@ def menu_tab_dashboards():
         
         st.subheader('⚔ Attack top 7')
         df_a = apply_cols_icons(df_a)
-        event_a = build_table_dashboard(df_a)
+        build_table_dashboard(df_a)
+        #event_a = build_table_dashboard(df_a)
         #if event_a is not None:
         #    detail=event_a.selection.rows.copy()
         #    st.session_state["event_detail"]=event_a.selection.rows
@@ -942,7 +943,8 @@ def menu_tab_dashboards():
         #event_detail    st.session_state.event_detail
         st.subheader('🛡 Defend top 7')
         df_d = apply_cols_icons(df_d)
-        event_d = build_table_dashboard(df_d)
+        build_table_dashboard(df_d)
+        #event_d = build_table_dashboard(df_d)
         #if event_d is not None:
         #    st.session_state["event_detail"]=event_d.selection.rows
         #    st.session_state["event_df"]=df_d
