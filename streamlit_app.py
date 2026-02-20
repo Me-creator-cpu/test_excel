@@ -662,6 +662,7 @@ def pal_deltail(palmon,df,pic_width=300):
             write_info('pal_test',pal_test) 
             write_info('pal_test.get_type()',pal_test.get_type())
             write_info('pal_test.get_level()',pal_test.get_level())
+            write_info('pal_test.get_image()',pal_test.get_image())
     #df
     if pic_width == 300:
         cell_pic=2
@@ -1018,13 +1019,19 @@ class Palmon:
     def get_type(self):
         try:
             #return self.data['Type']
-            ret_val=str(self.data.Type+self.data.Type_txt)
+            ret_val=self.data.Type+self.data.Type_txt
+            ret_val=self.loc[df.index[0], 'Type']+self.loc[df.index[0], 'Type_txt']
             return ret_val
         except:
             return None
     def get_level(self):
         try:
             return int(self.data['Level'])
+        except:
+            return None
+    def get_image(self):
+        try:
+            return str(self.data['URL'])
         except:
             return None
 
