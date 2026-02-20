@@ -385,6 +385,19 @@ def icon_full_cost(value):
     except:
         return value
 
+def build_main_chart(raw_data,title_expander=None,x_axis=None,y_axis=None):
+    if title_expander is not None:
+        container = st.expander(title_expander, expanded=True, width="stretch")
+    else:
+        container = st.container(border=False, width='stretch', height='content')
+    with container:
+        st.bar_chart(
+            raw_data,
+            x=x_axis,
+            y=y_axis,
+            horizontal=True,
+    )
+      
 def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True):
     if df_chart is not None:
         try:
@@ -995,8 +1008,8 @@ def menu_tab_dashboards():
         st.subheader('Average Skill')
         build_pivot_table(df_tcd1,'Level','Type','Skill')
         st.subheader('Average Level')
-        df_tcd2
-        #build_table_dashboard(df_tcd2)
+        build_main_chart(df_tcd2,None,'Type','Level')
+
     except:
         st.empty()
 
