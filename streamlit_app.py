@@ -932,30 +932,30 @@ def menu_tab_dashboards():
         st.subheader('⚔ Attack top 7')
         df_a = apply_cols_icons(df_a)
         event_a = build_table_dashboard(df_a)
-        if event_a is not None:
-            detail=event_a.selection.rows.copy()
-            st.session_state["event_detail"]=event_a.selection.rows
-            st.session_state["event_df"]=df_a
-            #st.session_state["event_a"]=event_a.selection.rows
+        #if event_a is not None:
+        #    detail=event_a.selection.rows.copy()
+        #    st.session_state["event_detail"]=event_a.selection.rows
+        #    st.session_state["event_df"]=df_a
+        #    #st.session_state["event_a"]=event_a.selection.rows
             #show_details(event_a.selection.rows,df_a,True)
             #event_a = None   
         #event_detail    st.session_state.event_detail
         st.subheader('🛡 Defend top 7')
         df_d = apply_cols_icons(df_d)
         event_d = build_table_dashboard(df_d)
-        if event_d is not None:
-            st.session_state["event_detail"]=event_d.selection.rows
-            st.session_state["event_df"]=df_d
+        #if event_d is not None:
+        #    st.session_state["event_detail"]=event_d.selection.rows
+        #    st.session_state["event_df"]=df_d
             #st.session_state["event_d"]=event_d.selection.rows
             #show_details(event_d.selection.rows,df_d,True)
             #event_a = None
             #event_d = None  
 
-        if "event_detail" in st.session_state:
-            if st.session_state.event_detail is not None:
-                show_details(st.session_state.event_detail,st.session_state.event_df,True)
-                del_session_variable("event_detail")
-                del_session_variable("event_df")
+        #if "event_detail" in st.session_state:
+        #    if st.session_state.event_detail is not None:
+        #        show_details(st.session_state.event_detail,st.session_state.event_df,True)
+        #        del_session_variable("event_detail")
+        #        del_session_variable("event_df")
         
         row_d1 = st.columns(2,border=col_border, width="stretch")
         with row_d1[0]:
