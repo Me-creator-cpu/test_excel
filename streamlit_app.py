@@ -648,6 +648,13 @@ def pal_deltail(palmon,df,pic_width=300):
     df_t=df.reset_index().T
     df.reset_index()
     cols_comp = ['Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
+
+    pal_test=None
+    if st.button("Test class"):
+        pal_test=testClass(df.loc[df.index[0], 'Name'],df)
+    if st.button("Get from class"):
+        write_info('pal_test',pal_test) 
+        write_info('pal_test.get_Type()',pal_test.get_Type()) 
     #df
     if pic_width == 300:
         cell_pic=2
@@ -1017,7 +1024,7 @@ class Palmon:
 #
 # ======================================================================================================
 def testClass(name,df):
-    testPal=Palmon(name,df)
+    return Palmon(name,df)
 
 # ======================================================================================================
 #
