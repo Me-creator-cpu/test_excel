@@ -1029,7 +1029,7 @@ class Palmon:
             return None
     def get_image(self):
         try:
-            return self.data['URL'].item()
+            return self.data['URL'].values[0]
         except:
             return None
 
