@@ -31,7 +31,7 @@ pal_test=None    # Test pour class
 
 # Définitions variables
 df_xls = None
-uploaded_file = None
+#uploaded_file = None
 excel_loaded=False
 tabs_data=[]
 tabs = None
@@ -40,7 +40,10 @@ tabs = None
 if 'df_data' not in st.session_state:
     st.session_state.df_data = df_xls
 if 'uploaded_file' not in st.session_state:
+    uploaded_file = None
     st.session_state.uploaded_file = uploaded_file
+else:
+    uploaded_file = uploaded_file
 if "excel_loaded" not in st.session_state:
     st.session_state.excel_loaded = False
 if "tabs_data" not in st.session_state:
