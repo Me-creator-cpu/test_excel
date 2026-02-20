@@ -43,7 +43,7 @@ if 'uploaded_file' not in st.session_state:
     uploaded_file = None
     st.session_state.uploaded_file = uploaded_file
 else:
-    uploaded_file = uploaded_file
+    uploaded_file = st.session_state.uploaded_file
 if "excel_loaded" not in st.session_state:
     st.session_state.excel_loaded = False
 if "tabs_data" not in st.session_state:
