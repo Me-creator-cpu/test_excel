@@ -933,6 +933,7 @@ def menu_tab_dashboards():
         df_a = apply_cols_icons(df_a)
         event_a = build_table_dashboard(df_a)
         if event_a is not None:
+            detail=event_a.selection.rows.copy()
             st.session_state["event_detail"]=event_a.selection.rows
             st.session_state["event_df"]=df_a
             #st.session_state["event_a"]=event_a.selection.rows
