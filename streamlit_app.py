@@ -861,7 +861,7 @@ def menu_tab_val():
         build_table_any(df_stars)
 
 def build_pivot_table(raw_data,val_value: str, val_index: str, val_columns: str,title_expander=None):
-    if title_expander is None:
+    if title_expander is not None:
         container_tb = st.expander(title_expander, expanded=True, width="stretch")
     else:
         container_tb = st.container(border=False, width='stretch', height='content')
