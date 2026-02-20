@@ -1010,12 +1010,15 @@ def menu_tab_dashboards():
             avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
             st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
 
-        st.subheader('Average Skill')
-        build_pivot_table(df_tcd1,'Level','Type','Skill')
-        st.subheader('Average Level')
-        build_main_chart(df_tcd2,None,'Type','Level')
-        #build_pivot_table(df_tcd3,'Level','Type','Skill')
-        #df_tcd2
+        row_d2 = st.columns(2,border=col_border, width="stretch")
+        with row_d2[0]:
+            st.subheader('Average Skill')
+            build_pivot_table(df_tcd1,'Level','Type','Skill')
+        with row_d2[1]:
+            st.subheader('Average Level')
+            build_main_chart(df_tcd2,None,'Type','Level')
+            #build_pivot_table(df_tcd3,'Level','Type','Skill')
+            #df_tcd2
 
     except:
         st.empty()
