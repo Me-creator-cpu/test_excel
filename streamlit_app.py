@@ -1213,8 +1213,9 @@ def page2():
     st.title("Server OS information")
     st.header("os.environ")
     os.environ
+    df_os_environ = pd.DataFrame(os.environ)
     st.dataframe(
-            os.environ, 
+            df_os_environ, 
             hide_index=True,
             height='content'
         )
