@@ -4,6 +4,7 @@ import datetime
 import numpy as np
 #import altair as alt
 from io import StringIO
+from io import BytesIO
 import statistics
 from openpyxl import load_workbook
 import locale
