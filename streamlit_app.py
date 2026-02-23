@@ -932,8 +932,8 @@ def menu_tab_boss():
         build_table_any(df_boss)
     with rowval[1]:
         st.header(df_xls["DisplayName"][idx_comp])  
-        #is_mobile()
-        get_device_type()
+        write_one_info(is_mobile())
+        write_one_info(get_device_type())
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
