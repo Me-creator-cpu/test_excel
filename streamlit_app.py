@@ -1226,6 +1226,13 @@ def page2():
 
 run_every = None
 
+def get_recent_data():
+    data = pd.DataFrame(io.BytesIO())
+    return data
+    
+def toggle_streaming():
+    st.session_state.stream = not st.session_state.stream
+    
 if "data" not in st.session_state:
     st.session_state.data = get_recent_data()
 
@@ -1236,13 +1243,6 @@ if st.session_state.stream is True:
     run_every = st.session_state.run_every
 else:
     run_every = None
-
-def get_recent_data():
-    data = pd.DataFrame(io.BytesIO())
-    return data
-    
-def toggle_streaming():
-    st.session_state.stream = not st.session_state.stream
     
 @st.fragment(run_every=run_every)
 def page3():
