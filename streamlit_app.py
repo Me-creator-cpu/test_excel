@@ -11,7 +11,7 @@ import logging
 import os
 import platform
 #from flask import Flask, request
-from flask import request
+#from flask import request
 #import request
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
@@ -259,13 +259,33 @@ def test_df_xls():
         with cell2:
             st.write(df_xls[i][2])
 
-#def get_device_type():
-#    user_agent = request.headers.get('User-Agent')
-#    user_agent_parsed = parse(user_agent)
-#    device_type = ("Mobile" if user_agent_parsed.is_mobile else
-#                   "Tablet" if user_agent_parsed.is_tablet else
-#                   "Desktop")
-#    return f"Device Type: {device_type}, Browser: {user_agent_parsed.browser.family}"
+def is_mobile():
+    if st.context:
+        headers = st.context.headers
+        user_agent_string = headers.get("User-Agent", "")
+        if not user_agent_string:
+            return False
+        ua = user_agent_string.lower()
+        if 'iphone' in ua:
+            return True
+        if 'android' in ua and 'mobile' in ua:
+            return True
+        if 'windows phone' in ua:
+            return True
+        if 'blackberry' in ua:
+            return True
+    else:
+        return False
+    return False
+    
+def get_device_type():
+    headers = st.context.headers
+    user_agent = headers.get("User-Agent", "")    
+    user_agent_parsed = parse(user_agent)
+    device_type = ("Mobile" if user_agent_parsed.is_mobile else
+                   "Tablet" if user_agent_parsed.is_tablet else
+                   "Desktop")
+    return f"Device Type: {device_type}, Browser: {user_agent_parsed.browser.family}"
 
 def write_js_script():
     js_script="""
@@ -900,7 +920,7 @@ def menu_tab_val():
         st.header(df_xls["DisplayName"][idx_stars])
         df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
-        build_table_any(df_stars)
+        build_table_any(df_stars)       
 
 def menu_tab_boss():
     rowval = st.columns(2,border=False, width="stretch")
@@ -911,14 +931,9 @@ def menu_tab_boss():
         df_boss['Total']=df_boss['Unit cost'].apply(lambda b: int(b)*int(5) )
         build_table_any(df_boss)
     with rowval[1]:
-        st.header(df_xls["DisplayName"][idx_comp])
-        #ua_string = request.headers.get('User-Agent')
-        #user_agent = parse(ua_string)
-        #user_agent
-        headers = st.context.headers
-        user_agent_string = headers.get("User-Agent", "")
-        headers
-        user_agent_string
+        st.header(df_xls["DisplayName"][idx_comp])  
+        is_mobile()
+        get_device_type()
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
