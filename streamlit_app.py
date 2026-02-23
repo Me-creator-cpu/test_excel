@@ -1224,6 +1224,40 @@ def page2():
                  hide_index=False,
                  height='content')
 
+run_every = None
+if st.session_state.stream is True:
+    run_every = st.session_state.run_every
+else:
+    run_every = None
+    
+if "data" not in st.session_state:
+    st.session_state.data = get_recent_data(datetime.now() - timedelta(seconds=60))
+
+if "stream" not in st.session_state:
+    st.session_state.stream = False
+
+def get_recent_data():
+    data = pd.DataFrame(io.BytesIO())
+    return data
+    
+def toggle_streaming():
+    st.session_state.stream = not st.session_state.stream
+    
+@st.fragment(run_every=run_every)
+def page3():
+    st.title("In-memory stream for binary data")
+    st.button(
+        "Start streaming", disabled=st.session_state.stream, on_click=toggle_streaming
+    )
+    st.button(
+        "Stop streaming", disabled=not st.session_state.stream, on_click=toggle_streaming
+    )
+    st.session_state.data = pd.concat(
+        [st.session_state.data, get_recent_data()]
+    )
+    st.session_state.data = st.session_state.data[-100:]
+    st.line_chart(st.session_state.data)   
+
 # ======================================================================================================
 #
 #    Start MAIN page
@@ -1280,6 +1314,7 @@ if 1 == 1:    # <=====================================
         "Information": [
             st.Page(page1, title="Device info"),
             st.Page(page2, title="OS info"),
+            st.Page(page3, title="In-memory stream"),
         ],
     }
     pg = st.navigation(pages)
