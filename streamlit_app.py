@@ -1206,7 +1206,7 @@ def pg_menu_200():
     
 def page1():
     st.title(f"{app_title} Info")
-    write_one_info(is_mobile())
+    write_one_info(f"is_mobile: {is_mobile()}")
     write_one_info(get_device_type())    
 
 def page2():
