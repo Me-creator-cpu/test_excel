@@ -1228,9 +1228,9 @@ def page2():
 
 def page3():
     fileinfo={
-       "Name":uploaded_file.name,
-       "Type":uploaded_file.type,
-       "Size":uploaded_file.size
+       "Name":st.session_state.uploaded_file.name,
+       "Type":st.session_state.uploaded_file.type,
+       "Size":st.session_state.uploaded_file.size
     }
     st.dataframe(
         fileinfo,
