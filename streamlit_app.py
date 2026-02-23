@@ -1225,16 +1225,17 @@ def page2():
                  height='content')
 
 run_every = None
-if st.session_state.stream is True:
-    run_every = st.session_state.run_every
-else:
-    run_every = None
-    
+
 if "data" not in st.session_state:
     st.session_state.data = get_recent_data(datetime.now() - timedelta(seconds=60))
 
 if "stream" not in st.session_state:
     st.session_state.stream = False
+    
+if st.session_state.stream is True:
+    run_every = st.session_state.run_every
+else:
+    run_every = None
 
 def get_recent_data():
     data = pd.DataFrame(io.BytesIO())
