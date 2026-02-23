@@ -1216,9 +1216,7 @@ def page2():
     st.header("os.sysconf_names")
     os.sysconf_names
     st.header("user_agent")
-    #os.stat
-    user_agent = request.headers.get('User-Agent')
-    user_agent_parsed = parse(user_agent)
+    os.stat
 
 # ======================================================================================================
 #
@@ -1273,9 +1271,9 @@ if 1 == 1:    # <=====================================
             st.Page(pg_menu_150, title="Dashboards",icon="📊"),
             st.Page(pg_menu_200, title="CSV downloads",icon="📥"),
         ],
-        "Tests": [
-            st.Page(page1, title="Page 1"),
-            st.Page(page2, title="Page 2"),
+        "Information": [
+            st.Page(page1, title="Device info"),
+            st.Page(page2, title="OS info"),
         ],
     }
     pg = st.navigation(pages)
