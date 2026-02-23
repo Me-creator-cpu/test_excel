@@ -1228,7 +1228,7 @@ def page2():
 run_every = None
 
 def get_recent_data():
-    data = pd.DataFrame(io.BytesIO())
+    data = pd.DataFrame(BytesIO())
     return data
     
 def toggle_streaming():
