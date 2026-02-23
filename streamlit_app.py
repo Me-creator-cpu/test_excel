@@ -3,8 +3,8 @@ import pandas as pd
 import datetime
 import numpy as np
 #import altair as alt
-from io import StringIO
-from io import BytesIO
+#from io import StringIO
+#from io import BytesIO
 import statistics
 from openpyxl import load_workbook
 import locale
@@ -1225,45 +1225,6 @@ def page2():
                  hide_index=False,
                  height='content')
 
-run_every = None
-
-def get_recent_data():
-    data = pd.DataFrame(BytesIO())
-    return data
-    
-def toggle_streaming():
-    st.session_state.stream = not st.session_state.stream
-    
-if "data" not in st.session_state:
-    st.session_state.data = get_recent_data()
-
-if "stream" not in st.session_state:
-    st.session_state.stream = False
-    
-if st.session_state.stream is True:
-    run_every = st.session_state.run_every
-else:
-    run_every = None
-    
-@st.fragment(run_every=run_every)
-def page3():
-    st.title("In-memory stream for binary data")
-    st.slider(
-        "Check for updates every: (seconds)", 0.05, 5.0, value=1.0, key="run_every"
-    )
-    st.button(
-        "Start streaming", disabled=st.session_state.stream, on_click=toggle_streaming
-    )
-    st.button(
-        "Stop streaming", disabled=not st.session_state.stream, on_click=toggle_streaming
-    )
-    st.session_state.data = pd.concat(
-        [st.session_state.data, get_recent_data()]
-    )
-    st.session_state.data = st.session_state.data[-100:]
-    st.line_chart(st.session_state.data)  
-    st.session_state.data
-
 # ======================================================================================================
 #
 #    Start MAIN page
@@ -1318,9 +1279,8 @@ if 1 == 1:    # <=====================================
             st.Page(pg_menu_200, title="CSV downloads",icon="📥"),
         ],
         "Information": [
-            st.Page(page1, title="Device info"),
-            st.Page(page2, title="OS info"),
-            st.Page(page3, title="In-memory stream"),
+            st.Page(page1, title="Device info",icon="📱" if is_mobile() else "💻"),
+            st.Page(page2, title="OS info",icon="🖥️"),
         ],
     }
     pg = st.navigation(pages)
