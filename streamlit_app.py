@@ -944,17 +944,32 @@ def menu_tab_boss():
         st.header(df_xls["DisplayName"][idx_comp])
         df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
         df_boss_det
-        df_boss_det['Cost']=None
-        df_boss_det['Unit cost']=None
-        df_boss_det['Total']=None
-        #df_boss_det['Stars']=df_boss_det['Stars'].apply(lambda b: format_stars(b) )
+        df_boss_det['Stars level']=df_boss_det['Stars'].apply(lambda b: format_stars(abs(b)) )
         df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-        build_table_any(df_boss_det)
+        st.dataframe(
+                df_boss_det,
+                column_config={
+                    "Name": st.column_config.TextColumn("Name", pinned = True),
+                    "Skill": st.column_config.TextColumn("Type", pinned = True),
+                    "Type": st.column_config.TextColumn("Type", pinned = False),
+                    "Stars level": st.column_config.TextColumn("Stars level"),
+                    "Stars": st.column_config.NumberColumn("Stars",format="compact")
+                },
+                hide_index=True,
+             )          
         write_one_info(is_mobile())
         write_one_info(get_device_type())
 
 def menu_tab_boss_detail():
-    st.empty()
+    st.header(df_xls["DisplayName"][idx_boss_data])
+    df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
+    df_boss_det
+    df_boss_det['Cost']=None
+    df_boss_det['Unit cost']=None
+    df_boss_det['Total']=None    
+    #df_boss_det['Stars']=df_boss_det['Stars'].apply(lambda b: format_stars(b) )
+    df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+    build_table_any(df_boss_det)
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
