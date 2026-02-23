@@ -935,6 +935,7 @@ def menu_tab_boss():
         write_one_info(is_mobile())
         write_one_info(get_device_type())
     st.context.locale
+    st.context
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
