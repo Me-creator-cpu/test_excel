@@ -1227,7 +1227,7 @@ def page2():
 run_every = None
 
 if "data" not in st.session_state:
-    st.session_state.data = get_recent_data(datetime.now() - timedelta(seconds=60))
+    st.session_state.data = get_recent_data()
 
 if "stream" not in st.session_state:
     st.session_state.stream = False
