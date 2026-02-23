@@ -63,6 +63,7 @@ cols_comp = ['Level from', 'Cost']
 cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
 cols_mut_full = ['Cost type', 'Cost']
 cols_stars = ['Stars level', 'Unit Cost', 'Total']
+col_boss = cols_stars
 
 df_pal_data=None
 df_costs_exp=None
@@ -70,6 +71,7 @@ df_costs_comp=None
 df_costs_mut=None
 df_costs_mut_full=None
 df_costs_stars=None
+df_costs_boss=None
 
 idx_palmon=0
 idx_costs=1
@@ -77,16 +79,17 @@ idx_comp=2
 idx_mut=3
 idx_val=4
 idx_stars=5
+idx_boss=6
 
-data = { #                    0                  1                  2                    3                4                        5
-        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars"        ],
-        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars"        ],
-        "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C"          ],
-        "SkipRows":       [0,                1,                 1,                  1,                  0,                        0              ],
-        "UpToRow":        [41,               302,               31,                 224,                5,                        7              ],
-        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars     ],
-        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars ],
-        "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs"],
+data = { #                    0                  1                  2                    3                4                        5                6
+        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs"],
+        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss"],
+        "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C",             "D:E"],
+        "SkipRows":       [0,                1,                 1,                  1,                  0,                        0,                 1],
+        "UpToRow":        [41,               302,               31,                 224,                5,                        7,                 5],
+        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        col_boss],
+        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss],
+        "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Boss upgrade costs],
        }
 df_xls = pd.DataFrame(data)
 option_skill=["⚔ Attack","🛡 Defend"]
