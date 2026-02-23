@@ -912,6 +912,8 @@ def menu_tab_boss():
         build_table_any(df_boss)
     with rowval[1]:
         st.header(df_xls["DisplayName"][idx_comp])
+        wb=webbrowser.get()
+        wb
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
