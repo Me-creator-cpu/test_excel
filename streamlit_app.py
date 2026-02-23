@@ -374,7 +374,7 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
         df = None
     return df
 
-def get_data(file,idx,show_table=False):
+def get_data_old(file,idx,show_table=False):
     # voir pour remplacer avec: df.loc[row_indexer, "col"] = values
     df_xls["DataFrame"][idx]=get_data_from_excel(
                                                 xls_file=file,
@@ -386,6 +386,17 @@ def get_data(file,idx,show_table=False):
                                                 show_table=show_table
                                                 )
 
+def get_data(file,idx,show_table=False):
+    df_xls.loc[idx, "DataFrame"]=get_data_from_excel(
+                                                xls_file=file,
+                                                xls_sheet=df_xls.loc[idx, "Worksheet"],
+                                                skip=df_xls.loc[idx, "SkipRows"],
+                                                rng_cols=df_xls.loc[idx, "Range"],
+                                                rng_rows=df_xls.loc[idx, "UpToRow"],
+                                                rencols=df_xls.loc[idx, "DisplayColumns"],
+                                                show_table=show_table
+                                                )
+    
 def large_num_format(value):
     locale.setlocale(locale.LC_ALL, "fr_FR")
     try:
