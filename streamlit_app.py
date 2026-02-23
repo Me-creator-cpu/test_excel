@@ -932,7 +932,7 @@ def menu_tab_boss():
         build_table_any(df_boss)
     with rowval[1]:
         st.header(df_xls["DisplayName"][idx_comp])  
-        is_mobile()
+        #is_mobile()
         get_device_type()
     
 @st.fragment
