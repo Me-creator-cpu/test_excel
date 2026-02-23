@@ -903,7 +903,7 @@ def menu_tab_boss():
     df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
     df_boss
     df_boss['Stars']=df_boss['Stars'].apply(lambda b: format_stars(b) )
-    df_boss['Total']=df_boss['Unit cost'].apply(lambda b: int(b)*int(5)) )
+    df_boss['Total']=df_boss['Unit cost'].apply(lambda b: int(b)*int(5) )
     build_table_any(df_boss)
     
 @st.fragment
