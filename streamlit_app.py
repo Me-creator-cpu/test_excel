@@ -902,11 +902,15 @@ def menu_tab_val():
         build_table_any(df_stars)
 
 def menu_tab_boss():
-    st.header(df_xls["DisplayName"][idx_boss]) 
-    df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
-    df_boss['Stars']=df_boss['Stars'].apply(lambda b: format_stars(b) )
-    df_boss['Total']=df_boss['Unit cost'].apply(lambda b: int(b)*int(5) )
-    build_table_any(df_boss)
+    rowval = st.columns(2,border=False, width="stretch")
+    with rowval[0]:
+        st.header(df_xls["DisplayName"][idx_stars]) 
+        df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
+        df_boss['Stars']=df_boss['Stars'].apply(lambda b: format_stars(b) )
+        df_boss['Total']=df_boss['Unit cost'].apply(lambda b: int(b)*int(5) )
+        build_table_any(df_boss)
+    with rowval[1]:
+        st.header(df_xls["DisplayName"][idx_comp])
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
