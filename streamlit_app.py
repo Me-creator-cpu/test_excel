@@ -1218,7 +1218,7 @@ def page2():
     st.dataframe(df_os_environ,hide_index=True,height='content')
     st.header("os.sysconf_names")
     os.sysconf_names
-    df_os_sysconf_names = pd.DataFrame([os.sysconf_names])
+    df_os_sysconf_names = pd.DataFrame([os.sysconf_names]).T
     st.dataframe(df_os_sysconf_names,hide_index=True,height='content')
 
 # ======================================================================================================
