@@ -912,8 +912,9 @@ def menu_tab_boss():
         build_table_any(df_boss)
     with rowval[1]:
         st.header(df_xls["DisplayName"][idx_comp])
-        #wb = request.META.get('HTTP_USER_AGENT')
-        wb = request.META['HTTP_USER_AGENT']
+        ua_string = request.headers.get('User-Agent')
+        user_agent = parse(ua_string)
+        user_agent
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
