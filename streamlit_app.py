@@ -1213,9 +1213,7 @@ def page1():
 def page2():
     st.title("Server OS information")
     st.header("os.environ")
-    os.environ
-    
-    df_os_environ = pd.DataFrame([dict(os.environ)])
+    df_os_environ = pd.DataFrame([dict(os.environ)]).T
     st.dataframe(df_os_environ,hide_index=False,height='content')
     st.header("os.sysconf_names")
     df_os_sysconf_names = pd.DataFrame([os.sysconf_names]).T
