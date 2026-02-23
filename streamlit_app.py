@@ -12,7 +12,7 @@ import os
 import platform
 #from flask import Flask, request
 #from flask import request
-import request
+#import request
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 
@@ -912,8 +912,8 @@ def menu_tab_boss():
         build_table_any(df_boss)
     with rowval[1]:
         st.header(df_xls["DisplayName"][idx_comp])
-        wb = request.META.get('HTTP_USER_AGENT')
-        wb
+        #wb = request.META.get('HTTP_USER_AGENT')
+        wb = request.META['HTTP_USER_AGENT']
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
