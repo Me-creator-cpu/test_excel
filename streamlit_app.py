@@ -879,8 +879,8 @@ def menu_tab_show(idx):
             menu_tab_val()
         case 6:    #idx_boss
             menu_tab_boss()
-        #case 7:    #idx_boss_data
-        #    menu_tab_boss_detail()
+        case 7:    #idx_boss_data
+            menu_tab_boss_detail()
         case 100:
             menu_tab_dashboards()
         case 150:
@@ -950,7 +950,7 @@ def menu_tab_boss():
                 column_config={
                     "Name": st.column_config.TextColumn("Name", pinned = True),
                     "Skill": st.column_config.TextColumn("Type", pinned = True),
-                    "Type": st.column_config.TextColumn("Type", pinned = False),
+                    "Type": None, #st.column_config.TextColumn("Type", pinned = False),
                     "Stars level": st.column_config.TextColumn("Stars level"),
                     "Stars": st.column_config.NumberColumn("Stars",format="compact"),
                     "Comp 1": None,
