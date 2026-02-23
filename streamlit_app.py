@@ -830,7 +830,7 @@ def menu_build_tabs(idx_selected=0):
     menu_tab_show(chosen_id)
 
 def menu_tab_show(idx):
-    write_info("chosen_id=",int(idx))
+    #write_info("chosen_id=",int(idx))
     if df_xls["DataFrame"][idx_palmon] is not None:
         idx_tab = idx
     else:
@@ -846,6 +846,8 @@ def menu_tab_show(idx):
             menu_tab_mut()
         case 4:        #int(idx_val):
             menu_tab_val()
+        case 6:
+            menu_tab_boss()
         case 100:
             menu_tab_dashboards()
         case 150:
@@ -895,7 +897,13 @@ def menu_tab_val():
         df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
         build_table_any(df_stars)
-      
+
+def menu_tab_boss():
+    st.header(df_xls["DisplayName"][idx_boss]) 
+    df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
+    df_boss['Stars level']=df_boss['Stars level'].apply(lambda b: format_stars(b) )
+    build_table_any(df_stars)
+    
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
     if df_source is None:
@@ -1025,7 +1033,6 @@ def menu_tab_dashboards():
 
     except:
         st.empty()
-
         
 def menu_tab_graph():
     build_graph_select()
