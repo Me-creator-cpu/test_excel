@@ -10,6 +10,7 @@ import locale
 import logging
 import os
 import platform
+import webbrowser
 #from flask import Flask, request
 #import requests
 from user_agents import parse
