@@ -1227,10 +1227,11 @@ def page2():
                  height='content')
 
 def page3():
+    obj_fle=st.session_state.uploaded_file
     fileinfo={
-       "Name":st.session_state.uploaded_file.name,
-       "Type":st.session_state.uploaded_file.type,
-       "Size":st.session_state.uploaded_file.size
+       "Name":obj_fle.name,
+       "Type":obj_fle.type,
+       "Size":obj_fle.size
     }
     st.dataframe(
         fileinfo,
