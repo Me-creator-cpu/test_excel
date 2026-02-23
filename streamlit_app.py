@@ -1210,13 +1210,16 @@ def page1():
     write_one_info(get_device_type())    
 
 def page2():
-    st.title("Second page")
+    st.title("Server OS information")
     st.header("os.environ")
     os.environ
+    st.dataframe(
+            os.environ, 
+            hide_index=True,
+            height='content'
+        )
     st.header("os.sysconf_names")
     os.sysconf_names
-    st.header("user_agent")
-    os.stat
 
 # ======================================================================================================
 #
