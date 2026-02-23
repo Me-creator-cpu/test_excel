@@ -64,7 +64,8 @@ cols_comp = ['Level from', 'Cost']
 cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
 cols_mut_full = ['Cost type', 'Cost']
 cols_stars = ['Stars level', 'Unit Cost', 'Total']
-col_boss = ['Stars level', 'Unit Cost', 'Total']
+cols_boss = ['Stars level', 'Unit Cost', 'Total']
+cols_boss_data = ['Name','Type', 'Level', 'Stars','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5']
 
 df_pal_data=None
 df_costs_exp=None
@@ -73,6 +74,7 @@ df_costs_mut=None
 df_costs_mut_full=None
 df_costs_stars=None
 df_costs_boss=None
+df_boss_data=None
 
 idx_palmon=0
 idx_costs=1
@@ -81,16 +83,17 @@ idx_mut=3
 idx_val=4
 idx_stars=5
 idx_boss=6
-
-data = { #                    0                  1                  2                    3                4                        5                6
-        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs"],
-        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss"],
-        "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C",             "D:E"],
-        "SkipRows":       [0,                1,                 1,                  1,                  0,                        0,                 1],
-        "UpToRow":        [41,               302,               31,                 224,                4,                        7,                 5],
-        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        col_boss],
-        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss],
-        "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Boss upgrade costs"],
+idx_boss_data=7
+#✨
+data = { #                    0                  1                  2                    3                4                        5                    6                    7
+        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs"],
+        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss",               "Boss data"],
+        "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C",             "D:E",                "H:P"],
+        "SkipRows":       [0,                1,                 1,                  1,                  0,                        0,                 1,                    1],
+        "UpToRow":        [41,               302,               31,                 224,                4,                        7,                 5,                    5],
+        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        cols_boss,            cols_boss_data],
+        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss,        df_boss_data],
+        "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Boss upgrade costs", "Boss details"],
        }
 df_xls = pd.DataFrame(data)
 option_skill=["⚔ Attack","🛡 Defend"]
@@ -99,8 +102,8 @@ data_skills={
     "Icon":option_skill
 }
 data_type={
-    "Type":["Water","Fire","Electricity","Wood"],
-    "Icon":["💧","🔥","⚡","🪵"]
+    "Type":["Water","Fire","Electricity","Wood","Any"],
+    "Icon":["💧","🔥","⚡","🪵","🌐"] 
 }
 data_values={
     "Value":["Energy","Crystals","Pieces","Level300"],
@@ -869,8 +872,10 @@ def menu_tab_show(idx):
             menu_tab_mut()
         case 4:        #int(idx_val):
             menu_tab_val()
-        case 6:
+        case 6:    #idx_boss
             menu_tab_boss()
+        #case 7:    #idx_boss_data
+        #    menu_tab_boss_detail()
         case 100:
             menu_tab_dashboards()
         case 150:
@@ -931,11 +936,16 @@ def menu_tab_boss():
         df_boss['Total']=df_boss['Unit cost'].apply(lambda b: int(b)*int(5) )
         build_table_any(df_boss)
     with rowval[1]:
-        st.header(df_xls["DisplayName"][idx_comp])  
+        st.header(df_xls["DisplayName"][idx_comp])
+        df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
+        #df_boss_det['Stars']=df_boss_det['Stars'].apply(lambda b: format_stars(b) )
+        df_boss_det['Type']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+        build_table_any(df_boss_det)
         write_one_info(is_mobile())
         write_one_info(get_device_type())
-    st.context.locale
-    st.context
+
+def menu_tab_boss_detail():
+    st.empty()
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
