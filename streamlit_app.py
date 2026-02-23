@@ -1261,7 +1261,8 @@ def page3():
         [st.session_state.data, get_recent_data()]
     )
     st.session_state.data = st.session_state.data[-100:]
-    st.line_chart(st.session_state.data)   
+    st.line_chart(st.session_state.data)  
+    st.session_state.data
 
 # ======================================================================================================
 #
