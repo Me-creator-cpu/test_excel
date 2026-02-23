@@ -10,7 +10,8 @@ import locale
 import logging
 import os
 import platform
-from flask import Flask, request
+#from flask import Flask, request
+from flask import request
 #import requests
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
