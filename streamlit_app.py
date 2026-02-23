@@ -1219,7 +1219,12 @@ def page2():
     st.header("os.sysconf_names")
     os.sysconf_names
     df_os_sysconf_names = pd.DataFrame([os.sysconf_names]).T
-    st.dataframe(df_os_sysconf_names,hide_index=False,height='content')
+    st.dataframe(df_os_sysconf_names,
+                 column_config={
+                    "Parameter": st.column_config.TextColumn("Parameter", pinned = True),
+                    "Value": st.column_config.SelectboxColumn("Value"),},
+                 hide_index=False,
+                 height='content')
 
 # ======================================================================================================
 #
