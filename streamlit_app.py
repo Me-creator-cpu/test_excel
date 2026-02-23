@@ -902,7 +902,7 @@ def menu_tab_boss():
     st.header(df_xls["DisplayName"][idx_boss]) 
     df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
     df_boss
-    df_boss['Stars level']=df_boss['Stars level'].apply(lambda b: format_stars(b) )
+    df_boss['Stars level']=df_boss['Stars'].apply(lambda b: format_stars(b) )
     build_table_any(df_stars)
     
 @st.fragment
