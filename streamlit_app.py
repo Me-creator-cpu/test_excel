@@ -11,7 +11,7 @@ import logging
 import os
 import platform
 #from flask import Flask, request
-#from flask import request
+from flask import request
 #import request
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
