@@ -962,8 +962,6 @@ def menu_tab_boss():
                 },
                 hide_index=True,
              )          
-        write_one_info(is_mobile())
-        write_one_info(get_device_type())
 
 def menu_tab_boss_detail():
     st.header(df_xls["DisplayName"][idx_boss_data])
@@ -1207,7 +1205,9 @@ def pg_menu_200():
     menu_tab_show(200)
     
 def page1():
-    st.title(f"{app_title} 1st page")
+    st.title(f"{app_title} Info")
+    write_one_info(is_mobile())
+    write_one_info(get_device_type())    
 
 def page2():
     st.title("Second page")
