@@ -830,7 +830,7 @@ def menu_build_tabs(idx_selected=0):
     menu_tab_show(chosen_id)
 
 def menu_tab_show(idx):
-    #write_info("chosen_id=",int(idx))
+    write_info("chosen_id=",int(idx))
     if df_xls["DataFrame"][idx_palmon] is not None:
         idx_tab = idx
     else:
