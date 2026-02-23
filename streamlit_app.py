@@ -548,8 +548,8 @@ def build_table_any(df):
 
 def get_df_base():
     try:
-        if df_xls["DataFrame"][idx_palmon] is not None:
-            return df_xls["DataFrame"][idx_palmon]
+        if df_xls.loc[idx_palmon, "DataFrame"] is not None:
+            return df_xls.loc[idx_palmon, "DataFrame"]
         else:
             return None
     except:
@@ -639,7 +639,7 @@ def format_stars(x): #⭐
         return x
 
 def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
-    if df_xls["DataFrame"][idx_palmon] is not None:
+    if df_xls.loc[idx_palmon, "DataFrame"] is not None:
         df = df_xls["DataFrame"][idx_costs]
         val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
         return val_cost
@@ -647,7 +647,7 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
         return None
 
 def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
-    if df_xls["DataFrame"][idx_palmon] is not None:
+    if df_xls.loc[idx_palmon, "DataFrame"] is not None:
         #df = df_xls["DataFrame"][idx_comp]
         #val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
         val_cost=get_upgrade_comp_costs(from_lvl,to_lvl)
@@ -656,7 +656,7 @@ def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
         return None
 
 def get_upgrade_comp_costs(from_lvl=1,to_lvl=30):
-    if df_xls["DataFrame"][idx_palmon] is not None:
+    if df_xls.loc[idx_palmon, "DataFrame"] is not None:
         df = df_xls["DataFrame"][idx_comp]
         val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
         return int(val_cost)
@@ -902,7 +902,7 @@ def menu_tab_comp():
     
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
-    df_pal=df_xls["DataFrame"][idx_palmon]
+    df_pal=df_xls.loc[idx_palmon, "DataFrame"]    #df_xls["DataFrame"][idx_palmon]
     st.header(df_xls["DisplayName"][idx_costs])
     min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
     max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
@@ -981,7 +981,7 @@ def menu_tab_boss_detail():
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
     if df_source is None:
         st.header(df_xls["DisplayName"][idx_palmon])
-        df = df_xls["DataFrame"][idx_palmon]
+        df = df_xls.loc[idx_palmon, "DataFrame"] #df_xls["DataFrame"][idx_palmon]
     else:
         df = df_source
     column='Type'
@@ -1013,7 +1013,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
 def menu_tab_dashboards():
     col_border=False
     st.header("Dashboard")
-    df=df_xls["DataFrame"][idx_palmon]
+    df=df_xls.loc[idx_palmon, "DataFrame"] #df_xls["DataFrame"][idx_palmon]
     
     column='Type'
     try:
@@ -1117,7 +1117,8 @@ def menu_tab_downloads():
     range_cols = st.columns(3)
     range_cols[0].download_button(
         label="Palmons data",
-        data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
+        #data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
+        data=df_xls.loc[idx_palmon, "DataFrame"].to_csv().encode("utf-8"),
         file_name="base_data.csv",
         mime="text/csv",
         icon=":material/download:",
