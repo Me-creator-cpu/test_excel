@@ -1226,6 +1226,20 @@ def page2():
                  hide_index=False,
                  height='content')
 
+def page3():
+    fileinfo={
+       "Name":uploaded_file.name,
+       "Type":uploaded_file.type,
+       "Size":uploaded_file.size
+    }
+    st.dataframe(
+        fileinfo,
+        height = "content",
+        width = "content",
+        selection_mode = "single-row",
+        hide_index=False,
+        )      
+
 # ======================================================================================================
 #
 #    Start MAIN page
@@ -1282,6 +1296,7 @@ if 1 == 1:    # <=====================================
         "Information": [
             st.Page(page1, title="Device info",icon="📱" if is_mobile() else "💻"),
             st.Page(page2, title="OS info",icon="🖥️"),
+            st.Page(page3, title="File info",icon="📋"),
         ],
     }
     pg = st.navigation(pages)
