@@ -913,7 +913,7 @@ def menu_tab_comp():
     
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
-    df_pal=df_xls.loc[idx_palmon, "DataFrame"]    #df_xls["DataFrame"][idx_palmon]
+    df_pal=df_xls["DataFrame"][idx_palmon]    #df_xls.loc[idx_palmon, "DataFrame"]    #
     st.header(df_xls["DisplayName"][idx_costs])
     min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
     max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
