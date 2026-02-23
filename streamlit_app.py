@@ -63,7 +63,7 @@ cols_comp = ['Level from', 'Cost']
 cols_mut = ['Level', 'Step', 'Substep', 'Cost level']
 cols_mut_full = ['Cost type', 'Cost']
 cols_stars = ['Stars level', 'Unit Cost', 'Total']
-col_boss = cols_stars
+col_boss = ['Stars level', 'Unit Cost', 'Total']
 
 df_pal_data=None
 df_costs_exp=None
@@ -901,6 +901,7 @@ def menu_tab_val():
 def menu_tab_boss():
     st.header(df_xls["DisplayName"][idx_boss]) 
     df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
+    df_boss
     df_boss['Stars level']=df_boss['Stars level'].apply(lambda b: format_stars(b) )
     build_table_any(df_stars)
     
