@@ -891,8 +891,8 @@ def menu_tab_val():
     rowval = st.columns(2,border=False, width="stretch")
     with rowval[0]:
         st.header(df_xls["DisplayName"][idx_val]) 
-        #build_table_full_costs(df_xls["DataFrame"][idx_val])
-        build_table_any(df_xls["DataFrame"][idx_val])
+        build_table_full_costs(df_xls["DataFrame"][idx_val])
+        #build_table_any(df_xls["DataFrame"][idx_val])
     with rowval[1]:
         st.header(df_xls["DisplayName"][idx_stars])
         df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
