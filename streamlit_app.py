@@ -502,13 +502,15 @@ def build_table_any(df):
     st.dataframe(
         df,
         column_config={
-           "Cost": st.column_config.NumberColumn(
-                 "Costs",
-                 min_value=0,
-                 max_value=10000000,
-                 step=1,
-                 format="compact",
-           )
+            "Cost": st.column_config.NumberColumn(
+                "Costs",
+                min_value=0,
+                max_value=10000000,
+                step=1,
+                format="compact",
+            ),
+            "Unit cost": st.column_config.NumberColumn(format="compact"),
+            "Total": st.column_config.NumberColumn(format="compact"),
         },
         hide_index=True,
      )    
