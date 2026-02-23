@@ -10,7 +10,6 @@ import locale
 import logging
 import os
 import platform
-import webbrowser
 #from flask import Flask, request
 #import requests
 from user_agents import parse
@@ -912,7 +911,7 @@ def menu_tab_boss():
         build_table_any(df_boss)
     with rowval[1]:
         st.header(df_xls["DisplayName"][idx_comp])
-        wb=webbrowser.get()
+        wb = request.META.get('HTTP_USER_AGENT')
         wb
     
 @st.fragment
