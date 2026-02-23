@@ -891,7 +891,8 @@ def menu_tab_val():
     rowval = st.columns(2,border=False, width="stretch")
     with rowval[0]:
         st.header(df_xls["DisplayName"][idx_val]) 
-        build_table_full_costs(df_xls["DataFrame"][idx_val])
+        #build_table_full_costs(df_xls["DataFrame"][idx_val])
+        build_table_any(df_xls["DataFrame"][idx_val])
     with rowval[1]:
         st.header(df_xls["DisplayName"][idx_stars])
         df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
@@ -901,7 +902,6 @@ def menu_tab_val():
 def menu_tab_boss():
     st.header(df_xls["DisplayName"][idx_boss]) 
     df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
-    df_boss
     df_boss['Stars']=df_boss['Stars'].apply(lambda b: format_stars(b) )
     df_boss['Total']=df_boss['Unit cost'].apply(lambda b: int(b)*int(5) )
     build_table_any(df_boss)
