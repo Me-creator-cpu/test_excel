@@ -1209,6 +1209,9 @@ st.set_page_config(
 #])
 #pg.run()
 
+if is_mobile():
+    write_js_menu()
+
 if 1 == 1:    # <=====================================
     with st.sidebar:
         menu_load_excel()
