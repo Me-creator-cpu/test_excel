@@ -903,7 +903,7 @@ def menu_tab_boss():
     df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
     df_boss
     df_boss['Stars level']=df_boss['Stars'].apply(lambda b: format_stars(b) )
-    build_table_any(df_stars)
+    build_table_any(df_boss)
     
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
