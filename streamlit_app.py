@@ -1218,8 +1218,7 @@ def page2():
     st.dataframe(df_os_environ,hide_index=True,height='content')
     st.header("os.sysconf_names")
     os.sysconf_names
-    data = json.loads(os.sysconf_names)
-    df_os_sysconf_names = pd.json_normalize(data)
+    df_os_sysconf_names = pd.DataFrame([os.sysconf_names])
     st.dataframe(df_os_sysconf_names,hide_index=True,height='content')
 
 # ======================================================================================================
@@ -1239,7 +1238,7 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }
 )
-#st.title(f"{app_title} App")
+#stitle(f"{app_title} App")
 # Widgets shared by all the pages
 #st.sidebar.selectbox("Foo", ["A", "B", "C"], key="foo")
 #st.sidebar.checkbox("Bar", key="bar")
