@@ -30,6 +30,11 @@ pal_test=None    # Test pour class
 # URL: https://testexcel-xwu5zapqqz8ukerpqqvxhu.streamlit.app/
 # ======================================================================================================
 
+# ======================================================================================================
+# Optimisations
+# df["col"][row_indexer] = value ==> Use `df.loc[row_indexer, "col"] = values` instead
+# ======================================================================================================
+
 # Définitions variables
 df_xls = None
 #uploaded_file = None
@@ -939,10 +944,12 @@ def menu_tab_boss():
         st.header(df_xls["DisplayName"][idx_comp])
         df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
         df_boss_det
+        df_boss_det['Cost']=None
+        df_boss_det['Unit cost']=None
+        df_boss_det['Total']=None
         #df_boss_det['Stars']=df_boss_det['Stars'].apply(lambda b: format_stars(b) )
-        df_boss_det['Type']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-        #build_table_any(df_boss_det)
-        build_table_dashboard(df_boss_det)
+        df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+        build_table_any(df_boss_det)
         write_one_info(is_mobile())
         write_one_info(get_device_type())
 
