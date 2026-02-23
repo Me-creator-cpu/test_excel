@@ -1248,6 +1248,9 @@ else:
 @st.fragment(run_every=run_every)
 def page3():
     st.title("In-memory stream for binary data")
+    st.slider(
+        "Check for updates every: (seconds)", 0.05, 5.0, value=1.0, key="run_every"
+    )
     st.button(
         "Start streaming", disabled=st.session_state.stream, on_click=toggle_streaming
     )
