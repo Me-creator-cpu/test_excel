@@ -10,6 +10,7 @@ import locale
 import logging
 import os
 import platform
+import json
 #from flask import Flask, request
 #from flask import request
 #import request
@@ -1217,7 +1218,8 @@ def page2():
     st.dataframe(df_os_environ,hide_index=True,height='content')
     st.header("os.sysconf_names")
     os.sysconf_names
-    df_os_sysconf_names = pd.DataFrame(os.sysconf_names)
+    data = json.loads(os.sysconf_names)
+    df_os_sysconf_names = pd.json_normalize(data)
     st.dataframe(df_os_sysconf_names,hide_index=True,height='content')
 
 # ======================================================================================================
