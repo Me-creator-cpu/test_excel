@@ -1227,19 +1227,21 @@ def page2():
                  height='content')
 
 def page3():
-    obj_fle=st.session_state.uploaded_file
-    fileinfo={
-       "Name":obj_fle.name,
-       "Type":obj_fle.type,
-       "Size":obj_fle.size
-    }
-    st.dataframe(
-        fileinfo,
-        height = "content",
-        width = "content",
-        selection_mode = "single-row",
-        hide_index=False,
-        )      
+    st.subheader("Coming soon...", divider=False)
+    if 1 == 2:
+        obj_fle=st.session_state.uploaded_file
+        fileinfo={
+           "Name":obj_fle.name,
+           "Type":obj_fle.type,
+           "Size":obj_fle.size
+        }
+        st.dataframe(
+            fileinfo,
+            height = "content",
+            width = "content",
+            selection_mode = "single-row",
+            hide_index=False,
+            )      
 
 # ======================================================================================================
 #
