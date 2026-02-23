@@ -1214,13 +1214,11 @@ def page2():
     st.header("os.environ")
     os.environ
     df_os_environ = pd.DataFrame(os.environ)
-    st.dataframe(
-            df_os_environ, 
-            hide_index=True,
-            height='content'
-        )
+    st.dataframe(df_os_environ,hide_index=True,height='content')
     st.header("os.sysconf_names")
     os.sysconf_names
+    df_os_sysconf_names = pd.DataFrame(os.sysconf_names)
+    st.dataframe(df_os_sysconf_names,hide_index=True,height='content')
 
 # ======================================================================================================
 #
