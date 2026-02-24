@@ -46,7 +46,8 @@ df_xls = None
 excel_loaded=False
 tabs_data=[]
 tabs = None
-global texts_trad = None
+global texts_trad
+texts_trad = None
 
 #def init_session():
 if 'texts_trad' not in st.session_state:
