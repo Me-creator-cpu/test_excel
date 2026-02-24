@@ -273,16 +273,6 @@ def test_df_xls():
         with cell2:
             st.write(df_xls[i][2])
 
-def read_json_trads(sFile=None):
-    file_content = json.loads(sFile, strict=False)
-    #file_content = texts_trad
-    return file_content
-
-def get_text_trad(langu='en',textId='text_id'):
-    ret_val = ''
-    ret_val = texts_trad['data'][textId][0][langu]
-    return ret_val
-
 def is_mobile():
     if st.context:
         headers = st.context.headers
@@ -1292,15 +1282,27 @@ def page3():
             hide_index=False,
             )      
 
+def read_json_trads(sFile='textes.json'):
+    #with open('textes.json', encoding='utf-8', errors='ignore') as f:
+    with open(sFile, encoding='utf-8', errors='ignore') as f:
+        json_data = json.load(f, strict=False) 
+    return json_data
+
+def get_text_trad(langu='en',textId='text_id'):
+    ret_val = ''
+    ret_val = texts_trad['data'][textId][0][langu]
+    return ret_val
+
 def page4():
     #write_coming_soon()
-    #texts_trad = read_json_trads('/mount/src/test_excel/textes.json')
-    #texts_trad = read_json_trads('./textes.json')
+    texts_trad = read_json_trads()
+    texts_trad
     #test_trad = get_text_trad('en','text_id')
     #write_on_info(test_trad)
-    with open('textes.json', encoding='utf-8', errors='ignore') as f:
-        json_data = json.load(f, strict=False)  
-        json_data
+    
+    #with open('textes.json', encoding='utf-8', errors='ignore') as f:
+    #    json_data = json.load(f, strict=False)  
+    #    json_data
 
 # ======================================================================================================
 #
