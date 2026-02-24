@@ -1300,10 +1300,15 @@ def read_json_trads(sFile='textes.json'):
     #return json.loads(json_data)
     return json_data
 
-def get_text_trad(langu='en',textId='text_id'):
+def get_text_trad(langu='en',textId='text_id',reload=True):
     ret_val = ''
-    texts_trad=st.session_state.texts_trad
-    ret_val = texts_trad['data'][textId][0][langu]
+    if reload:
+        st.session_state.texts_trad = read_json_trads()
+    try:
+        texts_trad=st.session_state.texts_trad
+        ret_val = texts_trad['data'][textId][0][langu]
+    except:
+        ret_val=get_text_trad(langu=langu,textId=textId,reload=False)
     return ret_val
 
 def page4():
