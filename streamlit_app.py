@@ -46,6 +46,7 @@ df_xls = None
 excel_loaded=False
 tabs_data=[]
 tabs = None
+texts_trad = None
 
 #def init_session():
 if 'df_data' not in st.session_state:
@@ -272,6 +273,16 @@ def test_df_xls():
         with cell2:
             st.write(df_xls[i][2])
 
+def read_json_trads(sFile=None):
+    json.loads(sFile)
+    file_content = texts_trad
+    return file_content
+
+def get_text_trad(langu='en',textId='text_id'):
+    ret_val = ''
+    ret_val = texts_trad['data'][textId][0][langu]
+    return ret_val
+
 def is_mobile():
     if st.context:
         headers = st.context.headers
@@ -308,6 +319,8 @@ def write_js_script():
 
 def write_js_menu(bln=False): 
     # ---- HIDE STREAMLIT STYLE ----
+    #class="stToolbarActionButton" data-testid="stToolbarActionButton"
+    #
     hide_st_style = """
                 <style>
                 MainMenu {visibility: hidden;}
@@ -1280,7 +1293,10 @@ def page3():
             )      
 
 def page4():
-    write_coming_soon()
+    #write_coming_soon()
+    texts_trad = read_json_trads('textes.json')
+    test_trad = get_text_trad('en','text_id')
+
 
 # ======================================================================================================
 #
