@@ -1290,7 +1290,8 @@ def read_json_trads(sFile='textes.json'):
     #with open('textes.json', encoding='utf-8', errors='ignore') as f:
     with open(sFile, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
-    return json.loads(json_data)
+    #return json.loads(json_data)
+    return json_data
 
 def get_text_trad(langu='en',textId='text_id'):
     ret_val = ''
