@@ -1305,6 +1305,10 @@ def page4():
         st.session_state.texts_trad = read_json_trads()
     test_trad = get_text_trad('en','text_id')
     write_one_info(test_trad)
+    st.divider()
+    site_langu='en'
+    test_trad = get_text_trad(site_langu,'menu_home')
+    write_one_info(test_trad)
 
 # ======================================================================================================
 #
@@ -1354,8 +1358,8 @@ site_langu='en'
 
 if 1 == 1:    # <=====================================
     pages = {
-        get_text_trad(site_langu,'menu_home'):[ 
-            st.Page(pg_home, title=get_text_trad(site_langu,'menu_home'), icon="🏠"),
+        "Home":[ 
+            st.Page(pg_home, title="Home", icon="🏠"),
             #st.Page(menu_load_excel, title="Load Excel", icon="📅"),
         ],
         "Resources": [
