@@ -1238,7 +1238,7 @@ def page3():
         fileinfo={
            "Name":obj_fle.name,
            "Type":obj_fle.type,
-           "Size":obj_fle.size
+           "Size":large_num_format(obj_fle.size)
         }
         st.dataframe(
             fileinfo,
