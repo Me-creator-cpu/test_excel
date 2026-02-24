@@ -1365,9 +1365,9 @@ if 1 == 1:    # <=====================================
             #st.Page(menu_load_excel, title="Load Excel", icon="📅"),
         ],
         get_text_trad(site_langu,'menu_resources'): [
-            st.Page(pg_menu_0, title="Full list",icon="🗂️"),
-            st.Page(pg_menu_150, title="Dashboards",icon="📊"),
-            st.Page(pg_menu_200, title="CSV downloads",icon="📥"),
+            st.Page(pg_menu_0, title=get_text_trad(site_langu,'full_list'),icon="🗂️"),
+            st.Page(pg_menu_150, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
+            st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
         ],
         get_text_trad(site_langu,'menu_info'): [
             st.Page(page1, title=get_text_trad(site_langu,'menu_info_device'),icon="📱" if is_mobile() else "💻"),
