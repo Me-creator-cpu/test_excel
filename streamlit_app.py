@@ -32,6 +32,8 @@ pal_test=None    # Test pour class
 # URL: https://testexcel-xwu5zapqqz8ukerpqqvxhu.streamlit.app/
 # ======================================================================================================
 
+url_menu_boss = 'https://i.ytimg.com/vi/ka0jFGAPnqQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAuTuC7wOYDNJ4TqjlsXACLakFfwg'
+
 # ======================================================================================================
 # Optimisations
 # df["col"][row_indexer] = value ==> Use `df.loc[row_indexer, "col"] = values` instead
@@ -969,7 +971,7 @@ def menu_tab_boss():
                     "Comp 3": None,
                     "Comp 4": None,
                     "Comp 5": None,
-                    "URL": None,
+                    "URL": st.column_config.ImageColumn("Base preview",width="small"),
                 },
                 hide_index=True,
              )          
