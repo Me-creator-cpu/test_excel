@@ -303,18 +303,19 @@ def write_js_script():
     """
     st.markdown(js_script, unsafe_allow_html=True)
 
-def write_js_menu(): 
+def write_js_menu(bln=False): 
     # ---- HIDE STREAMLIT STYLE ----
     hide_st_style = """
                 <style>
-                Main_Menu {visibility: hidden;}
+                MainMenu {visibility: hidden;}
                 footer {visibility: hidden;}
                 header {visibility: hidden;}
                 stSidebar {visibility: display;}
                 [data-testid="stSidebar"] {display: inline-block;}
                 </style>
                 """
-    st.markdown(hide_st_style, unsafe_allow_html=True)    
+    if bln:
+        st.markdown(hide_st_style, unsafe_allow_html=True)    
 
 def write_css_round_img():
     round_st_style = """
