@@ -18,7 +18,7 @@ import json
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 
-# import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plte
 # import statistics Library
 # import xlsxwriter
 # from openpyxl.utils.dataframe import dataframe_to_rows
@@ -1294,7 +1294,7 @@ def page3():
 
 def page4():
     #write_coming_soon()
-    texts_trad = read_json_trads('/textes.json')
+    texts_trad = read_json_trads('/mount/src/test_excel/textes.json')
     test_trad = get_text_trad('en','text_id')
     write_on_info(test_trad)
 
