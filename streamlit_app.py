@@ -1303,6 +1303,8 @@ def page4():
     #write_coming_soon()
     if st.session_state.texts_trad is None:
         st.session_state.texts_trad = read_json_trads()
+    if st.button("Load JSON"):
+        st.session_state.texts_trad = read_json_trads()
     test_trad = get_text_trad('en','text_id')
     write_one_info(test_trad)
     st.divider()
