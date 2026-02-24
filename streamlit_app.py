@@ -988,7 +988,7 @@ def menu_tab_boss_detail():
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
     if df_source is None:
-        st.header(df_xls["DisplayName"][idx_palmon])
+        st.subheader(df_xls["DisplayName"][idx_palmon])
         df = df_xls["DataFrame"][idx_palmon]
     else:
         df = df_source
