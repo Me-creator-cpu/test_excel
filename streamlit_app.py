@@ -46,9 +46,12 @@ df_xls = None
 excel_loaded=False
 tabs_data=[]
 tabs = None
-texts_trad = None
+global texts_trad = None
 
 #def init_session():
+if 'texts_trad' not in st.session_state:
+    st.session_state.texts_trad = None
+
 if 'df_data' not in st.session_state:
     st.session_state.df_data = df_xls
 if 'uploaded_file' not in st.session_state:
@@ -1286,17 +1289,17 @@ def read_json_trads(sFile='textes.json'):
     #with open('textes.json', encoding='utf-8', errors='ignore') as f:
     with open(sFile, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
-    return json_data
+    return json.loads(json_data)
 
 def get_text_trad(langu='en',textId='text_id'):
     ret_val = ''
-    texts_trad
+    texts_trad=st.session_state.texts_trad
     ret_val = texts_trad['data'][textId][0][langu]
     return ret_val
 
 def page4():
     #write_coming_soon()
-    texts_trad = read_json_trads()
+    st.session_state.texts_trad = read_json_trads()
     #texts_trad
     test_trad = get_text_trad('en','text_id')
     st.divider()
