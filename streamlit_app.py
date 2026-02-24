@@ -455,7 +455,8 @@ def build_main_chart(raw_data,title_expander=None,x_axis=None,y_axis=None):
 def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True):
     if df_chart is not None:
         try:
-            switch_axis = st.toggle("Switch axis")
+            #switch_axis = st.toggle("Switch axis")
+            switch_axis = st.toggle(get_text_trad(site_langu,'switch_axis'))
         except:
             switch_axis = False
         x_Field = xField
@@ -475,7 +476,9 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
                 step=1
             )
             df = df_chart.loc[(df_chart[x_Field] >= int(range_level_min)) & (df_chart[x_Field] <= int(range_level_max))]
-            total_col = f"Total Energy cost from {range_level_min} to {range_level_max}"
+            total_txt=get_text_trad(site_langu,'total_nrj_cost')
+            to_txt=get_text_trad(site_langu,'to')
+            total_col = f"{total_txt} {range_level_min} {to_txt} {range_level_max}"
             try:
                 st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[y_Field].sum()))}]")
             except:
@@ -484,7 +487,9 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             return range_level_min, range_level_max
         else:
             df = df_chart.loc[(df_chart[xField] >= int(selMin)) & (df_chart[xField] <= int(selMax))]
-            total_col = f"Total Crystals cost from {selMin} to {selMax}"
+            total_txt=get_text_trad(site_langu,'total_cry_cost')
+            to_txt=get_text_trad(site_langu,'to')
+            total_col = f"{total_txt} {selMin} {to_txt} {selMax}"
             st.markdown(f":orange-badge[{total_col} : {int(df[yField].sum())}]")
             return selMin,selMax
 
@@ -493,15 +498,15 @@ def build_graph_select():
         #page_title="yFiles Graphs for Streamlit",
         layout="wide",
     )
-    field_x = 'Level'
-    field_y = 'Stars'
-    on = st.toggle(f'Switch axis {field_x}/{field_y}')
+    field_1 = get_text_trad(site_langu,'to') #'Level'
+    field_2 = get_text_trad(site_langu,'to') #'Stars'
+    on = st.toggle(f'{get_text_trad(site_langu,'switch_axis')} {field_1}/{field_2}')
     if on:
-        field_y = 'Level'
-        field_x = 'Stars'
+        field_y = field_1
+        field_x = field_2
     else:
-        field_x = 'Level'
-        field_y = 'Stars'
+        field_x = field_1
+        field_y = field_2
     df_srv = get_df_base().copy()
     max_upg=df_srv.loc[(df_srv["Level"] >= 1)].Level.max()+10
     min_upg=df_srv.loc[(df_srv["Level"] >= 10)].Level.min()-10
@@ -1317,7 +1322,12 @@ def page4():
 #    Start MAIN page
 #
 # ======================================================================================================
-app_title='Test Excel File'
+if st.session_state.texts_trad is None:
+    st.session_state.texts_trad = read_json_trads()
+site_langu='en'
+app_title=get_text_trad(site_langu,'app_title')
+#app_title='Test Excel File'
+
 st.set_page_config(
     page_title=app_title,
     page_icon="🧊",
@@ -1345,42 +1355,28 @@ st.set_page_config(
 if is_mobile():
     write_js_menu()
 
-if 1 == 1:    # <=====================================
-    with st.sidebar:
-        menu_load_excel()
-if 1 == 2:    # <=====================================   
-    if df_xls["DisplayName"][idx_palmon] is not None:
-        menu_build_tabs()
-    else:
-        file_err()
-if st.session_state.texts_trad is None:
-    st.session_state.texts_trad = read_json_trads()
-#test_trad = get_text_trad(site_langu,'menu_home')
-site_langu='en'
+with st.sidebar:
+    menu_load_excel()
 
-if 1 == 1:    # <=====================================
-    pages = {
-        get_text_trad(site_langu,'menu_home'):[ 
-            st.Page(pg_home, title=get_text_trad(site_langu,'menu_home_1'), icon="🏠"),
-            #st.Page(menu_load_excel, title="Load Excel", icon="📅"),
-        ],
-        get_text_trad(site_langu,'menu_resources'): [
-            st.Page(pg_menu_0, title=get_text_trad(site_langu,'full_list'),icon="🗂️"),
-            st.Page(pg_menu_150, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
-            st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
-        ],
-        get_text_trad(site_langu,'menu_info'): [
-            st.Page(page1, title=get_text_trad(site_langu,'menu_info_device'),icon="📱" if is_mobile() else "💻"),
-            st.Page(page2, title=get_text_trad(site_langu,'menu_info_os'),icon="🖥️"),
-            st.Page(page3, title=get_text_trad(site_langu,'menu_info_file'),icon="📋"),
-            st.Page(page4, title="Test",icon="🛠️"),
-        ],
-    }
-    pg = st.navigation(pages)
-    pg.run()    
-
-
-
+pages = {
+    get_text_trad(site_langu,'menu_home'):[ 
+        st.Page(pg_home, title=get_text_trad(site_langu,'menu_home_1'), icon="🏠"),
+        #st.Page(menu_load_excel, title="Load Excel", icon="📅"),
+    ],
+    get_text_trad(site_langu,'menu_resources'): [
+        st.Page(pg_menu_0, title=get_text_trad(site_langu,'full_list'),icon="🗂️"),
+        st.Page(pg_menu_150, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
+        st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
+    ],
+    get_text_trad(site_langu,'menu_info'): [
+        st.Page(page1, title=get_text_trad(site_langu,'menu_info_device'),icon="📱" if is_mobile() else "💻"),
+        st.Page(page2, title=get_text_trad(site_langu,'menu_info_os'),icon="🖥️"),
+        st.Page(page3, title=get_text_trad(site_langu,'menu_info_file'),icon="📋"),
+        st.Page(page4, title="Test",icon="🛠️"),
+    ],
+}
+pg = st.navigation(pages)
+pg.run()    
 
 #write_js_script()            
 #write_js_menu()
