@@ -837,6 +837,7 @@ def menu_load_excel():
         
     if df_xls["DataFrame"][idx_costs] is not None:
         excel_loaded=True
+        st.session_state.uploaded_file = uploaded_file
     else:
         excel_loaded=False
     
