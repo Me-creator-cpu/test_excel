@@ -839,7 +839,6 @@ def menu_load_excel():
     if df_xls["DataFrame"][idx_costs] is not None:
         excel_loaded=True
         st.session_state.uploaded_file = uploaded_file
-        page3()
     else:
         excel_loaded=False
     
@@ -1235,7 +1234,7 @@ def page2():
 def page3():
     st.subheader("Coming soon...", divider=False)
     st.session_state.uploaded_file
-    if 1 == 2:
+    if 1 == 1:
         obj_fle=st.session_state.uploaded_file
         fileinfo={
            "Name":obj_fle.name,
