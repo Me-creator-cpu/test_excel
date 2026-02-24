@@ -1301,11 +1301,10 @@ def get_text_trad(langu='en',textId='text_id'):
 
 def page4():
     #write_coming_soon()
-    st.session_state.texts_trad = read_json_trads()
-    #texts_trad
+    if st.session_state.texts_trad is None:
+        st.session_state.texts_trad = read_json_trads()
     test_trad = get_text_trad('en','text_id')
-    st.divider()
-    test_trad
+    write_one_info(test_trad)
 
 # ======================================================================================================
 #
