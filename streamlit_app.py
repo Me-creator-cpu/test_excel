@@ -354,7 +354,10 @@ def write_info(msg,val):
 
 def write_one_info(msg):
     return st.info(f"{msg}", icon="ℹ️", width="stretch")
-    
+
+def write_coming_soon():
+    return st.subheader("Coming soon...", divider=False)
+
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
     try:
         df = pd.read_excel(
@@ -899,7 +902,7 @@ def menu_tab_show(idx):
             return st.empty()
 
 def menu_tab_comp():
-    st.header(df_xls["DisplayName"][idx_comp])
+    st.subheader(df_xls["DisplayName"][idx_comp])
     df = df_xls["DataFrame"][idx_comp]
     range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
     with st.expander("Data graph", expanded=False, width="stretch"):
@@ -908,7 +911,7 @@ def menu_tab_comp():
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
     df_pal=df_xls["DataFrame"][idx_palmon]
-    st.header(df_xls["DisplayName"][idx_costs])
+    st.subheader(df_xls["DisplayName"][idx_costs])
     min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
     max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
     range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
@@ -920,9 +923,9 @@ def menu_tab_mut():
     df = df_xls["DataFrame"][idx_mut]
     df_energy=df.loc[(df['Step'] > 0)]
     df_crystal=df.loc[(df['Step'] == 0)]  
-    st.header("🟢Energy")
+    st.subheader("🟢Energy")
     range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(1),int(30))
-    st.header("💎Crystals")
+    st.subheader("💎Crystals")
     build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(1),int(30),False)
     with st.expander("Data graph", expanded=False, width="stretch"):
         build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
@@ -931,11 +934,11 @@ def menu_tab_mut():
 def menu_tab_val():
     rowval = st.columns(2,border=False, width="stretch")
     with rowval[0]:
-        st.header(df_xls["DisplayName"][idx_val]) 
+        st.subheader(df_xls["DisplayName"][idx_val]) 
         build_table_full_costs(df_xls["DataFrame"][idx_val])
         #build_table_any(df_xls["DataFrame"][idx_val])
     with rowval[1]:
-        st.header(df_xls["DisplayName"][idx_stars])
+        st.subheader(df_xls["DisplayName"][idx_stars])
         df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
         build_table_any(df_stars)       
@@ -943,13 +946,13 @@ def menu_tab_val():
 def menu_tab_boss():
     rowval = st.columns(2,border=False, width="stretch")
     with rowval[0]:
-        st.header(df_xls["DisplayName"][idx_stars]) 
+        st.subheader(df_xls["DisplayName"][idx_stars]) 
         df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
         df_boss['Stars']=df_boss['Stars'].apply(lambda b: format_stars(b) )
         df_boss['Total']=df_boss['Unit cost'].apply(lambda b: int(b)*int(5) )
         build_table_any(df_boss)
     with rowval[1]:
-        st.header(df_xls["DisplayName"][idx_comp])
+        st.subheader(df_xls["DisplayName"][idx_comp])
         df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
         df_boss_det['Stars level']=df_boss_det['Stars'].apply(lambda b: format_stars(abs(b)) )
         df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
@@ -972,7 +975,7 @@ def menu_tab_boss():
              )          
 
 def menu_tab_boss_detail():
-    st.header(df_xls["DisplayName"][idx_boss_data])
+    st.subheader(df_xls["DisplayName"][idx_boss_data])
     df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
     df_boss_det
     df_boss_det['Cost']=None
@@ -1219,10 +1222,10 @@ def page1():
 
 def page2():
     st.title("Server OS information")
-    st.header("os.environ")
+    st.subheader("os.environ")
     df_os_environ = pd.DataFrame([dict(os.environ)]).T
     st.dataframe(df_os_environ,hide_index=False,height='content')
-    st.header("os.sysconf_names")
+    st.subheader("os.sysconf_names")
     df_os_sysconf_names = pd.DataFrame([os.sysconf_names]).T
     st.dataframe(df_os_sysconf_names,
                  column_config={
@@ -1232,7 +1235,7 @@ def page2():
                  height='content')
 
 def page3():
-    st.subheader("Coming soon...", divider=False)
+    st.subheader("Uploaded file information", divider=False)
     if st.session_state.uploaded_file is not None:
         obj_fle=st.session_state.uploaded_file
         fileinfo={
