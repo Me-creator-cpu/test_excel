@@ -500,8 +500,8 @@ def build_graph_select():
         #page_title="yFiles Graphs for Streamlit",
         layout="wide",
     )
-    field_1 = get_text_trad(site_langu,'level') #'Level'
-    field_2 = get_text_trad(site_langu,'stars') #'Stars'
+    field_1 = 'Level' #get_text_trad(site_langu,'level') #'Level'
+    field_2 = 'Stars' #get_text_trad(site_langu,'stars') #'Stars'
     on = st.toggle(f'{get_text_trad(site_langu,'switch_axis')} {field_1}/{field_2}')
     if on:
         field_y = field_1
@@ -1365,11 +1365,15 @@ if is_mobile():
     write_js_menu()
 
 with st.sidebar:
-    on = st.toggle("EN / FR")
+    range_langu = st.columns(2)
+    with range_langu[0]:
+        on = st.toggle("EN / FR")
     if on:
         st.session_state.site_langu = 'en'
     else:
         st.session_state.site_langu = 'fr'
+    with range_langu[1]:
+        write_one_info(st.session_state.site_langu)
     menu_load_excel()
 
 langu = st.session_state.site_langu
