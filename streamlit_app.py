@@ -1322,9 +1322,12 @@ def page4():
 #    Start MAIN page
 #
 # ======================================================================================================
+site_langu='en'
 if st.session_state.texts_trad is None:
     st.session_state.texts_trad = read_json_trads()
-site_langu='en'
+if st.session_state.site_langu is None:
+    st.session_state.site_langu = site_langu
+
 app_title=get_text_trad(site_langu,'app_title')
 #app_title='Test Excel File'
 
@@ -1356,7 +1359,14 @@ if is_mobile():
     write_js_menu()
 
 with st.sidebar:
+    on = st.toggle("EN / FR")
+    if on:
+        st.session_state.site_langu = 'en'
+    else:
+        st.session_state.site_langu = 'fr'
     menu_load_excel()
+
+langu = st.session_state.site_langu
 
 pages = {
     get_text_trad(site_langu,'menu_home'):[ 
