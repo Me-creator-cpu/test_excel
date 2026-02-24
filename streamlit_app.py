@@ -310,6 +310,7 @@ def write_js_menu():
                 MainMenu {visibility: hidden;}
                 footer {visibility: hidden;}
                 header {visibility: hidden;}
+                stSidebar {visibility: display;}
                 </style>
                 """
     st.markdown(hide_st_style, unsafe_allow_html=True)    
