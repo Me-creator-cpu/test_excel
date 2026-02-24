@@ -1105,6 +1105,7 @@ def menu_tab_dashboards():
         row_d2 = st.columns(2,border=col_border, width="stretch")
         with row_d2[0]:
             st.subheader('Average Skill')
+            df_tcd1['Type']=df_tcd1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
             build_pivot_table(df_tcd1,'Level','Type','Skill')
         with row_d2[1]:
             st.subheader('Nb Palmons per type')
