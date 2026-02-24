@@ -989,7 +989,7 @@ def menu_tab_boss_detail():
         st.dataframe(
                 df_boss_det,
                 column_config={
-                    "URL": st.column_config.ImageColumn("Base preview",width="medium"),
+                    "URL": st.column_config.ImageColumn("Base preview",width="large"),
                     "Name": st.column_config.TextColumn("Name", pinned = True),
                     "Skill": st.column_config.TextColumn("Type", pinned = True),
                     "Type": None, #st.column_config.TextColumn("Type", pinned = False),
