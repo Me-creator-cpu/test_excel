@@ -1297,12 +1297,8 @@ def page4():
     #write_coming_soon()
     texts_trad = read_json_trads()
     texts_trad
-    #test_trad = get_text_trad('en','text_id')
-    #write_on_info(test_trad)
-    
-    #with open('textes.json', encoding='utf-8', errors='ignore') as f:
-    #    json_data = json.load(f, strict=False)  
-    #    json_data
+    test_trad = get_text_trad('en','text_id')
+    write_on_info(test_trad)
 
 # ======================================================================================================
 #
