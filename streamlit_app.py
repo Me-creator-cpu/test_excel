@@ -812,6 +812,7 @@ def menu_load_excel():
         uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
         excel_loaded=False
         if uploaded_file is not None:
+            st.session_state.uploaded_file = uploaded_file
             file = pd.ExcelFile(uploaded_file)
             if file is not None:
                 option = st.selectbox(
