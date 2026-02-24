@@ -955,27 +955,29 @@ def menu_tab_boss():
         build_table_any(df_boss)
     with rowval[1]:
         st.subheader(df_xls["DisplayName"][idx_comp])
-        df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
-        df_boss_det['Stars level']=df_boss_det['Stars'].apply(lambda b: format_stars(abs(b)) )
-        df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-        st.dataframe(
-                df_boss_det,
-                column_config={
-                    "Name": st.column_config.TextColumn("Name", pinned = True),
-                    "Skill": st.column_config.TextColumn("Type", pinned = True),
-                    "Type": None, #st.column_config.TextColumn("Type", pinned = False),
-                    "Stars level": st.column_config.TextColumn("Stars level"),
-                    "Stars": st.column_config.NumberColumn("Stars",format="compact"),
-                    "Comp 1": None,
-                    "Comp 2": None,
-                    "Comp 3": None,
-                    "Comp 4": None,
-                    "Comp 5": None,
-                    "URL": st.column_config.ImageColumn("Base preview",width="small"),
-                },
-                hide_index=True,
-             )          
-
+        try:
+            df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
+            df_boss_det['Stars level']=df_boss_det['Stars'].apply(lambda b: format_stars(abs(b)) )
+            df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+            st.dataframe(
+                    df_boss_det,
+                    column_config={
+                        "Name": st.column_config.TextColumn("Name", pinned = True),
+                        "Skill": st.column_config.TextColumn("Type", pinned = True),
+                        "Type": None, #st.column_config.TextColumn("Type", pinned = False),
+                        "Stars level": st.column_config.TextColumn("Stars level"),
+                        "Stars": st.column_config.NumberColumn("Stars",format="compact"),
+                        "Comp 1": None,
+                        "Comp 2": None,
+                        "Comp 3": None,
+                        "Comp 4": None,
+                        "Comp 5": None,
+                        "URL": st.column_config.ImageColumn("Base preview",width="small"),
+                    },
+                    hide_index=True,
+                 )          
+        except:
+            st.empty()
 def menu_tab_boss_detail():
     st.subheader(df_xls["DisplayName"][idx_boss_data])
     try:
