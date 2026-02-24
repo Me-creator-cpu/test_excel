@@ -978,15 +978,18 @@ def menu_tab_boss():
 
 def menu_tab_boss_detail():
     st.subheader(df_xls["DisplayName"][idx_boss_data])
-    df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
-    df_boss_det
-    df_boss_det['Cost']=None
-    df_boss_det['Unit cost']=None
-    df_boss_det['Total']=None    
-    #df_boss_det['Stars']=df_boss_det['Stars'].apply(lambda b: format_stars(b) )
-    df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-    build_table_any(df_boss_det)
-    
+    try:
+        df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
+        df_boss_det
+        df_boss_det['Cost']=None
+        df_boss_det['Unit cost']=None
+        df_boss_det['Total']=None    
+        #df_boss_det['Stars']=df_boss_det['Stars'].apply(lambda b: format_stars(b) )
+        df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
+        build_table_any(df_boss_det)
+    except:
+        st.empty()
+
 @st.fragment
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
     if df_source is None:
