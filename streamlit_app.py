@@ -1347,11 +1347,15 @@ if 1 == 2:    # <=====================================
         menu_build_tabs()
     else:
         file_err()
+if st.session_state.texts_trad is None:
+    st.session_state.texts_trad = read_json_trads()
+#test_trad = get_text_trad(site_langu,'menu_home')
+site_langu='en'
 
 if 1 == 1:    # <=====================================
     pages = {
-        "Home":[ 
-            st.Page(pg_home, title="Home", icon="🏠"),
+        get_text_trad(site_langu,'menu_home'):[ 
+            st.Page(pg_home, title=get_text_trad(site_langu,'menu_home'), icon="🏠"),
             #st.Page(menu_load_excel, title="Load Excel", icon="📅"),
         ],
         "Resources": [
