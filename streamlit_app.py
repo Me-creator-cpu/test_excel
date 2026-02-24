@@ -1370,10 +1370,10 @@ with st.sidebar:
         on = st.toggle("FR / EN")
     if on:
         st.session_state.site_langu = 'en'
-        st.rerun()
+        #st.rerun()
     else:
         st.session_state.site_langu = 'fr'
-        st.rerun()
+        #st.rerun()
     with range_langu[1]:
         write_one_info(st.session_state.site_langu)
     menu_load_excel()
