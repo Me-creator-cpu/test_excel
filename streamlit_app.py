@@ -1360,8 +1360,8 @@ site_langu='en'
 
 if 1 == 1:    # <=====================================
     pages = {
-        "Home":[ 
-            st.Page(pg_home, title="Home", icon="🏠"),
+        get_text_trad(site_langu,'menu_home'):[ 
+            st.Page(pg_home, title=get_text_trad(site_langu,'menu_home'), icon="🏠"),
             #st.Page(menu_load_excel, title="Load Excel", icon="📅"),
         ],
         "Resources": [
