@@ -52,6 +52,8 @@ texts_trad = None
 #def init_session():
 if 'texts_trad' not in st.session_state:
     st.session_state.texts_trad = None
+if 'site_langu' not in st.session_state:
+    st.session_state.site_langu = None    
 
 if 'df_data' not in st.session_state:
     st.session_state.df_data = df_xls
