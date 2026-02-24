@@ -972,7 +972,7 @@ def menu_tab_boss():
                         "Comp 3": None,
                         "Comp 4": None,
                         "Comp 5": None,
-                        "URL": st.column_config.ImageColumn("Base preview",width="small"),
+                        "URL": None,
                     },
                     hide_index=True,
                  )          
@@ -986,9 +986,26 @@ def menu_tab_boss_detail():
         df_boss_det['Cost']=None
         df_boss_det['Unit cost']=None
         df_boss_det['Total']=None    
-        #df_boss_det['Stars']=df_boss_det['Stars'].apply(lambda b: format_stars(b) )
+        df_boss_det['Stars']=df_boss_det['Stars'].apply(lambda b: format_stars(b) )
         df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
-        build_table_any(df_boss_det)
+        #build_table_any(df_boss_det)
+        st.dataframe(
+                df_boss_det,
+                column_config={
+                    "Name": st.column_config.TextColumn("Name", pinned = True),
+                    "Skill": st.column_config.TextColumn("Type", pinned = True),
+                    "Type": None, #st.column_config.TextColumn("Type", pinned = False),
+                    "Stars level": st.column_config.TextColumn("Stars level"),
+                    "Stars": st.column_config.NumberColumn("Stars",format="compact"),
+                    "Comp 1": st.column_config.NumberColumn("Comp 1",format="compact"),
+                    "Comp 2": st.column_config.NumberColumn("Comp 2",format="compact"),
+                    "Comp 3": st.column_config.NumberColumn("Comp 3",format="compact"),
+                    "Comp 4": st.column_config.NumberColumn("Comp 4",format="compact"),
+                    "Comp 5": st.column_config.NumberColumn("Comp 5",format="compact"),
+                    "URL": st.column_config.ImageColumn("Base preview",width="small"),
+                },
+                hide_index=True,
+             )            
     except:
         st.empty()
 
