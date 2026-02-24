@@ -311,6 +311,7 @@ def write_js_menu():
                 footer {visibility: hidden;}
                 header {visibility: hidden;}
                 stSidebar {visibility: display;}
+                [data-testid="stSidebar"] {display: inline-block;}
                 </style>
                 """
     st.markdown(hide_st_style, unsafe_allow_html=True)    
