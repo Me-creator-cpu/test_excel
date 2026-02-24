@@ -307,7 +307,7 @@ def write_js_menu():
     # ---- HIDE STREAMLIT STYLE ----
     hide_st_style = """
                 <style>
-                MainMenu {visibility: hidden;}
+                Main_Menu {visibility: hidden;}
                 footer {visibility: hidden;}
                 header {visibility: hidden;}
                 stSidebar {visibility: display;}
