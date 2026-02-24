@@ -1367,7 +1367,7 @@ if is_mobile():
 with st.sidebar:
     range_langu = st.columns(2)
     with range_langu[0]:
-        on = st.toggle("EN / FR")
+        on = st.toggle("FR / EN")
     if on:
         st.session_state.site_langu = 'en'
     else:
