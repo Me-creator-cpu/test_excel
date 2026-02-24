@@ -1295,7 +1295,7 @@ def page3():
 def page4():
     #write_coming_soon()
     #texts_trad = read_json_trads('/mount/src/test_excel/textes.json')
-    texts_trad = read_json_trads(./textes.json')
+    texts_trad = read_json_trads('./textes.json')
     test_trad = get_text_trad('en','text_id')
     write_on_info(test_trad)
 
