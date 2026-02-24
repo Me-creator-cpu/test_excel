@@ -32,6 +32,7 @@ pal_test=None    # Test pour class
 # URL: https://testexcel-xwu5zapqqz8ukerpqqvxhu.streamlit.app/
 # ======================================================================================================
 
+url_maintenance = 'https://scontent-cdg4-2.cdninstagram.com/v/t39.30808-6/632313034_122190805178516338_8580667498397042596_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ig_cache_key=MzgyOTQ0NTI2ODQzMDE5MTIzMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=9CUwkXAvwyQQ7kNvwEUeiQU&_nc_oc=Adl4KQ39JfzgHhJP82DLmvNVwanWYMjllSvAo3CYNeWo6SSNScuZBDmntao9H9gSRXg&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-cdg4-2.cdninstagram.com&_nc_gid=jgbS-gOsY44BPhZBZhuRuA&oh=00_AfsArBnqm8Qm_KKklrV7twUzlavNPKn7bpYkHMG93C4WZw&oe=69A36204'
 url_menu_boss = 'https://i.ytimg.com/vi/ka0jFGAPnqQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAuTuC7wOYDNJ4TqjlsXACLakFfwg'
 
 # ======================================================================================================
@@ -358,7 +359,11 @@ def write_one_info(msg):
     return st.info(f"{msg}", icon="ℹ️", width="stretch")
 
 def write_coming_soon():
-    return st.subheader("Coming soon...", divider=False)
+    maintenance=st.container(border=False, width='stretch', height='content')
+    with maintenance:
+        st.subheader("Coming soon...", divider=False)
+        st.image(url_maintenance, caption=None, width="stretch")
+    return maintenance
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
     try:
@@ -1274,6 +1279,9 @@ def page3():
             hide_index=False,
             )      
 
+def page4():
+    write_coming_soon()
+
 # ======================================================================================================
 #
 #    Start MAIN page
@@ -1331,6 +1339,7 @@ if 1 == 1:    # <=====================================
             st.Page(page1, title="Device info",icon="📱" if is_mobile() else "💻"),
             st.Page(page2, title="OS info",icon="🖥️"),
             st.Page(page3, title="File info",icon="📋"),
+            st.Page(page4, title="Test",icon="🛠️"),
         ],
     }
     pg = st.navigation(pages)
