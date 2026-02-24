@@ -32,6 +32,18 @@
       "en": "File info",
       "fr": "Info fichier"
     }],
+    "full_list": [{
+      "en": "Full list",
+      "fr": "Liste"
+    }],
+    "dashboards": [{
+      "en": "Dashboards",
+      "fr": "Tableaux de bord"
+    }],
+    "download": [{
+      "en": "CSV Downloads",
+      "fr": "Téléchargements CSV"
+    }],
     "text2_id": [{
       "en": "text2_id_en",
       "fr": "text2_id_fr"
