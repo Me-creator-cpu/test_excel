@@ -1361,18 +1361,18 @@ site_langu='en'
 if 1 == 1:    # <=====================================
     pages = {
         get_text_trad(site_langu,'menu_home'):[ 
-            st.Page(pg_home, title=get_text_trad(site_langu,'menu_home'), icon="🏠"),
+            st.Page(pg_home, title=get_text_trad(site_langu,'menu_home_1'), icon="🏠"),
             #st.Page(menu_load_excel, title="Load Excel", icon="📅"),
         ],
-        "Resources": [
+        get_text_trad(site_langu,'menu_resources'): [
             st.Page(pg_menu_0, title="Full list",icon="🗂️"),
             st.Page(pg_menu_150, title="Dashboards",icon="📊"),
             st.Page(pg_menu_200, title="CSV downloads",icon="📥"),
         ],
-        "Information": [
-            st.Page(page1, title="Device info",icon="📱" if is_mobile() else "💻"),
-            st.Page(page2, title="OS info",icon="🖥️"),
-            st.Page(page3, title="File info",icon="📋"),
+        get_text_trad(site_langu,'menu_info'): [
+            st.Page(page1, title=get_text_trad(site_langu,'menu_info_device'),icon="📱" if is_mobile() else "💻"),
+            st.Page(page2, title=get_text_trad(site_langu,'menu_info_os'),icon="🖥️"),
+            st.Page(page3, title=get_text_trad(site_langu,'menu_info_file'),icon="📋"),
             st.Page(page4, title="Test",icon="🛠️"),
         ],
     }
