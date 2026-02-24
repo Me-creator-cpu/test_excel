@@ -1,0 +1,12 @@
+{
+  "data": {
+    "text_id": [{
+      "en": "text_id_en",
+      "fr": "text_id_fr"
+    }],
+    "text2_id": [{
+      "en": "text2_id_en",
+      "fr": "text2_id_fr"
+    }]
+  }
+}
