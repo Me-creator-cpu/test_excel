@@ -4,6 +4,34 @@
       "en": "text_id_en",
       "fr": "text_id_fr"
     }],
+    "menu_home": [{
+      "en": "Home",
+      "fr": "Home"
+    }],
+    "menu_home_1": [{
+      "en": "Home",
+      "fr": "Home"
+    }],
+    "menu_resources": [{
+      "en": "Resources",
+      "fr": "Ressources"
+    }],
+    "menu_info": [{
+      "en": "Information",
+      "fr": "Information"
+    }],
+    "menu_info_device": [{
+      "en": "Device info",
+      "fr": "Info matériel"
+    }],
+    "menu_info_os": [{
+      "en": "OS info",
+      "fr": "Info OS"
+    }],
+    "menu_info_file": [{
+      "en": "File info",
+      "fr": "Info fichier"
+    }],
     "text2_id": [{
       "en": "text2_id_en",
       "fr": "text2_id_fr"
