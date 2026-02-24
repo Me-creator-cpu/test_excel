@@ -362,7 +362,7 @@ def write_coming_soon():
     maintenance=st.container(border=False, width='stretch', height='content')
     with maintenance:
         st.subheader("Coming soon...", divider=False)
-        st.image(url_maintenance, caption=None, width="stretch")
+        st.image(url_maintenance, caption=None, width="content")
     return maintenance
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
