@@ -274,8 +274,8 @@ def test_df_xls():
             st.write(df_xls[i][2])
 
 def read_json_trads(sFile=None):
-    json.loads(sFile)
-    file_content = texts_trad
+    file_content = json.loads(sFile, strict=False)
+    #file_content = texts_trad
     return file_content
 
 def get_text_trad(langu='en',textId='text_id'):
