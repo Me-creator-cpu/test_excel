@@ -1231,6 +1231,7 @@ def page2():
 
 def page3():
     st.subheader("Coming soon...", divider=False)
+    st.session_state.uploaded_file
     if 1 == 2:
         obj_fle=st.session_state.uploaded_file
         fileinfo={
