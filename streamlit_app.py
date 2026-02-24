@@ -1290,15 +1290,17 @@ def read_json_trads(sFile='textes.json'):
 
 def get_text_trad(langu='en',textId='text_id'):
     ret_val = ''
+    texts_trad
     ret_val = texts_trad['data'][textId][0][langu]
     return ret_val
 
 def page4():
     #write_coming_soon()
     texts_trad = read_json_trads()
-    texts_trad
+    #texts_trad
     test_trad = get_text_trad('en','text_id')
-    write_on_info(test_trad)
+    st.divider()
+    test_trad
 
 # ======================================================================================================
 #
