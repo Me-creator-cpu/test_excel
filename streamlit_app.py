@@ -500,8 +500,8 @@ def build_graph_select():
         #page_title="yFiles Graphs for Streamlit",
         layout="wide",
     )
-    field_1 = get_text_trad(site_langu,'to') #'Level'
-    field_2 = get_text_trad(site_langu,'to') #'Stars'
+    field_1 = get_text_trad(site_langu,'level') #'Level'
+    field_2 = get_text_trad(site_langu,'stars') #'Stars'
     on = st.toggle(f'{get_text_trad(site_langu,'switch_axis')} {field_1}/{field_2}')
     if on:
         field_y = field_1
