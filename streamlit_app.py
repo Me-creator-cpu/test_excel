@@ -1413,6 +1413,7 @@ if is_mobile():
 with st.sidebar:
     top_nav = st.toggle("Top navigation", False)
     nav_sections = st.toggle("Page sections", True)
+    use_pics = st.toggle("Page sections", True)
     range_langu = st.columns(2)
     with range_langu[0]:
         on = st.toggle("EN / FR")
@@ -1423,10 +1424,18 @@ with st.sidebar:
     #    st.session_state.site_langu = 'en'
     site_langu=st.session_state.site_langu
     with range_langu[1]:
-        pic(data_flags[site_langu],32)
+        pic(data_flags[site_langu],24)
     menu_load_excel()
 
 langu = st.session_state.site_langu
+
+st.markdown("""
+    <style>
+    	[data-testid="stDecoration"] {
+    		background-image: linear-gradient(90deg, rgb(0, 102, 204), rgb(102, 255, 255));
+    	}
+    </style>""",
+    unsafe_allow_html=True)
 
 pages = {
     get_text_trad(site_langu,'menu_home'):[ 
