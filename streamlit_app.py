@@ -377,7 +377,7 @@ def write_coming_soon():
     return maintenance
 
 def pic(pic_url=None,pic_width='content'):
-    if pic_url is not None:
+    if pic_url is not None and use_pics:
         st.image(pic_url, caption=None, width=pic_width)
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
