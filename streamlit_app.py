@@ -378,7 +378,6 @@ def write_coming_soon():
 def pic(pic_url=None,pic_width='content'):
     if pic_url is not None:
         st.image(pic_url, caption=None, width=pic_width)
-        data_flags[st.session_state.site_langu]
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
     try:
