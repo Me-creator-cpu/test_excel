@@ -1393,18 +1393,17 @@ if is_mobile():
     write_js_menu()
 
 with st.sidebar:
-    #range_langu = st.columns(2)
-    #with range_langu[0]:
-    #    on = st.toggle("FR / EN")
+    range_langu = st.columns(2)
+    with range_langu[0]:
+        on = st.toggle("EN / FR")
+    st.session_state.site_langu='fr' if on else 'en'
     #if on:
-    #    st.session_state.site_langu = 'en'
-    #    #st.rerun()
-    #else:
     #    st.session_state.site_langu = 'fr'
-    #    #st.rerun()
-    #with range_langu[1]:
-    #    write_one_info(st.session_state.site_langu)
-    st.session_state.site_langu = 'en'
+    #else:
+    #    st.session_state.site_langu = 'en'
+    site_langu=st.session_state.site_langu
+    with range_langu[1]:
+        pic(data_flags[site_langu],32)
     menu_load_excel()
 
 langu = st.session_state.site_langu
