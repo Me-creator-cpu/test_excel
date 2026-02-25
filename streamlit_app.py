@@ -1315,6 +1315,8 @@ def page3():
                     if option == "Stars":
                         df1.columns = cols_stars                        
                 st.dataframe(df1)
+    else:
+        file_err()
 
 def clear_cache():
     keys = list(st.session_state.keys())
