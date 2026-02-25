@@ -1414,7 +1414,7 @@ with st.sidebar:
     top_nav = st.toggle("Top navigation", False)
     nav_sections = st.toggle("Page sections", True)
     use_pics = st.toggle("Show images", True)
-    range_langu = st.columns(2)
+    range_langu = st.columns(2, vertical_alignment='bottom')
     with range_langu[0]:
         on = st.toggle("EN / FR")
     st.session_state.site_langu='fr' if on else 'en'
