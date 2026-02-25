@@ -904,6 +904,7 @@ def menu_load_excel(with_expander=True,getnewfile=True):
     
     st.toast(f'df_xls.shape={df_xls.shape}', icon='ℹ️️', duration='short')
     st.toast(f'uploaded_file={uploaded_file}', icon='ℹ️️', duration='short')
+    st.toast(f'st.session_state.uploaded_file={st.session_state.uploaded_file}', icon='ℹ️️', duration='short')
     
     tabs_data=[]
     row, col = df_xls.shape
