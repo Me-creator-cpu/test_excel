@@ -899,7 +899,7 @@ def menu_load_excel(with_expander=True,getnewfile=True):
         else:
             excel_loaded=False
     else:
-        uploaded_file = pd.ExcelFile(st.session_state.uploaded_file
+        uploaded_file = st.session_state.uploaded_file
         #file = pd.ExcelFile(st.session_state.uploaded_file)    
 
     tabs_data=[]
