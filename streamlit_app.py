@@ -1429,13 +1429,14 @@ with st.sidebar:
 
 langu = st.session_state.site_langu
 
-st.markdown("""
-    <style>
-    	[data-testid="stHeader"] {
-    		background-image: linear-gradient(90deg, rgb(0, 102, 204), rgb(102, 255, 255));
-    	}
-    </style>""",
-    unsafe_allow_html=True)
+if use_pics:
+    st.markdown("""
+        <style>
+        	[data-testid="stHeader"] {
+        		background-image: linear-gradient(90deg, rgb(0, 102, 204), rgb(102, 255, 255));
+        	}
+        </style>""",
+        unsafe_allow_html=True)
 
 pages = {
     get_text_trad(site_langu,'menu_home'):[ 
