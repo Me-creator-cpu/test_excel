@@ -62,11 +62,15 @@ if 'uploaded_file' not in st.session_state:
     st.session_state.uploaded_file = uploaded_file
 else:
     uploaded_file = st.session_state.uploaded_file
+
 if "excel_loaded" not in st.session_state:
     st.session_state.excel_loaded = False
 if "tabs_data" not in st.session_state:
     st.session_state.tabs_data = tabs_data
 
+if "stream" not in st.session_state:
+    st.session_state.stream = False
+    
 # Définitions variables de sélection de dataframes
 event = None
 event_a = None
@@ -1334,6 +1338,13 @@ def get_text_trad(langu='en',textId='text_id'):
         ret_val=f'Trad err {textId}/{langu}'
     return ret_val
 
+@st.fragment(run_every=run_every)
+def check_file_loaded():
+    if st.session_state.uploaded_file is not None:
+        return st.success('File loaded', icon="✅")
+    else:
+        return st.warning('File is NOT loaded', icon="⚠️")
+        
 def page4():
     #write_coming_soon()
     st.subheader('Options', divider=True)
@@ -1350,8 +1361,11 @@ def page4():
     st.divider()
     st.button('Clear Cache', on_click=clear_cache)
     st.divider()
+    container_xls = st.container(border=False, width='stretch', height='content')
+    with container_xls:
+        check_file_loaded()
     #st.query_params.get_all() #TypeError: QueryParamsProxy.get_all() missing 1 required positional argument: 'key'
-    st.query_params.to_dict()
+    #st.query_params.to_dict()
 
 def pg_options():
     #if st.button("Load JSON"):
@@ -1400,6 +1414,11 @@ st.set_page_config(
 #])
 #pg.run()
 
+if st.session_state.stream is True:
+    run_every = '1.0'
+else:
+    run_every = None
+
 if is_mobile():
     write_js_menu()
 
@@ -1419,6 +1438,7 @@ with st.sidebar:
     with range_langu[1]:
         pic(data_flags[site_langu],24)
     menu_load_excel()
+    st.session_state.stream=st.toggle("Page sections", True)
 
 langu = st.session_state.site_langu
 
