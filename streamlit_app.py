@@ -1336,7 +1336,7 @@ def page4():
     st.button('Clear Cache', on_click=clear_cache)
     st.divider()
     pic('https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000')
-    pic(data_flags[site_langu],'32')
+    pic(data_flags[site_langu],32)
 
 # ======================================================================================================
 #
