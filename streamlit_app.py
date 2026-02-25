@@ -1423,6 +1423,7 @@ if st.session_state.stream is True:
     run_every = '1s'
 else:
     run_every = None
+run_every = '1s' if st.session_state.stream else None
 
 if is_mobile():
     write_js_menu()
