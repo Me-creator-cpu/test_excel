@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 import datetime
 import numpy as np
-#import altair as alt
-#from io import StringIO
-#from io import BytesIO
 import statistics
 from openpyxl import load_workbook
 import locale
@@ -12,16 +9,19 @@ import logging
 import os
 import platform
 import json
-#from flask import Flask, request
-#from flask import request
-#import request
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 
-# import matplotlib.pyplot as plte
-# import statistics Library
-# import xlsxwriter
-# from openpyxl.utils.dataframe import dataframe_to_rows
+#import altair as alt
+#from io import StringIO
+#from io import BytesIO
+#from flask import Flask, request
+#from flask import request
+#import request
+#import matplotlib.pyplot as plte
+#import statistics Library
+#import xlsxwriter
+#from openpyxl.utils.dataframe import dataframe_to_rows
 
 st_logger = logging.getLogger('streamlit')
 st_logger.setLevel(logging.WARNING)
@@ -1341,10 +1341,11 @@ def get_text_trad(langu='en',textId='text_id'):
 
 @st.fragment(run_every=run_every)
 def check_file_loaded():
+    now = datetime.now()
     if st.session_state.uploaded_file is not None:
-        return st.success('File loaded', icon="✅")
+        return st.success(f'{now} - File loaded', icon="✅")
     else:
-        return st.warning('File is NOT loaded', icon="⚠️")
+        return st.warning(f'{now} - File is NOT loaded', icon="⚠️")
         
 def page4():
     #write_coming_soon()
