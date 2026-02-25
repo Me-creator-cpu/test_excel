@@ -1281,14 +1281,14 @@ def page2():
                  hide_index=False,
                  height='content')
 
-def page3():
-    st.subheader("Uploaded file information", divider=False)
+def page3():info_file
+    st.subheader(get_text_trad(site_langu,'info_file'), divider=False)
     if st.session_state.uploaded_file is not None:
         obj_fle=st.session_state.uploaded_file
         fileinfo={
-           "Name":obj_fle.name,
-           "Type":obj_fle.type,
-           "Size":large_num_format(obj_fle.size)
+           get_text_trad(site_langu,'info_file_name'):obj_fle.name,
+           get_text_trad(site_langu,'info_file_type'):obj_fle.type,
+           get_text_trad(site_langu,'info_file_size'):large_num_format(obj_fle.size)
         }
         st.dataframe(
             fileinfo,
