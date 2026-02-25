@@ -48,6 +48,7 @@ tabs_data=[]
 tabs = None
 global texts_trad
 texts_trad = None
+run_every = None
 
 #def init_session():
 if 'texts_trad' not in st.session_state:
