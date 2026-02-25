@@ -836,8 +836,13 @@ def pal_deltail(palmon,df,pic_width=300):
 #    Definition fonctions pages/menu
 #
 # ======================================================================================================
-def menu_load_excel():
-    with st.expander(get_text_trad(site_langu,'xls'), expanded=True, width="stretch"):
+def menu_load_excel(with_expander=True):
+    if with_expander:
+        container=st.expander(get_text_trad(site_langu,'xls'), expanded=True, width="stretch")
+    else:
+        container=st.expander(border=False, expanded=True, width="stretch")
+        #st.container(border=False, width='stretch', height='content')
+    with container:
         uploaded_file  = st.file_uploader(get_text_trad(site_langu,'xls_sel'), type = 'xlsx')
         excel_loaded=False
         if uploaded_file is not None:
@@ -1003,6 +1008,7 @@ def menu_tab_boss():
                  )          
         except:
             st.empty()
+            
 def menu_tab_boss_detail():
     st.subheader(df_xls["DisplayName"][idx_boss_data])
     try:
@@ -1318,6 +1324,7 @@ def page3():
                 st.dataframe(df1)
     else:
         file_err()
+        menu_load_excel(False)
 
 def clear_cache():
     keys = list(st.session_state.keys())
