@@ -1349,7 +1349,7 @@ def page4():
     pic(data_flags[site_langu],32)
     st.divider()
     #st.query_params.get_all() #TypeError: QueryParamsProxy.get_all() missing 1 required positional argument: 'key'
-    st.experimental_get_query_params()
+    st.query_params.to_dict()
 
 # ======================================================================================================
 #
