@@ -1336,6 +1336,7 @@ def page4():
     st.button('Clear Cache', on_click=clear_cache)
     st.divider()
     pic(data_flags[site_langu],32)
+    range_langu = st.columns(2)
     with range_langu[0]:
         on = st.toggle("FR / EN")
     if on:
