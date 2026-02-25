@@ -1338,15 +1338,17 @@ def page4():
     pic(data_flags[site_langu],32)
     range_langu = st.columns(2)
     with range_langu[0]:
-        on = st.toggle("FR / EN")
+        on = st.toggle("EN / FR")
     if on:
-        st.session_state.site_langu = 'en'
-    else:
         st.session_state.site_langu = 'fr'
+    else:
+        st.session_state.site_langu = 'en'
     site_langu=st.session_state.site_langu
     with range_langu[1]:
         write_one_info(st.session_state.site_langu)
     pic(data_flags[site_langu],32)
+    st.divider()
+    st.query_params.get_all()
 
 # ======================================================================================================
 #
