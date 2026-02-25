@@ -837,18 +837,18 @@ def pal_deltail(palmon,df,pic_width=300):
 #
 # ======================================================================================================
 def menu_load_excel():
-    with st.expander("Excel file", expanded=True, width="stretch"):
-        uploaded_file  = st.file_uploader("Choose a file", type = 'xlsx')
+    with st.expander(get_text_trad(site_langu,'xls'), expanded=True, width="stretch"):
+        uploaded_file  = st.file_uploader(get_text_trad(site_langu,'xls_sel'), type = 'xlsx')
         excel_loaded=False
         if uploaded_file is not None:
             st.session_state.uploaded_file = uploaded_file
             file = pd.ExcelFile(uploaded_file)
             if file is not None:
                 option = st.selectbox(
-                    "Worksheet to open",
+                    get_text_trad(site_langu,'wks'),
                     file.sheet_names,
                     index=None,
-                    placeholder="Select Worksheet...",
+                    placeholder=get_text_trad(site_langu,'wks_sel'),
                 )
                 if option is not None:
                     if option == "Tableaux":
@@ -1333,19 +1333,6 @@ def page4():
     write_one_info(test_trad)
     st.divider()
     st.button('Clear Cache', on_click=clear_cache)
-    st.divider()
-    pic(data_flags[site_langu],32)
-    range_langu = st.columns(2)
-    with range_langu[0]:
-        on = st.toggle("EN / FR")
-    if on:
-        st.session_state.site_langu = 'fr'
-    else:
-        st.session_state.site_langu = 'en'
-    site_langu=st.session_state.site_langu
-    with range_langu[1]:
-        write_one_info(st.session_state.site_langu)
-    pic(data_flags[site_langu],32)
     st.divider()
     #st.query_params.get_all() #TypeError: QueryParamsProxy.get_all() missing 1 required positional argument: 'key'
     st.query_params.to_dict()
