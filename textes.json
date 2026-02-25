@@ -26,6 +26,16 @@
     "xls_sel": [{"en": "Choose a file","fr": "Ouvrir le fichier"}],
     "wks": [{"en": "Worksheet to open","fr": "Ouvrir onglet"}],
     "wks_sel": [{"en": "Select Worksheet...","fr": "Onglet..."}],
-    "menu_param": [{"en": "Parameters","fr": "Paramètres"}]
+    "menu_param": [{"en": "Parameters","fr": "Paramètres"}],
+    "no_file": [{"en": "No file loaded","fr": "Aucun fichier chargé"}],
+    "data_graph": [{"en": "Data graph","fr": "Données du graphique"}],
+    "text_id2": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id3": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id4": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id5": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id6": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id7": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id8": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id9": [{"en": "text_id_en","fr": "text_id_fr"}]
   }
 }
