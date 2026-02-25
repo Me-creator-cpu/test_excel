@@ -1368,7 +1368,10 @@ def pg_options():
     #    st.session_state.texts_trad = read_json_trads()
     st.button('Load JSON', on_click=read_json_trads)
     st.button('Clear Cache', on_click=clear_cache)
-
+    st.divider()
+    err_details=st.toggle('ShowErrorDetails', True)
+    st.set_option('client.showErrorDetails', err_details)
+    
 # ======================================================================================================
 #
 #    Start MAIN page
