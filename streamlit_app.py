@@ -901,7 +901,7 @@ def menu_load_excel(with_expander=True,getnewfile=True):
     else:
         uploaded_file = st.session_state.uploaded_file
         #file = pd.ExcelFile(st.session_state.uploaded_file)    
-
+    st.toast(f'df_xls.shape={df_xls.shape}', icon='ℹ️️', duration='short')
     tabs_data=[]
     row, col = df_xls.shape
     for i in range(row):
