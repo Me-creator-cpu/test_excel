@@ -1296,7 +1296,26 @@ def page3():
             width = "content",
             selection_mode = "single-row",
             hide_index=False,
-            )      
+            ) 
+        file = pd.ExcelFile(st.session_state.uploaded_file)
+        if file is not None:
+            option = st.selectbox(
+                get_text_trad(site_langu,'wks'),
+                file.sheet_names,
+                index=None,
+                placeholder=get_text_trad(site_langu,'wks_sel'),
+            )
+            if option is not None:
+                if option == "Tableaux":
+                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                else:
+                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                    if option == "Palmon_data":
+                        df1.columns = cols_data
+                    if option == "Stars":
+                        df1.columns = cols_stars                        
+                st.dataframe(df1)
+
 def clear_cache():
     keys = list(st.session_state.keys())
     for key in keys:
