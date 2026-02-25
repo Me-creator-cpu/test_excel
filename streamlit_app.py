@@ -375,9 +375,9 @@ def write_coming_soon():
         st.image(url_maintenance, caption=None, width="content")
     return maintenance
 
-def pic(pic_url=None):
+def pic(pic_url=None,pic_width='content'):
     if pic_url is not None:
-        st.image(pic_url, caption=None, width="content")
+        st.image(pic_url, caption=None, width=pic_width)
         data_flags[st.session_state.site_langu]
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
@@ -1336,6 +1336,7 @@ def page4():
     st.button('Clear Cache', on_click=clear_cache)
     st.divider()
     pic('https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000')
+    pic(data_flags[site_langu],'32')
 
 # ======================================================================================================
 #
