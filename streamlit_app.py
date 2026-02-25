@@ -1376,8 +1376,6 @@ def page4():
     #st.query_params.to_dict()
 
 def pg_options():
-    #if st.button("Load JSON"):
-    #    st.session_state.texts_trad = read_json_trads()
     st.button('Load JSON', on_click=read_json_trads)
     st.button('Clear Cache', on_click=clear_cache)
     st.divider()
@@ -1399,7 +1397,6 @@ if st.session_state.site_langu is None:
     st.session_state.site_langu = site_langu
 
 app_title=get_text_trad(site_langu,'app_title')
-#app_title='Test Excel File'
 
 st.set_page_config(
     page_title=app_title,
@@ -1412,18 +1409,6 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }
 )
-#stitle(f"{app_title} App")
-# Widgets shared by all the pages
-#st.sidebar.selectbox("Foo", ["A", "B", "C"], key="foo")
-#st.sidebar.checkbox("Bar", key="bar")
-
-#pg = st.navigation([
-#    st.Page(page_loadxls, title="Load Excel file", icon=":material/favorite:"),
-#    st.Page(page_tabs,title="Data", icon=":material/favorite:"),
-#    st.Page(page1, title="First page", icon="🔥"),
-#    st.Page(page2, title="Second page", icon=":material/favorite:"),
-#])
-#pg.run()
 
 run_every = '1s' if st.session_state.stream else None
 
@@ -1438,19 +1423,17 @@ with st.sidebar:
     with range_langu[0]:
         on = st.toggle("EN / FR")
     st.session_state.site_langu='fr' if on else 'en'
-    #if on:
-    #    st.session_state.site_langu = 'fr'
-    #else:
-    #    st.session_state.site_langu = 'en'
     site_langu=st.session_state.site_langu
     with range_langu[1]:
         pic(data_flags[site_langu],24)
     menu_load_excel()
     st.session_state.stream=st.toggle("Check loaded", False)
 
+if site_langu != langu:
+    menu_load_excel(with_expander=False,getnewfile=False)
 langu = st.session_state.site_langu
 
-if use_pics and 1 == 2:
+if use_pics:
     st.markdown("""
         <style>
         	[data-testid="stHeader"] {
