@@ -844,23 +844,24 @@ def menu_load_excel():
             st.session_state.uploaded_file = uploaded_file
             file = pd.ExcelFile(uploaded_file)
             if file is not None:
-                option = st.selectbox(
-                    get_text_trad(site_langu,'wks'),
-                    file.sheet_names,
-                    index=None,
-                    placeholder=get_text_trad(site_langu,'wks_sel'),
-                )
-                if option is not None:
-                    if option == "Tableaux":
-                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                    else:
-                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                        if option == "Palmon_data":
-                            df1.columns = cols_data
-                        if option == "Stars":
-                            df1.columns = cols_stars                        
-                    st.dataframe(df1)
-                    excel_loaded=True
+                excel_loaded=True
+                #option = st.selectbox(
+                #    get_text_trad(site_langu,'wks'),
+                #    file.sheet_names,
+                #    index=None,
+                #    placeholder=get_text_trad(site_langu,'wks_sel'),
+                #)
+                #if option is not None:
+                #    if option == "Tableaux":
+                #        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                #    else:
+                #        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                #        if option == "Palmon_data":
+                #            df1.columns = cols_data
+                #        if option == "Stars":
+                #            df1.columns = cols_stars                        
+                #    st.dataframe(df1)
+                #    excel_loaded=True
             else:
                 uploaded_file=None
         expanded=False
