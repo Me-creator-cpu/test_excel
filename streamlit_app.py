@@ -1335,7 +1335,15 @@ def page4():
     st.divider()
     st.button('Clear Cache', on_click=clear_cache)
     st.divider()
-    pic('https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000')
+    pic(data_flags[site_langu],32)
+    with range_langu[0]:
+        on = st.toggle("FR / EN")
+    if on:
+        st.session_state.site_langu = 'en'
+    else:
+        st.session_state.site_langu = 'fr'
+    with range_langu[1]:
+        write_one_info(st.session_state.site_langu)
     pic(data_flags[site_langu],32)
 
 # ======================================================================================================
