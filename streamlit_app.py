@@ -1196,29 +1196,32 @@ def menu_tab_graph():
 def menu_tab_downloads():
     #st.title(body="Download file data test", text_alignment="center")
     st.subheader("Choose local data (csv)", divider=False)
-    
-    range_cols = st.columns(3)
-    range_cols[0].download_button(
-        label="Palmons data",
-        data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
-        file_name="base_data.csv",
-        mime="text/csv",
-        icon=":material/download:",
-    )
-    range_cols[1].download_button(
-        label="EXP costs",
-        data=df_xls["DataFrame"][idx_costs].to_csv().encode("utf-8"),
-        file_name="exp_data.csv",
-        mime="text/csv",
-        icon=":material/download:",
-    )
-    range_cols[2].download_button(
-        label="COMP costs",
-        data=df_xls["DataFrame"][idx_comp].to_csv().encode("utf-8"),
-        file_name="comp_data.csv",
-        mime="text/csv",
-        icon=":material/download:",
-    )    
+    try:
+        range_cols = st.columns(3)
+        range_cols[0].download_button(
+            label="Palmons data",
+            data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
+            file_name="base_data.csv",
+            mime="text/csv",
+            icon=":material/download:",
+        )
+        range_cols[1].download_button(
+            label="EXP costs",
+            data=df_xls["DataFrame"][idx_costs].to_csv().encode("utf-8"),
+            file_name="exp_data.csv",
+            mime="text/csv",
+            icon=":material/download:",
+        )
+        range_cols[2].download_button(
+            label="COMP costs",
+            data=df_xls["DataFrame"][idx_comp].to_csv().encode("utf-8"),
+            file_name="comp_data.csv",
+            mime="text/csv",
+            icon=":material/download:",
+        ) 
+    except:
+        st.empty()
+        
 # ======================================================================================================
 #
 #    Definition Classes
