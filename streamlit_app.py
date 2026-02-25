@@ -1343,6 +1343,7 @@ def page4():
         st.session_state.site_langu = 'en'
     else:
         st.session_state.site_langu = 'fr'
+    site_langu=st.session_state.site_langu
     with range_langu[1]:
         write_one_info(st.session_state.site_langu)
     pic(data_flags[site_langu],32)
