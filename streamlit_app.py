@@ -1282,7 +1282,7 @@ def page2():
                  height='content')
 
 def page3():info_file
-    st.subheader(get_text_trad(site_langu,'info_file'), divider=False)
+    st.subheader(f'{get_text_trad(site_langu,'info_file')}', divider=False)
     if st.session_state.uploaded_file is not None:
         obj_fle=st.session_state.uploaded_file
         fileinfo={
