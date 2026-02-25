@@ -840,7 +840,7 @@ def menu_load_excel(with_expander=True):
     if with_expander:
         container=st.expander(get_text_trad(site_langu,'xls'), expanded=True, width="stretch")
     else:
-        container=st.expander(border=False, expanded=True, width="stretch")
+        container=st.container(border=False, width='stretch', height='content')
         #st.container(border=False, width='stretch', height='content')
     with container:
         uploaded_file  = st.file_uploader(get_text_trad(site_langu,'xls_sel'), type = 'xlsx')
