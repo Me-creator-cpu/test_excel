@@ -1413,7 +1413,7 @@ if is_mobile():
 with st.sidebar:
     top_nav = st.toggle("Top navigation", False)
     nav_sections = st.toggle("Page sections", True)
-    use_pics = st.toggle("Page sections", True)
+    use_pics = st.toggle("Show images", True)
     range_langu = st.columns(2)
     with range_langu[0]:
         on = st.toggle("EN / FR")
@@ -1431,7 +1431,7 @@ langu = st.session_state.site_langu
 
 st.markdown("""
     <style>
-    	[data-testid="stDecoration"] {
+    	[data-testid="stHeader"] {
     		background-image: linear-gradient(90deg, rgb(0, 102, 204), rgb(102, 255, 255));
     	}
     </style>""",
