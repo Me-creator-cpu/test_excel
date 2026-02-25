@@ -1410,6 +1410,7 @@ if is_mobile():
 with st.sidebar:
     top_nav = st.toggle("Top navigation", False)
     nav_sections = st.toggle("Page sections", True)
+    change_css = st.toggle("Default CSS", False)
     range_langu = st.columns(2)
     with range_langu[0]:
         on = st.toggle("EN / FR")
@@ -1424,6 +1425,10 @@ with st.sidebar:
     menu_load_excel()
 
 langu = st.session_state.site_langu
+
+if change_css:
+    default_css='https://advanced-theming-anthropic.streamlit.app/-/build/assets/index-CJlxgJwY.css'
+    st.html(f"<style>{default_css}</style>")
 
 pages = {
     get_text_trad(site_langu,'menu_home'):[ 
