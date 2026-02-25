@@ -113,6 +113,7 @@ data = { #                    0                  1                  2           
         "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Boss upgrade costs", "Boss details"],
        }
 df_xls = pd.DataFrame(data)
+data_flags={"en":"https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000","fr":"https://img.icons8.com/?size=100&id=3muzEmi4dpD5&format=png&color=000000"}
 option_skill=["⚔ Attack","🛡 Defend"]
 data_skills={
     "Skill":["Attack","Defend"],
@@ -373,6 +374,11 @@ def write_coming_soon():
         st.subheader("Coming soon...", divider=False)
         st.image(url_maintenance, caption=None, width="content")
     return maintenance
+
+def pic(pic_url=None):
+    if pic_url is not None:
+        st.image(pic_url, caption=None, width="content")
+        data_flags[st.session_state.site_langu]
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
     try:
@@ -1292,6 +1298,10 @@ def page3():
             selection_mode = "single-row",
             hide_index=False,
             )      
+def clear_cache():
+    keys = list(st.session_state.keys())
+    for key in keys:
+        st.session_state.pop(key)
 
 def read_json_trads(sFile='textes.json'):
     #with open('textes.json', encoding='utf-8', errors='ignore') as f:
@@ -1322,6 +1332,10 @@ def page4():
     st.divider()
     test_trad = get_text_trad(site_langu,'menu_home')
     write_one_info(test_trad)
+    st.divider()
+    st.button('Clear Cache', on_click=clear_cache)
+    st.divider()
+    pic('https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000')
 
 # ======================================================================================================
 #
