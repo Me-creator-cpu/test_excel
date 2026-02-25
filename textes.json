@@ -18,9 +18,10 @@
     "total_cry_cost": [{"en": "Total Crystals cost from","fr": "Coût total cristaux de"}],
     "level": [{"en": "Level","fr": "Niveau"}],
     "stars": [{"en": "Stars","fr": "Etoiles"}],
-    "text2_id": [{"en": "text2_id_en","fr": "text2_id_fr"}],
-    "text3_id": [{"en": "text2_id_en","fr": "text2_id_fr"}],
-    "text4_id": [{"en": "text2_id_en","fr": "text2_id_fr"}],
+    "xls": [{"en": "Excel file","fr": "Fichier Excel"}],
+    "xls_sel": [{"en": "Choose a file","fr": "Ouvrir le fichier"}],
+    "wks": [{"en": "Worksheet to open","fr": "Ouvrir onglet"}],
+    "wks_sel": [{"en": "Select Worksheet...","fr": "Onglet..."}],
     "text5_id": [{"en": "text2_id_en","fr": "text2_id_fr"}]
   }
 }
