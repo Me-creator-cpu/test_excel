@@ -1439,7 +1439,7 @@ with st.sidebar:
     with range_langu[1]:
         pic(data_flags[site_langu],24)
     menu_load_excel()
-    st.session_state.stream=st.toggle("Page sections", True)
+    st.session_state.stream=st.toggle("Check loaded", True)
 
 langu = st.session_state.site_langu
 
