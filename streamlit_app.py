@@ -1301,12 +1301,16 @@ def clear_cache():
     keys = list(st.session_state.keys())
     for key in keys:
         st.session_state.pop(key)
+    st.toast('Cache cleared', icon='ℹ️️', duration='short')
 
 def read_json_trads(sFile='textes.json'):
-    #with open('textes.json', encoding='utf-8', errors='ignore') as f:
-    with open(sFile, encoding='utf-8', errors='ignore') as f:
-        json_data = json.load(f, strict=False) 
-    #return json.loads(json_data)
+    json_data = None
+    try:
+        with open(sFile, encoding='utf-8', errors='ignore') as f:
+            json_data = json.load(f, strict=False) 
+        st.toast('JSON file loaded', icon='ℹ️️', duration='short')
+    except:
+        st.toast('Error loading JSON file', icon='🔴', duration='short')
     return json_data
 
 def get_text_trad(langu='en',textId='text_id'):
@@ -1336,6 +1340,11 @@ def page4():
     st.divider()
     #st.query_params.get_all() #TypeError: QueryParamsProxy.get_all() missing 1 required positional argument: 'key'
     st.query_params.to_dict()
+
+def pg_options():
+    if st.button("Load JSON"):
+        st.session_state.texts_trad = read_json_trads()
+    st.button('Clear Cache', on_click=clear_cache)
 
 # ======================================================================================================
 #
@@ -1408,8 +1417,10 @@ pages = {
         st.Page(page1, title=get_text_trad(site_langu,'menu_info_device'),icon="📱" if is_mobile() else "💻"),
         st.Page(page2, title=get_text_trad(site_langu,'menu_info_os'),icon="🖥️"),
         st.Page(page3, title=get_text_trad(site_langu,'menu_info_file'),icon="📋"),
-        st.Page(page4, title="Test",icon="🛠️"),
     ],
+    get_text_trad(site_langu,'menu_param'): [
+        st.Page(pg_options, title="Options",icon="⚙️"), #🛠️
+    ],    
 }
 pg = st.navigation(pages)
 pg.run()    
