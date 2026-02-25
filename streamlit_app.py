@@ -452,6 +452,40 @@ def icon_full_cost(value):
     except:
         return value
 
+def clear_cache():
+    keys = list(st.session_state.keys())
+    for key in keys:
+        st.session_state.pop(key)
+    st.toast('Cache cleared', icon='ℹ️️', duration='short')
+
+def read_json_trads(sFile='textes.json'):
+    json_data = None
+    try:
+        with open(sFile, encoding='utf-8', errors='ignore') as f:
+            json_data = json.load(f, strict=False) 
+        st.toast('JSON file loaded', icon='ℹ️️', duration='short')
+    except:
+        st.toast('Error loading JSON file', icon='🔴', duration='short')
+    return json_data
+
+def get_text_trad(langu='en',textId='text_id'):
+    ret_val = ''
+    try:
+        texts_trad=st.session_state.texts_trad
+        ret_val = texts_trad['data'][textId][0][langu]
+    except:
+        st.session_state.texts_trad = read_json_trads()
+        ret_val=f'Trad err {textId}/{langu}'
+    return ret_val
+
+@st.fragment(run_every=run_every)
+def check_file_loaded():
+    now = datetime.now()
+    if df_xls["DataFrame"][idx_palmon] is not None:
+        return st.success(f'{now} - File loaded', icon="✅")
+    else:
+        return st.warning(f'{now} - File is NOT loaded', icon="⚠️")
+        
 def build_main_chart(raw_data,title_expander=None,x_axis=None,y_axis=None):
     if title_expander is not None:
         container = st.expander(title_expander, expanded=True, width="stretch")
@@ -1312,41 +1346,7 @@ def page3():
     else:
         file_err()
         #menu_load_excel(False)
-
-def clear_cache():
-    keys = list(st.session_state.keys())
-    for key in keys:
-        st.session_state.pop(key)
-    st.toast('Cache cleared', icon='ℹ️️', duration='short')
-
-def read_json_trads(sFile='textes.json'):
-    json_data = None
-    try:
-        with open(sFile, encoding='utf-8', errors='ignore') as f:
-            json_data = json.load(f, strict=False) 
-        st.toast('JSON file loaded', icon='ℹ️️', duration='short')
-    except:
-        st.toast('Error loading JSON file', icon='🔴', duration='short')
-    return json_data
-
-def get_text_trad(langu='en',textId='text_id'):
-    ret_val = ''
-    try:
-        texts_trad=st.session_state.texts_trad
-        ret_val = texts_trad['data'][textId][0][langu]
-    except:
-        st.session_state.texts_trad = read_json_trads()
-        ret_val=f'Trad err {textId}/{langu}'
-    return ret_val
-
-@st.fragment(run_every=run_every)
-def check_file_loaded():
-    now = datetime.now()
-    if st.session_state.uploaded_file is not None:
-        return st.success(f'{now} - File loaded', icon="✅")
-    else:
-        return st.warning(f'{now} - File is NOT loaded', icon="⚠️")
-        
+       
 def page4():
     #write_coming_soon()
     st.subheader('Options', divider=True)
