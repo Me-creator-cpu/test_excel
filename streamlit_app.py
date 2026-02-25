@@ -1195,7 +1195,7 @@ def menu_tab_graph():
 
 def menu_tab_downloads():
     #st.title(body="Download file data test", text_alignment="center")
-    st.subheader("Choose local data (csv)", divider=False)
+    st.subheader("Choose local data (csv)")
     try:
         range_cols = st.columns(3)
         range_cols[0].download_button(
