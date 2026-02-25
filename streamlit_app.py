@@ -902,9 +902,9 @@ def menu_load_excel(with_expander=True,getnewfile=True):
         uploaded_file = st.session_state.uploaded_file
         #file = pd.ExcelFile(st.session_state.uploaded_file)    
     
-    st.toast(f'df_xls.shape={df_xls.shape}', icon='ℹ️️', duration='short')
-    st.toast(f'uploaded_file={uploaded_file}', icon='ℹ️️', duration='short')
-    st.toast(f'st.session_state.uploaded_file={st.session_state.uploaded_file}', icon='ℹ️️', duration='short')
+        #st.toast(f'df_xls.shape={df_xls.shape}', icon='ℹ️️', duration='short')
+        #st.toast(f'uploaded_file={uploaded_file}', icon='ℹ️️', duration='short')
+        #st.toast(f'st.session_state.uploaded_file={st.session_state.uploaded_file}', icon='ℹ️️', duration='short')
     
     tabs_data=[]
     row, col = df_xls.shape
@@ -1436,7 +1436,7 @@ with st.sidebar:
     st.session_state.stream=st.toggle("Check loaded", False)
 
 if site_langu != langu:
-    st.toast('RELOADING', icon='ℹ️️', duration='short')
+    #st.toast('RELOADING', icon='ℹ️️', duration='short')
     menu_load_excel(with_expander=False,getnewfile=False)
 langu = st.session_state.site_langu
 
