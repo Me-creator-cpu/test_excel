@@ -1377,6 +1377,9 @@ def pg_options():
     st.divider()
     err_details=st.toggle('ShowErrorDetails', True)
     st.set_option('client.showErrorDetails', err_details)
+    container_xls = st.container(border=False, width='stretch', height='content')
+    with container_xls:
+        check_file_loaded()
     
 # ======================================================================================================
 #
