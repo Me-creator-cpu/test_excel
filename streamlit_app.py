@@ -1342,8 +1342,9 @@ def page4():
     st.query_params.to_dict()
 
 def pg_options():
-    if st.button("Load JSON"):
-        st.session_state.texts_trad = read_json_trads()
+    #if st.button("Load JSON"):
+    #    st.session_state.texts_trad = read_json_trads()
+    st.button('Load JSON', on_click=read_json_trads)
     st.button('Clear Cache', on_click=clear_cache)
 
 # ======================================================================================================
