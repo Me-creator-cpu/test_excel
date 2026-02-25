@@ -1417,7 +1417,7 @@ st.set_page_config(
 #pg.run()
 
 if st.session_state.stream is True:
-    run_every = '1.0'
+    run_every = '1s'
 else:
     run_every = None
 
