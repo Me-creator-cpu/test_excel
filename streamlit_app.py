@@ -360,7 +360,7 @@ def do_nothing():
     return None
     
 def file_err():
-   st.markdown(":orange-badge[⚠️ No file loaded]")
+   st.markdown(":orange-badge[⚠️ {get_text_trad(site_langu,'no_file')}]")
 
 def write_info(msg,val):
     return st.markdown(f":orange-badge[{msg} : {val}]")
@@ -502,15 +502,14 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
 
 def build_graph_select():
     st.set_page_config(
-        #page_title="yFiles Graphs for Streamlit",
         layout="wide",
     )
     field_1 = 'Level' #get_text_trad(site_langu,'level') #'Level'
     field_2 = 'Stars' #get_text_trad(site_langu,'stars') #'Stars'
     on = st.toggle(f'{get_text_trad(site_langu,'switch_axis')} {field_1}/{field_2}')
     if on:
-        field_y = field_1
         field_x = field_2
+        field_y = field_1
     else:
         field_x = field_1
         field_y = field_2
@@ -932,7 +931,7 @@ def menu_tab_comp():
     st.subheader(df_xls["DisplayName"][idx_comp])
     df = df_xls["DataFrame"][idx_comp]
     range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
-    with st.expander("Data graph", expanded=False, width="stretch"):
+    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
     
 def menu_tab_costs():
@@ -942,7 +941,7 @@ def menu_tab_costs():
     min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
     max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
     range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
-    with st.expander("Data graph", expanded=False, width="stretch"):
+    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level to'] <= range_level_max)])    
 
 def menu_tab_mut():
@@ -954,7 +953,7 @@ def menu_tab_mut():
     range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(1),int(30))
     st.subheader("💎Crystals")
     build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(1),int(30),False)
-    with st.expander("Data graph", expanded=False, width="stretch"):
+    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
         build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
         build_table_any(df_energy.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
 
@@ -1066,7 +1065,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
 
 def menu_tab_dashboards():
     col_border=False
-    st.header("Dashboard")
+    st.header(get_text_trad(site_langu,'dashboards'))
     df=df_xls["DataFrame"][idx_palmon]
     
     column='Type'
@@ -1409,6 +1408,8 @@ if is_mobile():
     write_js_menu()
 
 with st.sidebar:
+    top_nav = st.toggle("Top navigation", False)
+    nav_sections = st.toggle("Page sections", True)
     range_langu = st.columns(2)
     with range_langu[0]:
         on = st.toggle("EN / FR")
@@ -1443,7 +1444,10 @@ pages = {
         st.Page(pg_options, title="Options",icon="⚙️"), #🛠️
     ],    
 }
-pg = st.navigation(pages)
+pg = st.navigation(
+    pages if nav_sections else [page for section in pages.values() for page in section],
+    position="top" if top_nav else "sidebar"
+)
 pg.run()    
 
 #write_js_script()            
