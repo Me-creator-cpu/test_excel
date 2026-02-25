@@ -1391,6 +1391,8 @@ def pg_options():
 #
 # ======================================================================================================
 site_langu='en'
+langu='en'
+
 if st.session_state.texts_trad is None:
     st.session_state.texts_trad = read_json_trads()
 if st.session_state.site_langu is None:
