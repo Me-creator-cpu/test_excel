@@ -361,7 +361,7 @@ def do_nothing():
     
 def file_err():
     msg_no_file=get_text_trad(site_langu,'no_file')
-    return st.markdown(":orange-badge[⚠️ {msg_no_file}]")
+    return st.markdown(f":orange-badge[⚠️ {msg_no_file}]")
 
 def write_info(msg,val):
     return st.markdown(f":orange-badge[{msg} : {val}]")
