@@ -1436,6 +1436,7 @@ with st.sidebar:
     st.session_state.stream=st.toggle("Check loaded", False)
 
 if site_langu != langu:
+    st.toast('RELOADING', icon='ℹ️️', duration='short')
     menu_load_excel(with_expander=False,getnewfile=False)
 langu = st.session_state.site_langu
 
