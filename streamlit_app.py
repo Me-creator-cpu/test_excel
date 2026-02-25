@@ -841,7 +841,6 @@ def menu_load_excel(with_expander=True):
         container=st.expander(get_text_trad(site_langu,'xls'), expanded=True, width="stretch")
     else:
         container=st.container(border=False, width='stretch', height='content')
-        #st.container(border=False, width='stretch', height='content')
     with container:
         uploaded_file  = st.file_uploader(get_text_trad(site_langu,'xls_sel'), type = 'xlsx')
         excel_loaded=False
@@ -850,23 +849,6 @@ def menu_load_excel(with_expander=True):
             file = pd.ExcelFile(uploaded_file)
             if file is not None:
                 excel_loaded=True
-                #option = st.selectbox(
-                #    get_text_trad(site_langu,'wks'),
-                #    file.sheet_names,
-                #    index=None,
-                #    placeholder=get_text_trad(site_langu,'wks_sel'),
-                #)
-                #if option is not None:
-                #    if option == "Tableaux":
-                #        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                #    else:
-                #        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                #        if option == "Palmon_data":
-                #            df1.columns = cols_data
-                #        if option == "Stars":
-                #            df1.columns = cols_stars                        
-                #    st.dataframe(df1)
-                #    excel_loaded=True
             else:
                 uploaded_file=None
         expanded=False
@@ -1324,7 +1306,7 @@ def page3():
                 st.dataframe(df1)
     else:
         file_err()
-        menu_load_excel(False)
+        #menu_load_excel(False)
 
 def clear_cache():
     keys = list(st.session_state.keys())
