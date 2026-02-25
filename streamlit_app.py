@@ -1312,14 +1312,14 @@ def get_text_trad(langu='en',textId='text_id'):
 
 def page4():
     #write_coming_soon()
+    site_langu=st.session_state.site_langu
     if st.session_state.texts_trad is None:
         st.session_state.texts_trad = read_json_trads()
     if st.button("Load JSON"):
         st.session_state.texts_trad = read_json_trads()
-    test_trad = get_text_trad('en','text_id')
+    test_trad = get_text_trad(site_langu,'text_id')
     write_one_info(test_trad)
     st.divider()
-    site_langu='en'
     test_trad = get_text_trad(site_langu,'menu_home')
     write_one_info(test_trad)
 
