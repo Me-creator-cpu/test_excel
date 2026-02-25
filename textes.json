@@ -19,8 +19,8 @@
     "level": [{"en": "Level","fr": "Niveau"}],
     "stars": [{"en": "Stars","fr": "Etoiles"}],
     "text2_id": [{"en": "text2_id_en","fr": "text2_id_fr"}],
-    "text2_id": [{"en": "text2_id_en","fr": "text2_id_fr"}],
-    "text2_id": [{"en": "text2_id_en","fr": "text2_id_fr"}],
-    "text2_id": [{"en": "text2_id_en","fr": "text2_id_fr"}]
+    "text3_id": [{"en": "text2_id_en","fr": "text2_id_fr"}],
+    "text4_id": [{"en": "text2_id_en","fr": "text2_id_fr"}],
+    "text5_id": [{"en": "text2_id_en","fr": "text2_id_fr"}]
   }
 }
