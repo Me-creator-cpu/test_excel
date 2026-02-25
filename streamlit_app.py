@@ -875,29 +875,33 @@ def pal_deltail(palmon,df,pic_width=300):
 #    Definition fonctions pages/menu
 #
 # ======================================================================================================
-def menu_load_excel(with_expander=True):
-    if with_expander:
-        container=st.expander(get_text_trad(site_langu,'xls'), expanded=True, width="stretch")
-    else:
-        container=st.container(border=False, width='stretch', height='content')
-    with container:
-        uploaded_file  = st.file_uploader(get_text_trad(site_langu,'xls_sel'), type = 'xlsx')
-        excel_loaded=False
-        if uploaded_file is not None:
+def menu_load_excel(with_expander=True,getnewfile=True):
+    if getnewfile:
+        if with_expander:
+            container=st.expander(get_text_trad(site_langu,'xls'), expanded=True, width="stretch")
+        else:
+            container=st.container(border=False, width='stretch', height='content')
+        with container:
+            uploaded_file  = st.file_uploader(get_text_trad(site_langu,'xls_sel'), type = 'xlsx')
+            excel_loaded=False
+            if uploaded_file is not None:
+                st.session_state.uploaded_file = uploaded_file
+                file = pd.ExcelFile(uploaded_file)
+                if file is not None:
+                    excel_loaded=True
+                else:
+                    uploaded_file=None
+            expanded=False
+            
+        if df_xls["DataFrame"][idx_costs] is not None:
+            excel_loaded=True
             st.session_state.uploaded_file = uploaded_file
-            file = pd.ExcelFile(uploaded_file)
-            if file is not None:
-                excel_loaded=True
-            else:
-                uploaded_file=None
-        expanded=False
-        
-    if df_xls["DataFrame"][idx_costs] is not None:
-        excel_loaded=True
-        st.session_state.uploaded_file = uploaded_file
+        else:
+            excel_loaded=False
     else:
-        excel_loaded=False
-    
+        uploaded_file = pd.ExcelFile(st.session_state.uploaded_file
+        #file = pd.ExcelFile(st.session_state.uploaded_file)    
+
     tabs_data=[]
     row, col = df_xls.shape
     for i in range(row):
@@ -1348,7 +1352,6 @@ def page3():
                 st.dataframe(df1)
     else:
         file_err()
-        #menu_load_excel(False)
        
 def page4():
     #write_coming_soon()
@@ -1447,7 +1450,7 @@ with st.sidebar:
 
 langu = st.session_state.site_langu
 
-if use_pics:
+if use_pics and 1 == 2:
     st.markdown("""
         <style>
         	[data-testid="stHeader"] {
@@ -1459,7 +1462,6 @@ if use_pics:
 pages = {
     get_text_trad(site_langu,'menu_home'):[ 
         st.Page(pg_home, title=get_text_trad(site_langu,'menu_home_1'), icon="🏠"),
-        #st.Page(menu_load_excel, title="Load Excel", icon="📅"),
     ],
     get_text_trad(site_langu,'menu_resources'): [
         st.Page(pg_menu_0, title=get_text_trad(site_langu,'full_list'),icon="🗂️"),
