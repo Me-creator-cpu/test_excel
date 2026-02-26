@@ -1487,7 +1487,8 @@ if use_pics:
         	}
         </style>""",
         unsafe_allow_html=True)
-    write_no_streamlit_link()
+
+write_no_streamlit_link()
 
 pages = {
     get_text_trad(site_langu,'menu_home'):[ 
