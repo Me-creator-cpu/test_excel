@@ -385,6 +385,7 @@ def write_coming_soon():
     return maintenance
 
 def pic(pic_url=None,pic_width='content',force=False):
+    bln=False
     if pic_url is not None and use_pics:
         bln=False
     if bln or force:
