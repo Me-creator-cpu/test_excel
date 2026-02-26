@@ -387,7 +387,7 @@ def write_coming_soon():
 def pic(pic_url=None,pic_width='content',force=False):
     bln=False
     if pic_url is not None and use_pics:
-        bln=False
+        bln=True
     if bln or force:
         st.image(pic_url, caption=None, width=pic_width)
 
