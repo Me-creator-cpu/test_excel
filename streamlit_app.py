@@ -618,15 +618,21 @@ def build_table_any(df):
 
 def get_df_base():
     try:
-        if df_xls["DataFrame"][idx_palmon] is not None:
-            return df_xls["DataFrame"][idx_palmon]
-        else:
-            return None
+        #df=get_df_idx(idx_palmon)
+        #if df_xls["DataFrame"][idx_palmon] is not None:
+        #    return df_xls["DataFrame"][idx_palmon]
+        return get_df_idx(idx_palmon)
+    except:
+        return None
+
+def get_df_idx(idx=idx_palmon):
+    try:
+        return df_xls["DataFrame"][idx].copy(deep=True)
     except:
         return None
 
 def data_to_tiles(df_data=None): 
-    df_srv = get_df_base().copy()
+    df_srv = get_df_base()
     source = df_srv #df_srv[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL','Upgradable']]
     if df_data is not None:
         source = df_srv[df_srv['Name'].isin(df_data['Name'])] 
