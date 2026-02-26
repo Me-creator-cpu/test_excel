@@ -972,7 +972,7 @@ def menu_tab_show(idx):
         case 200:
             menu_tab_downloads()
         case _:
-            return st.empty()
+            return file_err()
 
 def menu_tab_comp():
     st.subheader(df_xls["DisplayName"][idx_comp])
