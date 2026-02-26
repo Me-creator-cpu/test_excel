@@ -1446,6 +1446,7 @@ if st.session_state.site_langu is None:
     st.session_state.site_langu = site_langu
 
 app_title=get_text_trad(site_langu,'app_title')
+app_title='Application pour Eva 🥰"
 
 st.set_page_config(
     page_title=app_title,
