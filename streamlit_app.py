@@ -339,11 +339,13 @@ def write_js_menu(bln=False):
         st.markdown(hide_st_style, unsafe_allow_html=True)    
 
 def write_no_streamlit_link():
+    st.toast("Style applyed")
     hide_st_style = """
                     <style>
-                    _container_gzau3_1 _viewerBadge_nim44_23 {visibility: hidden;}
-                    _profileContainer_gzau3_53 {visibility: hidden;}
-                    _link_gzau3_10 {visibility: hidden;}
+                    ._container_gzau3_1 _viewerBadge_nim44_23 {visibility: hidden;}
+                    ._profileContainer_gzau3_53 {visibility: hidden;}
+                    ._link_gzau3_10 {visibility: hidden;}
+                    [data-testid="appCreatorAvatar"] {visibility: hidden;}
                 </style>
                 """
     st.markdown(hide_st_style, unsafe_allow_html=True)
