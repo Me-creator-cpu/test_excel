@@ -384,8 +384,10 @@ def write_coming_soon():
         st.image(url_maintenance, caption=None, width="content")
     return maintenance
 
-def pic(pic_url=None,pic_width='content'):
+def pic(pic_url=None,pic_width='content',force=False):
     if pic_url is not None and use_pics:
+        bln=False
+    if bln or force:
         st.image(pic_url, caption=None, width=pic_width)
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
@@ -1457,7 +1459,7 @@ with st.sidebar:
     st.session_state.site_langu='fr' if on else 'en'
     site_langu=st.session_state.site_langu
     with range_langu[1]:
-        pic(data_flags[site_langu],24)
+        pic(data_flags[site_langu],24,force=True)
     menu_load_excel()
     st.session_state.stream=st.toggle("Check loaded", False)
 
