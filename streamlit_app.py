@@ -346,6 +346,7 @@ def write_no_streamlit_link():
                     ._profileContainer_gzau3_53 {display:none;visibility: hidden;}
                     ._link_gzau3_10 {display:none;visibility: hidden;}
                     [data-testid="appCreatorAvatar"] {display:none;visibility: hidden;}
+                    [data-testid="stToolbarActionButtonLabel"]  {display:none;visibility: hidden;}
                 </style>
                 """
     st.markdown(hide_st_style, unsafe_allow_html=True)
