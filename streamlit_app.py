@@ -1237,6 +1237,21 @@ def menu_tab_downloads():
             mime="text/csv",
             icon=":material/download:",
         ) 
+
+        st.subheader("View local data")
+        range_cols_view = st.columns(3)
+        df=None
+        with range_cols_view[0]:
+            if st.button('View Base raw data'):
+                df=get_df_idx(idx_palmon)
+        with range_cols_view[1]:
+            if st.button('View EXP raw data'):
+                df=get_df_idx(idx_costs)
+        with range_cols_view[2]:
+            if st.button('View COMP raw data'):
+                df=get_df_idx(idx_comp)
+        if df is not None:
+            st.dataframe(df,hide_index=True)            
     except:
         st.empty()
         
