@@ -118,7 +118,9 @@ data = { #                    0                  1                  2           
         "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Boss upgrade costs", "Boss details"],
        }
 df_xls = pd.DataFrame(data)
-data_flags={"en":"https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000","fr":"https://img.icons8.com/?size=100&id=3muzEmi4dpD5&format=png&color=000000"}
+data_flags={
+    "en":"https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000",
+    "fr":"https://img.icons8.com/?size=100&id=3muzEmi4dpD5&format=png&color=000000"}
 option_skill=["⚔ Attack","🛡 Defend"]
 data_skills={
     "Skill":["Attack","Defend"],
@@ -1301,8 +1303,9 @@ def pg_home():
 def pg_menu_0():
     menu_tab_show(0)
 
-def pg_menu_150():
-    menu_tab_dashboards()
+def pg_menu_100():
+    menu_tab_show(100)
+    #menu_tab_dashboards()
 
 def pg_menu_200():
     menu_tab_show(200)
@@ -1461,7 +1464,7 @@ pages = {
     ],
     get_text_trad(site_langu,'menu_resources'): [
         st.Page(pg_menu_0, title=get_text_trad(site_langu,'full_list'),icon="🗂️"),
-        st.Page(pg_menu_150, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
+        st.Page(pg_menu_100, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
         st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
     ],
     get_text_trad(site_langu,'menu_info'): [
