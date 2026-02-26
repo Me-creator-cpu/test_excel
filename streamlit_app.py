@@ -552,7 +552,8 @@ def build_graph_select():
     else:
         field_x = field_1
         field_y = field_2
-    df_srv = get_df_base().copy()
+    #df_srv = get_df_base().copy()
+    df_srv=get_df_idx()
     max_upg=df_srv.loc[(df_srv["Level"] >= 1)].Level.max()+10
     min_upg=df_srv.loc[(df_srv["Level"] >= 10)].Level.min()-10
     #write_info('max_upg',max_upg)
@@ -632,7 +633,7 @@ def get_df_idx(idx=idx_palmon):
         return None
 
 def data_to_tiles(df_data=None): 
-    df_srv = get_df_base()
+    df_srv = get_df_idx() #get_df_base()
     source = df_srv #df_srv[['Name', 'Type', 'Skill', 'Level', 'Stars', 'URL','Upgradable']]
     if df_data is not None:
         source = df_srv[df_srv['Name'].isin(df_data['Name'])] 
