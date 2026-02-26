@@ -7,11 +7,11 @@ from openpyxl import load_workbook
 import locale
 import logging
 import os
-import platform
 import json
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 
+#import platform
 #import altair as alt
 #from io import StringIO
 #from io import BytesIO
