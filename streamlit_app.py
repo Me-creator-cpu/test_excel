@@ -338,6 +338,16 @@ def write_js_menu(bln=False):
     if bln:
         st.markdown(hide_st_style, unsafe_allow_html=True)    
 
+def write_no_streamlit_link():
+    hide_st_style = """
+                    <style>
+                    _container_gzau3_1 _viewerBadge_nim44_23 {visibility: hidden;}
+                    _profileContainer_gzau3_53 {visibility: hidden;}
+                    _link_gzau3_10 {visibility: hidden;}
+                </style>
+                """
+    st.markdown(hide_st_style, unsafe_allow_html=True)
+    
 def write_css_round_img():
     round_st_style = """
                 <style>    
@@ -1477,6 +1487,7 @@ if use_pics:
         	}
         </style>""",
         unsafe_allow_html=True)
+    write_no_streamlit_link()
 
 pages = {
     get_text_trad(site_langu,'menu_home'):[ 
