@@ -123,9 +123,10 @@ data = { #                    0                  1                  2           
         "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Boss upgrade costs", "Boss details"],
        }
 df_xls = pd.DataFrame(data)
-data_flags={
-    "en":"https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000",
-    "fr":"https://img.icons8.com/?size=100&id=3muzEmi4dpD5&format=png&color=000000"}
+data_flags={'en':flag_en,'fr':flag_fr}
+    #"en":"https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000",
+    #"fr":"https://img.icons8.com/?size=100&id=3muzEmi4dpD5&format=png&color=000000"}
+
 option_skill=["⚔ Attack","🛡 Defend"]
 data_skills={
     "Skill":["Attack","Defend"],
@@ -1482,8 +1483,7 @@ with st.sidebar:
         pic(data_flags[site_langu],24,force=True)
     menu_load_excel()
     st.session_state.stream=st.toggle("Check loaded", False)
-    st.image(flag_en)
-
+    
 if site_langu != langu:
     #st.toast('RELOADING', icon='ℹ️️', duration='short')
     menu_load_excel(with_expander=False,getnewfile=False)
