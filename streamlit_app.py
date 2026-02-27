@@ -1359,7 +1359,7 @@ def page2():
     st.dataframe(df_os_sysconf_names,
                  column_config={
                     0: st.column_config.TextColumn("Parameter", pinned = True),
-                    "0": st.column_config.SelectboxColumn("Value"),},
+                    1: st.column_config.SelectboxColumn("Value"),},
                  hide_index=False,
                  height='content')
 
