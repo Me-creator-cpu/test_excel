@@ -80,7 +80,6 @@ event_d = None
 event_detail = None
 
 # Définitions DataFrame et Excel
-#cols_data = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Stock','Star 1','Star 2','Star 3','Star 4','Star 5','Unused1','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Achievement','Needs','Unused2','Cost to max','Unused3','Unused4','RankPower','Rank','Team','Unused5','URL','URL Mutation','Unused6','Unused7','Mutation 1','Mutation 2','Unused8']
 cols_data = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Stock','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','Unused1','Star 1','Star 2','Star 3','Star 4','Star 5','Achievement','Needs','Unused2','Cost to max','Unused3','Unused4','RankPower','Rank','Team','Unused5','URL','URL Mutation','Unused6','Unused7','Mutation 1','Mutation 2','Unused8']
 cols_exp = ['Level from', 'Level to', 'Cost']
 cols_comp = ['Level from', 'Cost']
@@ -120,8 +119,6 @@ data = { #                    0                  1                  2           
        }
 df_xls = pd.DataFrame(data)
 data_flags={'en':flag_en,'fr':flag_fr}
-    #"en":"https://img.icons8.com/?size=100&id=t3NE3BsOAQwq&format=png&color=000000",
-    #"fr":"https://img.icons8.com/?size=100&id=3muzEmi4dpD5&format=png&color=000000"}
 
 option_skill=["⚔ Attack","🛡 Defend"]
 data_skills={
@@ -340,7 +337,7 @@ def write_js_menu(bln=False):
         st.markdown(hide_st_style, unsafe_allow_html=True)    
 
 def write_no_streamlit_link():
-    st.toast("Style applyed")
+    #st.toast("Style applyed")
     hide_st_style = """
                     <style>
                     ._container_gzau3_1 _viewerBadge_nim44_23 {display:none;visibility: hidden;}
@@ -465,12 +462,6 @@ def icon_upgradable(value):
         return '✅' if int(value)==1 else '🟥' 
     except:
         return '🟥'
-
-def icon_full_cost(value):
-    try:
-        df_data_values
-    except:
-        return value
 
 def clear_cache():
     keys = list(st.session_state.keys())
