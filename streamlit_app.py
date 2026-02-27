@@ -974,7 +974,7 @@ def menu_tab_show(idx):
         case 7:    #idx_boss_data
             menu_tab_boss_detail()
         case _:
-            return file_err()
+            idx_tab=idx_tab
     #Menus statiques        
     match int(idx_tab):            
         case 100:
