@@ -1338,13 +1338,14 @@ def pg_menu_200():
     menu_tab_show(200)
     
 def page1():
-    st.title("Device info")
+    ico="📱" if is_mobile() else "💻"
+    st.title(f"{ico}Device info")
     #pic(url_logo_03)
     write_one_info(f"is_mobile: {is_mobile()}")
     write_one_info(get_device_type())    
 
 def page2():
-    st.title("Server OS information")
+    st.title("💻Server OS information")
     st.subheader("os.environ")
     df_os_environ = pd.DataFrame([dict(os.environ)]).T
     st.dataframe(df_os_environ,hide_index=False,height='content')
@@ -1358,7 +1359,7 @@ def page2():
                  height='content')
 
 def page3():
-    st.subheader(f'{get_text_trad(site_langu,'info_file')}', divider=False)
+    st.subheader(f'📋{get_text_trad(site_langu,'info_file')}', divider=False)
     if st.session_state.uploaded_file is not None:
         obj_fle=st.session_state.uploaded_file
         fileinfo={
