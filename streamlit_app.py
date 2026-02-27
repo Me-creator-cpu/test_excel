@@ -957,6 +957,7 @@ def menu_tab_show(idx):
         idx_tab = idx
     else:
         idx_tab = 999
+    #Menus dynamiques
     match int(idx_tab):
         case 0:         #int(idx_palmon)
             menu_tab_palmons(with_expander=False)   
@@ -972,6 +973,10 @@ def menu_tab_show(idx):
             menu_tab_boss()
         case 7:    #idx_boss_data
             menu_tab_boss_detail()
+        case _:
+            return file_err()
+    #Menus statiques        
+    match int(idx_tab):            
         case 100:
             menu_tab_dashboards()
         case 150:
