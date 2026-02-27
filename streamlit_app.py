@@ -1346,7 +1346,7 @@ def pg_menu_200():
     menu_tab_show(200)
     
 def page1():
-    pic(url_logo_02')
+    pic(url_logo_02)
     st.title("Device info")
     write_one_info(f"is_mobile: {is_mobile()}")
     write_one_info(get_device_type())    
