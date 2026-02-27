@@ -438,7 +438,6 @@ def get_data(file,idx,show_table=False):
                                                 rencols=df_xls["DisplayColumns"][idx],
                                                 show_table=show_table
                                                 )
-    df_xls
     
 def large_num_format(value):
     locale.setlocale(locale.LC_ALL, "fr_FR")
@@ -936,6 +935,7 @@ def menu_load_excel(with_expander=True,getnewfile=True):
                                                 title=df_xls["DisplayName"][i], 
                                                 description=df_xls["Description"][i], ) )
     add_session_variable("tabs_data",tabs_data)
+    tabs_data
 
 def menu_build_tabs(idx_selected=0):
     tabs_fixed=[stx.TabBarItemData(id=100, title="Dashboard", description="List of Dashboards"),
