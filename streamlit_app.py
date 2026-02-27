@@ -953,11 +953,11 @@ def menu_build_tabs(idx_selected=0):
 def menu_tab_show(idx):
     #write_info("chosen_id=",int(idx))
     #if df_xls.loc[idx_palmon, "DataFrame"] is not None:
-    if df_xls["DataFrame"][idx_palmon] is not None:
+    if df_xls["DataFrame"][idx_palmon] is not None and idx < 100:
         idx_tab = idx
     else:
         idx_tab = 999
-    #Menus dynamiques
+
     match int(idx_tab):
         case 0:         #int(idx_palmon)
             menu_tab_palmons(with_expander=False)   
@@ -972,11 +972,7 @@ def menu_tab_show(idx):
         case 6:    #idx_boss
             menu_tab_boss()
         case 7:    #idx_boss_data
-            menu_tab_boss_detail()
-        case _:
-            idx_tab=idx_tab
-    #Menus statiques        
-    match int(idx_tab):            
+            menu_tab_boss_detail()          
         case 100:
             menu_tab_dashboards()
         case 150:
