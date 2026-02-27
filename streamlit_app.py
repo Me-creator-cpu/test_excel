@@ -11,7 +11,8 @@ import json
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 
-import pictures.py as img
+from pictures import *
+#import pictures.py as img
 
 #img.flag_en
 #import platform
