@@ -393,7 +393,7 @@ def write_coming_soon():
     maintenance=st.container(border=False, width='stretch', height='content')
     with maintenance:
         st.subheader("Coming soon...", divider=False)
-        st.image(url_maintenance, caption=None, width="content")
+        st.image(img_maintenance, caption=None, width="content")
     return maintenance
 
 def pic(pic_url=None,pic_width='content',force=False):
@@ -1223,7 +1223,7 @@ def menu_tab_graph():
 def menu_tab_downloads():
     #st.title(body="Download file data test", text_alignment="center")
     st.subheader("Choose local data (csv)")
-    pic(url_menu_banner_01)
+    pic(url_logo_06)
     try:
         range_cols = st.columns(3)
         range_cols[0].download_button(
