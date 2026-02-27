@@ -1348,20 +1348,25 @@ def page1():
     write_one_info(f"is_mobile: {is_mobile()}")
     write_one_info(get_device_type())    
 
+def build_table_params(df):
+    try:
+        st.dataframe(df,
+             column_config={
+                0: st.column_config.TextColumn("Parameter", pinned = True),
+                1: st.column_config.TextColumn("Value"),},
+             hide_index=False,
+             height='content')    
+    except:
+        return st.empty()
+
 def page2():
     st.title("💻Server OS information")
     st.subheader("os.environ")
     df_os_environ = pd.DataFrame([dict(os.environ)]).T
-    st.dataframe(df_os_environ,hide_index=False,height='content')
+    build_table_params(df_os_environ) 
     st.subheader("os.sysconf_names")
     df_os_sysconf_names = pd.DataFrame([os.sysconf_names]).T
-    #pd.DataFrame([os.sysconf_names])
-    st.dataframe(df_os_sysconf_names,
-                 column_config={
-                    0: st.column_config.TextColumn("Parameter", pinned = True),
-                    1: st.column_config.TextColumn("Value"),},
-                 hide_index=False,
-                 height='content')
+    build_table_params(df_os_sysconf_names) 
 
 def page3():
     st.subheader(f'📋{get_text_trad(site_langu,'info_file')}', divider=False)
