@@ -1482,7 +1482,7 @@ with st.sidebar:
         pic(data_flags[site_langu],24,force=True)
     menu_load_excel()
     st.session_state.stream=st.toggle("Check loaded", False)
-    st.image(pictures.flag_en)
+    st.image(flag_en)
 
 if site_langu != langu:
     #st.toast('RELOADING', icon='ℹ️️', duration='short')
