@@ -427,9 +427,8 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
 
 def get_data(file,idx,show_table=False):
     # voir pour remplacer avec: df.loc[row_indexer, "col"] = values
-    #df_xls["DataFrame"][idx]=get_data_from_excel(
-    df_xls.loc[idx, "DataFrame"]=get_data_from_excel(
-    #df_xls.loc["DataFrame",idx]=get_data_from_excel(
+    df_xls["DataFrame"][idx]=get_data_from_excel(
+    #df_xls.loc[idx, "DataFrame"]=get_data_from_excel(
                                                 xls_file=file,
                                                 xls_sheet=df_xls["Worksheet"][idx],
                                                 skip=df_xls["SkipRows"][idx],
@@ -935,7 +934,6 @@ def menu_load_excel(with_expander=True,getnewfile=True):
                                                 title=df_xls["DisplayName"][i], 
                                                 description=df_xls["Description"][i], ) )
     add_session_variable("tabs_data",tabs_data)
-    df_xls
 
 def menu_build_tabs(idx_selected=0):
     tabs_fixed=[stx.TabBarItemData(id=100, title="Dashboard", description="List of Dashboards"),
