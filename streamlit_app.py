@@ -1424,6 +1424,7 @@ def page4():
     #st.query_params.to_dict()
 
 def pg_options():
+    pic(url_logo_01)
     st.button('Load JSON', on_click=read_json_trads)
     st.button('Clear Cache', on_click=clear_cache)
     st.divider()
@@ -1432,7 +1433,6 @@ def pg_options():
     container_xls = st.container(border=False, width='stretch', height='content')
     with container_xls:
         check_file_loaded()
-    st.image(url_logo_01)
     
 # ======================================================================================================
 #
