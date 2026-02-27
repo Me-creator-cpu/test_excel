@@ -1354,10 +1354,10 @@ def page2():
     df_os_environ = pd.DataFrame([dict(os.environ)]).T
     st.dataframe(df_os_environ,hide_index=False,height='content')
     st.subheader("os.sysconf_names")
-    df_os_sysconf_names = pd.DataFrame([os.sysconf_names]).T.copy(deep=True)
+    df_os_sysconf_names = pd.DataFrame([os.sysconf_names]).T
     st.dataframe(df_os_sysconf_names,
                  column_config={
-                    "Parameter": st.column_config.TextColumn("Parameter", pinned = True),
+                    0: st.column_config.TextColumn("Parameter", pinned = True),
                     "Value": st.column_config.SelectboxColumn("Value"),},
                  hide_index=False,
                  height='content')
