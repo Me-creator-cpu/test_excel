@@ -958,6 +958,8 @@ def menu_tab_show(idx):
     else:
         if idx < 100:
             idx_tab = 999
+        else:
+            idx_tab = idx
 
     match int(idx_tab):
         case 0:         #int(idx_palmon)
