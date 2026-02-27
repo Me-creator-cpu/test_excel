@@ -956,7 +956,7 @@ def menu_tab_show(idx):
     if df_xls["DataFrame"][idx_palmon] is not None:
         idx_tab = idx
     else:
-        if idx < 100:
+        if int(idx) < 100:
             idx_tab = 999
         else:
             idx_tab = idx
