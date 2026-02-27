@@ -1428,10 +1428,28 @@ def pg_options():
     container_txt = st.container(border=True, width='stretch', height='content')
     with container_txt:
         file_txt='./data/todo.txt'
-        with open(file_txt, mode='r') as f:
-            data_txt = f.read()
-            st.text(data_txt)
+        if st.button("Load Text file"):
+            test_read_txt(file_txt)
+        if st.button("Update Text file"):
+            test_update_txt(file_txt)
             
+        
+  def test_read_txt(file_txt):
+    data_txt=''
+    with open(file_txt, mode='r') as f:
+        data_txt = f.read()
+    return data_txt
+
+  def test_update_txt(file_txt):
+    try:
+        with open(file_txt, mode='a') as f:
+            f.write("Hello again\n")
+            f.flush()
+            f.close()
+        return st.success('update OK', icon='✅')
+    except:
+        return st.error('update KO', icon='🚨')
+      
     
 # ======================================================================================================
 #
