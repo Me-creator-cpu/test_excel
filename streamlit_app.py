@@ -1355,7 +1355,7 @@ def page2():
     st.dataframe(df_os_environ,hide_index=False,height='content')
     st.subheader("os.sysconf_names")
     df_os_sysconf_names = pd.DataFrame([os.sysconf_names]).T
-    os.sysconf_names
+    pd.DataFrame([os.sysconf_names])
     st.dataframe(df_os_sysconf_names,
                  column_config={
                     0: st.column_config.TextColumn("Parameter", pinned = True),
