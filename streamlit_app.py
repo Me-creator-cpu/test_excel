@@ -953,10 +953,11 @@ def menu_build_tabs(idx_selected=0):
 def menu_tab_show(idx):
     #write_info("chosen_id=",int(idx))
     #if df_xls.loc[idx_palmon, "DataFrame"] is not None:
-    if df_xls["DataFrame"][idx_palmon] is not None and idx < 100:
+    if df_xls["DataFrame"][idx_palmon] is not None:
         idx_tab = idx
     else:
-        idx_tab = 999
+        if idx < 100:
+            idx_tab = 999
 
     match int(idx_tab):
         case 0:         #int(idx_palmon)
