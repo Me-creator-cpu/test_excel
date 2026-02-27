@@ -1429,7 +1429,7 @@ def pg_options():
     with container_txt:
         file_txt='./data/todo.txt'
         if st.button("Load Text file"):
-            test_read_txt(file_txt)
+            st.text(test_read_txt(file_txt))
         if st.button("Update Text file"):
             test_update_txt(file_txt)
             
