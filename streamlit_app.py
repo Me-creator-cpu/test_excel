@@ -1433,14 +1433,13 @@ def pg_options():
         if st.button("Update Text file"):
             test_update_txt(file_txt)
             
-        
-  def test_read_txt(file_txt):
+def test_read_txt(file_txt):
     data_txt=''
     with open(file_txt, mode='r') as f:
         data_txt = f.read()
     return data_txt
 
-  def test_update_txt(file_txt):
+def test_update_txt(file_txt):
     try:
         with open(file_txt, mode='a') as f:
             f.write("Hello again\n")
