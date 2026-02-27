@@ -11,6 +11,9 @@ import json
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 
+import pictures.py as img
+
+#flag_en
 #import platform
 #import altair as alt
 #from io import StringIO
