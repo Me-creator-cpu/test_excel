@@ -1431,7 +1431,9 @@ def pg_options():
         if st.button("Load Text file"):
             st.text(test_read_txt(file_txt))
         if st.button("Update Text file"):
-            test_update_txt(file_txt)
+            test_append_txt(file_txt)
+        if st.button("Write Text file"):
+            test_write_txt(file_txt)            
             
 def test_read_txt(file_txt):
     data_txt=''
@@ -1439,7 +1441,7 @@ def test_read_txt(file_txt):
         data_txt = f.read()
     return data_txt
 
-def test_update_txt(file_txt):
+def test_append_txt(file_txt):
     try:
         with open(file_txt, mode='a') as f:
             f.write("Hello again\n")
@@ -1448,6 +1450,16 @@ def test_update_txt(file_txt):
         return st.success('update OK', icon='✅')
     except:
         return st.error('update KO', icon='🚨')
+
+def test_write_txt(file_txt):
+    try:
+        with open(file_txt, mode='w') as f:
+            f.write("This is the 1st line to write...\n")
+            f.write("This is the 2nd line to write...\n")
+            f.close()
+        return st.success('write OK', icon='✅')
+    except:
+        return st.error('write KO', icon='🚨')
       
     
 # ======================================================================================================
