@@ -1355,7 +1355,8 @@ def build_table_params(df):
                 0: st.column_config.TextColumn("Parameter", pinned = True),
                 1: st.column_config.TextColumn("Value"),},
              hide_index=False,
-             height='content')    
+             #height='content'
+                    )    
     except:
         return st.empty()
 
