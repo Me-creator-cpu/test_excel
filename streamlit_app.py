@@ -1520,7 +1520,7 @@ def build_graph_donut():
     my_circle=plt.Circle( (0,0), 0.7, color='white')
     p=plt.gcf()
     p.gca().add_artist(my_circle)
-    plt
+    p
     #plt.show()
     return plt
 
