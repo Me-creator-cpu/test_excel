@@ -10,8 +10,10 @@ import os
 import json
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
+import matplotlib.pyplot as plt
 
 from pictures import *
+
 
 #from pathlib import Path
 #from github import Auth
@@ -1504,7 +1506,21 @@ def test_write_txt(file_txt):
     #except:
     #    return st.error('write KO', icon='🚨')
       
+# ======================================================================================================
+def build_graph_donut():
+    # create data
+    size_of_groups=[12,11,3,30]
     
+    # Create a pieplot
+    plt.pie(size_of_groups)
+    
+    # add a circle at the center to transform it in a donut chart
+    my_circle=plt.Circle( (0,0), 0.7, color='white')
+    p=plt.gcf()
+    p.gca().add_artist(my_circle)
+    
+    plt.show()    
+
 # ======================================================================================================
 #
 #    Start MAIN page
