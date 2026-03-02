@@ -1528,6 +1528,12 @@ with st.sidebar:
     else:
         st.warning('No API key provided!', icon='⚠️')
 
+    if 'DB_TOKEN' in st.secrets:
+        st.success('DB_TOKEN key already provided!', icon='✅')
+        replicate_api = st.secrets['DB_TOKEN']
+    else:
+        st.warning('No DB_TOKEN key provided!', icon='⚠️')
+
 if site_langu != langu:
     #st.toast('RELOADING', icon='ℹ️️', duration='short')
     menu_load_excel(with_expander=False,getnewfile=False)
