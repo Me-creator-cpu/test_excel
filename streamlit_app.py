@@ -1517,7 +1517,7 @@ def build_graph_donut():
     plt.pie(size_of_groups)
     
     # add a circle at the center to transform it in a donut chart
-    my_circle=plt.Circle( (0,0), 0.2, color='white')
+    my_circle=plt.Circle( (0,0), 0.8, color='white')
     my_text=plt.text(x=0, y=0, s='Test', color='b', size=10,ha='center')
     #s works, text does not (matplotlib==3.2.2)
     #text works, s does not (matplotlib==3.5.1)
