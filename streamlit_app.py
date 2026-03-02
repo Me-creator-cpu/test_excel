@@ -13,9 +13,9 @@ import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extr
 
 from pictures import *
 
-from pathlib import Path
-from github import Auth
-from github import Github
+#from pathlib import Path
+#from github import Auth
+#from github import Github
 
 #img.flag_en
 #import platform
