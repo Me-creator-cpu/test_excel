@@ -1470,7 +1470,7 @@ def test_append_txt(file_txt):
 
 def test_write_txt(file_txt):
     upd_file_txt='data/todo.txt'
-    github_token = st.secrets['REPLICATE_API_TOKEN']
+    github_token = st.secrets.tests.REPLICATE_API_TOKEN
     auth = Auth.Token(github_token)
     g = Github(auth=auth)
     org_name = "Me-creator-cpu"
