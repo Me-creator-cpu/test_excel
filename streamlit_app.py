@@ -1451,7 +1451,20 @@ def pg_options():
             test_append_txt(file_txt)
         if st.button("Write Text file"):
             test_write_txt(file_txt)            
-            
+
+def check_github_access():
+    if 'REPLICATE_API_TOKEN' in st.secrets.tests:
+        st.success('API key already provided!', icon='✅')
+        replicate_api = st.secrets.tests.REPLICATE_API_TOKEN
+    else:
+        st.warning('No API key provided!', icon='⚠️')
+
+    if 'DB_TOKEN' in st.secrets:
+        st.success('DB_TOKEN key already provided!', icon='✅')
+        replicate_api = st.secrets['DB_TOKEN']
+    else:
+        st.warning('No DB_TOKEN key provided!', icon='⚠️')    
+
 def test_read_txt(file_txt):
     data_txt=''
     with open(file_txt, mode='r') as f:
@@ -1539,18 +1552,7 @@ with st.sidebar:
     menu_load_excel()
     st.session_state.stream=st.toggle("Check loaded", False)
 
-    if 'REPLICATE_API_TOKEN' in st.secrets.tests:
-        st.success('API key already provided!', icon='✅')
-        #replicate_api = st.secrets['REPLICATE_API_TOKEN']
-        replicate_api = st.secrets.tests.REPLICATE_API_TOKEN
-    else:
-        st.warning('No API key provided!', icon='⚠️')
 
-    if 'DB_TOKEN' in st.secrets:
-        st.success('DB_TOKEN key already provided!', icon='✅')
-        replicate_api = st.secrets['DB_TOKEN']
-    else:
-        st.warning('No DB_TOKEN key provided!', icon='⚠️')
 
 if site_langu != langu:
     #st.toast('RELOADING', icon='ℹ️️', duration='short')
