@@ -1520,7 +1520,7 @@ def build_graph_donut():
     my_circle=plt.Circle( (0,0), 0.7, color='white')
     p=plt.gcf()
     p.gca().add_artist(my_circle)
-    
+    plt
     #plt.show()
     return plt
 
@@ -1560,7 +1560,7 @@ if is_mobile():
 with st.sidebar:
     top_nav = st.toggle("Top navigation", False)
     nav_sections = st.toggle("Page sections", True)
-    use_pics = st.toggle("Show images", True)
+    use_pics = st.toggle("Show images", False)
     range_langu = st.columns(2, vertical_alignment='center')
     with range_langu[0]:
         on = st.toggle("EN / FR")
