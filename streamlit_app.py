@@ -1521,7 +1521,11 @@ with st.sidebar:
         pic(data_flags[site_langu],24,force=True)
     menu_load_excel()
     st.session_state.stream=st.toggle("Check loaded", False)
-    
+
+    if 'REPLICATE_API_TOKEN' in st.secrets:
+        st.success('API key already provided!', icon='✅')
+        replicate_api = st.secrets['REPLICATE_API_TOKEN']
+
 if site_langu != langu:
     #st.toast('RELOADING', icon='ℹ️️', duration='short')
     menu_load_excel(with_expander=False,getnewfile=False)
