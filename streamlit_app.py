@@ -1518,7 +1518,8 @@ def build_graph_donut():
     
     # add a circle at the center to transform it in a donut chart
     my_circle=plt.Circle( (0,0), 0.7, color='white')
-    my_circle.set_text('Test')
+    my_text=plt.text.Text(x=0, y=0, text='Test', color='b')
+
     p=plt.gcf()
     p.gca().add_artist(my_circle)
     
