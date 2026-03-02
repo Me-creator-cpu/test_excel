@@ -13,6 +13,10 @@ import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extr
 
 from pictures import *
 
+from pathlib import Path
+from github import Auth
+from github import Github
+
 #img.flag_en
 #import platform
 #import altair as alt
@@ -1465,14 +1469,27 @@ def test_append_txt(file_txt):
         return st.error('update KO', icon='🚨')
 
 def test_write_txt(file_txt):
-    try:
-        with open(file_txt, mode='w') as f:
-            f.write("This is the 1st line to write...\n")
-            f.write("This is the 2nd line to write...\n")
-            f.close()
-        return st.success('write OK', icon='✅')
-    except:
-        return st.error('write KO', icon='🚨')
+    upd_file_txt='data/todo.txt'
+    github_token = st.secrets['REPLICATE_API_TOKEN']
+    auth = Auth.Token(github_token)
+    g = Github(auth=auth)
+    org_name = "Me-creator-cpu"
+    repo_name = "test_excel"=
+    repo_branch="main"
+    repo = g.get_repo(f"{org_name}/{repo_name}")
+    contents = repo.get_contents(upd_file_txt, ref=repo_branch)
+    new_text=test_read_txt(file_txt)
+    new_text+="This is the 1st line to write...\n"
+    new_text+="This is the 2nd line to write...\n"
+    repo_upd_result=repo.update_file(contents.path, "committing files", new_text, contents.sha, branch=repo_branch)
+    #try:
+    #    with open(file_txt, mode='w') as f:
+    #        f.write("This is the 1st line to write...\n")
+    #        f.write("This is the 2nd line to write...\n")
+    #        f.close()
+    #    return st.success('write OK', icon='✅')
+    #except:
+    #    return st.error('write KO', icon='🚨')
       
     
 # ======================================================================================================
