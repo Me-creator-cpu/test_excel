@@ -1525,6 +1525,8 @@ with st.sidebar:
     if 'REPLICATE_API_TOKEN' in st.secrets:
         st.success('API key already provided!', icon='✅')
         replicate_api = st.secrets['REPLICATE_API_TOKEN']
+    else:
+        st.warning('No API key provided!', icon='⚠️')
 
 if site_langu != langu:
     #st.toast('RELOADING', icon='ℹ️️', duration='short')
