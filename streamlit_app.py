@@ -1521,7 +1521,8 @@ def build_graph_donut():
     p=plt.gcf()
     p.gca().add_artist(my_circle)
     
-    plt.show()    
+    #plt.show()
+    return plt
 
 # ======================================================================================================
 #
