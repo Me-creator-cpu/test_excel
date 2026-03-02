@@ -1452,7 +1452,9 @@ def pg_options():
         if st.button("Update Text file"):
             test_append_txt(file_txt)
         if st.button("Write Text file"):
-            test_write_txt(file_txt)            
+            test_write_txt(file_txt)
+        if st.button("Donut graph"):
+            build_graph_donut()
 
 def check_github_access():
     if 'REPLICATE_API_TOKEN' in st.secrets.tests:
