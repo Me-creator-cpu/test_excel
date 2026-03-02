@@ -1474,7 +1474,7 @@ def test_write_txt(file_txt):
     auth = Auth.Token(github_token)
     g = Github(auth=auth)
     org_name = "Me-creator-cpu"
-    repo_name = "test_excel"=
+    repo_name = "test_excel"
     repo_branch="main"
     repo = g.get_repo(f"{org_name}/{repo_name}")
     contents = repo.get_contents(upd_file_txt, ref=repo_branch)
