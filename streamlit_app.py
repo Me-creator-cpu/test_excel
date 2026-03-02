@@ -1539,7 +1539,7 @@ with st.sidebar:
     menu_load_excel()
     st.session_state.stream=st.toggle("Check loaded", False)
 
-    if 'REPLICATE_API_TOKEN' in st.secrets:
+    if 'REPLICATE_API_TOKEN' in st.secrets.tests:
         st.success('API key already provided!', icon='✅')
         replicate_api = st.secrets['REPLICATE_API_TOKEN']
     else:
