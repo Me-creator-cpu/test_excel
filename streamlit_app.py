@@ -1571,16 +1571,14 @@ def build_graph_donut():
          st.empty()
     with rowval2[1]:
         # Setting labels for items in Chart
-        Employee = ['Roshni', 'Shyam', 'Priyanshi',
-                    'Harshit', 'Anmol']
+        Employee = ['Roshni', 'Shyam', 'Priyanshi', 'Harshit', 'Anmol']
+        Labels = Employee.copy()
         
-        # Setting size in Chart based on 
-        # given values
+        # Setting size in Chart based on given values
         Salary = [40000, 50000, 70000, 54000, 44000]
         
         # colors
-        colors = ['#FF0000', '#0000FF', '#FFFF00', 
-                  '#ADFF2F', '#FFA500']
+        colors = ['#FF0000', '#0000FF', '#FFFF00', '#ADFF2F', '#FFA500']
         # explosion
         explode = (0.05, 0.05, 0.05, 0.05, 0.05)
         
