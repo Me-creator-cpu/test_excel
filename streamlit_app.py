@@ -1227,8 +1227,9 @@ def menu_tab_dashboards():
         #df_tcd2
 
     # Setting labels for items in Chart
-    df_tcd3 = df_tcd2.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
-        
+    df_tcd3 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+    df_tcd3
+    
     Employee = df_tcd3['Type']
     Labels = Employee.copy()
     
