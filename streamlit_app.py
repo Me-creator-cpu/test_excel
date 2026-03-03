@@ -1220,9 +1220,14 @@ def menu_tab_dashboards():
         with row_d2[1]:
             st.subheader('Nb Palmons per type')
             df_tcd2['Type']=df_tcd2['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-            build_main_chart(df_tcd2,None,'Type','Level')
+            #build_main_chart(df_tcd2,None,'Type','Level')
             #build_pivot_table(df_tcd3,'Level','Type','Skill')
             #df_tcd2
+            write_one_info('build_graph_donut')
+            df_tcd2['Type']
+            st.divider()
+            df_tcd2['Level']
+            st.divider()            
     
         row_d3 = st.columns(2,border=col_border, width="stretch")
         with row_d3[0]:
