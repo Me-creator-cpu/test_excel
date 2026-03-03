@@ -1250,7 +1250,7 @@ def build_graph_donut(data,labels,title):
     fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
 
     recipe = ["225 g flour", "90 g sugar", "1 egg", "60 g butter", "100 ml milk", "1/2 package of yeast"]
-    recipe = labels
+    #recipe = labels
     
     #data = [225, 90, 50, 60, 100, 5]
     
