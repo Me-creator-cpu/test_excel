@@ -1237,8 +1237,10 @@ def menu_tab_dashboards():
             df_tcd2['Type'].reset_index()
             st.divider()
             df_tcd2['Level'].reset_index()
-            st.divider()           
-            build_graph_donut(df_tcd2['Level'],df_tcd2['Type'],'Nb Palmons per type')
+            st.divider()      
+            my_strings = ['a', 'b', 'c', 'd', 'e']
+            my_numbers = [1, 2, 3, 4, 5]            
+            build_graph_donut(my_numbers,my_strings,'Nb Palmons per type')
     
 
     except:
