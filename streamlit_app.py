@@ -1204,33 +1204,33 @@ def menu_tab_dashboards():
             avg_lvl_df
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
             st.bar_chart(avg_lvl_df, y='Level', horizontal=True)
-       except:
+    except:
         st.empty()     
            
-        with row_d1[1]:
-            st.subheader('Average power by Type')
-            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
-            avg_pwr_df  
-            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
-            st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
+    with row_d1[1]:
+        st.subheader('Average power by Type')
+        avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
+        avg_pwr_df  
+        avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
+        st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
 
-        row_d2 = st.columns(2,border=col_border, width="stretch")
-        with row_d2[0]:
-            st.subheader('Average Skill')
-            df_tcd1['Type']=df_tcd1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-            build_pivot_table(df_tcd1,'Level','Type','Skill')
-        with row_d2[1]:
-            st.subheader('Nb Palmons per type')
-            df_tcd2['Type']=df_tcd2['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-            #build_main_chart(df_tcd2,None,'Type','Level')
-            #build_pivot_table(df_tcd3,'Level','Type','Skill')
-            #df_tcd2
-            write_one_info('build_graph_donut')
-            build_graph_donut()
-            st.divider()
-            df_tcd2['Type']
-            st.divider()
-            df_tcd2['Level']
+    row_d2 = st.columns(2,border=col_border, width="stretch")
+    with row_d2[0]:
+        st.subheader('Average Skill')
+        df_tcd1['Type']=df_tcd1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+        build_pivot_table(df_tcd1,'Level','Type','Skill')
+    with row_d2[1]:
+        st.subheader('Nb Palmons per type')
+        df_tcd2['Type']=df_tcd2['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+        #build_main_chart(df_tcd2,None,'Type','Level')
+        #build_pivot_table(df_tcd3,'Level','Type','Skill')
+        #df_tcd2
+        write_one_info('build_graph_donut')
+        build_graph_donut()
+        st.divider()
+        df_tcd2['Type']
+        st.divider()
+        df_tcd2['Level']
 
 
 def build_graph_donut():
