@@ -1527,7 +1527,7 @@ def build_graph_donut():
     #text works, s does not (matplotlib==3.5.1)
 
     p=plt.gcf()
-    p.set_size_inches(18.5, 10.5)
+    p.set_size_inches(3.2, 2.4)
     p.gca().add_artist(my_circle)
     
     p
