@@ -1224,11 +1224,13 @@ def menu_tab_dashboards():
             #build_pivot_table(df_tcd3,'Level','Type','Skill')
             #df_tcd2
             write_one_info('build_graph_donut')
+            build_graph_donut()
+            st.divider()
             df_tcd2['Type']
             st.divider()
             df_tcd2['Level']
-            st.divider()
-            build_graph_donut()
+            
+            
     
 
     except:
