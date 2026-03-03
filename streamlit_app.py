@@ -1515,6 +1515,8 @@ def build_graph_donut():
     
     # Create a pieplot
     plt.pie(size_of_groups)
+    #figsize(float, float), default: rcParams["figure.figsize"] (default: [6.4, 4.8])
+    fig = plt.figure(figsize=(3.2, 2.4))
     
     # add a circle at the center to transform it in a donut chart
     my_circle=plt.Circle( (0,0), 0.8, color='white')
