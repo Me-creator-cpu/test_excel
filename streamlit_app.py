@@ -1568,7 +1568,7 @@ def build_graph_donut():
     
     rowval2 = st.columns(2,border=False, width="stretch")
     with rowval2[0]:
-         #
+         st.empty()
     with rowval2[1]:
         # Setting labels for items in Chart
         Employee = ['Roshni', 'Shyam', 'Priyanshi',
