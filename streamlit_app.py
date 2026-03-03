@@ -1235,34 +1235,35 @@ def menu_tab_dashboards():
         st.empty()
 
 def build_graph_donut():
-    #https://matplotlib.org/stable/gallery/pie_and_polar_charts/pie_and_donut_labels.html
-    #https://www.geeksforgeeks.org/python/donut-chart-using-matplotlib-in-python/
-    fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
-
-    #recipe = ["225 g flour", "90 g sugar", "1 egg", "60 g butter", "100 ml milk", "1/2 package of yeast"]
-    #data = [225, 90, 50, 60, 100, 5]
-
-    recipe = ['a', 'b', 'c', 'd', 'e']
-    data = [1, 2, 3, 4, 5]         
+    # Setting labels for items in Chart
+    Employee = ['Roshni', 'Shyam', 'Priyanshi', 'Harshit', 'Anmol']
+    Labels = Employee.copy()
     
-    wedges, texts = ax.pie(data, wedgeprops=dict(width=0.5), startangle=-40)
+    # Setting size in Chart based on given values
+    Salary = [40000, 50000, 70000, 54000, 44000]
     
-    bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
-    kw = dict(arrowprops=dict(arrowstyle="-"),
-              bbox=bbox_props, zorder=0, va="center")
+    # colors
+    colors = ['#FF0000', '#0000FF', '#FFFF00', '#ADFF2F', '#FFA500']
+    # explosion
+    explode = (0.05, 0.05, 0.05, 0.05, 0.05)
     
-    for i, p in enumerate(wedges):
-        ang = (p.theta2 - p.theta1)/2. + p.theta1
-        y = np.sin(np.deg2rad(ang))
-        x = np.cos(np.deg2rad(ang))
-        horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
-        connectionstyle = f"angle,angleA=0,angleB={ang}"
-        kw["arrowprops"].update({"connectionstyle": connectionstyle})
-        ax.annotate(recipe[i], xy=(x, y), xytext=(1.35*np.sign(x), 1.4*y),
-                    horizontalalignment=horizontalalignment, **kw)
+    # Pie Chart
+    plt.pie(Salary, colors=colors, labels=Employee,
+            autopct='%1.1f%%', pctdistance=0.85,
+            explode=explode)
     
-    ax.set_title(title)
-    return fig
+    # draw circle
+    centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+    fig2 = plt.gcf()
+    
+    # Adding Circle in Pie chart
+    fig2.gca().add_artist(centre_circle)
+    
+    # Adding Title of chart
+    plt.title('Employee Salary Details')
+    
+    # Displaying Chart
+    return fig2
 
 def menu_tab_graph():
     build_graph_select()
