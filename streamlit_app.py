@@ -1255,6 +1255,9 @@ def build_graph_donut(data,labels,title):
     #recipe = labels
     
     #data = [225, 90, 50, 60, 100, 5]
+
+    recipe = ['a', 'b', 'c', 'd', 'e']
+    data = [1, 2, 3, 4, 5]         
     
     wedges, texts = ax.pie(data, wedgeprops=dict(width=0.5), startangle=-40)
     
