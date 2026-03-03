@@ -1228,6 +1228,7 @@ def menu_tab_dashboards():
         with row_d3[0]:
             st.emtpty()
         with row_d3[1]:
+            write_one_info('build_graph_donut')
             df_tcd2['Type']
             st.divider()
             df_tcd2['Level']
