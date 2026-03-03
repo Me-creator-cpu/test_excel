@@ -1228,7 +1228,7 @@ def menu_tab_dashboards():
         with row_d3[0]:
             st.emtpty()
         with row_d3[1]:
-            build_graph_donut(df_tcd2.Level,df_tcd2.Type,'Nb Palmons per type')
+            build_graph_donut(df_tcd2['Level'],df_tcd2['Type'],'Nb Palmons per type')
     
 
     except:
