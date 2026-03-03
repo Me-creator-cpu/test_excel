@@ -1234,9 +1234,9 @@ def menu_tab_dashboards():
             st.emtpty()
         with row_d3[1]:
             write_one_info('build_graph_donut')
-            df_tcd2['Type']
+            df_tcd2['Type'].reset_index()
             st.divider()
-            df_tcd2['Level']
+            df_tcd2['Level'].reset_index()
             st.divider()           
             build_graph_donut(df_tcd2['Level'],df_tcd2['Type'],'Nb Palmons per type')
     
