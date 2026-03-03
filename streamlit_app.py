@@ -1229,7 +1229,7 @@ def menu_tab_dashboards():
     # Setting labels for items in Chart
     df_tcd3 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
     df_tcd3
-    df_tcd3.T
+    #df_tcd3.T
 
     tabs_data=df_tcd3.columns.values.tolist()
     tabs_data
