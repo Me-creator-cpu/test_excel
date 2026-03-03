@@ -1222,7 +1222,7 @@ def menu_tab_dashboards():
     with row_d2[1]:
         st.subheader('Nb Palmons per type')
         df_tcd2['Type']=df_tcd2['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-        #build_main_chart(df_tcd2,None,'Type','Level')
+        build_main_chart(df_tcd2,None,'Type','Level')
         #build_pivot_table(df_tcd3,'Level','Type','Skill')
         #df_tcd2
 
@@ -1231,7 +1231,6 @@ def menu_tab_dashboards():
     Labels = Employee.copy()
     
     # Setting size in Chart based on given values
-    Salary = [40000, 50000, 70000, 54000, 44000]
     Salary = df_tcd2['Level']
     
     # colors
