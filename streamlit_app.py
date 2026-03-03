@@ -1231,10 +1231,7 @@ def menu_tab_dashboards():
     df_tcd3
     df_tcd3.T
 
-    tabs_data=[]
-    row, col = df_tcd3.shape
-    for i in range(row):
-        tabs_data.append(i,df_tcd3[i])
+    tabs_data=df_tcd3.columns.values.tolist()
     tabs_data
     
     Employee = df_tcd3['Type']
