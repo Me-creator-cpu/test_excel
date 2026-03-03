@@ -1238,7 +1238,10 @@ def build_graph_donut(data,labels,title):
     #https://matplotlib.org/stable/gallery/pie_and_polar_charts/pie_and_donut_labels.html
     #https://www.geeksforgeeks.org/python/donut-chart-using-matplotlib-in-python/
     fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
-    
+    labels
+    st.divider()
+    data
+    st.divider()
     recipe = ["225 g flour", "90 g sugar", "1 egg", "60 g butter", "100 ml milk", "1/2 package of yeast"]
     recipe = labels
     
