@@ -1204,7 +1204,9 @@ def menu_tab_dashboards():
             avg_lvl_df
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
             st.bar_chart(avg_lvl_df, y='Level', horizontal=True)
-        
+       except:
+        st.empty()     
+           
         with row_d1[1]:
             st.subheader('Average power by Type')
             avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
@@ -1229,12 +1231,7 @@ def menu_tab_dashboards():
             df_tcd2['Type']
             st.divider()
             df_tcd2['Level']
-            
-            
-    
 
-    except:
-        st.empty()
 
 def build_graph_donut():
     # Setting labels for items in Chart
