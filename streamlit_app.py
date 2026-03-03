@@ -1600,7 +1600,7 @@ def build_graph_donut():
         plt.title('Employee Salary Details')
         
         # Displaying Chart
-        plt
+        fig
         
 # ======================================================================================================
 #
