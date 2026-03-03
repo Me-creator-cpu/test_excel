@@ -1510,28 +1510,30 @@ def test_write_txt(file_txt):
       
 # ======================================================================================================
 def build_graph_donut():
-    # create data
-    size_of_groups=[12,11,3,30]
+    rowval = st.columns(2,border=False, width="stretch")
+    with rowval[0]:
+        # create data
+        size_of_groups=[12,11,3,30]
+        
+        # Create a pieplot
+        plt.pie(size_of_groups)
+        #figsize(float, float), default: rcParams["figure.figsize"] (default: [6.4, 4.8])
+        #fig = plt.figure(figsize=(3.2, 2.4))
+        #plt.figure(figsize=(3.2, 2.4))
+        
+        # add a circle at the center to transform it in a donut chart
+        my_circle=plt.Circle( (0,0), 0.8, color='white')
+        my_text=plt.text(x=0, y=0, s='Test', color='black', size=10,ha='center',va='center_baseline')
+        #https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text
+        #s works, text does not (matplotlib==3.2.2)
+        #text works, s does not (matplotlib==3.5.1)
     
-    # Create a pieplot
-    plt.pie(size_of_groups)
-    #figsize(float, float), default: rcParams["figure.figsize"] (default: [6.4, 4.8])
-    #fig = plt.figure(figsize=(3.2, 2.4))
-    #plt.figure(figsize=(3.2, 2.4))
-    
-    # add a circle at the center to transform it in a donut chart
-    my_circle=plt.Circle( (0,0), 0.8, color='white')
-    my_text=plt.text(x=0, y=0, s='Test', color='black', size=10,ha='center',va='center_baseline')
-    #https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text
-    #s works, text does not (matplotlib==3.2.2)
-    #text works, s does not (matplotlib==3.5.1)
-
-    p=plt.gcf()
-    p.set_size_inches(3.2, 2.4)
-    p.gca().add_artist(my_circle)
-    
-    p
-    #plt.show()
+        p=plt.gcf()
+        p.set_size_inches(3.2, 2.4)
+        p.gca().add_artist(my_circle)
+        
+        p
+        #plt.show()
 
 # ======================================================================================================
 #
