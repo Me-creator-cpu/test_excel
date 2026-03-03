@@ -1534,6 +1534,8 @@ def build_graph_donut():
         #plt.show()
 
     with rowval[1]:
+        #https://matplotlib.org/stable/gallery/pie_and_polar_charts/pie_and_donut_labels.html
+        #https://www.geeksforgeeks.org/python/donut-chart-using-matplotlib-in-python/
         fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
         
         recipe = ["225 g flour",
@@ -1547,7 +1549,7 @@ def build_graph_donut():
         
         wedges, texts = ax.pie(data, wedgeprops=dict(width=0.5), startangle=-40)
         
-        bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
+        bbox_props = dict(boxstyle="square,pad=0.3,border=0", fc="w", ec="k", lw=0.72)
         kw = dict(arrowprops=dict(arrowstyle="-"),
                   bbox=bbox_props, zorder=0, va="center")
         
