@@ -1227,7 +1227,7 @@ def menu_tab_dashboards():
         #df_tcd2
 
     # Setting labels for items in Chart
-    Employee = ['Roshni', 'Shyam', 'Priyanshi', 'Harshit', 'Anmol']
+    Employee = df_tcd2['Type']    #['Roshni', 'Shyam', 'Priyanshi', 'Harshit', 'Anmol']
     Labels = Employee.copy()
     
     # Setting size in Chart based on given values
