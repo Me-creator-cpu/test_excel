@@ -402,6 +402,12 @@ def write_coming_soon():
         st.image(img_maintenance, caption=None, width="content")
     return maintenance
 
+def data_info(df):
+    tabs_cols=df.columns.values.tolist()
+    tabs_cols
+    tabs_idx=df.index.tolist()
+    tabs_idx    
+
 def pic(pic_url=None,pic_width='content',force=False):
     bln=False
     if pic_url is not None and use_pics:
@@ -1230,13 +1236,8 @@ def menu_tab_dashboards():
     df_tcd3 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
     df_tcd3
     #df_tcd3.T
-
-    tabs_data=df_tcd3.columns.values.tolist()
-    tabs_data
-    tabs_data=df_tcd3.index.tolist()
-    tabs_data
     
-    Employee = df_tcd3['Type']
+    Employee = df_tcd3.index.tolist()
     Labels = Employee.copy()
     
     # Setting size in Chart based on given values
