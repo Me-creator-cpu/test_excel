@@ -1547,7 +1547,7 @@ def build_graph_donut():
         
         data = [225, 90, 50, 60, 100, 5]
         
-        wedges, texts = ax.pie(data, wedgeprops=dict(width=1.5), startangle=-40)
+        wedges, texts = ax.pie(data, wedgeprops=dict(width=0.5), startangle=-40)
         
         bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
         kw = dict(arrowprops=dict(arrowstyle="-"),
@@ -1565,7 +1565,43 @@ def build_graph_donut():
         
         ax.set_title("Matplotlib bakery: A donut")
         fig
-
+    
+    rowval2 = st.columns(2,border=False, width="stretch")
+    with rowval2[0]:
+         #
+    with rowval2[1]:
+        # Setting labels for items in Chart
+        Employee = ['Roshni', 'Shyam', 'Priyanshi',
+                    'Harshit', 'Anmol']
+        
+        # Setting size in Chart based on 
+        # given values
+        Salary = [40000, 50000, 70000, 54000, 44000]
+        
+        # colors
+        colors = ['#FF0000', '#0000FF', '#FFFF00', 
+                  '#ADFF2F', '#FFA500']
+        # explosion
+        explode = (0.05, 0.05, 0.05, 0.05, 0.05)
+        
+        # Pie Chart
+        plt.pie(Salary, colors=colors, labels=Employee,
+                autopct='%1.1f%%', pctdistance=0.85,
+                explode=explode)
+        
+        # draw circle
+        centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+        fig = plt.gcf()
+        
+        # Adding Circle in Pie chart
+        fig.gca().add_artist(centre_circle)
+        
+        # Adding Title of chart
+        plt.title('Employee Salary Details')
+        
+        # Displaying Chart
+        plt
+        
 # ======================================================================================================
 #
 #    Start MAIN page
