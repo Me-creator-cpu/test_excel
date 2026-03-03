@@ -1227,16 +1227,17 @@ def menu_tab_dashboards():
         #df_tcd2
 
     # Setting labels for items in Chart
-    Employee = df_tcd2['Type']    #['Roshni', 'Shyam', 'Priyanshi', 'Harshit', 'Anmol']
+    Employee = df_tcd2['Type']
     Labels = Employee.copy()
     
     # Setting size in Chart based on given values
     Salary = [40000, 50000, 70000, 54000, 44000]
+    Salary = df_tcd2['Level']
     
     # colors
-    colors = ['#FF0000', '#0000FF', '#FFFF00', '#ADFF2F', '#FFA500']
+    colors = ['#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
     # explosion
-    explode = (0.05, 0.05, 0.05, 0.05, 0.05)
+    explode = (0.05, 0.05, 0.05, 0.05)
     
     # Pie Chart
     plt.pie(Salary, colors=colors, labels=Employee,
@@ -1268,6 +1269,7 @@ def build_graph_donut():
     # colors
     colors = ['#FF0000', '#0000FF', '#FFFF00', '#ADFF2F', '#FFA500']
     # explosion
+    explode = (0.05, 0.05, 0.05, 0.05, 0.05)
     explode = (0.05, 0.05, 0.05, 0.05, 0.05)
     
     # Pie Chart
