@@ -1262,7 +1262,7 @@ def build_graph_donut():
                     horizontalalignment=horizontalalignment, **kw)
     
     ax.set_title(title)
-    fig
+    return fig
 
 def menu_tab_graph():
     build_graph_select()
