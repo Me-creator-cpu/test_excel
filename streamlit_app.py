@@ -1240,21 +1240,19 @@ def menu_tab_dashboards():
             st.divider()      
             my_strings = ['a', 'b', 'c', 'd', 'e']
             my_numbers = [1, 2, 3, 4, 5]            
-            build_graph_donut(my_numbers,my_strings,'Nb Palmons per type')
+            build_graph_donut()
     
 
     except:
         st.empty()
 
-def build_graph_donut(data_values,labels_values,title):
+def build_graph_donut():
     #https://matplotlib.org/stable/gallery/pie_and_polar_charts/pie_and_donut_labels.html
     #https://www.geeksforgeeks.org/python/donut-chart-using-matplotlib-in-python/
     fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
 
-    recipe = ["225 g flour", "90 g sugar", "1 egg", "60 g butter", "100 ml milk", "1/2 package of yeast"]
-    #recipe = labels_values
-    
-    data = [225, 90, 50, 60, 100, 5]
+    #recipe = ["225 g flour", "90 g sugar", "1 egg", "60 g butter", "100 ml milk", "1/2 package of yeast"]
+    #data = [225, 90, 50, 60, 100, 5]
 
     recipe = ['a', 'b', 'c', 'd', 'e']
     data = [1, 2, 3, 4, 5]         
