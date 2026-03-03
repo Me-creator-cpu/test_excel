@@ -1235,16 +1235,10 @@ def menu_tab_dashboards():
 
     # Setting labels for items in Chart
     df_tcd3 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
-    df_tcd3
-    #df_tcd3.T
-    row, col = df_xls.shape
-
-    Employee = df_tcd3.index.tolist()
-    Labels = Employee.copy()
+    Labels = df_tcd3.index.tolist()
     
     # Setting size in Chart based on given values
-    Salary = df_tcd3['Nb']
-
+    datas = df_tcd3['Nb']
 
     # colors
     range_colors=["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd",'#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
@@ -1253,7 +1247,7 @@ def menu_tab_dashboards():
     explode = (0.05, 0.05, 0.05, 0.05)
     
     # Pie Chart
-    plt.pie(Salary, colors=colors, labels=Employee,
+    plt.pie(datas, colors=colors, labels=Labels,
             autopct='%1.1f%%', pctdistance=0.85,
             explode=None)
     
@@ -1265,7 +1259,7 @@ def menu_tab_dashboards():
     fig2.gca().add_artist(centre_circle)
     
     # Adding Title of chart
-    plt.title('Employee Salary Details')
+    plt.title('% per type')
     
     # Displaying Chart
     fig2
