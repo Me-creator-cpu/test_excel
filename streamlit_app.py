@@ -1589,16 +1589,16 @@ def build_graph_donut():
         
         # draw circle
         centre_circle = plt.Circle((0, 0), 0.70, fc='white')
-        fig = plt.gcf()
+        fig2 = plt.gcf()
         
         # Adding Circle in Pie chart
-        fig.gca().add_artist(centre_circle)
+        fig2.gca().add_artist(centre_circle)
         
         # Adding Title of chart
         plt.title('Employee Salary Details')
         
         # Displaying Chart
-        fig
+        fig2
         
 # ======================================================================================================
 #
