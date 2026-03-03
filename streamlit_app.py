@@ -1230,6 +1230,12 @@ def menu_tab_dashboards():
     df_tcd3 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
     df_tcd3
     df_tcd3.T
+
+    tabs_data=[]
+    row, col = df_tcd3.shape
+    for i in range(row):
+        tabs_data.append(i,df_tcd3[i])
+    tabs_data
     
     Employee = df_tcd3['Type']
     Labels = Employee.copy()
