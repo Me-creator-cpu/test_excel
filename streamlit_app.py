@@ -1242,7 +1242,7 @@ def menu_tab_dashboards():
     # Pie Chart
     plt.pie(Salary, colors=colors, labels=Employee,
             autopct='%1.1f%%', pctdistance=0.85,
-            explode=explode)
+            explode=None)
     
     # draw circle
     centre_circle = plt.Circle((0, 0), 0.70, fc='white')
