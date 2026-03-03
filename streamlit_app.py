@@ -1517,7 +1517,7 @@ def build_graph_donut():
     plt.pie(size_of_groups)
     #figsize(float, float), default: rcParams["figure.figsize"] (default: [6.4, 4.8])
     #fig = plt.figure(figsize=(3.2, 2.4))
-    plt.figure(figsize=(3.2, 2.4))
+    #plt.figure(figsize=(3.2, 2.4))
     
     # add a circle at the center to transform it in a donut chart
     my_circle=plt.Circle( (0,0), 0.8, color='white')
@@ -1527,6 +1527,7 @@ def build_graph_donut():
     #text works, s does not (matplotlib==3.5.1)
 
     p=plt.gcf()
+    p.set_size_inches(18.5, 10.5)
     p.gca().add_artist(my_circle)
     
     p
