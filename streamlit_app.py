@@ -1246,11 +1246,10 @@ def menu_tab_dashboards():
     # Setting size in Chart based on given values
     Salary = df_tcd3['Nb']
 
-    range_colors=["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd"]
-    colors_test=range_colors[slice(len(Employee))]
-    colors_test
+
     # colors
-    colors = ['#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
+    range_colors=["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd",'#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
+    colors=range_colors[slice(len(Employee))]
     # explosion
     explode = (0.05, 0.05, 0.05, 0.05)
     
