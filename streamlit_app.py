@@ -1562,7 +1562,7 @@ def build_graph_donut():
                         horizontalalignment=horizontalalignment, **kw)
         
         ax.set_title("Matplotlib bakery: A donut")
-        ax
+        fig
 
 # ======================================================================================================
 #
