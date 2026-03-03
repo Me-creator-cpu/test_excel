@@ -1233,6 +1233,8 @@ def menu_tab_dashboards():
 
     tabs_data=df_tcd3.columns.values.tolist()
     tabs_data
+    tabs_data=df_tcd3.index.tolist()
+    tabs_data
     
     Employee = df_tcd3['Type']
     Labels = Employee.copy()
