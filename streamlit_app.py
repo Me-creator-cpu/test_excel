@@ -1227,11 +1227,13 @@ def menu_tab_dashboards():
         #df_tcd2
 
     # Setting labels for items in Chart
-    Employee = df_tcd2['Type']
+    df_tcd3 = df_tcd2.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+        
+    Employee = df_tcd3['Type']
     Labels = Employee.copy()
     
     # Setting size in Chart based on given values
-    Salary = df_tcd2['Level']
+    Salary = df_tcd3['Nb']
     
     # colors
     colors = ['#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
