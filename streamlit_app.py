@@ -1227,19 +1227,7 @@ def menu_tab_dashboards():
             df_tcd2['Type']
             st.divider()
             df_tcd2['Level']
-            st.divider()            
-    
-        row_d3 = st.columns(2,border=col_border, width="stretch")
-        with row_d3[0]:
-            st.emtpty()
-        with row_d3[1]:
-            write_one_info('build_graph_donut')
-            df_tcd2['Type'].reset_index()
             st.divider()
-            df_tcd2['Level'].reset_index()
-            st.divider()      
-            my_strings = ['a', 'b', 'c', 'd', 'e']
-            my_numbers = [1, 2, 3, 4, 5]            
             build_graph_donut()
     
 
