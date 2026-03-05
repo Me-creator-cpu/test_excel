@@ -538,9 +538,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             x_Field = yField
             y_Field = xField            
         #st.bar_chart(df_chart, x=x_Field, y=y_Field, stack=False)
-        df2=df_chart[['Level from','Cost']]
-        df2['Selection']=df2.apply(lambda row: row['Cost'] if range_level_min <= row['Level from'] <= range_level_max else 0, axis=1)
-        st.bar_chart(df2, x=x_Field, y=[y_Field,'Selection'], color=["#0068c9", "#ff4b4b"], stack=False)
+
         if with_slider==True:
             sel_min=selMin
             sel_max=selMax
@@ -551,6 +549,9 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
                 value=(sel_min,sel_max),
                 step=1
             )
+            df2=df_chart[['Level from','Cost']]
+            df2['Selection']=df2.apply(lambda row: row['Cost'] if range_level_min <= row['Level from'] <= range_level_max else 0, axis=1)
+            st.bar_chart(df2, x=x_Field, y=[y_Field,'Selection'], color=["#0068c9", "#ff4b4b"], stack=False)            
             df = df_chart.loc[(df_chart[x_Field] >= int(range_level_min)) & (df_chart[x_Field] <= int(range_level_max))]
             total_txt=get_text_trad(site_langu,'total_nrj_cost')
             to_txt=get_text_trad(site_langu,'to')
@@ -562,6 +563,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             excel_loaded=True
             return range_level_min, range_level_max
         else:
+            st.bar_chart(df_chart, x=x_Field, y=y_Field, stack=False)
             df = df_chart.loc[(df_chart[xField] >= int(selMin)) & (df_chart[xField] <= int(selMax))]
             total_txt=get_text_trad(site_langu,'total_cry_cost')
             to_txt=get_text_trad(site_langu,'to')
