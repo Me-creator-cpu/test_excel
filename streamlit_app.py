@@ -1234,39 +1234,38 @@ def menu_tab_dashboards():
         df_tcd2 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
         df_tcd2
 
-    # Setting labels for items in Chart
-    df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
-    Labels = df_tcd3.index.tolist()
-    #Labels['Type']
-    df
-    # Setting size in Chart based on given values
-    datas = df_tcd3['Nb']
-
-    # colors  
-    range_colors = list(map(lambda x, y:  y , data_type['Type'], data_type['Color']))
-    #range_colors=['#ADFF2F',"#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd",'#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
-    colors=range_colors[slice(len(Labels))]
-    # explosion
-    explode = (0.05, 0.05, 0.05, 0.05)
-    
-    # Pie Chart
-    plt.pie(datas, colors=colors, labels=Labels,
-            autopct='%1.1f%%', pctdistance=0.85,
-            explode=None)
-    
-    # draw circle
-    centre_circle = plt.Circle((0, 0), 0.70, fc='white')
-    centre_text=plt.text(x=0, y=0, s='% per type', color='black', size=10,ha='center',va='center_baseline')
-    fig2 = plt.gcf()
-    
-    # Adding Circle in Pie chart
-    fig2.gca().add_artist(centre_circle)
-    
-    # Adding Title of chart
-    #plt.title('% per type')
-    
-    # Displaying Chart
-    fig2
+    row_d3 = st.columns(2,border=col_border, width="stretch")
+    with row_d3[0]:
+        df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+        Labels = df_tcd3.index.tolist()
+        datas = df_tcd3['Nb']
+        range_colors = list(map(lambda x, y:  y , data_type['Type'], data_type['Color']))
+        #range_colors=['#ADFF2F',"#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd",'#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
+        colors=range_colors[slice(len(Labels))]
+        # explosion
+        explode = (0.05, 0.05, 0.05, 0.05)
+        explode = list(map(lambda x:0.05, range(len(Labels))))
+        
+        # Pie Chart
+        plt.pie(datas, colors=colors, labels=Labels,
+                autopct='%1.1f%%', pctdistance=0.85,
+                explode=explode)
+        
+        # draw circle
+        centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+        centre_text=plt.text(x=0, y=0, s='% per type', color='black', size=10,ha='center',va='center_baseline')
+        fig2 = plt.gcf()
+        
+        # Adding Circle in Pie chart
+        fig2.gca().add_artist(centre_circle)
+        
+        # Adding Title of chart
+        #plt.title('% per type')
+        
+        # Displaying Chart
+        fig2
+    with row_d3[1]:
+        st.empty()
 
 def build_graph_donut():
     # Setting labels for items in Chart
