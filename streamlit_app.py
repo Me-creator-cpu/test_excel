@@ -1247,9 +1247,7 @@ def menu_tab_dashboards():
         explode = list(map(lambda x:0.05, range(len(Labels))))
         
         # Pie Chart
-        plt.pie(datas, colors=colors, labels=Labels,
-                autopct='%1.1f%%', pctdistance=0.85,
-                explode=explode)
+        plt.pie(datas, colors=colors, labels=Labels, autopct='%1.1f%%', pctdistance=0.85, explode=explode, shadow=True)
         
         # draw circle
         centre_circle = plt.Circle((0, 0), 0.70, fc='white')
@@ -1261,8 +1259,6 @@ def menu_tab_dashboards():
         
         # Adding Title of chart
         #plt.title('% per type')
-        
-        # Displaying Chart
         fig2
     with row_d3[1]:
         st.empty()
