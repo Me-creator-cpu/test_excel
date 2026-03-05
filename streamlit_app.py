@@ -1242,7 +1242,7 @@ def menu_tab_dashboards():
     datas = df_tcd3['Nb']
 
     # colors
-    range_colors=["#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd",'#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
+    range_colors=['#ADFF2F',"#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd",'#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
     colors=range_colors[slice(len(Labels))]
     # explosion
     explode = (0.05, 0.05, 0.05, 0.05)
@@ -1265,7 +1265,6 @@ def menu_tab_dashboards():
     
     # Displaying Chart
     fig2
-
 
 def build_graph_donut():
     # Setting labels for items in Chart
