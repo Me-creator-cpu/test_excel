@@ -538,6 +538,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             x_Field = yField
             y_Field = xField            
         st.bar_chart(df_chart, x=x_Field, y=y_Field, stack=False)
+
         if with_slider==True:
             sel_min=selMin
             sel_max=selMax
@@ -557,6 +558,12 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             except:
                 st.markdown(f":orange-badge[{total_col} : {int(df[y_Field].sum())}]")
             excel_loaded=True
+
+            df2=df_chart.copy(deep=True)
+            df2[y_Field]['base']=df_chart[y_Field]
+            df2[y_Field]['sel']=df_chart[y_Field].apply(lambda b: b if b>range_level_min-1 and b<range_level_max=1 )
+            st.bar_chart(df2, x=x_Field, y=y_Field, stack=False)
+            
             return range_level_min, range_level_max
         else:
             df = df_chart.loc[(df_chart[xField] >= int(selMin)) & (df_chart[xField] <= int(selMax))]
@@ -579,7 +586,7 @@ def build_graph_select():
     else:
         field_x = field_1
         field_y = field_2
-    #df_srv = get_df_base().copy()
+
     df_srv=get_df_idx()
     max_upg=df_srv.loc[(df_srv["Level"] >= 1)].Level.max()+10
     min_upg=df_srv.loc[(df_srv["Level"] >= 10)].Level.min()-10
