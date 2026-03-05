@@ -555,8 +555,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             try:
                 st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[y_Field].sum()))}]")
             except:
-                y_sum=y_Field(0)
-                st.markdown(f":orange-badge[{total_col} : {int(df[y_sum].sum())}]")
+                st.markdown(f":orange-badge[{total_col} : {int(df[y_Field].sum())}]")
             excel_loaded=True
             return range_level_min, range_level_max
         else:
@@ -1003,19 +1002,19 @@ def menu_tab_show(idx):
 def menu_tab_comp():
     st.subheader(df_xls["DisplayName"][idx_comp])
     df = df_xls["DataFrame"][idx_comp]
-    #range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
-    #with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
-    #    build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
+    range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
+    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
+        build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
 
     
-    df_test=df_xls["DataFrame"][idx_comp]
-    range_level_min2=df_test['Level from'].min()+1
-    range_level_max2=df_test['Level from'].max()+1
-    df_test['Cost Selected']=df_test['Cost'].loc[(df_test['Level from'] >= range_level_min2) & (df_test['Level from'] <= range_level_max2)]
+    #df_test=df_xls["DataFrame"][idx_comp]
+    #range_level_min2=df_test['Level from'].min()+1
+    #range_level_max2=df_test['Level from'].max()+1
+    #df_test['Cost Selected']=df_test['Cost'].loc[(df_test['Level from'] >= range_level_min2) & (df_test['Level from'] <= range_level_max2)]
     
     #list(map(lambda x:0.05, range(len(Labels))))
-    st.bar_chart(df_test, x='Level from', y=['Cost','Cost Selected'], stack=False) #, color="site"
-    range_level_min, range_level_max = build_chart_bar(df_test,'Level from',['Cost','Cost Selected'],'Competencies costs from level:',int(range_level_min2),int(range_level_max2),with_switch=False)
+    #st.bar_chart(df_test, x='Level from', y=['Cost','Cost Selected'], stack=False) #, color="site"
+    #range_level_min, range_level_max = build_chart_bar(df_test,'Level from',['Cost','Cost Selected'],'Competencies costs from level:',int(range_level_min2),int(range_level_max2),with_switch=False)
 
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
