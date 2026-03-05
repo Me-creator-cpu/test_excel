@@ -1211,65 +1211,39 @@ def menu_tab_dashboards():
             avg_lvl_df
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
             st.bar_chart(avg_lvl_df, y='Level', horizontal=True)
+        with row_d1[1]:
+            st.subheader('Average power by Type')
+            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
+            avg_pwr_df  
+            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
+            st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
+    
+        row_d2 = st.columns(2,border=col_border, width="stretch")
+        with row_d2[0]:
+            st.subheader('Average Skill')
+            df_tcd1['Type']=df_tcd1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+            build_pivot_table(df_tcd1,'Level','Type','Skill')
+        with row_d2[1]:
+            st.subheader('Nb Palmons per type')
+            df_tcd2['Type']=df_tcd2['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+            #build_main_chart(df_tcd2,None,'Type','Level')
+            #build_pivot_table(df_tcd3,'Level','Type','Skill')
+            df_tcd2 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+            df_tcd2
+    
+        row_d3 = st.columns(2,border=col_border, width="stretch")
+        with row_d3[1]:
+            df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+            donut1=build_graph_donut(df_tcd3,'% per type')
+            donut1
+        with row_d3[0]:
+            df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].mean(), include_groups=True).to_frame('Nb')
+            donut2=build_graph_donut(df_tcd4,'Average per type')
+            donut2
+        
     except:
-        st.empty()     
-           
-    with row_d1[1]:
-        st.subheader('Average power by Type')
-        avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
-        avg_pwr_df  
-        avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
-        st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
-
-    row_d2 = st.columns(2,border=col_border, width="stretch")
-    with row_d2[0]:
-        st.subheader('Average Skill')
-        df_tcd1['Type']=df_tcd1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-        build_pivot_table(df_tcd1,'Level','Type','Skill')
-    with row_d2[1]:
-        st.subheader('Nb Palmons per type')
-        df_tcd2['Type']=df_tcd2['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-        #build_main_chart(df_tcd2,None,'Type','Level')
-        #build_pivot_table(df_tcd3,'Level','Type','Skill')
-        df_tcd2 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
-        df_tcd2
-
-    row_d3 = st.columns(2,border=col_border, width="stretch")
-    with row_d3[1]:
-        df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
-        donut1=build_graph_donut(df_tcd3,'% per type')
-        donut1
-        if 1 == 2:
-            Labels = df_tcd3.index.tolist()
-            datas = df_tcd3['Nb']
-            range_colors = list(map(lambda x, y:  y , data_type['Type'], data_type['Color']))
-            #range_colors=['#ADFF2F',"#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd",'#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
-            colors=range_colors[slice(len(Labels))]
-            # explosion
-            explode = (0.05, 0.05, 0.05, 0.05)
-            explode = list(map(lambda x:0.05, range(len(Labels))))
-            
-            # Pie Chart
-            plt.pie(datas, colors=colors, labels=Labels, autopct='%1.1f%%', pctdistance=0.85, 
-                    explode=explode, shadow={'ox': -0.03, 'edgecolor': '#DEDEDE', 'shade': 0.1})
-                    #shadow=True)
-            
-            # draw circle
-            centre_circle = plt.Circle((0, 0), 0.70, fc='white')
-            centre_text=plt.text(x=0, y=0, s='% per type', color='black', size=10,ha='center',va='center_baseline')
-            fig2 = plt.gcf()
-            
-            # Adding Circle in Pie chart
-            fig2.gca().add_artist(centre_circle)
-            
-            # Adding Title of chart
-            #plt.title('% per type')
-            fig2
-    with row_d3[0]:
-        df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].mean(), include_groups=True).to_frame('Nb')
-        donut=build_graph_donut(df_tcd4,'Average per type')
-        donut
-
+        st.empty() 
+        
 def build_graph_donut(df,titre):
     fig, ax = plt.subplots(1, 1, figsize=(4, 6))
     Labels = df.index.tolist()
@@ -1282,7 +1256,7 @@ def build_graph_donut(df,titre):
             #shadow=True)
     
     # draw circle
-    centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+    centre_circle=plt.Circle((0, 0), 0.70, fc='white')
     centre_text=plt.text(x=0, y=0, s=titre, color='black', size=10,ha='center',va='center_baseline')
     donut = plt.gcf()
     
