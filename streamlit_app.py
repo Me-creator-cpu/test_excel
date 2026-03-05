@@ -1268,6 +1268,7 @@ def menu_tab_dashboards():
         donut
 
 def build_graph_donut(df,titre):
+    fig, ax = plt.subplots(1, 0, figsize=(4, 6))
     Labels = df.index.tolist()
     datas = df['Nb']
     range_colors = list(map(lambda x, y:  y , data_type['Type'], data_type['Color']))
