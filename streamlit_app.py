@@ -1008,13 +1008,13 @@ def menu_tab_comp():
 
     
     df_test=df_xls["DataFrame"][idx_comp]
-    range_level_min2=int(df_test['Level from'].min()+1)
-    range_level_max2=int(df_test['Level from'].max()+1)
+    range_level_min2=df_test['Level from'].min()+1
+    range_level_max2=df_test['Level from'].max()+1
     df_test['Cost Selected']=df_test['Cost'].loc[(df_test['Level from'] >= range_level_min2) & (df_test['Level from'] <= range_level_max2)]
     
     #list(map(lambda x:0.05, range(len(Labels))))
     st.bar_chart(df_test, x='Level from', y=['Cost','Cost Selected'], stack=False) #, color="site"
-    range_level_min, range_level_max = build_chart_bar(df_test,'Level from',['Cost','Cost Selected'],'Competencies costs from level:',range_level_min2,range_level_max2,with_switch=False)
+    range_level_min, range_level_max = build_chart_bar(df_test,'Level from',['Cost','Cost Selected'],'Competencies costs from level:',int(range_level_min2),int(range_level_max2),with_switch=False)
 
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
