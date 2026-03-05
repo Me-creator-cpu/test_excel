@@ -1234,7 +1234,7 @@ def menu_tab_dashboards():
         df_tcd2
 
     # Setting labels for items in Chart
-    df_tcd3 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+    df_tcd3 = df.copy().set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
     Labels = df_tcd3.index.tolist()
     
     # Setting size in Chart based on given values
