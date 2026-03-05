@@ -1010,7 +1010,7 @@ def menu_tab_comp():
     
     
     #list(map(lambda x:0.05, range(len(Labels))))
-    #st.bar_chart(source, x="year", y="yield", color="site", stack=False)
+    st.bar_chart(df_test, x='Level from', y=['Cost','Cost Selected'], stack=False) #, color="site"
 
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
