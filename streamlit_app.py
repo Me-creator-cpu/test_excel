@@ -1264,7 +1264,8 @@ def menu_tab_dashboards():
         fig2
     with row_d3[1]:
         df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
-        build_graph_donut(df_tcd4)
+        donut=build_graph_donut(df_tcd4)
+        donut
 
 def build_graph_donut(df):
     Labels = df.index.tolist()
