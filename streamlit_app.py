@@ -1063,6 +1063,7 @@ def menu_tab_val():
         df_stars.at['Total','Unit Cost']=df_stars['Unit Cost'].mean()
         df_stars.at['Total','Total']=df_stars['Total'].sum()
         df_stars['Stars level'].apply(lambda b: 'Total' if b is None else b )
+        df_stars.at['Total','Stars level']='Total'
         build_table_any(df_stars)       
 
 def menu_tab_boss():
