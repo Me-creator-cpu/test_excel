@@ -566,7 +566,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             #df2['sel']=df_chart['Cost'].apply(lambda b: b)
             #df2['sel']=df_chart['Cost'].apply(lambda b: b if range_level_min <= row['Level from'] <= range_level_max else 0 , axis=1)
             #df2['sel']=list(map(lambda x,y: y if range_level_min <= x <= range_level_max else 0, df_chart[x_Field,y_Field]))
-            st.bar_chart(df2, x=x_Field, y=[y_Field,'sel'], color=[, "#0000FF"], stack=False)
+            st.bar_chart(df2, x=x_Field, y=[y_Field,'sel'], color=["", "#0000FF"], stack=False)
             df2
             
             return range_level_min, range_level_max
