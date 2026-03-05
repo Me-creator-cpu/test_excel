@@ -1005,8 +1005,11 @@ def menu_tab_comp():
     with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
 
+    
     df_test=df_xls["DataFrame"][idx_comp]
-    df_test['Cost Selected']=df_test['Cost'].loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)]
+    range_level_min2=df_test['Level from'].min()
+    range_level_max2=df_test['Level from'].max()
+    df_test['Cost Selected']=df_test['Cost'].loc[(df_test['Level from'] >= range_level_min2) & (df_test['Level from'] <= range_level_max2)]
     
     
     #list(map(lambda x:0.05, range(len(Labels))))
