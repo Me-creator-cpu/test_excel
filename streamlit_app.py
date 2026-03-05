@@ -1248,7 +1248,7 @@ def menu_tab_dashboards():
         
         # Pie Chart
         plt.pie(datas, colors=colors, labels=Labels, autopct='%1.1f%%', pctdistance=0.85, explode=explode, 
-                shadow={'ox': -0.04, 'edgecolor': '#DEDEDE', 'shade': 0.1} )
+                shadow={'ox': -0.01, 'edgecolor': '#DEDEDE', 'shade': 0.1} )
                 #shadow=True)
         
         # draw circle
