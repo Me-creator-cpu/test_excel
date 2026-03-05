@@ -555,7 +555,8 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             try:
                 st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[y_Field].sum()))}]")
             except:
-                st.markdown(f":orange-badge[{total_col} : {int(df[y_Field][0].sum())}]")
+                y_sum=y_Field(0)
+                st.markdown(f":orange-badge[{total_col} : {int(df[y_sum].sum())}]")
             excel_loaded=True
             return range_level_min, range_level_max
         else:
