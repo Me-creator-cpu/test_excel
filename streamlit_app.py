@@ -1004,7 +1004,16 @@ def menu_tab_comp():
     range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
     with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
+
+    df_test=[]
+    df_test['Level']=df['Level from']
+    df_test['Cost']=df['Cost']
+    df_test['Cost Selected']=df['Cost'].loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
     
+    
+    #list(map(lambda x:0.05, range(len(Labels))))
+    #st.bar_chart(source, x="year", y="yield", color="site", stack=False)
+
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
     df_pal=df_xls["DataFrame"][idx_palmon]
