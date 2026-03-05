@@ -537,8 +537,10 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
         if switch_axis:
             x_Field = yField
             y_Field = xField            
-        st.bar_chart(df_chart, x=x_Field, y=y_Field, stack=False)
-
+        #st.bar_chart(df_chart, x=x_Field, y=y_Field, stack=False)
+        df2=df_chart[['Level from','Cost']]
+        df2['Selection']=df2.apply(lambda row: row['Cost'] if range_level_min <= row['Level from'] <= range_level_max else 0, axis=1)
+        st.bar_chart(df2, x=x_Field, y=[y_Field,'Selection'], color=["#0068c9", "#ff4b4b"], stack=False)
         if with_slider==True:
             sel_min=selMin
             sel_max=selMax
@@ -558,17 +560,6 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             except:
                 st.markdown(f":orange-badge[{total_col} : {int(df[y_Field].sum())}]")
             excel_loaded=True
-            
-            df2=df_chart[['Level from','Cost']]
-            df2['sel']=df2['Cost']
-            df2['sel']=df2.apply(lambda row: row['Cost'] if range_level_min <= row['Level from'] <= range_level_max else 0, axis=1)
-            #df2=df_chart.copy(deep=True)
-            #df2['sel']=df_chart['Cost'].apply(lambda b: b)
-            #df2['sel']=df_chart['Cost'].apply(lambda b: b if range_level_min <= row['Level from'] <= range_level_max else 0 , axis=1)
-            #df2['sel']=list(map(lambda x,y: y if range_level_min <= x <= range_level_max else 0, df_chart[x_Field,y_Field]))
-            st.bar_chart(df2, x=x_Field, y=[y_Field,'sel'], color=["#0068c9", "#ff4b4b"], stack=False)
-            df2
-            
             return range_level_min, range_level_max
         else:
             df = df_chart.loc[(df_chart[xField] >= int(selMin)) & (df_chart[xField] <= int(selMax))]
