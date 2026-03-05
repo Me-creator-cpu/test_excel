@@ -1265,7 +1265,7 @@ def menu_tab_dashboards():
     with row_d3[0]:
         df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].mean(), include_groups=True).to_frame('Nb')
         donut=build_graph_donut(df_tcd4,'Average per type')
-        #donut
+        donut
 
 def build_graph_donut(df,titre):
     Labels = df.index.tolist()
