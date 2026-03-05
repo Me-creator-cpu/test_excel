@@ -1138,7 +1138,7 @@ def menu_tab_dashboards():
     col_border=False
     st.header(get_text_trad(site_langu,'dashboards'))
     df=df_xls["DataFrame"][idx_palmon]
-    
+    df
     column='Type'
     try:
         options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
