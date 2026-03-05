@@ -524,11 +524,11 @@ def build_main_chart(raw_data,title_expander=None,x_axis=None,y_axis=None):
             horizontal=True,
     )
       
-def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True):
+def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True, with_switch=False):
     if df_chart is not None:
         try:
-            #switch_axis = st.toggle("Switch axis")
-            switch_axis = st.toggle(get_text_trad(site_langu,'switch_axis'))
+            if with_switch:
+                switch_axis = st.toggle(get_text_trad(site_langu,'switch_axis'))
         except:
             switch_axis = False
         x_Field = xField
@@ -1007,13 +1007,13 @@ def menu_tab_comp():
 
     
     df_test=df_xls["DataFrame"][idx_comp]
-    range_level_min2=df_test['Level from'].min()
-    range_level_max2=df_test['Level from'].max()
+    range_level_min2=df_test['Level to'].min()
+    range_level_max2=df_test['Level to'].max()
     df_test['Cost Selected']=df_test['Cost'].loc[(df_test['Level from'] >= range_level_min2) & (df_test['Level from'] <= range_level_max2)]
-    
     
     #list(map(lambda x:0.05, range(len(Labels))))
     st.bar_chart(df_test, x='Level from', y=['Cost','Cost Selected'], stack=False) #, color="site"
+    range_level_min, range_level_max = build_chart_bar(df_test,'Level from',['Cost','Cost Selected'],'Competencies costs from level:',range_level_min2,range_level_max2,with_switch=False)
 
 def menu_tab_costs():
     df = df_xls["DataFrame"][idx_costs]
