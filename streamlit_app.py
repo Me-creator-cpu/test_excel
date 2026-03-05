@@ -1247,8 +1247,8 @@ def menu_tab_dashboards():
         explode = list(map(lambda x:0.05, range(len(Labels))))
         
         # Pie Chart
-        plt.pie(datas, colors=colors, labels=Labels, autopct='%1.1f%%', pctdistance=0.85, explode=explode, 
-                shadow={'ox': -0.03, 'edgecolor': '#DEDEDE', 'shade': 0.1} )
+        plt.pie(datas, colors=colors, labels=Labels, autopct='%1.1f%%', pctdistance=0.85, 
+                explode=explode, shadow={'ox': -0.03, 'edgecolor': '#DEDEDE', 'shade': 0.1})
                 #shadow=True)
         
         # draw circle
@@ -1263,39 +1263,27 @@ def menu_tab_dashboards():
         #plt.title('% per type')
         fig2
     with row_d3[1]:
-        st.empty()
+        df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+        build_graph_donut(df_tcd4)
 
-def build_graph_donut():
-    # Setting labels for items in Chart
-    Employee = ['Roshni', 'Shyam', 'Priyanshi', 'Harshit', 'Anmol']
-    Labels = Employee.copy()
-    
-    # Setting size in Chart based on given values
-    Salary = [40000, 50000, 70000, 54000, 44000]
-    
-    # colors
-    colors = ['#FF0000', '#0000FF', '#FFFF00', '#ADFF2F', '#FFA500']
-    # explosion
-    explode = (0.05, 0.05, 0.05, 0.05, 0.05)
-    explode = (0.05, 0.05, 0.05, 0.05, 0.05)
-    
-    # Pie Chart
-    plt.pie(Salary, colors=colors, labels=Employee,
-            autopct='%1.1f%%', pctdistance=0.85,
-            explode=explode)
+def build_graph_donut(df):
+    Labels = df.index.tolist()
+    datas = df['Nb']
+    range_colors = list(map(lambda x, y:  y , data_type['Type'], data_type['Color']))
+    colors=range_colors[slice(len(Labels))]
+    explode = list(map(lambda x:0.05, range(len(Labels))))
+    plt.pie(datas, colors=colors, labels=Labels, autopct='%1.1f%%', pctdistance=0.85, 
+            explode=explode, shadow={'ox': -0.03, 'edgecolor': '#DEDEDE', 'shade': 0.1})
+            #shadow=True)
     
     # draw circle
     centre_circle = plt.Circle((0, 0), 0.70, fc='white')
-    fig2 = plt.gcf()
+    centre_text=plt.text(x=0, y=0, s='% per type', color='black', size=10,ha='center',va='center_baseline')
+    donut = plt.gcf()
     
     # Adding Circle in Pie chart
-    fig2.gca().add_artist(centre_circle)
-    
-    # Adding Title of chart
-    plt.title('Employee Salary Details')
-    
-    # Displaying Chart
-    return fig2
+    donut.gca().add_artist(centre_circle)
+    return donut
 
 def menu_tab_graph():
     build_graph_select()
