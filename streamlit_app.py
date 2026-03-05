@@ -1138,11 +1138,11 @@ def menu_tab_dashboards():
     col_border=False
     st.header(get_text_trad(site_langu,'dashboards'))
     df=df_xls["DataFrame"][idx_palmon]
-    df
+    
     column='Type'
     try:
         options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
-        
+        df_pie=df.copy(deep=True)
         df1=df.copy()
         df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
         df1['Upgradable']=df1['Upgradable'].apply(lambda b: icon_upgradable(b)) 
@@ -1234,7 +1234,7 @@ def menu_tab_dashboards():
         df_tcd2
 
     # Setting labels for items in Chart
-    df_tcd3 = df.copy().set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+    df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
     Labels = df_tcd3.index.tolist()
     #Labels['Type']
     df
