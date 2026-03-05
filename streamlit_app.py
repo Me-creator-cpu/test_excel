@@ -1002,9 +1002,9 @@ def menu_tab_show(idx):
 def menu_tab_comp():
     st.subheader(df_xls["DisplayName"][idx_comp])
     df = df_xls["DataFrame"][idx_comp]
-    range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
-    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
-        build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
+    #range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
+    #with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
+    #    build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
 
     
     df_test=df_xls["DataFrame"][idx_comp]
