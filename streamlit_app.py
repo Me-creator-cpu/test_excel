@@ -1235,7 +1235,7 @@ def menu_tab_dashboards():
         df_tcd2
 
     row_d3 = st.columns(2,border=col_border, width="stretch")
-    with row_d3[0]:
+    with row_d3[1]:
         df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
         Labels = df_tcd3.index.tolist()
         datas = df_tcd3['Nb']
@@ -1262,12 +1262,12 @@ def menu_tab_dashboards():
         # Adding Title of chart
         #plt.title('% per type')
         fig2
-    with row_d3[1]:
-        df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
-        donut=build_graph_donut(df_tcd4)
+    with row_d3[0]:
+        df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].mean(), include_groups=True).to_frame('Nb')
+        donut=build_graph_donut(df_tcd4,'% per type')
         donut
 
-def build_graph_donut(df):
+def build_graph_donut(df,titre):
     Labels = df.index.tolist()
     datas = df['Nb']
     range_colors = list(map(lambda x, y:  y , data_type['Type'], data_type['Color']))
@@ -1279,7 +1279,7 @@ def build_graph_donut(df):
     
     # draw circle
     centre_circle = plt.Circle((0, 0), 0.70, fc='white')
-    centre_text=plt.text(x=0, y=0, s='% per type', color='black', size=10,ha='center',va='center_baseline')
+    centre_text=plt.text(x=0, y=0, s=titre, color='black', size=10,ha='center',va='center_baseline')
     donut = plt.gcf()
     
     # Adding Circle in Pie chart
