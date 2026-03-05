@@ -537,7 +537,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
         if switch_axis:
             x_Field = yField
             y_Field = xField            
-        st.bar_chart(df_chart, x=x_Field, y=y_Field)
+        st.bar_chart(df_chart, x=x_Field, y=y_Field, stack=False)
         if with_slider==True:
             sel_min=selMin
             sel_max=selMax
