@@ -1008,8 +1008,8 @@ def menu_tab_comp():
 
     
     df_test=df_xls["DataFrame"][idx_comp]
-    range_level_min2=df_test['Level to'].min()
-    range_level_max2=df_test['Level to'].max()
+    range_level_min2=df_test['Level from'].min()+1
+    range_level_max2=df_test['Level from'].max()+1
     df_test['Cost Selected']=df_test['Cost'].loc[(df_test['Level from'] >= range_level_min2) & (df_test['Level from'] <= range_level_max2)]
     
     #list(map(lambda x:0.05, range(len(Labels))))
