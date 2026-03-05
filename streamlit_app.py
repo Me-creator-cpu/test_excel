@@ -526,6 +526,7 @@ def build_main_chart(raw_data,title_expander=None,x_axis=None,y_axis=None):
       
 def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider=True, with_switch=False):
     if df_chart is not None:
+        switch_axis = False
         try:
             if with_switch:
                 switch_axis = st.toggle(get_text_trad(site_langu,'switch_axis'))
