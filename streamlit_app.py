@@ -1247,7 +1247,9 @@ def menu_tab_dashboards():
         explode = list(map(lambda x:0.05, range(len(Labels))))
         
         # Pie Chart
-        plt.pie(datas, colors=colors, labels=Labels, autopct='%1.1f%%', pctdistance=0.85, explode=explode, shadow=True)
+        plt.pie(datas, colors=colors, labels=Labels, autopct='%1.1f%%', pctdistance=0.85, explode=explode, 
+                shadow={'ox': -0.04, 'edgecolor': '#DEDEDE', 'shade': 0.3} )
+                #shadow=True)
         
         # draw circle
         centre_circle = plt.Circle((0, 0), 0.70, fc='white')
