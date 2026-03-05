@@ -132,8 +132,9 @@ data_skills={
     "Icon":option_skill
 }
 data_type={
-    "Type":["Water",  "Fire",    "Electricity",    "Wood",    "Any"],
-    "Icon":["💧",    "🔥",      "⚡",             "🪵",     "🌐"] 
+    "Type":["Water",      "Fire",    "Electricity",    "Wood",    "Any"],
+    "Icon":["💧",        "🔥",      "⚡",             "🪵",     "🌐"] ,
+    "Color":["#2784F5","#F54927",    "#EEF527",    "#F57D27",    "#27F549"]
 }
 data_values={
     "Value":["Energy","Crystals","Pieces","Level300"],
@@ -1241,8 +1242,9 @@ def menu_tab_dashboards():
     # Setting size in Chart based on given values
     datas = df_tcd3['Nb']
 
-    # colors
-    range_colors=['#ADFF2F',"#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd",'#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
+    # colors  
+    range_colors = list(map(lambda x, y:  y , data_type['Type'], data_type['Color']))
+    #range_colors=['#ADFF2F',"#e7ba52", "#a7a7a7", "#aec7e8", "#1f77b4", "#9467bd",'#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
     colors=range_colors[slice(len(Labels))]
     # explosion
     explode = (0.05, 0.05, 0.05, 0.05)
