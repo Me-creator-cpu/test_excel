@@ -134,7 +134,7 @@ data_skills={
 data_type={
     "Type":["Water",      "Fire",    "Electricity",    "Wood",    "Any"],
     "Icon":["💧",        "🔥",      "⚡",             "🪵",     "🌐"] ,
-    "Color":["#2784F5","#F54927",    "#EEF527",    "#F57D27",    "#27F549"]
+    "Color":["#EEF527","#F54927",    "#2784F5",    "#F57D27",    "#27F549"]
 }
 data_values={
     "Value":["Energy","Crystals","Pieces","Level300"],
