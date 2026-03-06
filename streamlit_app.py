@@ -1583,7 +1583,7 @@ def test_colors():
         df,
         x="col1",
         y="col2",
-        color=[rgb_hex],
+        color=[rgb_hex,rgb_hex],
     )
 
 def rgb2hex(r,g,b):
