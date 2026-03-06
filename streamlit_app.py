@@ -1576,7 +1576,7 @@ def test_colors():
     df = pd.DataFrame(
         {
             "col1": (0,1),
-            "col2": (0,1),
+            "col2": (1,1),
             "col3": (rgb_hex,rgb_hex),
         }
     )
