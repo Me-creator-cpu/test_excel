@@ -1055,7 +1055,7 @@ def menu_tab_mut():
         build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])        
 
 def menu_tab_equip():
-    st.header(df_xls["DisplayName"][idx_equip]) 
+    st.header("✨"+df_xls["DisplayName"][idx_equip]) 
     df = df_xls["DataFrame"][idx_equip]
     range_level_min, range_level_max = build_chart_bar(df,'Level','Opus pearls','Costs from level:',int(df['Level'].min()),int(df['Level'].max()),with_slider=True, with_switch=False)
     with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
