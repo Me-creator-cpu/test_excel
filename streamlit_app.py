@@ -1109,7 +1109,10 @@ def menu_tab_val():
         build_table_any(df_stars)       
 
 def menu_tab_boss():
+    rowpic = st.columns([1,2,1],border=False, width="stretch")
     rowval = st.columns(2,border=False, width="stretch")
+    with rowpic[1]:
+        pic(img_menu_boss)
     with rowval[0]:
         st.subheader(df_xls["DisplayName"][idx_stars]) 
         df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
