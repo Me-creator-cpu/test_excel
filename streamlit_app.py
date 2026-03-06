@@ -1563,6 +1563,31 @@ def pg_options():
             test_write_txt(file_txt)
         if st.button("Donut graph"):
             build_graph_donut_test()
+        if st.button("Colors"):
+            test_colors()            
+
+def test_colors():
+    color_r = st.slider("Red value", 0, 255, 25)
+    color_g = st.slider("Green value", 0, 255, 25)
+    color_b = st.slider("Blue value", 0, 255, 25)
+    rgb_hex=rgb2hex(color_r,color_g,color_b)
+    write_info('rgb_hex',rgb_hex)
+    df = pd.DataFrame(
+        {
+            "col1": (0,1),
+            "col2": (0,1),
+            "col3": rng(1).standard_normal(20),
+        }
+    )
+    st.bar_chart(
+        df,
+        x="col1",
+        y="col2",
+        color=[rgb_hex],
+    )
+
+def rgb2hex(r,g,b):
+    return "#{:02x}{:02x}{:02x}".format(r,g,b)
 
 def check_github_access():
     if 'REPLICATE_API_TOKEN' in st.secrets.tests:
