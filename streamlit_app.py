@@ -1561,10 +1561,17 @@ def pg_options():
             test_append_txt(file_txt)
         if st.button("Write Text file"):
             test_write_txt(file_txt)
+        if st.button("Test listing"):
+            test_listing()            
         if st.button("Donut graph"):
             build_graph_donut_test()
         if st.button("Colors"):
             test_colors()            
+
+def test_listing():
+    for x in os.listdir():
+        if x.endswith(".py"):
+            st.text(x)    
 
 @st.fragment(run_every="1s")
 def test_colors():
