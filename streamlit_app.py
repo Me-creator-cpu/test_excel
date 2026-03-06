@@ -1577,13 +1577,14 @@ def test_colors():
         {
             "col1": (0,1),
             "col2": (0,1),
+            "col3": (rgb_hex,rgb_hex),
         }
     )
     st.bar_chart(
         df,
         x="col1",
         y="col2",
-        color=[rgb_hex,rgb_hex],
+        color="col3",
     )
 
 def rgb2hex(r,g,b):
