@@ -114,7 +114,7 @@ idx_val=4
 idx_stars=5
 idx_boss=6
 idx_boss_data=7
-idx_equip=6
+idx_equip=8
 #✨
 data = { #                    0                  1                  2                    3                4                        5                    6                    7                8
         "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs",        "Valeurs"],
