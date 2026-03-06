@@ -1576,7 +1576,6 @@ def test_colors():
         {
             "col1": (0,1),
             "col2": (0,1),
-            "col3": rng(1).standard_normal(20),
         }
     )
     st.bar_chart(
