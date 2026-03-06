@@ -1566,6 +1566,7 @@ def pg_options():
         if st.button("Colors"):
             test_colors()            
 
+@st.fragment(run_every="1s")
 def test_colors():
     color_r = st.slider("Red value", 0, 255, 25)
     color_g = st.slider("Green value", 0, 255, 25)
