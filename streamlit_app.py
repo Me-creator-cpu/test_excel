@@ -1569,7 +1569,7 @@ def pg_options():
             test_colors()            
 
 def test_listing():
-    for x in os.listdir('/data):
+    for x in os.listdir('/data'):
         if x.endswith(".py"):
             st.text(x)    
 
