@@ -1569,7 +1569,7 @@ def pg_options():
             test_colors()            
 
 def test_listing():
-    for x in os.listdir():
+    for x in os.listdir('.//data'):
         if x.endswith(".py"):
             st.badge(x, icon=":material/check:", color="green")
         else:
