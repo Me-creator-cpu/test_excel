@@ -554,8 +554,6 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             df2=df_chart[[xField,yField]]
             df2['Selection']=df2.apply(lambda row: row[yField] if range_level_min <= row[xField] <= range_level_max else 0, axis=1)
             
-
-            
             st.bar_chart(df2, x=x_Field, y=[y_Field,'Selection'], color=["#0068c9", "#ff4b4b"], stack=False)            
             df = df_chart.loc[(df_chart[x_Field] >= int(range_level_min)) & (df_chart[x_Field] <= int(range_level_max))]
             total_txt=get_text_trad(site_langu,'total_nrj_cost')
@@ -1042,13 +1040,14 @@ def menu_tab_mut():
     df_energy=df.loc[(df['Step'] != 0)]
     df_crystal=df.loc[(df['Step'] == 0)]  
     st.subheader("🟢Energy")
-    #range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(df_energy['Level'].min()),int(df_energy['Level'].max()))
-    range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(1),int(100))
+    range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(df_energy['Level'].min()),int(df_energy['Level'].max()))
     st.subheader("💎Crystals")
     build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(df_crystal['Level'].min()),int(df_crystal['Level'].max()),False)
     with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
-        build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
+        st.subheader("🟢Energy", divider="green")
         build_table_any(df_energy.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
+        st.subheader("💎Crystals", divider="blue")
+        build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])        
 
 def menu_tab_val():
     rowval = st.columns(2,border=False, width="stretch")
