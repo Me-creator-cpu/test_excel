@@ -1570,8 +1570,9 @@ def pg_options():
 
 def test_listing():
     for x in os.listdir('.//data'):
-        if x.endswith(".py"):
+        if x.endswith(".jpg"):
             st.badge(x, icon=":material/check:", color="green")
+            st.image(x, caption=x)
         else:
             st.text(x)
 
