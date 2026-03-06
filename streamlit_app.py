@@ -919,6 +919,37 @@ def pal_deltail(palmon,df,pic_width=300):
 #    Definition fonctions pages/menu
 #
 # ======================================================================================================
+#./data/PS - Estimation (version 1).xlsx
+def local_load_excel(getnewfile=True):
+    if getnewfile:
+        uploaded_file  = './data/PS - Estimation (version 1).xlsx'
+        excel_loaded=False
+        if uploaded_file is not None:
+            st.session_state.uploaded_file = uploaded_file
+            file = pd.ExcelFile(uploaded_file)
+            if file is not None:
+                excel_loaded=True
+            else:
+                uploaded_file=None
+
+        if df_xls["DataFrame"][idx_costs] is not None:
+            excel_loaded=True
+            st.session_state.uploaded_file = uploaded_file
+        else:
+            excel_loaded=False
+    else:
+        uploaded_file = st.session_state.uploaded_file
+    
+    tabs_data=[]
+    row, col = df_xls.shape
+    for i in range(row):
+        get_data(uploaded_file,i,False)
+        if int(i)!=int(idx_stars):
+            tabs_data.append(stx.TabBarItemData(id=i, 
+                                                title=df_xls["DisplayName"][i], 
+                                                description=df_xls["Description"][i], ) )
+    add_session_variable("tabs_data",tabs_data)
+
 def menu_load_excel(with_expander=True,getnewfile=True):
     if getnewfile:
         if with_expander:
@@ -1727,6 +1758,8 @@ if site_langu != langu:
     #st.toast('RELOADING', icon='ℹ️️', duration='short')
     menu_load_excel(with_expander=False,getnewfile=False)
 langu = st.session_state.site_langu
+
+local_load_excel()
 
 if use_pics:
     st.markdown("""
