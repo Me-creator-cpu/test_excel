@@ -1580,7 +1580,7 @@ def test_colors():
             "col3": (rgb_hex,rgb_hex),
         }
     )
-    st.bar_chart(
+    st.area_chart(
         df,
         x="col1",
         y="col2",
