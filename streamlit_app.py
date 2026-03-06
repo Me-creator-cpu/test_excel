@@ -1482,40 +1482,43 @@ def page2():
 
 def page3():
     st.subheader(f'📋{get_text_trad(site_langu,'info_file')}', divider=False)
-    if st.session_state.uploaded_file is not None:
-        obj_fle=st.session_state.uploaded_file
-        fileinfo={
-           get_text_trad(site_langu,'info_file_name'):obj_fle.name,
-           get_text_trad(site_langu,'info_file_type'):obj_fle.type,
-           get_text_trad(site_langu,'info_file_size'):large_num_format(obj_fle.size)
-        }
-        st.dataframe(
-            fileinfo,
-            height = "content",
-            width = "content",
-            selection_mode = "single-row",
-            hide_index=False,
-            ) 
-        file = pd.ExcelFile(st.session_state.uploaded_file)
-        if file is not None:
-            option = st.selectbox(
-                get_text_trad(site_langu,'wks'),
-                file.sheet_names,
-                index=None,
-                placeholder=get_text_trad(site_langu,'wks_sel'),
-            )
-            if option is not None:
-                if option == "Tableaux":
-                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                else:
-                    df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
-                    if option == "Palmon_data":
-                        df1.columns = cols_data
-                    if option == "Stars":
-                        df1.columns = cols_stars                        
-                st.dataframe(df1)
-    else:
-        file_err()
+    try:
+        if st.session_state.uploaded_file is not None:
+            obj_fle=st.session_state.uploaded_file
+            fileinfo={
+               get_text_trad(site_langu,'info_file_name'):obj_fle.name,
+               get_text_trad(site_langu,'info_file_type'):obj_fle.type,
+               get_text_trad(site_langu,'info_file_size'):large_num_format(obj_fle.size)
+            }
+            st.dataframe(
+                fileinfo,
+                height = "content",
+                width = "content",
+                selection_mode = "single-row",
+                hide_index=False,
+                ) 
+            file = pd.ExcelFile(st.session_state.uploaded_file)
+            if file is not None:
+                option = st.selectbox(
+                    get_text_trad(site_langu,'wks'),
+                    file.sheet_names,
+                    index=None,
+                    placeholder=get_text_trad(site_langu,'wks_sel'),
+                )
+                if option is not None:
+                    if option == "Tableaux":
+                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                    else:
+                        df1 = pd.read_excel(file, sheet_name=option, skiprows=[0], header=[0], decimal =',')
+                        if option == "Palmon_data":
+                            df1.columns = cols_data
+                        if option == "Stars":
+                            df1.columns = cols_stars                        
+                    st.dataframe(df1)
+        else:
+            file_err()
+    except:
+        st.empty()
        
 def page4():
     #write_coming_soon()
