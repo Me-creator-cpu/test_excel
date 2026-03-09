@@ -39,7 +39,7 @@ def test_github_issues():
 
     url_test = 'languages'    #OK
     
-    url_test = 'contents'    #OK, cf https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository--code-samples
+    url_test = 'contents/data'    #OK, cf https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository--code-samples
     github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
     
     #github_url = f"https://api.github.com/user/starred/{owner}/{repo}"
@@ -53,14 +53,6 @@ def test_github_issues():
     st.write(result)
     if result.status_code == 200:
         st.write(result.json())
-    #st.write(token)
-    #dataFrame = pd.read_json(result.json())
     str_json=result.json()
-    #dict = json.loads(str_json)
-    #df2 = json_normalize(dict) 
-    #df = pd.read_json(df2, orient='records')
-    #df = pd.DataFrame.from_dict(str_json, orient="records")
-    #df
-
     st.write(pd.json_normalize(str_json))
     return result
