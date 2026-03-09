@@ -1658,7 +1658,7 @@ def test_write_txt(file_txt):
 
 def test_github_repo():
     #test_github.py
-    
+    st.empty()
 
 # ======================================================================================================
 def build_graph_donut_test():
