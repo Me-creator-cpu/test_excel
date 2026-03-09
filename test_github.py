@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-import pygit2
+#import pygit2
 
 def test_github_issues():
     #token = os.getenv('GITHUB_TOKEN', '...')
