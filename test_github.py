@@ -37,5 +37,5 @@ def test_github_issues():
     st.write(f'Testing: {url_test}')
     st.write(github_url)
     st.write(result)
-    
+    st.write(token)
     return result
