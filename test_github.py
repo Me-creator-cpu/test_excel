@@ -68,7 +68,7 @@ def test_github_issues():
         repo_slug=f'{owner}/{repo}',
         branch=branch,
         user=owner,
-        token=token
+        token=st.secrets.tests.REPLICATE_API_TOKEN,
         )
     return result
 
