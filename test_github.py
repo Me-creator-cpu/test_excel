@@ -97,7 +97,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
     
     message = "Automated update " + str(gitDatetime.datetime.now())
     path = "https://api.github.com/repos/%s/branches/%s" % (repo_slug, branch)
-    path = f"https://api.github.com/repos/{repo_slug}/branches/{branch}/data"
+    path = f"https://api.github.com/repos/{repo_slug}/branches/{branch}"
     
     r = requests.get(path, auth=(user,token))
     if not r.ok:
