@@ -55,6 +55,7 @@ def test_github_issues():
     #st.write(token)
     #dataFrame = pd.read_json(result.json())
     
-    df = pd.read_json(result.json(), orient='records')
+    #df = pd.read_json(result.json(), orient='records')
+    df = pd.read_json(result.json(), orient='table')
     df
     return result
