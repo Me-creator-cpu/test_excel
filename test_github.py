@@ -67,16 +67,17 @@ def test_github_issues():
         str_json["_links"]["html"]
     
     #https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents--code-samples
-    fileName='todo.txt'
-    url_test = f'contents/data/{fileName}'
+    fileName='test_api.txt'
+    url_test = f'contents/{fileName}'
     github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
+    token_update=st.secrets.tests.REPLICATE_API_TOKEN
     push_to_repo_branch(
         gitHubFileName=github_url,
         fileName=fileName,
         repo_slug=f'{owner}/{repo}',
         branch=branch,
         user=owner,
-        token=st.secrets.tests.REPLICATE_API_TOKEN,
+        token=token_update
         )
     return result
 
@@ -98,7 +99,6 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
     path = "https://api.github.com/repos/%s/branches/%s" % (repo_slug, branch)
     path = f"https://api.github.com/repos/{repo_slug}/branches/{branch}/data"
     
-
     r = requests.get(path, auth=(user,token))
     if not r.ok:
         st.write("Error when retrieving branch info from %s" % path)
