@@ -25,12 +25,14 @@ def test_github_issues():
     st.info(f"Got results...", icon="ℹ️", width="stretch")
     
     result = r.json()
+    st.write('List commits')
     st.write(r.json())
 
     #github_url = 'https://github.com/USERNAME/REPOSITORY/tree/master/FOLDER'  # change USERNAME, REPOSITORY and FOLDER with actual name
 
     github_url = f'https://api.github.com/repos/{owner}/{repo}/tree/{branch}/data' 
     result = requests.get(github_url)
+    st.write('List files')
     st.write(result)
     
     return result
