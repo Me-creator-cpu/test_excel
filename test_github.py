@@ -34,7 +34,7 @@ def test_github_issues():
     #github_url = 'https://github.com/USERNAME/REPOSITORY/tree/master/FOLDER'  # change USERNAME, REPOSITORY and FOLDER with actual name
 
     github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
-    result = requests.get(github_url)
+    result = requests.get(github_url, headers=headers, params=params)
     st.write(f'Testing: {url_test}')
     st.write(github_url)
     st.write(result)
