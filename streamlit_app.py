@@ -1548,8 +1548,9 @@ def page4():
 
 def pg_options():
     pic(url_logo_01)
-    st.button('Load JSON', on_click=read_json_trads)
-    st.button('Clear Cache', on_click=clear_cache)
+    with st.expander('JSON file', expanded=False, icon=':material/table_view:', width='stretch'):
+        st.button('Load JSON', on_click=read_json_trads)
+        st.button('Clear Cache', on_click=clear_cache)
     st.divider()
     err_details=st.toggle('ShowErrorDetails', True)
     st.set_option('client.showErrorDetails', err_details)
@@ -1557,22 +1558,27 @@ def pg_options():
     with container_xls:
         check_file_loaded()
         check_github_access()
-    container_txt = st.container(border=True, width='stretch', height='content')
-    with container_txt:
-        file_txt='./data/todo.txt'
+    #container_txt = st.container(border=True, width='stretch', height='content')
+    #with container_txt:
+    file_txt='./data/todo.txt'
+    with st.expander('Text file', expanded=False, icon=':material/table_view:', width='stretch'):
         if st.button("Load Text file"):
             st.text(test_read_txt(file_txt))
         if st.button("Update Text file"):
             test_append_txt(file_txt)
         if st.button("Write Text file"):
             test_write_txt(file_txt)
+    with st.expander('Other', expanded=False, icon=':material/table_view:', width='stretch'):
         if st.button("Test listing"):
-            test_listing()            
+            test_listing()
         if st.button("Donut graph"):
             build_graph_donut_test()
         if st.button("Colors"):
-            test_colors()            
-
+            test_colors()
+    with st.expander('Github', expanded=False, icon=':material/table_view:', width='stretch'):
+        if st.button("Get issues"):
+            test_github_issues()
+            
 def test_listing():
     for x in os.listdir('.//data'):
         if x.endswith(".jpg"):
