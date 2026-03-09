@@ -103,7 +103,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         raise
     r2json = r2.json()
     sha = None
-
+    r2json
     for file in r2json['tree']:
         # Found file, get the sha code
         if file['path'] == gitHubFileName:
@@ -111,7 +111,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
 
     # if sha is None after the for loop, we did not find the file name!
     if sha is None:
-        st.write("Could not find " + gitHubFileName + " in repos 'tree' ")
+        st.write(f"Could not find {gitHubFileName} in repos {repo_slug}")
         raise Exception
 
     with open(fileName) as data:
