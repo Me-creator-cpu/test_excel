@@ -112,6 +112,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         st.write("Reason: %s [%d]" % (r2.text, r2.status_code))
         raise
     r2json = r2.json()
+    sFile=''
     sha = None
     st.write('r2json')
     st.write(r2json)
@@ -121,6 +122,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         #if file['path'] == gitHubFileName:
         if file['path'] == fileName:
             sha = file['sha']
+            sFile=file['url']
 
     # if sha is None after the for loop, we did not find the file name!
     if sha is None:
@@ -128,7 +130,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         raise Exception
 
     #with open(fileName) as data:gitHubFileName
-    with open(gitHubFileName) as data:
+    with open(sFile) as data:
         content = base64.b64encode(data.read())
 
     # gathered all the data, now let's push
