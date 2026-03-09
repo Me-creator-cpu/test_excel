@@ -2,7 +2,9 @@ import streamlit as st
 import requests
 import pandas as pd
 from pandas import json_normalize
+import base64
 import json
+import datetime
 #import pygit2
 
 def test_github_issues():
@@ -51,8 +53,13 @@ def test_github_issues():
     st.write(f'Testing: {url_test}')
     st.write(github_url)
     st.write(result)
-    if result.status_code == 200:
-        st.write(result.json())
+    #if result.status_code == 200:
+    #    st.write(result.json())
     str_json=result.json()
     st.write(pd.json_normalize(str_json))
+
+    #https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents--code-samples
+    url_test = 'contents/data/todo.txt'
+    github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
+    
     return result
