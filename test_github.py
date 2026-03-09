@@ -55,7 +55,8 @@ def test_github_issues():
     #st.write(token)
     #dataFrame = pd.read_json(result.json())
     
-    #df = pd.read_json(result.json(), orient='records')
-    df = pd.read_json(result.json(), orient='table')
+    dict = json.loads(result.json())
+    df2 = json_normalize(dict[]) 
+    df = pd.read_json(df2, orient='records')
     df
     return result
