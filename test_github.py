@@ -24,4 +24,5 @@ def test_github_issues():
     st.info(f"Got results...", icon="ℹ️", width="stretch")
     
     result = r.json()
+    st.write(result)
     return result
