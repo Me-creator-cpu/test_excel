@@ -64,13 +64,13 @@ def test_github_issues():
     if result.status_code == 200:
         str_json=result.json()
         str_json
-        str_json["_links"]["html"]
     
     #https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents--code-samples
     fileName='test_api.txt'
     url_test = f'contents/{fileName}'
     github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
     token_update=st.secrets.tests.REPLICATE_API_TOKEN
+    st.write('Call push_to_repo_branch...')
     push_to_repo_branch(
         gitHubFileName=github_url,
         fileName=fileName,
