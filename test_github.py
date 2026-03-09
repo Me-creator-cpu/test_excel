@@ -62,8 +62,8 @@ def test_github_issues():
     github_url = f'https://api.github.com/repos/{owner}/{repo}/branches/{branch}' 
     result = requests.get(github_url, headers=headers, params=params)
     if result.status_code == 200:
-        str_json=result.json()
-        str_json
+        st.write(f'Branch: {branch} found!')
+        result.json()
     
     #https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents--code-samples
     fileName='test_api.txt'
