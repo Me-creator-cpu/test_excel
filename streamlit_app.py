@@ -950,10 +950,10 @@ def local_load_excel(getnewfile=True):
                                                 description=df_xls["Description"][i], ) )
     add_session_variable("tabs_data",tabs_data)
 
-def menu_load_excel(with_expander=True,getnewfile=True):
+def menu_load_excel(with_expander=True,getnewfile=True,expanded=False):
     if getnewfile:
         if with_expander:
-            container=st.expander(get_text_trad(site_langu,'xls'), expanded=True, width="stretch")
+            container=st.expander(get_text_trad(site_langu,'xls'), expanded=expanded, width="stretch")
         else:
             container=st.container(border=False, width='stretch', height='content')
         with container:
