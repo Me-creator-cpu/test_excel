@@ -1,5 +1,7 @@
 import streamlit as st
 import requests
+import pandas as pd
+#import json
 #import pygit2
 
 def test_github_issues():
@@ -34,8 +36,9 @@ def test_github_issues():
     #https://docs.github.com/en/rest/meta/meta?apiVersion=2022-11-28#get-all-api-versions
     #github_url = 'https://github.com/USERNAME/REPOSITORY/tree/master/FOLDER'  # change USERNAME, REPOSITORY and FOLDER with actual name
 
-    url_test = 'languages'
-    url_test = 'contents'
+    url_test = 'languages'    "OK
+    
+    url_test = 'contents'    "OK, cf https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository--code-samples
     github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
     
     #github_url = f"https://api.github.com/user/starred/{owner}/{repo}"
@@ -50,4 +53,6 @@ def test_github_issues():
     if result.status_code == 200:
         st.write(result.json())
     #st.write(token)
+    dataFrame = pd.read_json(result.json())
+    dataFrame
     return result
