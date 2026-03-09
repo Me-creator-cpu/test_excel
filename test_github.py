@@ -53,6 +53,8 @@ def test_github_issues():
     if result.status_code == 200:
         st.write(result.json())
     #st.write(token)
-    dataFrame = pd.read_json(result.json())
-    dataFrame
+    #dataFrame = pd.read_json(result.json())
+    
+    df = pd.read_json(result.json(), orient='records')
+    df
     return result
