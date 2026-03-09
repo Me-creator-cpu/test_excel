@@ -16,8 +16,8 @@ from pictures import *
 
 
 #from pathlib import Path
-from github import Auth
-from github import Github
+#from github import Auth
+#from github import Github
 
 #img.flag_en
 #import platform
