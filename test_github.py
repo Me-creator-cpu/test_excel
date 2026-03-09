@@ -127,12 +127,14 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         st.write(f"Could not find {fileName} in repos {repo_slug}")
         raise Exception
 
-    with open(fileName) as data:
+    #with open(fileName) as data:gitHubFileName
+    with open(gitHubFileName) as data:
         content = base64.b64encode(data.read())
 
     # gathered all the data, now let's push
     inputdata = {}
-    inputdata["path"] = gitHubFileName
+    #inputdata["path"] = gitHubFileName
+    inputdata["path"] = fileName
     inputdata["branch"] = branch
     inputdata["message"] = message
     inputdata["content"] = content
