@@ -57,7 +57,7 @@ def test_github_issues():
     #dataFrame = pd.read_json(result.json())
     
     dict = json.loads(result.json())
-    df2 = json_normalize(dict) 
+    df2 = json_normalize(f'{dict[0]}) 
     df = pd.read_json(df2, orient='records')
     df
     return result
