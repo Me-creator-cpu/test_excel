@@ -35,6 +35,7 @@ def test_github_issues():
     #github_url = 'https://github.com/USERNAME/REPOSITORY/tree/master/FOLDER'  # change USERNAME, REPOSITORY and FOLDER with actual name
 
     url_test = 'languages'
+    url_test = 'contents'
     github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
     
     #github_url = f"https://api.github.com/user/starred/{owner}/{repo}"
