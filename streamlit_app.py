@@ -13,7 +13,7 @@ import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extr
 import matplotlib.pyplot as plt
 
 from pictures import *
-
+from test_github import *
 
 #from pathlib import Path
 #from github import Auth
@@ -1542,6 +1542,7 @@ def page4():
     container_xls = st.container(border=False, width='stretch', height='content')
     with container_xls:
         check_file_loaded()
+        check_github_access()
     #st.query_params.get_all() #TypeError: QueryParamsProxy.get_all() missing 1 required positional argument: 'key'
     #st.query_params.to_dict()
 
@@ -1654,7 +1655,11 @@ def test_write_txt(file_txt):
     #    return st.success('write OK', icon='✅')
     #except:
     #    return st.error('write KO', icon='🚨')
-      
+
+def test_github_repo():
+    #test_github.py
+    
+
 # ======================================================================================================
 def build_graph_donut_test():
     rowval = st.columns(2,border=False, width="stretch")
