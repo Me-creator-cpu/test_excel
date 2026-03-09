@@ -122,8 +122,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         #if file['path'] == gitHubFileName:
         if file['path'] == fileName:
             sha = file['sha']
-            sFile=file['url']
-            sFile=f'https://github.com/{repo_slug}/blob/{branch}/{fileName}'
+            sFile=f'https://api.github.com/repos/{repo_slug}/branches/{branch}/{fileName}'
 
     # if sha is None after the for loop, we did not find the file name!
     if sha is None:
