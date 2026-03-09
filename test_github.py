@@ -1,3 +1,4 @@
+import streamlit as st
 import requests
 
 def test_github_issues():
