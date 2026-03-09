@@ -1604,6 +1604,7 @@ def test_colors():
 def rgb2hex(r,g,b):
     return "#{:02x}{:02x}{:02x}".format(r,g,b)
 
+@st.fragment(run_every="1s")
 def check_github_access():
     if 'REPLICATE_API_TOKEN' in st.secrets.tests:
         st.success('API key already provided!', icon='✅')
