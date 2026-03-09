@@ -1556,6 +1556,7 @@ def pg_options():
     container_xls = st.container(border=False, width='stretch', height='content')
     with container_xls:
         check_file_loaded()
+        check_github_access()
     container_txt = st.container(border=True, width='stretch', height='content')
     with container_txt:
         file_txt='./data/todo.txt'
