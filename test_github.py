@@ -4,7 +4,7 @@ import pandas as pd
 from pandas import json_normalize
 import base64
 import json
-#import datetime
+import datetime as gitDatetime
 #import pygit2
 
 def test_github_issues():
@@ -86,7 +86,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
     :raises Exception: if file with the specified name cannot be found in the repo
     '''
     
-    message = "Automated update " + str(datetime.datetime.now())
+    message = "Automated update " + str(gitDatetime.datetime.now())
     path = "https://api.github.com/repos/%s/branches/%s" % (repo_slug, branch)
 
     r = requests.get(path, auth=(user,token))
