@@ -103,7 +103,8 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         raise
     r2json = r2.json()
     sha = None
-    r2json
+    st.write('r2json')
+    st.write(r2json)
     for file in r2json['tree']:
         # Found file, get the sha code
         if file['path'] == gitHubFileName:
@@ -127,6 +128,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         inputdata["sha"] = str(sha)
 
     updateURL = f"https://api.github.com/repos/{repo_slug}/contents/" + gitHubFileName
+    updateURL = gitHubFileName
     try:
         rPut = requests.put(updateURL, auth=(user,token), data = json.dumps(inputdata))
         if not rPut.ok:
