@@ -18,21 +18,23 @@ def test_github_issues():
     r = requests.get(query_url, headers=headers, params=params)
     st.info(f"Got results...", icon="ℹ️", width="stretch")
 
-    st.info(f"Send Request...", icon="ℹ️", width="stretch")
-    query_url = f"https://api.github.com/repos/{owner}/{repo}/commits"
-    params = {}
-    r = requests.get(query_url, headers=headers, params=params)
-    st.info(f"Got results...", icon="ℹ️", width="stretch")
-    
-    result = r.json()
-    st.write('List commits')
-    st.write(r.json())
+    if 1 == 2:
+        st.info(f"Send Request...", icon="ℹ️", width="stretch")
+        query_url = f"https://api.github.com/repos/{owner}/{repo}/commits"
+        params = {}
+        r = requests.get(query_url, headers=headers, params=params)
+        st.info(f"Got results...", icon="ℹ️", width="stretch")
+        
+        result = r.json()
+        st.write('List commits')
+        st.write(r.json())
 
     #github_url = 'https://github.com/USERNAME/REPOSITORY/tree/master/FOLDER'  # change USERNAME, REPOSITORY and FOLDER with actual name
 
     github_url = f'https://api.github.com/repos/{owner}/{repo}/tree/master' 
     result = requests.get(github_url)
     st.write('List files')
+    st.write(github_url)
     st.write(result)
     
     return result
