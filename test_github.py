@@ -34,11 +34,14 @@ def test_github_issues():
     #https://docs.github.com/en/rest/meta/meta?apiVersion=2022-11-28#get-all-api-versions
     #github_url = 'https://github.com/USERNAME/REPOSITORY/tree/master/FOLDER'  # change USERNAME, REPOSITORY and FOLDER with actual name
 
-    url_test = 'hooks'
+    url_test = 'languages'
     github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
+    
     #github_url = f"https://api.github.com/user/starred/{owner}/{repo}"
-    query="q=language:py"
-    github_url = "https://api.github.com/search/repositories?q={query}" #{&page,per_page,sort,order}"
+    
+    #query="q=language:py"
+    #github_url = "https://api.github.com/search/repositories?q={query}" #{&page,per_page,sort,order}"
+    
     result = requests.get(github_url, headers=headers, params=params)
     st.write(f'Testing: {url_test}')
     st.write(github_url)
