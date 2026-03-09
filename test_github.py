@@ -37,6 +37,8 @@ def test_github_issues():
     url_test = 'hooks'
     github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
     github_url = f"https://api.github.com/user/starred/{owner}/{repo}"
+    #query
+    #github_url = "https://api.github.com/search/repositories?q={query}{&page,per_page,sort,order}"
     result = requests.get(github_url, headers=headers, params=params)
     st.write(f'Testing: {url_test}')
     st.write(github_url)
