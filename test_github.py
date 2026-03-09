@@ -5,12 +5,13 @@ def test_github_issues():
     #token = os.getenv('GITHUB_TOKEN', '...')
     st.info(f"Get Token...", icon="ℹ️", width="stretch")
     token = st.secrets.tests.REPLICATE_API_TOKEN
-    owner = "Me-creator-cpu"
-    repo = "test_excel"
+    owner = 'Me-creator-cpu'
+    repo = 'test_excel'
+    branch = 'main'
     
-    query_url = f"https://api.github.com/repos/{owner}/{repo}/issues"
+    query_url = f'https://api.github.com/repos/{owner}/{repo}/issues'
     params = {
-        "state": "open",
+        'state': 'open',
         }
     headers = {'Authorization': f'token {token}'}
     st.info(f"Send Request...", icon="ℹ️", width="stretch")
@@ -25,4 +26,11 @@ def test_github_issues():
     
     result = r.json()
     st.write(r.json())
+
+    #github_url = 'https://github.com/USERNAME/REPOSITORY/tree/master/FOLDER'  # change USERNAME, REPOSITORY and FOLDER with actual name
+
+    github_url = f'https://api.github.com/repos/{owner}/{repo}/tree/{branch}/data' 
+    result = requests.get(github_url)
+    st.write(result)
+    
     return result
