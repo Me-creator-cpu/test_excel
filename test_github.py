@@ -58,6 +58,12 @@ def test_github_issues():
     str_json=result.json()
     st.write(pd.json_normalize(str_json))
 
+    st.write(f'Testing branch: {branch}')
+    github_url = f'https://api.github.com/repos/{owner}/{repo}/branches/{branch}' 
+    result = requests.get(github_url, headers=headers, params=params)
+    if result.status_code == 200:
+        st.write(result.json())
+    
     #https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents--code-samples
     fileName='todo.txt'
     url_test = f'contents/data/{fileName}'
@@ -89,6 +95,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
     message = "Automated update " + str(gitDatetime.datetime.now())
     path = "https://api.github.com/repos/%s/branches/%s" % (repo_slug, branch)
     path = f"https://api.github.com/repos/{repo_slug}/branches/{branch}/data"
+    
 
     r = requests.get(path, auth=(user,token))
     if not r.ok:
