@@ -8,6 +8,7 @@ def test_github_issues():
     owner = 'Me-creator-cpu'
     repo = 'test_excel'
     branch = 'main'
+    url_test = 'hooks'
     
     query_url = f'https://api.github.com/repos/{owner}/{repo}/issues'
     params = {
@@ -31,9 +32,9 @@ def test_github_issues():
 
     #github_url = 'https://github.com/USERNAME/REPOSITORY/tree/master/FOLDER'  # change USERNAME, REPOSITORY and FOLDER with actual name
 
-    github_url = f'https://api.github.com/repos/{owner}/{repo}/tree/master' 
+    github_url = f'https://api.github.com/repos/{owner}/{repo}/{url_test}' 
     result = requests.get(github_url)
-    st.write('List files')
+    st.write(f'Testing: {url_test}')
     st.write(github_url)
     st.write(result)
     
