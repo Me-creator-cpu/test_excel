@@ -107,6 +107,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
     st.write(r2json)
     for file in r2json['tree']:
         # Found file, get the sha code
+        st.write(file['path'])
         if file['path'] == gitHubFileName:
             sha = file['sha']
 
