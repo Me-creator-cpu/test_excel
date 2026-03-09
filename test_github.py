@@ -55,9 +55,10 @@ def test_github_issues():
         st.write(result.json())
     #st.write(token)
     #dataFrame = pd.read_json(result.json())
-    
-    dict = json.loads(result.json())
-    df2 = json_normalize(f'{dict[0]}') 
-    df = pd.read_json(df2, orient='records')
+    str_json=result.json()
+    #dict = json.loads(str_json)
+    #df2 = json_normalize(dict) 
+    #df = pd.read_json(df2, orient='records')
+    df = pd.DataFrame.from_dict(str_json, orient="index")
     df
     return result
