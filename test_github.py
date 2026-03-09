@@ -30,7 +30,7 @@ def test_github_issues():
 
     #github_url = 'https://github.com/USERNAME/REPOSITORY/tree/master/FOLDER'  # change USERNAME, REPOSITORY and FOLDER with actual name
 
-    github_url = f'https://api.github.com/repos/{owner}/{repo}/tree/{branch}/data' 
+    github_url = f'https://api.github.com/repos/{owner}/{repo}/tree/{branch}' 
     result = requests.get(github_url)
     st.write('List files')
     st.write(result)
