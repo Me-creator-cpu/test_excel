@@ -838,6 +838,18 @@ def get_session_variable(var_key):
     except:
         return None
 
+def on_paltab_change():
+    st.toast(f"You opened the {st.session_state.pal_type} tab.")
+
+def pal_view_types():
+    df=get_df_idx(idx=idx_palmon)
+    paltapbs=st.tabs(df['Type'].unique(), on_change=on_paltab_change, key="pal_type")
+
+def pal_per_type(type):
+    df=get_df_idx(idx=idx_palmon)
+    df=df.loc[(df["Type"] == type)].sort_values(by=['Level','Achievement'],ascending=False,ignore_index=False)
+    menu_tab_palmons(df_source=None,with_event=True,with_expander=False)
+
 def pal_deltail(palmon,df,pic_width=300):
     col_border=True
     df_t=df.reset_index().T
@@ -1448,9 +1460,11 @@ def pg_home():
 def pg_menu_0():
     menu_tab_show(0)
 
+def pg_menu_050():    
+    pal_view_types()
+
 def pg_menu_100():
     menu_tab_show(100)
-    #menu_tab_dashboards()
 
 def pg_menu_200():
     menu_tab_show(200)
@@ -1839,6 +1853,7 @@ pages = {
     ],
     get_text_trad(site_langu,'menu_resources'): [
         st.Page(pg_menu_0, title=get_text_trad(site_langu,'full_list'),icon="🗂️"),
+        st.Page(pg_menu_050, title='Per type',icon="🗂️"),
         st.Page(pg_menu_100, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
         st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
     ],
