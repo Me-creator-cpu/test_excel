@@ -845,7 +845,7 @@ def pal_view_types():
     df=get_df_idx(idx=idx_palmon)
     test=df['Type'].unique()
     test
-    #paltapbs=st.tabs(test, on_change=on_paltab_change, key="pal_type")
+    paltapbs=st.tabs(test, on_change=on_paltab_change, key="pal_type")
 
 def pal_per_type(type):
     df=get_df_idx(idx=idx_palmon)
