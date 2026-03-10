@@ -843,7 +843,9 @@ def on_paltab_change():
 
 def pal_view_types():
     df=get_df_idx(idx=idx_palmon)
-    paltapbs=st.tabs(df['Type'].unique(), on_change=on_paltab_change, key="pal_type")
+    test=df['Type'].unique()
+    test
+    #paltapbs=st.tabs(df['Type'].unique(), on_change=on_paltab_change, key="pal_type")
 
 def pal_per_type(type):
     df=get_df_idx(idx=idx_palmon)
