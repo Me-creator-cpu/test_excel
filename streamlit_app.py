@@ -845,12 +845,11 @@ def on_paltab_change():
 def pal_view_types():
     df=get_df_idx(idx=idx_palmon)
     test=df['Type'].unique()
-    test
     tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], on_change=on_paltab_change, key="pal_type")
 
 def pal_per_type(type):
     df=get_df_idx(idx=idx_palmon)
-    df=df.loc[(df["Type"] == type)].sort_values(by=['Level','Achievement'],ascending=False,ignore_index=False)
+    df=df.loc[(df["Type"] == type) & (df["Level"]>0)].sort_values(by=['Level','Achievement'],ascending=False,ignore_index=False)
     menu_tab_palmons(df_source=df,with_event=True,with_expander=False)
 
 def pal_deltail(palmon,df,pic_width=300):
