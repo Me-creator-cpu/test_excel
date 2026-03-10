@@ -11,3 +11,6 @@ url_logo_03='./data/logo_03.jpg'
 url_logo_04='./data/logo_04.jpg'
 url_logo_05='./data/logo_05.jpg'
 url_logo_06='./data/logo_06.jpg'
+
+img_costs_camp='.data/Costs_Camp_Upgrade.jpg'
+img_costs_exp='.data/Costs_EXP.png'
