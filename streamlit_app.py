@@ -839,7 +839,8 @@ def get_session_variable(var_key):
         return None
 
 def on_paltab_change():
-    st.toast(f"You opened the {st.session_state.pal_type} tab.")
+    #st.toast(f"You opened the {st.session_state.pal_type} tab.")
+    pal_per_type(st.session_state.pal_type)
 
 def pal_view_types():
     df=get_df_idx(idx=idx_palmon)
