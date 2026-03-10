@@ -851,7 +851,7 @@ def pal_view_types():
 def pal_per_type(type):
     df=get_df_idx(idx=idx_palmon)
     df=df.loc[(df["Type"] == type)].sort_values(by=['Level','Achievement'],ascending=False,ignore_index=False)
-    menu_tab_palmons(df_source=None,with_event=True,with_expander=False)
+    menu_tab_palmons(df_source=df,with_event=True,with_expander=False)
 
 def pal_deltail(palmon,df,pic_width=300):
     col_border=True
