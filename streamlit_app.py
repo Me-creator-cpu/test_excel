@@ -1578,6 +1578,12 @@ def pg_options():
         check_github_access()
         if st.button("Get issues"):
             test_github_issues()
+
+def pg_tips_img():
+    st.subheader('Tips', divider=True)
+    for x in os.listdir('.//data'):
+        if x.startswith("Costs_"):
+            st.image('./data/'+x, caption=x)    
             
 def test_listing():
     for x in os.listdir('.//data'):
@@ -1843,6 +1849,7 @@ pages = {
     ],
     get_text_trad(site_langu,'menu_param'): [
         st.Page(pg_options, title="Options",icon="⚙️"), #🛠️
+        st.Page(pg_tips_img, title="Tips",icon="🌟")
     ],    
 }
 pg = st.navigation(
