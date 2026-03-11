@@ -850,13 +850,8 @@ def pal_view_types():
     test=df['Type'].unique()
     tab1,tab2,tab3,tab4,tab5=st.tabs(data_type['Type'], on_change=on_paltab_change, key="pal_type")
     #tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], on_change=on_paltab_change, key="pal_type")
-    for i in range(len(data_type['Type'])):
+    for i in range(len(data_type['Type'])-1):
         add_session_variable('tab'+str(i),st.empty())
-
-    for i in range(len(data_type['Type'])):
-        tabi='tab'+str(i)
-        with tabi:
-            st.empty()
 
     if 1 == 2:
         #tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], key="pal_type")
