@@ -839,14 +839,9 @@ def get_session_variable(var_key):
         return None
 
 def on_paltab_change():
-    st.toast(f"You opened the {st.session_state.pal_type} tab.")
+    #st.toast(f"You opened the {st.session_state.pal_type} tab.")
     tabid=data_type['Type'].index(st.session_state.pal_type)
-    st.toast(f"tabid= {tabid}")
-
     tabobj=get_session_variable('tab'+str(tabid))
-    st.toast(f"tabobj= {tabobj}")
-
-    #tabobj=pal_per_type(st.session_state.pal_type)
     with tabobj:
         pal_per_type(st.session_state.pal_type)
 
@@ -856,7 +851,9 @@ def pal_view_types():
     tab1,tab2,tab3,tab4=st.tabs(data_type['Type'][:4], on_change=on_paltab_change, key="pal_type")
     #tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], on_change=on_paltab_change, key="pal_type")
     for i in range(len(data_type['Type'])-1):
-        add_session_variable('tab'+str(i),st.empty())
+        tab_key='tab'+str(i)
+        if get_session_variable(tab_key) is None:
+            add_session_variable(tab_key,st.empty())
 
     if 1 == 2:
         #tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], key="pal_type")
