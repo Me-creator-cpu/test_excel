@@ -850,7 +850,7 @@ def pal_view_types():
 def pal_per_type(type):
     df=get_df_idx(idx=idx_palmon)
     df=df.loc[(df["Type"] == type) & (df["Level"]>0)].sort_values(by=['Level','Achievement'],ascending=False,ignore_index=False)
-    menu_tab_palmons(df_source=df,with_event=True,with_expander=False)
+    menu_tab_palmons(df_source=df,with_event=True,with_expander=False,with_select=False)
 
 def pal_deltail(palmon,df,pic_width=300):
     col_border=True
@@ -1188,14 +1188,18 @@ def menu_tab_boss_detail():
         st.empty()
 
 @st.fragment
-def menu_tab_palmons(df_source=None,with_event=True,with_expander=True):
+def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_select=True):
     if df_source is None:
         st.subheader(df_xls["DisplayName"][idx_palmon])
         df = df_xls["DataFrame"][idx_palmon]
     else:
         df = df_source
     column='Type'
-    options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
+    if with_select:
+        #options = st.pills(f"Filter values for {column}:", df[column].unique(), selection_mode="multi", default=list(df[column].unique()))
+        options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
+    else:
+        options = df[column].unique()
     df = df[df[column].isin(options)]    
     df = df.sort_values(by=['Level','Achievement'],ascending=False,ignore_index=False)
     df['Type_txt']=df['Type']
