@@ -849,6 +849,12 @@ def pal_view_types():
     #tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], on_change=on_paltab_change, key="pal_type")
     for i in range(len(data_type['Type'])):
         add_session_variable('tab'+str(i),st.empty())
+
+    for i in range(len(data_type['Type'])):
+        tabi='tab'+str(i)
+        with tabi:
+            st.empty()
+
     if 1 == 2:
         #tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], key="pal_type")
         if tab1.open:
