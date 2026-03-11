@@ -7,9 +7,12 @@ import json
 import datetime as gitDatetime
 #import pygit2
 
+def gotit(msg):
+    st.toast(f'{msg}', icon='ℹ️️', duration='short')
+
 def test_github_issues():
     #token = os.getenv('GITHUB_TOKEN', '...')
-    st.info(f"Get Token...", icon="ℹ️", width="stretch")
+    gotit(f"Get Token...")
     token = st.secrets.tests.REPLICATE_API_TOKEN
     owner = 'Me-creator-cpu'
     repo = 'test_excel'
@@ -21,9 +24,9 @@ def test_github_issues():
         'state': 'open',
         }
     headers = {'Authorization': f'token {token}'}
-    st.info(f"Send Request...", icon="ℹ️", width="stretch")
+    gotit(f"Send Request...")
     r = requests.get(query_url, headers=headers, params=params)
-    st.info(f"Got results...", icon="ℹ️", width="stretch")
+    gotit(f"Got results...")
 
     if 1 == 2:
         st.info(f"Send Request...", icon="ℹ️", width="stretch")
