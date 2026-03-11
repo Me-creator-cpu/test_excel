@@ -457,7 +457,7 @@ def get_data(file,idx,show_table=False):
                                                 show_table=show_table
                                                 )
     df_xls.loc[idx, "DataFrame"]=data_values
-    df_xls
+    df_xls.loc[idx, "DataFrame"]
 
 def get_data_original(file,idx,show_table=False):
     # FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
