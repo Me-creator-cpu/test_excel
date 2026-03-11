@@ -847,6 +847,7 @@ def pal_view_types():
     test=df['Type'].unique()
     #tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], on_change=on_paltab_change, key="pal_type")
     tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], key="pal_type")
+    st.toast(f"You opened the {st.session_state.pal_type} tab.")
     if tab1.open:
         with tab1:
             pal_per_type(st.session_state.pal_type)
