@@ -1234,7 +1234,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
     else:
         df = df_source
     column='Type'
-    if len(df)==0:
+    if type(df)==type(3.14): #float
         return
     if with_select:
         #options = st.pills(f"Filter values for {column}:", df[column].unique(), selection_mode="multi", default=list(df[column].unique()))
