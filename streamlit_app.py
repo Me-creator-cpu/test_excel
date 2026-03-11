@@ -442,6 +442,8 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
     return df
 
 def get_data(file,idx,show_table=False):
+    # FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+    # df["col"][row_indexer] = value
     # voir pour remplacer avec: df.loc[row_indexer, "col"] = values
     df_xls["DataFrame"][idx]=get_data_from_excel(
     #df_xls.loc[idx, "DataFrame"]=get_data_from_excel(
@@ -1221,6 +1223,8 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
     if with_select:
         #options = st.pills(f"Filter values for {column}:", df[column].unique(), selection_mode="multi", default=list(df[column].unique()))
         options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
+        if st.toggle("Only owned"):
+            df=df.loc[(df["Level"]>0)]
     else:
         options = df[column].unique()
     df = df[df[column].isin(options)]    
@@ -1885,7 +1889,7 @@ pages = {
     ],
     get_text_trad(site_langu,'menu_resources'): [
         st.Page(pg_menu_0, title=get_text_trad(site_langu,'full_list'),icon="🗂️"),
-        st.Page(pg_menu_050, title='Per type',icon="🗂️"),
+        #st.Page(pg_menu_050, title='Per type',icon="🗂️"),
         st.Page(pg_menu_100, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
         st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
     ],
