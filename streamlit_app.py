@@ -846,7 +846,9 @@ def on_paltab_change():
     tabobj=get_session_variable('tab'+str(tabid))
     st.toast(f"tabobj= {tabobj}")
 
-    tabobj=pal_per_type(st.session_state.pal_type)
+    #tabobj=pal_per_type(st.session_state.pal_type)
+    with tabobj:
+        pal_per_type(st.session_state.pal_type)
 
 def pal_view_types():
     df=get_df_idx(idx=idx_palmon)
