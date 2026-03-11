@@ -7,6 +7,8 @@ import json
 import datetime as gitDatetime
 #import pygit2
 
+#https://git-scm.com/book/en/v2/Git-Internals-Git-Objects
+
 def gotit(msg):
     st.toast(f'{msg}', icon='ℹ️️', duration='short')
 
@@ -161,3 +163,43 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         st.write(rPut.text)
         st.write(e)
 
+def git_method():
+    return 'POST'
+
+def git_payload():
+    val={
+        "content": "Content of the blob",
+        "encoding": "utf-8|base64"
+        }
+    return val
+
+def git_tree():
+    val={
+        "base_tree": "",
+        "tree": [
+                {
+                "path": "",
+                "mode": "",
+                "type": "",
+                "sha": ""
+                }
+            ]
+        }
+    return val
+
+def get_file_test():
+    val={
+        "path":"test_api.txt"
+        "mode":"100644"
+        "type":"blob"
+        "sha":"25daba65b152d2179bd40a5bc023f15160624daa"
+        "size":7
+        "url":"https://api.github.com/repos/Me-creator-cpu/test_excel/git/blobs/25daba65b152d2179bd40a5bc023f15160624daa"
+        }
+
+def git_commit(msg,sha,tree):
+    val={
+        "message": msg,	    # Your commit message.
+        "parents": [sha],	# Array of SHAs. Usually contains just one SHA. / "parents": [""],
+        "tree": tree		# SHA of the tree.
+        }
