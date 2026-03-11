@@ -1609,6 +1609,9 @@ def test_listing():
         else:
             st.text(x)
 
+def pg_tests():
+    st.empty()
+
 @st.fragment(run_every="1s")
 def test_colors():
     color_r = st.slider("Red value", 0, 255, 25)
@@ -1866,7 +1869,8 @@ pages = {
     ],
     get_text_trad(site_langu,'menu_param'): [
         st.Page(pg_options, title="Options",icon="⚙️"), #🛠️
-        st.Page(pg_tips_img, title="Tips",icon="🌟")
+        st.Page(pg_tips_img, title="Tips",icon="🌟"),
+        st.Page("./tests/test_eval.py", title="Tests",icon="🛠️")
     ],    
 }
 pg = st.navigation(
