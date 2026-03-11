@@ -842,7 +842,10 @@ def on_paltab_change():
     st.toast(f"You opened the {st.session_state.pal_type} tab.")
     tabid=data_type['Type'].index(st.session_state.pal_type)
     st.toast(f"tabid= {tabid}")
+
     tabobj=get_session_variable('tab'+str(tabid))
+    st.toast(f"tabobj= {tabobj}")
+
     tabobj=pal_per_type(st.session_state.pal_type)
 
 def pal_view_types():
