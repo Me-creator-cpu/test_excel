@@ -845,7 +845,20 @@ def on_paltab_change():
 def pal_view_types():
     df=get_df_idx(idx=idx_palmon)
     test=df['Type'].unique()
-    tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], on_change=on_paltab_change, key="pal_type")
+    #tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], on_change=on_paltab_change, key="pal_type")
+    tab1,tab2,tab3,tab4=st.tabs(["Water","Fire","Wood","Electricity"], key="pal_type")
+    if tab1.open:
+        with tab1:
+            pal_per_type(st.session_state.pal_type)
+    if tab2.open:
+        with tab2:
+            pal_per_type(st.session_state.pal_type)
+    if tab3.open:
+        with tab3:
+            pal_per_type(st.session_state.pal_type)
+    if tab4.open:
+        with tab4:
+            pal_per_type(st.session_state.pal_type)           
 
 def pal_per_type(type):
     df=get_df_idx(idx=idx_palmon)
