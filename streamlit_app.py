@@ -447,8 +447,7 @@ def get_data(file,idx,show_table=False):
     # voir pour remplacer avec: df.loc[row_indexer, "col"] = values
 
     #df_xls["DataFrame"][idx]=get_data_from_excel(
-    df_xls[idx].loc(["DataFrame"])=get_data_from_excel(
-    #df_xls.loc[idx, "DataFrame"]=get_data_from_excel(
+    data_values=get_data_from_excel(
                                                 xls_file=file,
                                                 xls_sheet=df_xls["Worksheet"][idx],
                                                 skip=df_xls["SkipRows"][idx],
@@ -457,6 +456,7 @@ def get_data(file,idx,show_table=False):
                                                 rencols=df_xls["DisplayColumns"][idx],
                                                 show_table=show_table
                                                 )
+    df_xls.loc[idx, "DataFrame"]=data_values
 
 def get_data_original(file,idx,show_table=False):
     # FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
