@@ -445,8 +445,8 @@ def get_data(file,idx,show_table=False):
     # FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
     # df["col"][row_indexer] = value
     # voir pour remplacer avec: df.loc[row_indexer, "col"] = values
-    df_xls["DataFrame"][idx]=get_data_from_excel(
-    #df_xls.loc[idx, "DataFrame"]=get_data_from_excel(
+    #df_xls["DataFrame"][idx]=get_data_from_excel(
+    df_xls.loc[idx, "DataFrame"]=get_data_from_excel(
                                                 xls_file=file,
                                                 xls_sheet=df_xls["Worksheet"][idx],
                                                 skip=df_xls["SkipRows"][idx],
@@ -455,7 +455,21 @@ def get_data(file,idx,show_table=False):
                                                 rencols=df_xls["DisplayColumns"][idx],
                                                 show_table=show_table
                                                 )
-    
+
+def get_data_original(file,idx,show_table=False):
+    # FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+    # df["col"][row_indexer] = value
+    # voir pour remplacer avec: df.loc[row_indexer, "col"] = values
+    df_xls["DataFrame"][idx]=get_data_from_excel(
+                                                xls_file=file,
+                                                xls_sheet=df_xls["Worksheet"][idx],
+                                                skip=df_xls["SkipRows"][idx],
+                                                rng_cols=df_xls["Range"][idx],
+                                                rng_rows=df_xls["UpToRow"][idx],
+                                                rencols=df_xls["DisplayColumns"][idx],
+                                                show_table=show_table
+                                                )
+
 def large_num_format(value):
     locale.setlocale(locale.LC_ALL, "fr_FR")
     try:
