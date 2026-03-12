@@ -167,14 +167,14 @@ def git_method():
     return 'POST'
 
 def git_payload():
-    val={
+    val='{
         "content": "Content of the blob",
         "encoding": "utf-8|base64"
-        }
+        }'
     return val
 
 def git_tree():
-    val={
+    val='{
         "base_tree": "",
         "tree": [
                 {
@@ -184,22 +184,22 @@ def git_tree():
                 "sha": ""
                 }
             ]
-        }
+        }'
     return val
 
 def get_file_test():
-    val={
+    val='{
         "path":"test_api.txt"
         "mode":"100644"
         "type":"blob"
         "sha":"25daba65b152d2179bd40a5bc023f15160624daa"
         "size":7
         "url":"https://api.github.com/repos/Me-creator-cpu/test_excel/git/blobs/25daba65b152d2179bd40a5bc023f15160624daa"
-        }
+        }'
 
 def git_commit(msg,sha,tree):
-    val={
+    val='{
         "message": msg,	    # Your commit message.
         "parents": [sha],	# Array of SHAs. Usually contains just one SHA. / "parents": [""],
         "tree": tree		# SHA of the tree.
-        }
+        }'
