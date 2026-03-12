@@ -137,6 +137,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
 
     try:
         st.write(f'sFile is: {sFile}')
+        st.write(f'fileName is: {fileName}')
     except:
         dummy=''
     #with open(fileName) as data:gitHubFileName
