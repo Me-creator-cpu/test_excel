@@ -137,7 +137,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
 
     #with open(fileName) as data:gitHubFileName
     #with open(sFile) as data:
-    with open(fileName) as data
+    with open(fileName) as data:
         content = base64.b64encode(data.read())
 
     # gathered all the data, now let's push
