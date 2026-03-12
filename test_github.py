@@ -185,8 +185,14 @@ def git_read_file(fileName):
             st.write(f'content is: {content}') 
             return content  
     except:
-        content = base64.b64encode('Test update Python')
+        content = base64.b64encode(test_read_local_txt())
         return content  
+
+def test_read_local_txt():
+    file_txt='./data/todo.txt'
+    with open(file_txt, mode='r') as f:
+        data_txt = f.read()
+    return data_txt
 
 def git_method():
     return 'POST'
