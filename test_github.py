@@ -124,7 +124,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
     st.write(r2json)
     for file in r2json['tree']:
         # Found file, get the sha code
-        st.write(file['path'])
+        #st.write(file['path'])
         #if file['path'] == gitHubFileName:
         if file['path'] == fileName:
             sha = file['sha']
@@ -211,10 +211,9 @@ def get_file_test():
     return val
 
 def git_commit(msg,sha,tree):
-    #val='{
-    #    "message": msg,	    # Your commit message.
-    #    "parents": [sha],	# Array of SHAs. Usually contains just one SHA. / "parents": [""],
-    #    "tree": tree		# SHA of the tree.
-    #    }'
-    val=''
+    val={
+        "message": msg,	    # Your commit message.
+        "parents": [sha],	# Array of SHAs. Usually contains just one SHA. / "parents": [""],
+        "tree": tree		# SHA of the tree.
+        }
     return val
