@@ -55,9 +55,10 @@ def test_github_issues():
     #github_url = "https://api.github.com/search/repositories?q={query}" #{&page,per_page,sort,order}"
     
     result = requests.get(github_url, headers=headers, params=params)
-    st.write(f'Testing: {url_test}')
-    st.write(github_url)
-    st.write(result)
+    #st.write(f'Testing: {url_test}')
+    #st.write(github_url)
+    #st.write(result)
+    
     #if result.status_code == 200:
     #    st.write(result.json())
     str_json=result.json()
@@ -168,22 +169,24 @@ def git_method():
 
 #https://www.w3schools.com/python/trypython.asp?filename=demo_json_from_python
 def git_payload():
-    val='{"content": "Content of the blob","encoding": "utf-8|base64"}'
+    val = {
+        "content" : "Content of the blob",
+        "encoding" : "utf-8|base64"
+        }
     return val
 
 def git_tree():
-    #val='{
-    #    "base_tree": "",
-    #    "tree": [
-    #            {
-    #            "path": "",
-    #            "mode": "",
-    #            "type": "",
-    #            "sha": ""
-    #            }
-    #        ]
-    #    }'
-    val=''
+    val={
+        "base_tree" : "",
+        "tree" : [
+                {
+                "path" : "",
+                "mode" : "",
+                "type" : "",
+                "sha" : ""
+                }
+            ]
+        }
     return val
 
 def get_file_test():
