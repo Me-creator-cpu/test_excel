@@ -135,8 +135,10 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         st.write(f"Could not find {fileName} in repos {repo_slug}")
         raise Exception
 
-    if sFile <> '':
+    try:
         st.write(f'sFile is: {sFile}')
+    except:
+        dummy=''
     #with open(fileName) as data:gitHubFileName
     with open(sFile) as data:
     #with open(fileName) as data:
