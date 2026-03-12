@@ -83,11 +83,13 @@ def test_github_issues():
         repo_slug=f'{owner}/{repo}',
         branch=branch,
         user=owner,
-        token=token_update
+        token=token_update,
+        owner=owner,
+        repo=repo
         )
     return result
 
-def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token):
+def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token,owner,repo):
     '''
     Push file update to GitHub repo
     
@@ -104,7 +106,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
     message = "Automated update " + str(gitDatetime.datetime.now())
     path = "https://api.github.com/repos/%s/branches/%s" % (repo_slug, branch)
     path = f"https://api.github.com/repos/{repo_slug}/branches/{branch}"
-    
+
     r = requests.get(path, auth=(user,token))
     if not r.ok:
         st.write("Error when retrieving branch info from %s" % path)
@@ -129,6 +131,8 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         if file['path'] == fileName:
             sha = file['sha']
             sFile=f'https://api.github.com/repos/{repo_slug}/branches/{branch}/{fileName}'
+            sFile=f'/repos/{owner}/{repo}/contents/{fileName}'
+            st.write(f'fileName found!')
 
     # if sha is None after the for loop, we did not find the file name!
     if sha is None:
@@ -141,11 +145,12 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         st.write(f'fileName is: {fileName}')
     except:
         dummy=''
-    #with open(fileName) as data:gitHubFileName
-    with open(sFile) as data:
-    #with open(fileName) as data:
-        content = base64.b64encode(data.read())
-        st.write(f'content is: {content}')
+
+    #with open(sFile) as data:
+    #    content = base64.b64encode(data.read())
+    #    st.write(f'content is: {content}')
+
+    content = git_read_file(sFile)
 
     # gathered all the data, now let's push
     inputdata = {}
@@ -172,6 +177,15 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
         st.write(rPut.headers)
         st.write(rPut.text)
         st.write(e)
+
+def git_read_file(fileName):
+    try:
+        with open(fileName) as data:
+            content = base64.b64encode(data.read())
+            st.write(f'content is: {content}') 
+            return content  
+    except:
+        return None  
 
 def git_method():
     return 'POST'
