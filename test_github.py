@@ -143,6 +143,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
     with open(sFile) as data:
     #with open(fileName) as data:
         content = base64.b64encode(data.read())
+        st.write(f'content is: {content}')
 
     # gathered all the data, now let's push
     inputdata = {}
@@ -154,6 +155,7 @@ def push_to_repo_branch(gitHubFileName, fileName, repo_slug, branch, user, token
     if sha:
         inputdata["sha"] = str(sha)
 
+    gitHubFileName = fileName
     updateURL = f"https://api.github.com/repos/{repo_slug}/contents/" + gitHubFileName
     updateURL = gitHubFileName
     try:
