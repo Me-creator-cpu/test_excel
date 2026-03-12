@@ -58,11 +58,11 @@ def test_github_issues():
     #st.write(f'Testing: {url_test}')
     #st.write(github_url)
     #st.write(result)
-    
+
     #if result.status_code == 200:
     #    st.write(result.json())
     str_json=result.json()
-    st.write(pd.json_normalize(str_json))
+    #st.write(pd.json_normalize(str_json))
 
     st.write(f'Testing branch: {branch}')
     github_url = f'https://api.github.com/repos/{owner}/{repo}/branches/{branch}' 
