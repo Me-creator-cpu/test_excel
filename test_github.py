@@ -185,7 +185,8 @@ def git_read_file(fileName):
             st.write(f'content is: {content}') 
             return content  
     except:
-        return None  
+        content = base64.b64encode('Test update Python')
+        return content  
 
 def git_method():
     return 'POST'
