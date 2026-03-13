@@ -49,7 +49,7 @@ for pull_request in pull_requests:
     st.write(f"Total lines changed: {additions + deletions}")
 
 issues = g.search_issues(
-            query=f'is:pr is:merged base:master repo:”{org_name}/{repo_name}” created:>2026-03-01',
+            query=f'is:pr is:merged base:master repo:”{usr_name}/{repo_name}” created:>2026-03-01',
             sort='updated',
             order='desc'
             )
