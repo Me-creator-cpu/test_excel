@@ -1732,7 +1732,8 @@ def form_file_param(file_txt='data/todo.txt'):
         txt_update = st.text_area(
             label=f'Update of {file_txt}',
             value=data_txt,
-            label_visibility='visible'
+            label_visibility='visible',
+            height='stretch'
             )
     submit = form_file_update.form_submit_button('Update')
 
