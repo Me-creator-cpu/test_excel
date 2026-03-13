@@ -42,6 +42,7 @@ def upload_to_github(github_token: str,
     # Get the repository object
     #repo = g.get_user().get_repo(github_repo)
     repo = g.get_repo(github_repo)
+    st.write(repo)
     # Get the branch object
     branch = repo.get_branch(git_branch)
     # Create the path of the file in the GitHub repository
