@@ -50,6 +50,7 @@ def upload_to_github(github_token: str,
     try:
         # Get the existing file details if it exists
         existing_file = repo.get_contents(path, ref=branch.name)
+        st.write(existing_file)
         # Update the file
         repo.update_file(path, "Update file", open(source_file, 'rb').read(), existing_file.sha,
                          branch=branch.name)
