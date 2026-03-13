@@ -1921,7 +1921,7 @@ pages = {
         st.Page(pg_options, title="Options",icon="⚙️"), #🛠️
         st.Page(pg_tips_img, title="Tips",icon="🌟"),
         st.Page("./tests/test_eval.py", title="Tests",icon="🛠️"),
-        st.Page("test2_github.py", title="Test Github",icon="🛠️")
+        st.Page("./tests/test2_github.py", title="Test Github",icon="🛠️")
     ],    
 }
 pg = st.navigation(
