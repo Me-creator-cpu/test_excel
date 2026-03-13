@@ -47,6 +47,8 @@ def upload_to_github(github_token: str,
         st.write(f"File '{path}' updated successfully.")
     except Exception as e:
         # If the file does not exist, create it
+        #repo.create_file(path, "Upload file", open(source_file, 'rb').read(), branch=branch.name)
+        source_file_test='test_api.txt'
         repo.create_file(path, "Upload file", open(source_file, 'rb').read(), branch=branch.name)
         st.write(f"File '{path}' created successfully.")
 
