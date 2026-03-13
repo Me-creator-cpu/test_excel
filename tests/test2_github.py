@@ -14,7 +14,8 @@ def write_data(sInfo, data):
     with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:', width='stretch'):
         data
 
-github_token = st.secrets.tests.REPLICATE_API_TOKEN
+#github_token = st.secrets.tests.REPLICATE_API_TOKEN
+github_token = st.secrets.tests.CLASSIC_TOKEN
 usr_name = 'Me-creator-cpu'
 repo_name = 'test_excel'
 branch = 'main'
