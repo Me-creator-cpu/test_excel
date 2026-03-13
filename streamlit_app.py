@@ -1242,7 +1242,8 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
     if with_select:
         #options = st.pills(f"Filter values for {column}:", df[column].unique(), selection_mode="multi", default=list(df[column].unique()))
         options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
-        if st.toggle("Only owned"):
+        lbl=get_text_trad(site_langu,'opt_owned')
+        if st.toggle(f'{lbl}'):
             df=df.loc[(df["Level"]>0)]
     else:
         options = df[column].unique()
