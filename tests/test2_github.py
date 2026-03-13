@@ -32,6 +32,9 @@ repo = g.get_repo(f"{usr_name}/{repo_name}")
 # Get all pull requests (adjust state and number parameters as needed)
 pull_requests = repo.get_pulls(state="open", sort="created", direction="desc")
 
+contents = repo.get_contents("test_api.txt")
+st.write(contents)
+
 # Iterate through each pull request
 for pull_request in pull_requests:
     # Initialize counters for added and deleted lines
