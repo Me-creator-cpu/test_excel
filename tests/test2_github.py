@@ -54,11 +54,15 @@ for pull_request in pull_requests:
     st.write(f"Deleted lines: {deletions}")
     st.write(f"Total lines changed: {additions + deletions}")
 
-query_url = f"https://api.github.com/repos/{usr_name}/{repo_name}/commits"
-params = {}
+query_url = f'https://api.github.com/repos/{usr_name}/{repo_name}/issues'
+params = {
+    'state': 'open',
+    }
+headers = {'Authorization': f'token {token}'}
 r = requests.get(query_url, headers=headers, params=params)
+
 issues = g.search_issues(
-            query=f'is:pr is:merged base:master repo:”{usr_name}/{repo_name}” created:>2026-03-01',
+            query=f'repo:”{usr_name}/{repo_name}”',
             sort='updated',
             order='desc'
             )
