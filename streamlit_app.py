@@ -1145,7 +1145,10 @@ def menu_tab_costs():
         with row3[0]:
             st.write(f"Event points for {nb_pal} UR:")
         with row3[1]:
-            st.write(large_num_format(event_points_nb))
+            if pevent_points>=int(15000):
+                st.markdown(f':green[{large_num_format(event_points_nb)}]')
+            else:
+                st.write(large_num_format(event_points_nb))
         
     with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level to'] <= range_level_max)])    
