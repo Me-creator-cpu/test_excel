@@ -1628,7 +1628,7 @@ def pg_options():
     file_txt='./data/todo.txt'
     file_txt='./test_w_api.txt'
     with st.expander('Form & Git', expanded=False, icon=':material/table_view:', width='stretch'):
-        form_file_param
+        form_file_param(file_txt=file_txt)
     with st.expander('Text file', expanded=False, icon=':material/table_view:', width='stretch'):
         if st.button("Load Text file"):
             st.text(test_read_txt(file_txt))
