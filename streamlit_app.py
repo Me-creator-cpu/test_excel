@@ -1131,9 +1131,9 @@ def menu_tab_costs():
         event_points=int(cost_unit)/int(2000)
         cost_nb=int(cost_unit)*int(nb_pal)
         event_points_nb=int(cost_nb)/int(2000)
-        row1 = st.columns(3,border=col_border, width="stretch")
-        row2 = st.columns(3,border=col_border, width="stretch")
-        row3 = st.columns(3,border=col_border, width="stretch")
+        row1 = st.columns(3,border=False, width="stretch")
+        row2 = st.columns(3,border=False, width="stretch")
+        row3 = st.columns(3,border=False, width="stretch")
         with row1[0]:
             st.write(f"Upgrade costs for {nb_pal} UR:")
         with row1[1]:
