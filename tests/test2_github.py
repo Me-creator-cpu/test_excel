@@ -49,7 +49,8 @@ def upload_to_github(github_token: str,
         # If the file does not exist, create it
         #repo.create_file(path, "Upload file", open(source_file, 'rb').read(), branch=branch.name)
         source_file_test='test_api.txt'
-        repo.create_file(path, "Upload file", open(source_file_test, 'rb').read(), branch=branch.name)
+        test_sha='30d74d258442c7c65512eafab474568dd706c430'
+        repo.create_file(path, "Upload file", open(source_file_test, 'rb').read(), branch=branch.name,sha=test_sha)
         st.write(f"File '{path}' created successfully.")
 
 #github_token = st.secrets.tests.REPLICATE_API_TOKEN
@@ -57,6 +58,9 @@ github_token = st.secrets.tests.CLASSIC_TOKEN
 usr_name = 'Me-creator-cpu'
 repo_name = 'test_excel'
 branch = 'main'
+
+sha='30d74d258442c7c65512eafab474568dd706c430'
+test_filename='test_api.txt'
 
 st.write(f"{github_token}")
 
@@ -68,7 +72,7 @@ g = Github(auth=auth)
 # Get the repository object
 repo = g.get_repo(f"{usr_name}/{repo_name}")
 
-contents = repo.get_contents("test_api.txt")
+contents = repo.get_contents(test_filename)
 st.write(contents)
 
 #ContentFile, Commit=repo.create_file("test.txt", "test", "test", branch=branch)
