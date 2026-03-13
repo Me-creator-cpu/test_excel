@@ -1131,9 +1131,21 @@ def menu_tab_costs():
         event_points=int(cost_unit)/int(2000)
         cost_nb=int(cost_unit)*int(nb_pal)
         event_points_nb=int(cost_nb)/int(2000)
-        st.write(f"Upgrade costs for {nb_pal} UR:", large_num_format(cost_nb))
-        st.write("Event points:",large_num_format(event_points))
-        st.write(f"Event points for {nb_pal} UR:",large_num_format(event_points_nb))
+        row1 = st.columns(3,border=col_border, width="stretch")
+        row2 = st.columns(3,border=col_border, width="stretch")
+        row3 = st.columns(3,border=col_border, width="stretch")
+        with row1[0]:
+            st.write(f"Upgrade costs for {nb_pal} UR:")
+        with row1[1]:
+            st.write(large_num_format(cost_nb))
+        with row2[0]:
+            st.write("Event points:")
+        with row2[1]:    
+            st.write(large_num_format(event_points))
+        with row3[0]:
+            st.write(f"Event points for {nb_pal} UR:")
+        with row3[1]:
+            st.write(large_num_format(event_points_nb))
         
     with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level to'] <= range_level_max)])    
