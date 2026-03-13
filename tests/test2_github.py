@@ -48,6 +48,7 @@ def upload_to_github(github_token: str,
     # Create the path of the file in the GitHub repository
     path = destination_folder + "/" + source_file.split("/")[-1]
     st.write(path)
+    st.write(destination_folder)
     # Create or update the file in the GitHub repository
     try:
         # Get the existing file details if it exists
