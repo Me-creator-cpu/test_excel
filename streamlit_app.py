@@ -1733,7 +1733,7 @@ def form_file_param(file_txt='data/todo.txt'):
             label=f'Update of {file_txt}',
             value=data_txt,
             label_visibility='visible',
-            height='stretch'
+            height='content'
             )
     submit = form_file_update.form_submit_button('Update')
 
