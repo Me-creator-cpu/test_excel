@@ -30,7 +30,7 @@
     "no_file": [{"en": "No file loaded","fr": "Aucun fichier chargé"}],
     "data_graph": [{"en": "Data graph","fr": "Données du graphique"}],
     "file_update": [{"en": "Update of ","fr": "Modifier contenu de "}],
-    "text_id3": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "opt_owned": [{"en": "Only owned","fr": "Uniquement possedés"}],
     "text_id4": [{"en": "text_id_en","fr": "text_id_fr"}],
     "text_id5": [{"en": "text_id_en","fr": "text_id_fr"}],
     "text_id6": [{"en": "text_id_en","fr": "text_id_fr"}],
