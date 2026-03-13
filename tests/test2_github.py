@@ -20,7 +20,7 @@ usr_name = 'Me-creator-cpu'
 repo_name = 'test_excel'
 branch = 'main'
 
-#st.write(f"{github_token}")
+st.write(f"{github_token}")
 
 auth = Auth.Token(github_token)  
 
