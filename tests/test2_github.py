@@ -13,6 +13,15 @@ from github import Github
 def write_data(sInfo, data):
     with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:', width='stretch'):
         data
+def git_read_file(fileName):
+    try:
+        with open(fileName) as data:
+            content = data.read()
+            st.write(f'content is: {content}') 
+            return content  
+    except:
+        content = 'Test content'
+        return content  
 
 def upload_to_github(github_token: str,
                      source_file: str, destination_folder: str,
@@ -50,7 +59,14 @@ def upload_to_github(github_token: str,
         #repo.create_file(path, "Upload file", open(source_file, 'rb').read(), branch=branch.name)
         source_file_test='test_api.txt'
         test_sha='30d74d258442c7c65512eafab474568dd706c430'
-        repo.create_file(path, "Upload file", open(source_file_test, 'rb').read(), branch=branch.name,sha=test_sha)
+        repo.create_file(
+                path, 
+                "Upload file", 
+                #open(source_file_test, 'rb').read(),
+                open(source_file_test, 'r').read(), 
+                branch=branch.name,
+                #sha=test_sha
+                )
         st.write(f"File '{path}' created successfully.")
 
 github_token = st.secrets.tests.REPLICATE_API_TOKEN
