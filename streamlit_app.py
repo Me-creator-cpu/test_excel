@@ -1739,7 +1739,7 @@ def test_write_txt(file_txt):
     #    return st.success('write OK', icon='✅')
     #except:
     #    return st.error('write KO', icon='🚨')
-
+    repo_upd_result
 def test_github_repo():
     #test_github.py
     st.empty()
