@@ -1123,6 +1123,18 @@ def menu_tab_costs():
     min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
     max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
     range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
+    with st.container(horizontal_alignment="center", 
+                      vertical_alignment="center", 
+                      border=True):
+        nb_pal=st.slider(label, min_value=1, max_value=7, value=1, step=1)
+        cost_unit=calcul_upgrade_costs(from_lvl=range_level_min,to_lvl=range_level_max)
+        event_points=int(cost_unit)/int(2000)
+        cost_nb=int(cost_unit)*int(nb_pal)
+        event_points_nb=int(cost_nb)/int(2000)
+        st.write(f"Upgrade costs for {nb_pal} UR:", large_num_format(cost_nb))
+        st.write("Event points:",large_num_format(event_points))
+        st.write(f"Event points for {nb_pal} UR:",large_num_format(event_points_nb))
+        
     with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level to'] <= range_level_max)])    
 
