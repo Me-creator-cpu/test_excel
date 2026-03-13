@@ -1733,8 +1733,10 @@ def test_write_txt(file_txt='data/todo.txt'):
     try:
         repo_upd_result=repo.update_file(contents.path, "committing files", new_text, contents.sha, branch=repo_branch)
         repo_upd_result
-        st.success('write OK', icon='✅')
-        test_read_txt(file_txt)
+        container_git = st.container(border=False, width='stretch', height='content')
+        with container_git:
+            st.success('write OK', icon='✅')
+            test_read_txt(file_txt)
     except:
         st.error('write KO', icon='🚨')
     #try:
