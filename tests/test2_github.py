@@ -32,26 +32,24 @@ for pull_request in pull_requests:
     additions = 0
     deletions = 0
 
-# Get the pull request files
-files = pull_request.get_files()
+    # Get the pull request files
+    files = pull_request.get_files()
 
-write_data('Files',files)
+    # Iterate through each file in the pull request
+    for file in files:
+        # Extract additions and deletions from the file object
+        additions += file.additions
+        deletions += file.deletions
 
-# Iterate through each file in the pull request
-for file in files:
-    # Extract additions and deletions from the file object
-    additions += file.additions
-    deletions += file.deletions
-
-# Print information about the pull request with line counts
-st.write(f"** PR #{pull_request.number}: {pull_request.title} **")
-st.write(f"URL: {pull_request.html_url}")
-st.write(f"Added lines: {additions}")
-st.write(f"Deleted lines: {deletions}")
-st.write(f"Total lines changed: {additions + deletions}")
+    # Print information about the pull request with line counts
+    st.write(f"** PR #{pull_request.number}: {pull_request.title} **")
+    st.write(f"URL: {pull_request.html_url}")
+    st.write(f"Added lines: {additions}")
+    st.write(f"Deleted lines: {deletions}")
+    st.write(f"Total lines changed: {additions + deletions}")
 
 issues = g.search_issues(
-            query=f'is:pr is:merged base:master repo:”{org_name}/{repo_name}” created:>2016-04-01',
+            query=f'is:pr is:merged base:master repo:”{org_name}/{repo_name}” created:>2026-03-01',
             sort='updated',
             order='desc'
             )
