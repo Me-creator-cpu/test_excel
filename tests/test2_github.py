@@ -58,7 +58,7 @@ query_url = f'https://api.github.com/repos/{usr_name}/{repo_name}/issues'
 params = {
     'state': 'open',
     }
-headers = {'Authorization': f'token {token}'}
+headers = {'Authorization': f'token {github_token}'}
 r = requests.get(query_url, headers=headers, params=params)
 
 issues = g.search_issues(
