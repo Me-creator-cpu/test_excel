@@ -1145,7 +1145,7 @@ def menu_tab_costs():
         with row3[0]:
             st.write(f"Event points for {nb_pal} UR:")
         with row3[1]:
-            if pevent_points>=int(15000):
+            if event_points>=int(15000):
                 st.markdown(f':green[{large_num_format(event_points_nb)}]')
             else:
                 st.write(large_num_format(event_points_nb))
