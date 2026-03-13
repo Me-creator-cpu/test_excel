@@ -53,8 +53,8 @@ def upload_to_github(github_token: str,
         repo.create_file(path, "Upload file", open(source_file_test, 'rb').read(), branch=branch.name,sha=test_sha)
         st.write(f"File '{path}' created successfully.")
 
-#github_token = st.secrets.tests.REPLICATE_API_TOKEN
-github_token = st.secrets.tests.CLASSIC_TOKEN
+github_token = st.secrets.tests.REPLICATE_API_TOKEN
+#github_token = st.secrets.tests.CLASSIC_TOKEN
 usr_name = 'Me-creator-cpu'
 repo_name = 'test_excel'
 branch = 'main'
