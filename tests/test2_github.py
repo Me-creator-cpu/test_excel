@@ -24,8 +24,10 @@ def git_read_file(fileName):
         return content  
 
 def upload_to_github(github_token: str,
-                     source_file: str, destination_folder: str,
-                     github_repo: str, git_branch: str) -> None:
+                     source_file: str, 
+                     destination_folder: str,
+                     github_repo: str, 
+                     git_branch: str) -> None:
     """
     Uploads a file to a GitHub Pages repository using the PyGithub library.
     Parameters:
@@ -47,8 +49,7 @@ def upload_to_github(github_token: str,
     branch = repo.get_branch(git_branch)
     # Create the path of the file in the GitHub repository
     path = destination_folder + "/" + source_file.split("/")[-1]
-    st.write(path)
-    st.write(destination_folder)
+    path = './test_w_api.txt'
     # Create or update the file in the GitHub repository
     try:
         # Get the existing file details if it exists
@@ -57,8 +58,11 @@ def upload_to_github(github_token: str,
         st.write(existing_file)
         # Update the file
         #repo.update_file(path, "Update file", open(source_file, 'rb').read(), existing_file.sha,
-        repo.update_file(path, "Update file", open(source_file, 'rb').read(), existing_file.sha,
-                         branch=branch.name)
+        repo.update_file(path, 
+                        "Update file", 
+                        open(source_file, 'rb').read(), 
+                        existing_file.sha,
+                        branch=branch.name)
         st.write(f"File '{path}' updated successfully.")
     except Exception as e:
         # If the file does not exist, create it
@@ -71,7 +75,6 @@ def upload_to_github(github_token: str,
                 #open(source_file_test, 'rb').read(),
                 open(source_file_test, 'r').read(), 
                 branch=branch.name,
-                #sha=test_sha
                 )
         st.write(f"File '{path}' created successfully.")
 
