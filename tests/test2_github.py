@@ -46,12 +46,15 @@ def upload_to_github(github_token: str,
     branch = repo.get_branch(git_branch)
     # Create the path of the file in the GitHub repository
     path = destination_folder + "/" + source_file.split("/")[-1]
+    st.write(path)
     # Create or update the file in the GitHub repository
     try:
         # Get the existing file details if it exists
-        existing_file = repo.get_contents(path, ref=branch.name)
+        #existing_file = repo.get_contents(path, ref=branch.name)
+        existing_file = repo.get_contents(path, ref=git_branch)
         st.write(existing_file)
         # Update the file
+        #repo.update_file(path, "Update file", open(source_file, 'rb').read(), existing_file.sha,
         repo.update_file(path, "Update file", open(source_file, 'rb').read(), existing_file.sha,
                          branch=branch.name)
         st.write(f"File '{path}' updated successfully.")
