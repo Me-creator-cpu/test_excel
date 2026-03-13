@@ -35,6 +35,8 @@ pull_requests = repo.get_pulls(state="open", sort="created", direction="desc")
 contents = repo.get_contents("test_api.txt")
 st.write(contents)
 
+ContentFile, Commit=repo.create_file("test.txt", "test", "test", branch=branch)
+
 # Iterate through each pull request
 for pull_request in pull_requests:
     # Initialize counters for added and deleted lines
@@ -80,3 +82,5 @@ for issue in issues:
 
 write_data('Pull Requests',pull_requests)
 
+st.write('Closing connextion...')
+g.close()
