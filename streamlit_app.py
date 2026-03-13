@@ -1730,7 +1730,7 @@ def form_file_param(file_txt='data/todo.txt'):
     form_file_update = st.form('form_file_update')
     with form_file_update:
         txt_update = st.text_area(
-            label=f'Update of {file_txt}',
+            label=f'{lbl} {file_txt}',
             value=data_txt,
             label_visibility='visible',
             height='content'
