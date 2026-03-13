@@ -1720,12 +1720,22 @@ def test_append_txt(file_txt):
         return st.error('update KO', icon='🚨')
 
 def form_file_param(file_txt='data/todo.txt'):
-    data_txt=open(file_txt, mode='r').read()
+    raw_data_txt=open(file_txt, mode='r').read()
+    data_txt=''
+    if raw_data_txt is not None:
+        textsplit = raw_data_txt.splitlines()
+        for x in textsplit:
+            data_txt += f'{x}\n'
+
     form_file_update = st.form('form_file_update')
     with form_file_update:
         st.write(f'Update of {file_txt}')
-        txt_update = st.text_area(data_txt,)
-        submit = form_file_update.form_submit_button('Update')
+        txt_update = st.text_area(
+            label=f'Update of {file_txt}',
+            value=data_txt,
+            label_visibility='visible'
+            )
+    submit = form_file_update.form_submit_button('Update')
 
     if submit:
         update_file_param(file_txt=file_txt,content=txt_update)
