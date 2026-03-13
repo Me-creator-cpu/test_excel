@@ -1726,7 +1726,7 @@ def form_file_param(file_txt='data/todo.txt'):
         textsplit = raw_data_txt.splitlines()
         for x in textsplit:
             data_txt += f'{x}\n'
-
+    lbl=get_text_trad(site_langu,'file_update')
     form_file_update = st.form('form_file_update')
     with form_file_update:
         txt_update = st.text_area(
@@ -1764,6 +1764,7 @@ def update_file_param(file_txt='data/todo.txt',content=None):
             with container_git:
                 st.success('write OK', icon='✅')
                 test_read_txt(file_txt)
+                read_json_trads(sFile=file_txt)
         except:
             st.error('write KO', icon='🚨')        
         retval = True
