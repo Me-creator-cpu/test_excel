@@ -19,7 +19,7 @@ usr_name = 'Me-creator-cpu'
 repo_name = 'test_excel'
 branch = 'main'
 
-st.write(f"{github_token}")
+#st.write(f"{github_token}")
 
 auth = Auth.Token(github_token)  
 
@@ -62,8 +62,8 @@ headers = {'Authorization': f'token {github_token}'}
 r = requests.get(query_url, headers=headers, params=params)
 
 issues = g.search_issues(
-            query=f'repo:”{usr_name}/{repo_name}”',
-            sort='updated',
+            query=f'is:pull-request repo:”{usr_name}/{repo_name}”',
+            #sort='updated',
             order='desc'
             )
 
