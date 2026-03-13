@@ -1626,6 +1626,7 @@ def pg_options():
     #container_txt = st.container(border=True, width='stretch', height='content')
     #with container_txt:
     file_txt='./data/todo.txt'
+    file_txt='./test_w_api.txt'
     with st.expander('Text file', expanded=False, icon=':material/table_view:', width='stretch'):
         if st.button("Load Text file"):
             st.text(test_read_txt(file_txt))
