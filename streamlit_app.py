@@ -15,9 +15,9 @@ import matplotlib.pyplot as plt
 from pictures import *
 from test_github import *
 
-#from pathlib import Path
-#from github import Auth
-#from github import Github
+from pathlib import Path
+from github import Auth
+from github import Github
 
 #img.flag_en
 #import platform
