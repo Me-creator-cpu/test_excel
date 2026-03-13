@@ -1717,8 +1717,8 @@ def test_append_txt(file_txt):
     except:
         return st.error('update KO', icon='🚨')
 
-def test_write_txt(file_txt):
-    upd_file_txt='data/todo.txt'
+def test_write_txt(file_txt='data/todo.txt'):
+    upd_file_txt=file_txt #'data/todo.txt'
     github_token = st.secrets.tests.REPLICATE_API_TOKEN
     auth = Auth.Token(github_token)
     g = Github(auth=auth)
@@ -1730,7 +1730,12 @@ def test_write_txt(file_txt):
     new_text=test_read_txt(file_txt)
     new_text+="This is the 1st line to write...\n"
     new_text+="This is the 2nd line to write...\n"
-    repo_upd_result=repo.update_file(contents.path, "committing files", new_text, contents.sha, branch=repo_branch)
+    try:
+        repo_upd_result=repo.update_file(contents.path, "committing files", new_text, contents.sha, branch=repo_branch)
+        repo_upd_result
+        st.success('write OK', icon='✅')
+    except:
+        st.error('write KO', icon='🚨')
     #try:
     #    with open(file_txt, mode='w') as f:
     #        f.write("This is the 1st line to write...\n")
@@ -1739,7 +1744,8 @@ def test_write_txt(file_txt):
     #    return st.success('write OK', icon='✅')
     #except:
     #    return st.error('write KO', icon='🚨')
-    repo_upd_result
+    
+
 def test_github_repo():
     #test_github.py
     st.empty()
