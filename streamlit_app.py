@@ -1643,7 +1643,7 @@ def pg_options():
     with st.expander('Github', expanded=False, icon=':material/table_view:', width='stretch'):
         check_github_access()
         if st.button("Get issues"):
-            test_github_issues()
+            test_github_issues()   
 
 def pg_tips_img():
     st.subheader('Tips', divider=True)
@@ -1920,7 +1920,8 @@ pages = {
     get_text_trad(site_langu,'menu_param'): [
         st.Page(pg_options, title="Options",icon="⚙️"), #🛠️
         st.Page(pg_tips_img, title="Tips",icon="🌟"),
-        st.Page("./tests/test_eval.py", title="Tests",icon="🛠️")
+        st.Page("./tests/test_eval.py", title="Tests",icon="🛠️"),
+        st.Page("test2_github.py", title="Test Github",icon="🛠️")
     ],    
 }
 pg = st.navigation(
