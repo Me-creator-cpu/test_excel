@@ -1126,7 +1126,7 @@ def menu_tab_costs():
     with st.container(horizontal_alignment="center", 
                       vertical_alignment="center", 
                       border=True):
-        nb_pal=st.slider(label, min_value=1, max_value=7, value=1, step=1)
+        nb_pal=st.slider('Nb palmons', min_value=1, max_value=7, value=1, step=1)
         cost_unit=calcul_upgrade_costs(from_lvl=range_level_min,to_lvl=range_level_max)
         event_points=int(cost_unit)/int(2000)
         cost_nb=int(cost_unit)*int(nb_pal)
