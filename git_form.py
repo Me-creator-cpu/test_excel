@@ -9,7 +9,7 @@ import base64
 import json
 
 def write_data(sInfo, data):
-    with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:',width='100%',height='content'):
+    with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
         data
 
 def git_read_file(fileName):
@@ -33,7 +33,7 @@ def form_file_param(file_txt='data/todo.txt'):
         lbl=get_text_trad(site_langu,'file_update')
     except:
         lbl='Translations'
-    form_file_update = st.form('form_file_update',width='100%',height='content')
+    form_file_update = st.form('form_file_update',width='stretch',height='content')
     with form_file_update:
         txt_update = st.text_area(
             label=f'{lbl} {file_txt}',
