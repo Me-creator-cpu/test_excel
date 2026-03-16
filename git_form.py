@@ -9,7 +9,7 @@ import base64
 import json
 
 def write_data(sInfo, data):
-    with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:',width='content',height='content'):
+    with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:',width='100%',height='content'):
         data
 
 def git_read_file(fileName):
