@@ -29,7 +29,10 @@ def form_file_param(file_txt='data/todo.txt'):
         textsplit = raw_data_txt.splitlines()
         for x in textsplit:
             data_txt += f'{x}\n'
-    lbl=get_text_trad(site_langu,'file_update')
+    try:
+        lbl=get_text_trad(site_langu,'file_update')
+    except:
+        lbl='Translations'
     form_file_update = st.form('form_file_update')
     with form_file_update:
         txt_update = st.text_area(
