@@ -74,3 +74,5 @@ def update_file_param(file_txt='data/todo.txt',content=None):
 def page_github():
     st.subheader('Options', divider=True)
     form_file_param(file_txt='./textes.json')
+
+page_github()
