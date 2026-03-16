@@ -12,6 +12,15 @@ def write_data(sInfo, data):
     with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
         data
 
+def get_text_trad(langu='en',textId='text_id'):
+    ret_val = ''
+    try:
+        texts_trad=st.session_state.texts_trad
+        ret_val = texts_trad['data'][textId][0][langu]
+    except:
+        ret_val=f'Trad err {textId}/{langu}'
+    return ret_val
+
 def git_read_file(fileName):
     try:
         with open(fileName) as data:
@@ -42,8 +51,8 @@ def form_file_param(file_txt='data/todo.txt'):
             label_visibility='visible',
             height=int(height)
             )
-    submit = form_file_update.form_submit_button('Update')
-
+    #submit = form_file_update.form_submit_button('Update')
+    submit = form_file_update.form_submit_button(get_text_trad(site_langu,'btn_update'))
     if submit:
         update_file_param(file_txt=file_txt,content=txt_update)
 
