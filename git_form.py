@@ -39,7 +39,7 @@ def form_file_param(file_txt='data/todo.txt'):
             label=f'{lbl} {file_txt}',
             value=data_txt,
             label_visibility='visible',
-            height='200'
+            height=int(200)
             )
     submit = form_file_update.form_submit_button('Update')
 
