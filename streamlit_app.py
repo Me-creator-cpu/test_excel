@@ -1340,7 +1340,7 @@ def menu_tab_dashboards():
         df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(7)
         df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(7)
         
-        st.subheader('⚔ Attack top 7')
+        st.subheader(f'⚔ {get_text_trad(site_langu,'dashboard_title_a')}')
         df_a = apply_cols_icons(df_a)
         build_table_dashboard(df_a)
         #event_a = build_table_dashboard(df_a)
@@ -1352,7 +1352,7 @@ def menu_tab_dashboards():
             #show_details(event_a.selection.rows,df_a,True)
             #event_a = None   
         #event_detail    st.session_state.event_detail
-        st.subheader('🛡 Defend top 7')
+        st.subheader(f'🛡 {get_text_trad(site_langu,'dashboard_title_b')}')
         df_d = apply_cols_icons(df_d)
         build_table_dashboard(df_d)
         #event_d = build_table_dashboard(df_d)
@@ -1372,13 +1372,13 @@ def menu_tab_dashboards():
         
         row_d1 = st.columns(2,border=col_border, width="stretch")
         with row_d1[0]:
-            st.subheader('Average Level by Type')
+            st.subheader(get_text_trad(site_langu,'dashboard_avg_level'))
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
             avg_lvl_df
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
             st.bar_chart(avg_lvl_df, y='Level', horizontal=True)
         with row_d1[1]:
-            st.subheader('Average power by Type')
+            st.subheader(get_text_trad(site_langu,'dashboard_avg_power'))
             avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
             avg_pwr_df  
             avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
@@ -1386,11 +1386,11 @@ def menu_tab_dashboards():
     
         row_d2 = st.columns(2,border=col_border, width="stretch")
         with row_d2[0]:
-            st.subheader('Average Skill')
+            st.subheader(get_text_trad(site_langu,'dashboard_avg_skill'))
             df_tcd1['Type']=df_tcd1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
             build_pivot_table(df_tcd1,'Level','Type','Skill')
         with row_d2[1]:
-            st.subheader('Nb Palmons per type')
+            st.subheader(get_text_trad(site_langu,'dashboard_nb_type'))
             df_tcd2['Type']=df_tcd2['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
             #build_main_chart(df_tcd2,None,'Type','Level')
             #build_pivot_table(df_tcd3,'Level','Type','Skill')
@@ -1400,11 +1400,11 @@ def menu_tab_dashboards():
         row_d3 = st.columns(2,border=col_border, width="stretch")
         with row_d3[1]:
             df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
-            donut1=build_graph_donut(df_tcd3,'% per type')
+            donut1=build_graph_donut(df_tcd3,get_text_trad(site_langu,'dashboard_donut_pct'))
             donut1
         with row_d3[0]:
             df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].mean(), include_groups=True).to_frame('Nb')
-            donut2=build_graph_donut(df_tcd4,'Average per type')
+            donut2=build_graph_donut(df_tcd4,get_text_trad(site_langu,'dashboard_donut_nb'))
             donut2
         
     except:
@@ -1751,6 +1751,7 @@ def test_append_txt(file_txt):
         return st.error('update KO', icon='🚨')
 
 def form_file_param(file_txt='data/todo.txt'):
+    #get_text_trad(site_langu,'download')
     raw_data_txt=open(file_txt, mode='r').read()
     data_txt=''
     if raw_data_txt is not None:
@@ -2014,8 +2015,9 @@ pages = {
         st.Page(page3, title=get_text_trad(site_langu,'menu_info_file'),icon="📋"),
     ],
     get_text_trad(site_langu,'menu_param'): [
-        st.Page(pg_options, title="Options",icon="⚙️"), #🛠️
-        st.Page(pg_tips_img, title="Tips",icon="🌟"),
+        st.Page(pg_options, title=get_text_trad(site_langu,'menu_options'),icon="⚙️"), #🛠️
+        st.Page(pg_tips_img, title=get_text_trad(site_langu,'menu_tips'),icon="🌟"),
+        st.Page('./git_form.py', title=get_text_trad(site_langu,'menu_git_translate'),icon="🛠️"),
         st.Page("./tests/test_eval.py", title="Tests",icon="🛠️"),
         st.Page("./tests/test2_github.py", title="Test Github",icon="🛠️")
     ],    
