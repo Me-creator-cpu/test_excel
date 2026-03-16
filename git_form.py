@@ -1,0 +1,76 @@
+import streamlit as st
+import pandas as pd
+from pandas import json_normalize
+from datetime import datetime, timedelta
+from pathlib import Path
+from github import Auth
+from github import Github
+import base64
+import json
+
+def write_data(sInfo, data):
+    with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:', width='stretch'):
+        data
+
+def git_read_file(fileName):
+    try:
+        with open(fileName) as data:
+            content = data.read()
+            st.write(f'content is: {content}') 
+            return content  
+    except:
+        content = 'Test content'
+        return content  
+
+def form_file_param(file_txt='data/todo.txt'):
+    raw_data_txt=open(file_txt, mode='r').read()
+    data_txt=''
+    if raw_data_txt is not None:
+        textsplit = raw_data_txt.splitlines()
+        for x in textsplit:
+            data_txt += f'{x}\n'
+    lbl=get_text_trad(site_langu,'file_update')
+    form_file_update = st.form('form_file_update')
+    with form_file_update:
+        txt_update = st.text_area(
+            label=f'{lbl} {file_txt}',
+            value=data_txt,
+            label_visibility='visible',
+            height='content'
+            )
+    submit = form_file_update.form_submit_button('Update')
+
+    if submit:
+        update_file_param(file_txt=file_txt,content=txt_update)
+
+def update_file_param(file_txt='data/todo.txt',content=None):
+    retval = False
+    if content is not None:
+        upd_file_txt=file_txt
+        github_token = st.secrets.tests.REPLICATE_API_TOKEN
+        auth = Auth.Token(github_token)
+        g = Github(auth=auth)
+        org_name = "Me-creator-cpu"
+        repo_name = "test_excel"
+        repo_branch = "main"
+        repo = g.get_repo(f"{org_name}/{repo_name}")
+        contents = repo.get_contents(upd_file_txt, ref=repo_branch)
+        new_text=str(content)
+        try:
+            repo_upd_result=repo.update_file(contents.path, "committing files", new_text, contents.sha, branch=repo_branch)
+            repo_upd_result
+            container_git = st.container(border=False, width='stretch', height='content')
+            with container_git:
+                st.success('write OK', icon='✅')
+                test_read_txt(file_txt)
+                read_json_trads(sFile=file_txt)
+        except:
+            st.error('write KO', icon='🚨')        
+        retval = True
+    else:
+        retval = False
+    return retval           
+
+def page_github():
+    st.subheader('Options', divider=True)
+    form_file_param(file_txt='./textes.json')
