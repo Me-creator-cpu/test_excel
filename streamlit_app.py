@@ -1305,7 +1305,7 @@ def menu_tab_dashboards():
     col_border=False
     st.header(get_text_trad(site_langu,'dashboards'))
     df=df_xls["DataFrame"][idx_palmon]
-    
+
     column='Type'
     try:
         options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
@@ -1437,25 +1437,32 @@ def menu_tab_downloads():
     #st.title(body="Download file data test", text_alignment="center")
     st.subheader("Choose local data (csv)")
     pic(url_logo_06)
+    
     try:
         range_cols = st.columns(3)
         range_cols[0].download_button(
-            label="Palmons data",
-            data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
+            #label="Palmons data",
+            label=df_xls["DisplayName"][idx_palmon],
+            #data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
+            data=get_df_idx(idx_palmon).to_csv().encode("utf-8"),
             file_name="base_data.csv",
             mime="text/csv",
             icon=":material/download:",
         )
         range_cols[1].download_button(
-            label="EXP costs",
-            data=df_xls["DataFrame"][idx_costs].to_csv().encode("utf-8"),
+            #label="EXP costs",
+            label=df_xls["DisplayName"][idx_costs],
+            #data=df_xls["DataFrame"][idx_costs].to_csv().encode("utf-8"),
+            data=get_df_idx(idx_costs).to_csv().encode("utf-8"),
             file_name="exp_data.csv",
             mime="text/csv",
             icon=":material/download:",
         )
         range_cols[2].download_button(
-            label="COMP costs",
-            data=df_xls["DataFrame"][idx_comp].to_csv().encode("utf-8"),
+            #label="COMP costs",
+            label=df_xls["DisplayName"][idx_comp],
+            #data=df_xls["DataFrame"][idx_comp].to_csv().encode("utf-8"),
+            data=get_df_idx(idx_comp).to_csv().encode("utf-8"),
             file_name="comp_data.csv",
             mime="text/csv",
             icon=":material/download:",
@@ -2017,7 +2024,7 @@ pages = {
     get_text_trad(site_langu,'menu_param'): [
         st.Page(pg_options, title=get_text_trad(site_langu,'menu_options'),icon="⚙️"), #🛠️
         st.Page(pg_tips_img, title=get_text_trad(site_langu,'menu_tips'),icon="🌟"),
-        #st.Page('./git_form.py', title=get_text_trad(site_langu,'menu_git_translate'),icon="🛠️"),
+        st.Page('./git_form.py', title=get_text_trad(site_langu,'menu_git_translate'),icon="🛠️"),
         st.Page("./tests/test_eval.py", title="Tests",icon="🛠️"),
         st.Page("./tests/test2_github.py", title="Test Github",icon="🛠️")
     ],    
