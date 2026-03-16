@@ -34,12 +34,13 @@ def form_file_param(file_txt='data/todo.txt'):
     except:
         lbl='Translations'
     form_file_update = st.form('form_file_update',width='stretch',height='stretch')
+    height = st.slider("Set the height of the text area", 100, 1000, 400)
     with form_file_update:
         txt_update = st.text_area(
             label=f'{lbl} {file_txt}',
             value=data_txt,
             label_visibility='visible',
-            height=int(400)
+            height=int(height)
             )
     submit = form_file_update.form_submit_button('Update')
 
