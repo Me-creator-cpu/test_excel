@@ -62,7 +62,7 @@ def update_file_param(file_txt='data/todo.txt',content=None):
         try:
             repo_upd_result=repo.update_file(contents.path, "committing files", new_text, contents.sha, branch=repo_branch)
             repo_upd_result
-            container_git = st.container(border=False, width='content', height='content')
+            container_git = st.container(border=False, width='stretch', height='stretch')
             with container_git:
                 st.success('write OK', icon='✅')
                 test_read_txt(file_txt)
