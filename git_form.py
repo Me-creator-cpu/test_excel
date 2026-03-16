@@ -33,7 +33,7 @@ def form_file_param(file_txt='data/todo.txt'):
         lbl=get_text_trad(site_langu,'file_update')
     except:
         lbl='Translations'
-    form_file_update = st.form('form_file_update',width='stretch',height='content')
+    form_file_update = st.form('form_file_update',width='stretch',height='stretch')
     with form_file_update:
         txt_update = st.text_area(
             label=f'{lbl} {file_txt}',
