@@ -7,6 +7,8 @@ from github import Auth
 from github import Github
 import base64
 import json
+from collections import defaultdict
+
 
 json_file='./textes.json'
 site_langu='en'
@@ -108,7 +110,7 @@ def json_to_frame():
 
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
     subTitle('df3')
-    df3=pd.DataFrame()
+    df3=()
     i=0
     for x in df:
         df3.insert(i, "id", x, allow_duplicates=True)
