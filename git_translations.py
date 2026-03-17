@@ -8,6 +8,7 @@ from github import Github
 import base64
 import json
 
+json_file='./textes.json'
 site_langu='en'
 if 'site_langu' in st.session_state:
     site_langu=st.session_state.site_langu
@@ -88,8 +89,13 @@ def update_file_param(file_txt='data/todo.txt',content=None):
         retval = False
     return retval           
 
+def json_to_frame():
+    with open(json_file, encoding='utf-8', errors='ignore') as f:
+        json_data = json.load(f, strict=False) 
+    json_data
+
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
-    form_file_param(file_txt='./textes.json')
+    form_file_param(file_txt=json_file)
 
 page_github()
