@@ -140,7 +140,7 @@ def json_to_frame():
         on_change=df_change
     )
 
-    edited_rows = st.session_state.df_edit['edited_rows']
+    edited_rows = st.session_state['edited_rows']
     if edited_rows is not None:
         subTitle('edited_rows')
         edited_rows
