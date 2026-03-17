@@ -163,8 +163,8 @@ def json_langu(val_langu,langu):
     return ret_val
 
 def df_change():
-    if 'edited_rows' in st.session_state:
-        edited_rows = st.session_state['edited_rows']    
+    if 'updated_trad' in st.session_state:
+        edited_rows = st.session_state.updated_trad['edited_rows']    
         st.toast('editor_df on_change', icon='ℹ️️', duration='short')
 
 def page_github():
