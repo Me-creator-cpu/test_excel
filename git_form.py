@@ -8,6 +8,10 @@ from github import Github
 import base64
 import json
 
+site_langu='en'
+if 'site_langu' in st.session_state:
+    site_langu=st.session_state.site_langu
+
 def write_data(sInfo, data):
     with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
         data
@@ -34,10 +38,6 @@ def git_read_file(fileName):
 def form_file_param(file_txt='data/todo.txt'):
     raw_data_txt=open(file_txt, mode='r').read()
     data_txt=''
-    if 'site_langu' in st.session_state:
-        site_langu=st.session_state.site_langu
-    else:
-        site_langu='en'
     if raw_data_txt is not None:
         textsplit = raw_data_txt.splitlines()
         for x in textsplit:
@@ -89,7 +89,7 @@ def update_file_param(file_txt='data/todo.txt',content=None):
     return retval           
 
 def page_github():
-    st.subheader('Options', divider=True)
+    st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
     form_file_param(file_txt='./textes.json')
 
 page_github()
