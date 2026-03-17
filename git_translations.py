@@ -150,6 +150,7 @@ def json_to_frame():
         affected_index = list(edited_rows.keys())[0]
         affected_val_en = edited_rows[affected_index]['en']
         affected_val_fr = edited_rows[affected_index]['fr']
+        st.toast(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}', icon='ℹ️️', duration='short')
 
     subTitle('updated_json')
     updated_json=json_data
