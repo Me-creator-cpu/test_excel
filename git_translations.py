@@ -157,8 +157,7 @@ def json_to_frame():
         #st.write(x,df[x][0]['en'],df[x][0]['fr'])
     df3
 
-    if 1 == 2:
-        df3=df2.copy()
+    if 1 == 1:
         df3=st.dataframe(
             df3,
             column_config={
