@@ -13,7 +13,7 @@ import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extr
 import matplotlib.pyplot as plt
 
 from pictures import *
-from test_github import *
+#from test_github import *
 
 from pathlib import Path
 from github import Auth
