@@ -111,7 +111,7 @@ def json_to_frame():
     subTitle('translations')
     translations = defaultdict(list)
     for translation, textid in df:
-        translations[translations].append(textid)
+        translations[translation].append(textid)
     translations
     
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
