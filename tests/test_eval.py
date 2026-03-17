@@ -16,3 +16,5 @@ test_data
 if 'site_langu' in st.session_state:
     site_langu=st.session_state.site_langu
     st.write(f'site_langu={site_langu}')
+else:
+    st.write(f'site_langu not in st.session_state')
