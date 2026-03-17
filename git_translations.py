@@ -49,19 +49,20 @@ def form_file_param(file_txt='data/todo.txt'):
         lbl=get_text_trad(site_langu,'file_update')
     except:
         lbl='Translations'
-    form_file_update = st.form('form_file_update',width='stretch',height='stretch')
-    height = st.slider("Set the height of the text area", 100, 1000, 100)
-    with form_file_update:
-        txt_update = st.text_area(
-            label=f'{lbl} {file_txt}',
-            value=data_txt,
-            label_visibility='visible',
-            height=int(height)
-            )
-    #submit = form_file_update.form_submit_button('Update')
-    submit = form_file_update.form_submit_button(get_text_trad(site_langu,'btn_update'))
-    if submit:
-        update_file_param(file_txt=file_txt,content=txt_update)
+    with st.expander(f'{lbl}', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
+        form_file_update = st.form('form_file_update',width='stretch',height='stretch')
+        height = st.slider("Set the height of the text area", 100, 1000, 100)
+        with form_file_update:
+            txt_update = st.text_area(
+                label=f'{lbl} {file_txt}',
+                value=data_txt,
+                label_visibility='visible',
+                height=int(height)
+                )
+        #submit = form_file_update.form_submit_button('Update')
+        submit = form_file_update.form_submit_button(get_text_trad(site_langu,'btn_update'))
+        if submit:
+            update_file_param(file_txt=file_txt,content=txt_update)
 
 def update_file_param(file_txt='data/todo.txt',content=None):
     retval = False
