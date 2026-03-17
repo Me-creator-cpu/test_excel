@@ -98,4 +98,6 @@ def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
     form_file_param(file_txt=json_file)
 
+    json_to_frame()
+
 page_github()
