@@ -112,12 +112,7 @@ def subTitle(txt):
 def json_to_frame():
     with open(json_file, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
-    #json_data
-    #ret_val = texts_trad['data'][textId][0][langu]
-    subTitle('df')
-    df = pd.DataFrame(json_data['data'])
-    df
-    
+    df = pd.DataFrame(json_data['data'])    
     subTitle('df3')
     df3=df.T.copy()
     df3.index.name = "textid"
