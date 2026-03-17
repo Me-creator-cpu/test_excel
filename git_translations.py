@@ -108,15 +108,23 @@ def json_to_frame():
     df2=df.T
     df2
 
-    subTitle('translations')
-    translations = defaultdict(list)
-    for translation, textid in df:
-        translations[translation].append(textid)
-    translations
+
+
+    if 1 == 2:
+        subTitle('translations')
+        translations = defaultdict(list)
+        for translation, textid in df:
+            translations[translation].append(textid)
+        translations
     
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
     
-    #subTitle('df3')
+    subTitle('df3')
+    df3=df2.coppy(deep=true)
+    df3.rename(columns={
+        df.columns[0]: "textid",
+        df.columns[1]: "langu"
+    }, inplace=True)
     #df3=()
     #i=0
     #for x in df:
@@ -125,7 +133,7 @@ def json_to_frame():
     #    df3.insert(i, "fr", df[x][0]['fr'], allow_duplicates=True)
     #    i=i+1
         #st.write(x,df[x][0]['en'],df[x][0]['fr'])
-    #df3
+    df3
 
     if 1 == 2:
         df3=df2.copy()
