@@ -101,7 +101,7 @@ def json_to_frame():
     df = pd.DataFrame(json_data['data'])
     df
     for x in df:
-        st.write(x)
+        st.write(x,df['data'][x][0]['en'],df['data'][x][0]['fr'])
     #edited_df = st.data_editor(df.T)
     subTitle('df2')
     df2=df.T
