@@ -113,15 +113,13 @@ def json_to_frame():
     with open(json_file, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
     df = pd.DataFrame(json_data['data'])    
-    subTitle('df3')
-    df3=df.T.copy()
+
+    df3=pd.DataFrame(json_data['data']).T.copy()
     df3.index.name = "textid"
     df3.rename(columns={df3.columns[0]: "langu"}, inplace=True)
     
     df3['en']=df3['langu'].apply(lambda b: json_langu(b,'en'))
     df3['fr']=df3['langu'].apply(lambda b: json_langu(b,'fr'))
-    
-    df3
 
     subTitle('editor_df')
     
