@@ -128,6 +128,26 @@ def json_to_frame():
     
     df3
 
+    subTitle('editor_df')
+    
+    if 'df_edit' not in st.session_state:
+        st.session_state.df_edit=df3
+
+    editor_df = st.data_editor(
+        df3, 
+        key="updated_trad", 
+        num_rows="dynamic",
+        on_change=df_change
+    )
+
+    edited_rows = st.session_state.pay['edited_rows']
+    if edited_rows is not None:
+        subTitle('edited_rows')
+        edited_rows
+        affected_index = list(edited_rows.keys())[0]
+        affected_val_en = edited_rows[affected_index]['en']
+        affected_val_fr = edited_rows[affected_index]['fr']
+
     subTitle('updated_json')
     updated_json=json_data
     updated_json['data']['to'][0]['en']='Coucou'
@@ -137,6 +157,10 @@ def json_langu(val_langu,langu):
     #val_langu=json.load(val, strict=False)
     ret_val = val_langu[langu]
     return ret_val
+
+def df_change(val):
+    st.toast('editor_df on_change', icon='ℹ️️', duration='short')
+    return False
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
