@@ -109,12 +109,15 @@ def json_to_frame():
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
     subTitle('df3')
     df3=pd.DataFrame()
+    i=0
     for x in df:
-        df3.insert(x, "en", df[x][0]['en'], allow_duplicates=True)
-        df3.insert(x, "fr", df[x][0]['fr'], allow_duplicates=True)
+        df3.insert(i, "id", x, allow_duplicates=True)
+        df3.insert(i, "en", df[x][0]['en'], allow_duplicates=True)
+        df3.insert(i, "fr", df[x][0]['fr'], allow_duplicates=True)
+        i=i+1
         #st.write(x,df[x][0]['en'],df[x][0]['fr'])
     df3
-    
+
     if 1 == 2:
         df3=df2.copy()
         df3=st.dataframe(
