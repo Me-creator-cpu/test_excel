@@ -120,7 +120,8 @@ def json_to_frame():
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
     
     subTitle('df3')
-    df3=df2.copy(deep=True)
+    df3=df2.copy()
+    #df3=df2.copy(deep=True)
     df3.rename(columns={
         df.columns[0]: "textid",
         df.columns[1]: "langu"
