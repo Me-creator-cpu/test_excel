@@ -143,7 +143,7 @@ def json_to_frame():
         subTitle('updated_json')
         updated_json=json_data
         #updated_json['data']['to'][0]['en']='Coucou'
-        updated_json['data'][affected_index][0]['en']=affected_val_en
+        updated_json['data'][int(affected_index)][0]['en']=affected_val_en
         updated_json
 
 def json_langu(val_langu,langu):
