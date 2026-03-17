@@ -34,6 +34,10 @@ def git_read_file(fileName):
 def form_file_param(file_txt='data/todo.txt'):
     raw_data_txt=open(file_txt, mode='r').read()
     data_txt=''
+    if 'site_langu' in st.session_state:
+        site_langu=st.session_state.site_langu
+    else:
+        site_langu='en'
     if raw_data_txt is not None:
         textsplit = raw_data_txt.splitlines()
         for x in textsplit:
