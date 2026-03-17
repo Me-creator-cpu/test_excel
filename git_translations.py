@@ -124,37 +124,11 @@ def json_to_frame():
     df2
 
 
-
-    if 1 == 2:
-        subTitle('translations')
-        translations = defaultdict(list)
-        for translation, textid in df:
-            translations[translation].append(textid)
-        translations
-    
-    #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
     
     subTitle('df3')
-    df3=df2.copy()
+    df3=df.T.copy()
     df3.index.name = "textid"
-    data_info(df3)
-    #df3=df2.copy(deep=True)
-    df3.rename(columns={
-        df3.columns[0]: "langu",
-        #df3.columns[1]: "langu"
-    }, inplace=True)
-
-    for i in enumerate(df3.columns):
-        st.write(i)
-
-    #df3=()
-    #i=0
-    #for x in df:
-    #    df3.insert(i, "id", x, allow_duplicates=True)
-    #    df3.insert(i, "en", df[x][0]['en'], allow_duplicates=True)
-    #    df3.insert(i, "fr", df[x][0]['fr'], allow_duplicates=True)
-    #    i=i+1
-        #st.write(x,df[x][0]['en'],df[x][0]['fr'])
+    df3.rename(columns={df3.columns[0]: "langu"}, inplace=True)
     
     df3['en']=df3['langu'].apply(lambda b: json_langu(b,'en'))
     df3['fr']=df3['langu'].apply(lambda b: json_langu(b,'fr'))
@@ -165,7 +139,6 @@ def json_langu(val_langu,langu):
     #val_langu=json.load(val, strict=False)
     ret_val = val_langu[langu]
     return ret_val
-
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
