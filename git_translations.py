@@ -156,10 +156,14 @@ def json_to_frame():
     #    i=i+1
         #st.write(x,df[x][0]['en'],df[x][0]['fr'])
     
-    df3['en']=df3['langu'].apply(lambda b: b )
+    df3['en']=df3['langu'].apply(lambda b: json_langu(b,'en'))
     
     df3
 
+def json_langu(val,langu):
+    val_langu=json.load(val, strict=False)
+    ret_val = val_langu[langu]
+    return ret_val
 
 
 def page_github():
