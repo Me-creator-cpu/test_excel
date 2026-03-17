@@ -105,6 +105,17 @@ def json_to_frame():
     df2=df.T
     df2
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
+    subTitle('df3')
+    df3=st.dataframe(
+        df2,
+        column_config={
+            "textid": st.column_config.TextColumn( "textid", pinned = True ),
+            "langu": st.column_config.TextColumn( "langu", pinned = False ), 
+        },
+        width="stretch",
+        hide_index=None,
+    )
+    df3
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
