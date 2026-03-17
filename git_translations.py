@@ -160,8 +160,8 @@ def json_to_frame():
     
     df3
 
-def json_langu(val,langu):
-    val_langu=json.load(val, strict=False)
+def json_langu(val_langu,langu):
+    #val_langu=json.load(val, strict=False)
     ret_val = val_langu[langu]
     return ret_val
 
