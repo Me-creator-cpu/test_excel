@@ -143,7 +143,7 @@ def json_to_frame():
     edited_rows=None
     if 'edited_rows' in st.session_state:
         edited_rows = st.session_state['edited_rows']
-        
+
     if edited_rows is not None:
         subTitle('edited_rows')
         edited_rows
@@ -161,9 +161,8 @@ def json_langu(val_langu,langu):
     ret_val = val_langu[langu]
     return ret_val
 
-def df_change(val):
+def df_change():
     st.toast('editor_df on_change', icon='ℹ️️', duration='short')
-    return False
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
