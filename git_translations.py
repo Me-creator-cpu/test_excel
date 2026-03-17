@@ -136,11 +136,12 @@ def json_to_frame():
     
     subTitle('df3')
     df3=df2.copy()
+    df3.index.name = "textid"
     data_info(df3)
     #df3=df2.copy(deep=True)
     df3.rename(columns={
-        df3.columns[0]: "textid",
-        df3.columns[1]: "langu"
+        df3.columns[0]: "langu",
+        #df3.columns[1]: "langu"
     }, inplace=True)
 
     for i in enumerate(df3.columns):
