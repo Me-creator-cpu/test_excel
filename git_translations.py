@@ -110,7 +110,7 @@ def json_to_frame():
 
     subTitle('translations')
     translations = defaultdict(list)
-    for translations, textid in df:
+    for translation, textid in df:
         translations[translations].append(textid)
     translations
     
