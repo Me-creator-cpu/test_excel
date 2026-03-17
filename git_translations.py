@@ -48,7 +48,7 @@ def form_file_param(file_txt='data/todo.txt'):
     except:
         lbl='Translations'
     form_file_update = st.form('form_file_update',width='stretch',height='stretch')
-    height = st.slider("Set the height of the text area", 100, 1000, 400)
+    height = st.slider("Set the height of the text area", 100, 1000, 100)
     with form_file_update:
         txt_update = st.text_area(
             label=f'{lbl} {file_txt}',
@@ -89,15 +89,19 @@ def update_file_param(file_txt='data/todo.txt',content=None):
         retval = False
     return retval           
 
+def subTitle(txt):
+    st.subheader(f'{txt}', divider=True)
+
 def json_to_frame():
     with open(json_file, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
     #json_data
     #ret_val = texts_trad['data'][textId][0][langu]
-    st.divider()
+    subTitle('df')
     df = pd.DataFrame(json_data['data'])
     df
     #edited_df = st.data_editor(df.T)
+    subTitle('df2')
     df2=df.T
     df2
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
