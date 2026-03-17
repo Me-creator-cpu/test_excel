@@ -119,10 +119,19 @@ def json_to_frame():
         on_change=df_change
     )
     
+    row_menu = st.columns(2,border=False, width="stretch")
+    with row_menu[0]:
+        if st.button("Cancel changes"):
+            cancel_change()
+    with row_menu[1]:
+        if st.button("Save changes"):
+            cancel_change()            
+
     edited_rows=None
     if 'updated_trad' in st.session_state:
         edited_rows = st.session_state.updated_trad['edited_rows']
 
+    # pour fonction "Save changes"
     if edited_rows is not None:
         subTitle('edited_rows')
         edited_rows
@@ -145,6 +154,13 @@ def df_change():
     if 'updated_trad' in st.session_state:
         edited_rows = st.session_state.updated_trad['edited_rows']    
         st.toast('editor_df on_change', icon='ℹ️️', duration='short')
+
+def cancel_change():
+    if 'updated_trad' in st.session_state:
+        try:
+            del st.session_state['updated_trad']
+        except:
+            return None
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
