@@ -100,25 +100,33 @@ def json_to_frame():
     subTitle('df')
     df = pd.DataFrame(json_data['data'])
     df
-    for x in df:
-        st.write(x,df[x][0]['en'],df[x][0]['fr'])
+
     #edited_df = st.data_editor(df.T)
     subTitle('df2')
     df2=df.T
     df2
+
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
     subTitle('df3')
-    df3=df2.copy()
-    df3=st.dataframe(
-        df3,
-        column_config={
-            "textid": st.column_config.TextColumn( "textid", pinned = True ),
-            "langu": st.column_config.TextColumn( "langu", pinned = False ), 
-        },
-        width="stretch",
-        hide_index=None,
-    )
+    df3=pd.DataFrame()
+    for x in df:
+        df3.insert(x, "en", df[x][0]['en'], allow_duplicates=True)
+        df3.insert(x, "fr", df[x][0]['fr'], allow_duplicates=True)
+        #st.write(x,df[x][0]['en'],df[x][0]['fr'])
     df3
+    
+    if 1 == 2:
+        df3=df2.copy()
+        df3=st.dataframe(
+            df3,
+            column_config={
+                "textid": st.column_config.TextColumn( "textid", pinned = True ),
+                "langu": st.column_config.TextColumn( "langu", pinned = False ), 
+            },
+            width="stretch",
+            hide_index=None,
+        )
+        df3
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
