@@ -163,7 +163,9 @@ def json_langu(val_langu,langu):
     return ret_val
 
 def df_change():
-    st.toast('editor_df on_change', icon='ℹ️️', duration='short')
+    if 'edited_rows' in st.session_state:
+        edited_rows = st.session_state['edited_rows']    
+        st.toast('editor_df on_change', icon='ℹ️️', duration='short')
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
