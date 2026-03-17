@@ -141,8 +141,8 @@ def json_to_frame():
     )
     
     edited_rows=None
-    if 'edited_rows' in st.session_state:
-        edited_rows = st.session_state['edited_rows']
+    if 'updated_trad' in st.session_state:
+        edited_rows = st.session_state.updated_trad['edited_rows']
 
     if edited_rows is not None:
         subTitle('edited_rows')
