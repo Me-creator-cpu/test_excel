@@ -114,7 +114,7 @@ def json_to_frame():
         },
         width="stretch",
         hide_index=None,
-    )
+    ).set_index('textid')
     df3
 
 def page_github():
