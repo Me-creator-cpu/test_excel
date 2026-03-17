@@ -157,6 +157,7 @@ def json_to_frame():
         #st.write(x,df[x][0]['en'],df[x][0]['fr'])
     
     df3['en']=df3['langu'].apply(lambda b: json_langu(b,'en'))
+    df3['fr']=df3['langu'].apply(lambda b: json_langu(b,'fr'))
     
     df3
 
