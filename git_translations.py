@@ -128,6 +128,11 @@ def json_to_frame():
     
     df3
 
+    subTitle('updated_json')
+    updated_json=json_data
+    updated_json['data']['to'][0]['en']='Coucou'
+    updated_json
+
 def json_langu(val_langu,langu):
     #val_langu=json.load(val, strict=False)
     ret_val = val_langu[langu]
