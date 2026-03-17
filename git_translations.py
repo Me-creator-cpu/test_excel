@@ -116,7 +116,7 @@ def json_to_frame():
         df3.insert(i, "fr", df[x][0]['fr'], allow_duplicates=True)
         i=i+1
         #st.write(x,df[x][0]['en'],df[x][0]['fr'])
-    df3
+    #df3
 
     if 1 == 2:
         df3=df2.copy()
