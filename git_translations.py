@@ -125,6 +125,10 @@ def json_to_frame():
         df.columns[0]: "textid",
         df.columns[1]: "langu"
     }, inplace=True)
+
+    for i in enumerate(df3.columns):
+        st.write(i)
+
     #df3=()
     #i=0
     #for x in df:
