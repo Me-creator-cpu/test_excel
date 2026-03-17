@@ -155,19 +155,12 @@ def json_to_frame():
     #    df3.insert(i, "fr", df[x][0]['fr'], allow_duplicates=True)
     #    i=i+1
         #st.write(x,df[x][0]['en'],df[x][0]['fr'])
+    
+    df3['en']=df3['langu'].apply(lambda b: json.load(b, strict=False)[0]['en'] )
+    
     df3
 
-    if 1 == 1:
-        df3=st.dataframe(
-            df3,
-            column_config={
-                "textid": st.column_config.TextColumn( "textid", pinned = True ),
-                "langu": st.column_config.TextColumn( "langu", pinned = False ), 
-            },
-            width="stretch",
-            hide_index=None,
-        )
-        df3
+
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
