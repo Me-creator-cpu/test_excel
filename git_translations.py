@@ -106,15 +106,16 @@ def json_to_frame():
     df2
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
     subTitle('df3')
+    df3=df2.copy()
     df3=st.dataframe(
-        df2,
+        df3,
         column_config={
             "textid": st.column_config.TextColumn( "textid", pinned = True ),
             "langu": st.column_config.TextColumn( "langu", pinned = False ), 
         },
         width="stretch",
         hide_index=None,
-    ).set_index('textid')
+    )
     df3
 
 def page_github():
