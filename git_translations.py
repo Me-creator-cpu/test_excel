@@ -97,7 +97,9 @@ def json_to_frame():
     st.divider()
     df = pd.DataFrame(json_data['data'])
     df
-    edited_df = st.data_editor(df.T)
+    #edited_df = st.data_editor(df.T)
+    df2=df.T
+    df2
     #pivoted_df = df.T.pivot(index='Agent', columns='Region', values='Sales')
 
 def page_github():
