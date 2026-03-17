@@ -139,8 +139,11 @@ def json_to_frame():
         num_rows="dynamic",
         on_change=df_change
     )
-
-    edited_rows = st.session_state['edited_rows']
+    
+    edited_rows=None
+    if 'edited_rows' in st.session_state:
+        edited_rows = st.session_state['edited_rows']
+        
     if edited_rows is not None:
         subTitle('edited_rows')
         edited_rows
