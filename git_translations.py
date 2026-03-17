@@ -93,9 +93,10 @@ def json_to_frame():
     with open(json_file, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
     json_data
+    #ret_val = texts_trad['data'][textId][0][langu]
     st.divider()
     df = pd.DataFrame(json_data['data'])
-    edited_df = st.data_editor(df)    
+    edited_df = st.data_editor(df.T)    
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
