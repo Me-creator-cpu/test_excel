@@ -51,7 +51,7 @@ def form_file_param(file_txt='data/todo.txt'):
         lbl='Translations'
     #with st.expander(f'{lbl}', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
     form_file_update = st.form('form_file_update',width='stretch',height='stretch')
-    height = st.slider("Set the height of the text area", 100, 1000, 100)
+    height = st.slider("Set the height of the text area", 100, 1000, 400)
     with form_file_update:
         txt_update = st.text_area(
             label=f'{lbl} {file_txt}',
@@ -140,10 +140,11 @@ def json_to_frame():
         affected_val_fr = edited_rows[affected_index]['fr']
         st.toast(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}', icon='ℹ️️', duration='short')
 
-    subTitle('updated_json')
-    updated_json=json_data
-    updated_json['data']['to'][0]['en']='Coucou'
-    updated_json
+        subTitle('updated_json')
+        updated_json=json_data
+        #updated_json['data']['to'][0]['en']='Coucou'
+        updated_json['data'][affected_index][0]['en']=affected_val_en
+        updated_json
 
 def json_langu(val_langu,langu):
     #val_langu=json.load(val, strict=False)
