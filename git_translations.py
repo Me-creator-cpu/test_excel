@@ -91,6 +91,21 @@ def update_file_param(file_txt='data/todo.txt',content=None):
         retval = False
     return retval           
 
+def rename_col_by_index(dataframe, index_mapping):
+    """
+    # Renaming columns using the function
+    new_column_mapping = {0: 'new_id', 2: 'new_city'}
+    df = rename_col_by_index(df, new_column_mapping)
+    """
+    dataframe.columns = [index_mapping.get(i, col) for i, col in enumerate(dataframe.columns)]
+    return dataframe
+
+def data_info(df):
+    tabs_cols=df.columns.values.tolist()
+    tabs_cols
+    tabs_idx=df.index.tolist()
+    tabs_idx    
+
 def subTitle(txt):
     st.subheader(f'{txt}', divider=True)
 
@@ -121,6 +136,7 @@ def json_to_frame():
     
     subTitle('df3')
     df3=df2.copy()
+    data_info(df3)
     #df3=df2.copy(deep=True)
     df3.rename(columns={
         df3.columns[0]: "textid",
