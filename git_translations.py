@@ -106,6 +106,8 @@ def subTitle(txt):
     st.subheader(f'{txt}', divider=True)           
 
 def json_to_frame():
+    if 'edited_rows' in st.session_state:
+        json_data=None
     with open(json_file, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
     df = pd.DataFrame(json_data['data'])    
@@ -134,8 +136,6 @@ def json_to_frame():
     with row_menu[0]:
         if st.button("Cancel changes"):
             cancel_change()
-            json_data = json.load(f, strict=False) 
-            df = pd.DataFrame(json_data['data'])
     with row_menu[1]:
         if st.button("Save changes"):
             cancel_change()            
@@ -185,6 +185,11 @@ def cancel_change():
     if 'df_edit' in st.session_state:
         try:
             del st.session_state['df_edit']
+        except:
+            dummy=None
+    if 'edited_rows' in st.session_state:
+        try:
+            del st.session_state['edited_rows']
         except:
             dummy=None
 
