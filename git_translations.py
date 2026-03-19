@@ -169,10 +169,10 @@ def json_to_frame():
             #    txt_fr=False                
 
         subTitle('updated_json')
-        data_txt=text_crlf(updated_json)
+        #data_txt=text_crlf(updated_json)
         st.text_area(
             label=f'updated_json',
-            value=data_txt,
+            value=updated_json,
             label_visibility='visible',
             height=int(400)
             )
