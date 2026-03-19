@@ -148,7 +148,7 @@ def json_to_frame():
         res
         res2 = df3.iloc[11]
         res2
-        res3 = df3.index
+        res3 = df3.index[11]
         res3
 
         subTitle('updated_json')
