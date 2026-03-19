@@ -151,16 +151,20 @@ def json_to_frame():
             res3
             for j in ['en','fr']:
                 st.write(j)
-            try:
-                affected_val_en = edited_rows[i]['en']
-                updated_json['data'][res3][0]['en']=edited_rows[i]['en']
-            except:
-                txt_en=False
-            try:
-                affected_val_fr = edited_rows[i]['fr']
-                updated_json['data'][res3][0]['fr']=edited_rows[i]['fr']
-            except:
-                txt_fr=False                
+                try:
+                    updated_json['data'][res3][0][j]=edited_rows[i][j]
+                except:
+                    txt_upd=False                
+            #try:
+            #    affected_val_en = edited_rows[i]['en']
+            #    updated_json['data'][res3][0]['en']=edited_rows[i]['en']
+            #except:
+            #    txt_en=False
+            ##try:
+            #    affected_val_fr = edited_rows[i]['fr']
+            #    updated_json['data'][res3][0]['fr']=edited_rows[i]['fr']
+            #except:
+            #    txt_fr=False                
 
         subTitle('updated_json')
         st.text_area(
