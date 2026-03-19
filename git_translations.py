@@ -113,7 +113,7 @@ def json_to_frame():
         st.session_state.df_edit=df3
 
     editor_df = st.data_editor(
-        df3, 
+        df3['textid','en','fr'], 
         key="updated_trad", 
         num_rows="dynamic",
         on_change=df_change
