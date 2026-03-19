@@ -107,7 +107,7 @@ def json_to_frame():
     df3['en']=df3['langu'].apply(lambda b: json_langu(b,'en'))
     df3['fr']=df3['langu'].apply(lambda b: json_langu(b,'fr'))
 
-    subTitle('editor_df')
+    subTitle('Table editor')
     
     if 'df_edit' not in st.session_state:
         st.session_state.df_edit=df3
@@ -155,9 +155,12 @@ def json_to_frame():
             updated_json['data'][res3][0]['fr']=affected_val_fr
 
         subTitle('updated_json')
-        #updated_json=json_data
-        #updated_json['data'][res3][0]['en']='Coucou'
-        updated_json
+        st.text_area(
+            label=f'updated_json',
+            value=updated_json,
+            label_visibility='visible',
+            height=int(400)
+            )
 
 def json_langu(val_langu,langu):
     #val_langu=json.load(val, strict=False)
@@ -180,7 +183,6 @@ def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
     tab1, tab2 = st.tabs(["Table", "RAW"])
     with tab1:
-        subTitle('Table editor')
         json_to_frame()
     with tab2:
         subTitle('JSON file content')
