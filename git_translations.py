@@ -153,9 +153,9 @@ def json_to_frame():
                 except:
                     txt_upd=False            
 
-        with st.expander(f'Update to save', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
+        with st.expander('Update to save', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
             st.text_area(
-                label=f'JSON new',
+                label='JSON new',
                 value=updated_json,
                 label_visibility='visible',
                 height=int(400)
