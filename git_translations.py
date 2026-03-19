@@ -139,7 +139,7 @@ def json_to_frame():
         affected_val_en = edited_rows[affected_index]['en']
         affected_val_fr = edited_rows[affected_index]['fr']
         #st.toast(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}', icon='ℹ️️', duration='short')
-        filtered_df = df.copy().iloc[affected_index]
+        filtered_df = df.T.copy().iloc[affected_index]
         st.write(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}')
         filtered_df
         subTitle('updated_json')
