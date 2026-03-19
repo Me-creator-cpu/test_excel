@@ -121,7 +121,7 @@ idx_equip_nov=9
 #✨
 data = { #                    0                  1                  2                    3                4                        5                    6                    7                8                 9
         "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs",        "Valeurs",      "Valeurs"],
-        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss",               "Boss data",      "Equipments",   "Equipments EXplorer"],
+        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss",               "Boss data",      "Equipments",   "Equipments Explorer"],
         "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C",             "D:E",                "H:Q",            "Z:AA",         "AC:AD"],
         "SkipRows":       [0,                1,                 1,                  1,                  0,                        0,                 1,                    1,                1,              1],
         "UpToRow":        [41,               302,               31,                 224,                4,                        7,                 5,                    5,                12,             12],
