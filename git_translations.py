@@ -149,7 +149,7 @@ def json_to_frame():
             #st.write(f'i={i}')
             res3 = df3.index[i]
             res3
-            for j in edited_rows[i].columns.tolist():
+            for j in df3.columns.tolist():
                 st.write(j)
             try:
                 affected_val_en = edited_rows[i]['en']
