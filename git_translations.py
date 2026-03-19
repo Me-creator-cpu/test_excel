@@ -110,6 +110,7 @@ def json_to_frame():
         json_data=None
         df=None
         df3=None
+        editor_df=None
     with open(json_file, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
     df = pd.DataFrame(json_data['data'])    
