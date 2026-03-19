@@ -148,6 +148,9 @@ def json_to_frame():
         res
         res2 = df3.iloc[11]
         res2
+        res3 = df3.keys()
+        print(res3)
+        
         subTitle('updated_json')
         updated_json=json_data
         updated_json['data']['to'][0]['en']='Coucou'
