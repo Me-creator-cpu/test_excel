@@ -144,7 +144,7 @@ def json_to_frame():
         st.write(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}')
         subTitle('res3')
         for i in edited_rows.keys():
-            st.write(f'i={i}, value={edited_rows.keys()[i]}')
+            st.write(f'i={i}')
         res3 = df3.index[11]
         res3
 
