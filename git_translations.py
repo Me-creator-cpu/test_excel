@@ -148,9 +148,9 @@ def json_to_frame():
         for i in edited_rows.keys():
             #st.write(f'i={i}')
             res3 = df3.index[i]
-            res3
+            #res3
             for j in ['en','fr']:
-                st.write(j)
+                #st.write(j)
                 try:
                     updated_json['data'][res3][0][j]=edited_rows[i][j]
                 except:
