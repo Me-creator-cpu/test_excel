@@ -6,3 +6,4 @@ openpyxl
 extra_streamlit_components
 matplotlib
 PyGithub
+uuid
