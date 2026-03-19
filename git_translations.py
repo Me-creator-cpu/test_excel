@@ -134,16 +134,8 @@ def json_to_frame():
 
     # pour fonction "Save changes"
     if edited_rows is not None:
-        subTitle('edited_rows')
-        edited_rows
-        #affected_index = list(edited_rows.keys())[0]
-        #affected_val_en = edited_rows[affected_index]['en']
-        #affected_val_fr = edited_rows[affected_index]['fr']
-        #st.toast(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}', icon='ℹ️️', duration='short')
-        #filtered_df = df.T.copy().iloc[affected_index]
-        #filtered_df = df.T.copy().iloc[11]
-        #st.write(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}')
-        subTitle('res3')
+        #subTitle('edited_rows')
+        #edited_rows
         updated_json=json_data
         for i in edited_rows.keys():
             #st.write(f'i={i}')
