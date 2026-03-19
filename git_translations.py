@@ -143,6 +143,8 @@ def json_to_frame():
         filtered_df = df.T.copy().iloc[11]
         st.write(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}')
         subTitle('res3')
+        for i in edited_rows.keys():
+            st.write(f'i={i}, value={edited_rows.keys()[i]}')
         res3 = df3.index[11]
         res3
 
