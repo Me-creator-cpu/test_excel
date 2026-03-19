@@ -95,6 +95,7 @@ cols_stars = ['Stars level', 'Unit Cost', 'Total']
 cols_boss = ['Stars level', 'Unit Cost', 'Total']
 cols_boss_data = ['Name','Type', 'Level', 'Stars','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','URL']
 cols_equip = ['Level', 'Opus pearls']
+cols_equip_nov = ['Level', 'Stars']
 
 df_pal_data=None
 df_costs_exp=None
@@ -105,6 +106,7 @@ df_costs_stars=None
 df_costs_boss=None
 df_boss_data=None
 df_equip_data=None
+df_equip_nov=None
 
 idx_palmon=0
 idx_costs=1
@@ -115,16 +117,17 @@ idx_stars=5
 idx_boss=6
 idx_boss_data=7
 idx_equip=8
+idx_equip_nov=9
 #✨
-data = { #                    0                  1                  2                    3                4                        5                    6                    7                8
-        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs",        "Valeurs"],
-        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss",               "Boss data",      "Equipments"],
-        "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C",             "D:E",                "H:Q",            "Z:AA"],
-        "SkipRows":       [0,                1,                 1,                  1,                  0,                        0,                 1,                    1,                1],
-        "UpToRow":        [41,               302,               31,                 224,                4,                        7,                 5,                    5,                12],
-        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        cols_boss,            cols_boss_data,   cols_equip],
-        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss,        df_boss_data,     df_equip_data],
-        "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Upgrade costs",      "Boss details",   "Upgrade costs"],
+data = { #                    0                  1                  2                    3                4                        5                    6                    7                8                 9
+        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs",        "Valeurs",      "Valeurs"],
+        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss",               "Boss data",      "Equipments",   "Equipments EXplorer"],
+        "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C",             "D:E",                "H:Q",            "Z:AA",         "AC:AD"],
+        "SkipRows":       [0,                1,                 1,                  1,                  0,                        0,                 1,                    1,                1,              1],
+        "UpToRow":        [41,               302,               31,                 224,                4,                        7,                 5,                    5,                12,             12],
+        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        cols_boss,            cols_boss_data,   cols_equip,     cols_equip_nov],
+        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss,        df_boss_data,     df_equip_data,  df_equip_nov],
+        "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Upgrade costs",      "Boss details",   "Upgrade costs","Upgrade costs"],
        }
 df_xls = pd.DataFrame(data)
 data_flags={'en':flag_en,'fr':flag_fr}
