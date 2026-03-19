@@ -194,6 +194,7 @@ def cancel_change():
             del st.session_state['edited_rows']
         except:
             dummy=None
+    st.rerun()
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
