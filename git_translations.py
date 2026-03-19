@@ -142,6 +142,7 @@ def json_to_frame():
         #filtered_df = df.T.copy().iloc[affected_index]
         filtered_df = df.T.copy().iloc[11]
         st.write(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}')
+        subTitle('filtered_df')
         filtered_df
         res = filtered_df.keys()
         res
