@@ -142,7 +142,8 @@ def json_to_frame():
         #filtered_df = df.T.copy().iloc[affected_index]
         filtered_df = df.T.copy().iloc[11]
         st.write(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}')
-        filtered_df.columns[1]
+        filtered_df
+        list(filtered_df.columns)
         subTitle('updated_json')
         updated_json=json_data
         updated_json['data']['to'][0]['en']='Coucou'
