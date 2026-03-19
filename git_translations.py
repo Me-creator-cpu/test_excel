@@ -134,6 +134,8 @@ def json_to_frame():
     with row_menu[0]:
         if st.button("Cancel changes"):
             cancel_change()
+            json_data = json.load(f, strict=False) 
+            df = pd.DataFrame(json_data['data'])
     with row_menu[1]:
         if st.button("Save changes"):
             cancel_change()            
