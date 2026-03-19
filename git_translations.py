@@ -179,7 +179,13 @@ def cancel_change():
         try:
             del st.session_state['updated_trad']
         except:
-            return None
+            dummy=None
+    if 'df_edit' in st.session_state:
+        try:
+            del st.session_state['df_edit']
+        except:
+            dummy=None
+    return dummy
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
@@ -189,7 +195,5 @@ def page_github():
     with tab2:
         subTitle('JSON file content')
         form_file_param(file_txt=json_file)    
-    #form_file_param(file_txt=json_file)
-    #json_to_frame()
 
 page_github()
