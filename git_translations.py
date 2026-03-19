@@ -146,7 +146,7 @@ def json_to_frame():
         filtered_df
         res = filtered_df.keys()
         res
-        res2 = filtered_df.columns.values
+        res2 = df3.iloc[affected_index]
         res2
         subTitle('updated_json')
         updated_json=json_data
