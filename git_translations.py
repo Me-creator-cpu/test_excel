@@ -143,14 +143,19 @@ def json_to_frame():
         filtered_df = df.T.copy().iloc[11]
         st.write(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}')
         subTitle('res3')
+        updated_json=json_data
         for i in edited_rows.keys():
             st.write(f'i={i}')
             res3 = df3.index[i]
             res3
+            affected_val_en = edited_rows[i]['en']
+            affected_val_fr = edited_rows[i]['fr']
+            updated_json['data'][res3][0]['en']=affected_val_en
+            updated_json['data'][res3][0]['fr']=affected_val_fr
 
         subTitle('updated_json')
-        updated_json=json_data
-        updated_json['data'][res3][0]['en']='Coucou'
+        #updated_json=json_data
+        #updated_json['data'][res3][0]['en']='Coucou'
         updated_json
 
 def json_langu(val_langu,langu):
