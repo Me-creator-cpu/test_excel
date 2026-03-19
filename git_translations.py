@@ -144,38 +144,22 @@ def json_to_frame():
 
     # pour fonction "Save changes"
     if edited_rows is not None:
-        #subTitle('edited_rows')
-        #edited_rows
         updated_json=json_data
         for i in edited_rows.keys():
-            #st.write(f'i={i}')
             res3 = df3.index[i]
-            #res3
             for j in ['en','fr']:
-                #st.write(j)
                 try:
                     updated_json['data'][res3][0][j]=edited_rows[i][j]
                 except:
-                    txt_upd=False                
-            #try:
-            #    affected_val_en = edited_rows[i]['en']
-            #    updated_json['data'][res3][0]['en']=edited_rows[i]['en']
-            #except:
-            #    txt_en=False
-            ##try:
-            #    affected_val_fr = edited_rows[i]['fr']
-            #    updated_json['data'][res3][0]['fr']=edited_rows[i]['fr']
-            #except:
-            #    txt_fr=False                
+                    txt_upd=False            
 
-        subTitle('updated_json')
-        #data_txt=text_crlf(updated_json)
-        st.text_area(
-            label=f'updated_json',
-            value=updated_json,
-            label_visibility='visible',
-            height=int(400)
-            )
+        with st.expander(f'Update to save', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
+            st.text_area(
+                label=f'JSON new',
+                value=updated_json,
+                label_visibility='visible',
+                height=int(400)
+                )
 
 def json_langu(val_langu,langu):
     #val_langu=json.load(val, strict=False)
