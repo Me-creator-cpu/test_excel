@@ -109,6 +109,7 @@ def json_to_frame():
     if 'edited_rows' not in st.session_state:
         json_data=None
         df=None
+        df3=None
     with open(json_file, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
     df = pd.DataFrame(json_data['data'])    
@@ -193,7 +194,6 @@ def cancel_change():
             del st.session_state['edited_rows']
         except:
             dummy=None
-    json_to_frame()
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
