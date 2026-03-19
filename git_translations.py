@@ -8,12 +8,16 @@ from github import Github
 import base64
 import json
 from collections import defaultdict
+import uuid
 
 
 json_file='./textes.json'
 site_langu='en'
 if 'site_langu' in st.session_state:
     site_langu=st.session_state.site_langu
+
+if 'dek' not in st.session_state:
+    st.session_state.dek = str(uuid.uuid4())
 
 def write_data(sInfo, data):
     with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
@@ -102,6 +106,12 @@ def update_file_param(file_txt='data/todo.txt',content=None):
         retval = False
     return retval           
 
+def update_value():
+    """
+    Located on top of the data editor.
+    """
+    st.session_state.dek = str(uuid.uuid4())
+
 def subTitle(txt):
     st.subheader(f'{txt}', divider=True)           
 
@@ -129,7 +139,8 @@ def json_to_frame():
 
     editor_df = st.data_editor(
         df3, 
-        key="updated_trad",
+        key=st.session_state.dek
+        #key="updated_trad",
         column_config={"langu": None},
         num_rows="dynamic",
         on_change=df_change
@@ -144,8 +155,10 @@ def json_to_frame():
             cancel_change()            
 
     edited_rows=None
-    if 'updated_trad' in st.session_state:
-        edited_rows = st.session_state.updated_trad['edited_rows']
+    #if 'updated_trad' in st.session_state:
+    #   edited_rows = st.session_state.updated_trad['edited_rows']
+    if 'dek' in st.session_state:
+        edited_rows = st.session_state.dek['edited_rows']
 
     # pour fonction "Save changes"
     if edited_rows is not None:
@@ -174,9 +187,14 @@ def json_langu(val_langu,langu):
     ret_val = val_langu[langu]
     return ret_val
 
+#def df_change():
+#    if 'updated_trad' in st.session_state:
+#        edited_rows = st.session_state.updated_trad['edited_rows']    
+#        st.toast('editor_df on_change', icon='ℹ️️', duration='short')
+
 def df_change():
-    if 'updated_trad' in st.session_state:
-        edited_rows = st.session_state.updated_trad['edited_rows']    
+    if 'dek' in st.session_state:
+        edited_rows = st.session_state.dek['edited_rows']    
         st.toast('editor_df on_change', icon='ℹ️️', duration='short')
 
 def cancel_change():
@@ -195,6 +213,11 @@ def cancel_change():
             del st.session_state['edited_rows']
         except:
             dummy=None
+    if 'dek' in st.session_state:
+        try:
+            del st.session_state['dek']
+        except:
+            dummy=None       
     st.rerun()
 
 def page_github():
