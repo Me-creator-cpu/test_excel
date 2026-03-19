@@ -1092,7 +1092,9 @@ def menu_tab_show(idx):
         case 7:    #idx_boss_data
             menu_tab_boss_detail()   
         case 8:    #idx_equip
-            menu_tab_equip()            
+            menu_tab_equip()
+        case 9:    #idx_equip_nov
+            menu_tab_equip_nov()                           
         case 100:
             menu_tab_dashboards()
         case 150:
@@ -1178,6 +1180,13 @@ def menu_tab_equip():
     st.header("✨"+df_xls["DisplayName"][idx_equip]) 
     df = df_xls["DataFrame"][idx_equip]
     range_level_min, range_level_max = build_chart_bar(df,'Level','Opus pearls','Costs from level:',int(df['Level'].min()),int(df['Level'].max()),with_slider=True, with_switch=False)
+    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
+        build_table_any(df.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
+
+def menu_tab_equip_nov()
+    st.header("✨"+df_xls["DisplayName"][idx_equip_nov]) 
+    df = df_xls["DataFrame"][idx_equip]
+    range_level_min, range_level_max = build_chart_bar(df,'Level','Stars','Costs from level:',int(df['Level'].min()),int(df['Level'].max()),with_slider=True, with_switch=False)
     with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
 
