@@ -185,7 +185,6 @@ def cancel_change():
             del st.session_state['df_edit']
         except:
             dummy=None
-    return dummy
 
 def page_github():
     st.subheader(get_text_trad(site_langu,'menu_git_translate'), divider=True)
