@@ -136,23 +136,29 @@ def json_to_frame():
     if edited_rows is not None:
         subTitle('edited_rows')
         edited_rows
-        affected_index = list(edited_rows.keys())[0]
-        affected_val_en = edited_rows[affected_index]['en']
-        affected_val_fr = edited_rows[affected_index]['fr']
+        #affected_index = list(edited_rows.keys())[0]
+        #affected_val_en = edited_rows[affected_index]['en']
+        #affected_val_fr = edited_rows[affected_index]['fr']
         #st.toast(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}', icon='ℹ️️', duration='short')
         #filtered_df = df.T.copy().iloc[affected_index]
-        filtered_df = df.T.copy().iloc[11]
-        st.write(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}')
+        #filtered_df = df.T.copy().iloc[11]
+        #st.write(f'index:{affected_index},en:{affected_val_en},fr:{affected_val_fr}')
         subTitle('res3')
         updated_json=json_data
         for i in edited_rows.keys():
-            st.write(f'i={i}')
+            #st.write(f'i={i}')
             res3 = df3.index[i]
             res3
-            affected_val_en = edited_rows[i]['en']
-            affected_val_fr = edited_rows[i]['fr']
-            updated_json['data'][res3][0]['en']=affected_val_en
-            updated_json['data'][res3][0]['fr']=affected_val_fr
+            try:
+                affected_val_en = edited_rows[i]['en']
+                updated_json['data'][res3][0]['en']=edited_rows[i]['en']
+            except:
+                txt_en=False
+            try:
+                affected_val_fr = edited_rows[i]['fr']
+                updated_json['data'][res3][0]['fr']=edited_rows[i]['fr']
+            except:
+                txt_fr=False                
 
         subTitle('updated_json')
         st.text_area(
