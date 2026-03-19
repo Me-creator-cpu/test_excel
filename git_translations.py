@@ -145,8 +145,8 @@ def json_to_frame():
         subTitle('res3')
         for i in edited_rows.keys():
             st.write(f'i={i}')
-        res3 = df3.index[11]
-        res3
+            res3 = df3.index[i]
+            res3
 
         subTitle('updated_json')
         updated_json=json_data
