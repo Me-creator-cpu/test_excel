@@ -38,13 +38,23 @@ def git_read_file(fileName):
         content = 'Test content'
         return content  
 
-def form_file_param(file_txt='data/todo.txt'):
-    raw_data_txt=open(file_txt, mode='r').read()
+def text_crlf(raw_data_txt):
     data_txt=''
     if raw_data_txt is not None:
         textsplit = raw_data_txt.splitlines()
         for x in textsplit:
             data_txt += f'{x}\n'
+    return data_txt
+
+def form_file_param(file_txt='data/todo.txt'):
+    raw_data_txt=open(file_txt, mode='r').read()
+    data_txt=''
+    #if raw_data_txt is not None:
+    #    textsplit = raw_data_txt.splitlines()
+    #    for x in textsplit:
+    #        data_txt += f'{x}\n'
+    data_txt=text_crlf(raw_data_txt)
+    
     try:
         lbl=get_text_trad(site_langu,'file_update')
     except:
@@ -159,9 +169,10 @@ def json_to_frame():
             #    txt_fr=False                
 
         subTitle('updated_json')
+        data_txt=text_crlf(updated_json)
         st.text_area(
             label=f'updated_json',
-            value=updated_json,
+            value=data_txt,
             label_visibility='visible',
             height=int(400)
             )
