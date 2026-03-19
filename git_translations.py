@@ -106,8 +106,9 @@ def subTitle(txt):
     st.subheader(f'{txt}', divider=True)           
 
 def json_to_frame():
-    if 'edited_rows' in st.session_state:
+    if 'edited_rows' not in st.session_state:
         json_data=None
+        df=None
     with open(json_file, encoding='utf-8', errors='ignore') as f:
         json_data = json.load(f, strict=False) 
     df = pd.DataFrame(json_data['data'])    
