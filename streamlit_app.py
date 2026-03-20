@@ -333,7 +333,7 @@ def key_values(key):
 
 def build_menu_v2():
     for m in data_menu_v2:
-        st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}', name={key_menu(m)})
+        st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}, name={key_menu(m)}')
         for sm in key_values(m):
             subtab = df_xls["DisplayName"][sm]
             st.write(f'menu={m}, submenu={(sm)}, name={subtab}')
