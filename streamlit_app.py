@@ -133,6 +133,13 @@ data = { #                    0                  1                  2           
         "MenuParent":     [idx_palmon,       idx_cal,           idx_cal,            idx_cal,            idx_info,                 None,              idx_boss,             idx_boss,         idx_cal,        idx_cal],
        }
 
+data_menu_rootv2={
+        "m0":   "Palmons"
+        "m50":  "Calculator"
+        "m60":  "Information"
+        "m6":   "Boss"
+        }
+
 data_menu_v2={
         "m0":   {idx_palmon},                       #idx_palmon
         "m50":  {idx_costs,idx_comp,idx_mut},       #idx_cal
@@ -310,21 +317,22 @@ def test_df_xls():
         with cell2:
             st.write(df_xls[i][2])
 
-def key_values(key):
+def key_values(key,lst=data_menu_v2):
     try:
-        ret_val=data_menu_v2.get(key)
+        ret_val=lst.get(key)
     except:
         ret_val=None
     return ret_val
 
 def build_menu_v2():
     for m in data_menu_v2:
-        st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}')
+        st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}', name={key_values(m,data_menu_rootv2)})
         for sm in key_values(m):
             subtab = df_xls["DisplayName"][sm]
             st.write(f'menu={m}, submenu={(sm)}, name={subtab}')
             
     #data_info(df)
+    #data_menu_rootv2
 
 
 def is_mobile():
