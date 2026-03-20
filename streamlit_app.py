@@ -134,9 +134,9 @@ data = { #                    0                  1                  2           
        }
 
 data_menu_rootv2={
-        "m0":   "Palmons"
-        "m50":  "Calculator"
-        "m60":  "Information"
+        "m0":   "Palmons",
+        "m50":  "Calculator",
+        "m60":  "Information",
         "m6":   "Boss"
         }
 
