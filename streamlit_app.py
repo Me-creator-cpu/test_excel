@@ -319,9 +319,11 @@ def key_values(key):
 
 def build_menu_v2():
     for m in data_menu_v2:
-        st.write(f'menu={m}, value={key_values(m)}')
+        st.write(f'menu={m}, value={key_values(m)}, nb tabs={if len(key_values(m))}')
         for sm in key_values(m):
             st.write(f'menu={m}, submenu={(sm)}')
+    #data_info(df)
+
 
 def is_mobile():
     if st.context:
