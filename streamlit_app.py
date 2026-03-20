@@ -317,16 +317,23 @@ def test_df_xls():
         with cell2:
             st.write(df_xls[i][2])
 
-def key_values(key,lst=data_menu_v2):
+def key_menu(key):
     try:
-        ret_val=lst.get(key)
+        ret_val=data_menu_rootv2.get(key)
+    except:
+        ret_val=None
+    return ret_val
+
+def key_values(key):
+    try:
+        ret_val=data_menu_v2.get(key)
     except:
         ret_val=None
     return ret_val
 
 def build_menu_v2():
     for m in data_menu_v2:
-        st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}', name={key_values(m,data_menu_rootv2)})
+        st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}', name={key_menu(m)})
         for sm in key_values(m):
             subtab = df_xls["DisplayName"][sm]
             st.write(f'menu={m}, submenu={(sm)}, name={subtab}')
