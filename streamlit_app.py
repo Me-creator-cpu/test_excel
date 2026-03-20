@@ -118,6 +118,8 @@ idx_boss=6
 idx_boss_data=7
 idx_equip=8
 idx_equip_nov=9
+idx_cal=50
+idx_info=60
 #✨
 data = { #                    0                  1                  2                    3                4                        5                    6                    7                8                 9
         "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs",        "Valeurs",      "Valeurs"],
@@ -128,14 +130,15 @@ data = { #                    0                  1                  2           
         "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        cols_boss,            cols_boss_data,   cols_equip,     cols_equip_nov],
         "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss,        df_boss_data,     df_equip_data,  df_equip_nov],
         "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Upgrade costs",      "Boss details",   "Upgrade costs","Upgrade costs"],
-        "MenuCat":        ["palmon",         "calc",            "calc",             "calc",             "info",                   "info",            "boss",               "boss",           "calc",         "calc"],
+        "MenuParent":     [idx_palmon,       idx_cal,           idx_cal,            idx_cal,            idx_info,                 None,              idx_boss,             idx_boss,         idx_cal,        idx_cal],
        }
 
-data_menu = {
-        "main": ["palmon","calc",       "boss","info"],
-        "title":["Palmon","Calculator", "Boss","Information"],
-        "sub":  ["",      "",           "",    ""]
-    }
+data_menu_v2={
+        "m0":   {idx_palmon}                        #idx_palmon
+        "m50":  {idx_costs,idx_comp,idx_mut}        #idx_cal
+        "m60":  {idx_val,idx_equip,idx_equip_nov}   #idx_info
+        "m6":   {idx_boss,idx_boss_data}            #idx_boss
+        }
 
 df_xls = pd.DataFrame(data)
 data_flags={'en':flag_en,'fr':flag_fr}
