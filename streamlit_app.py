@@ -134,9 +134,9 @@ data = { #                    0                  1                  2           
        }
 
 data_menu_v2={
-        "m0":   {idx_palmon}                        #idx_palmon
-        "m50":  {idx_costs,idx_comp,idx_mut}        #idx_cal
-        "m60":  {idx_val,idx_equip,idx_equip_nov}   #idx_info
+        "m0":   {idx_palmon},                       #idx_palmon
+        "m50":  {idx_costs,idx_comp,idx_mut},       #idx_cal
+        "m60":  {idx_val,idx_equip,idx_equip_nov},  #idx_info
         "m6":   {idx_boss,idx_boss_data}            #idx_boss
         }
 
@@ -1722,7 +1722,7 @@ def pg_options():
 
 def page_tests():
     build_menu_v2()
-    
+
 def pg_tips_img():
     st.subheader('Tips', divider=True)
     for x in os.listdir('.//data'):
