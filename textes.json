@@ -4,6 +4,7 @@
     "menu_home": [{"en": "Home","fr": "Home"}],
     "menu_home_1": [{"en": "Home","fr": "Home"}],
     "menu_resources": [{"en": "Resources","fr": "Ressources"}],
+    "menu_myteam": [{"en": "My team","fr": "Mon équipe"}],
     "menu_info": [{"en": "Information","fr": "Information"}],
     "menu_info_device": [{"en": "Device info","fr": "Info matériel"}],
     "menu_info_os": [{"en": "OS info","fr": "Info OS"}],
