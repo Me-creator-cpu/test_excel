@@ -310,6 +310,17 @@ def test_df_xls():
         with cell2:
             st.write(df_xls[i][2])
 
+def key_values(key):
+    try:
+        ret_val=data_menu_v2.get(key)
+    except:
+        ret_val=None
+    return ret_val
+
+def build_menu_v2():
+    for m in data_menu_v2:
+        st.write(f'menu {m}')
+
 def is_mobile():
     if st.context:
         headers = st.context.headers
@@ -1709,6 +1720,9 @@ def pg_options():
         if st.button("Get issues"):
             test_github_issues()   
 
+def page_tests():
+    build_menu_v2()
+    
 def pg_tips_img():
     st.subheader('Tips', divider=True)
     for x in os.listdir('.//data'):
@@ -2051,7 +2065,8 @@ pages = {
         st.Page(pg_options, title=get_text_trad(site_langu,'menu_options'),icon="⚙️"), #🛠️
         st.Page('./git_translations.py', title=get_text_trad(site_langu,'menu_git_translate'),icon="🛠️"),
         st.Page("./tests/test_eval.py", title="Tests",icon="🛠️"),
-        st.Page("./tests/test2_github.py", title="Test Github",icon="🛠️")
+        st.Page("./tests/test2_github.py", title="Test Github",icon="🛠️"),
+        st.Page(page_tests, title="Test Python",icon="🛠️")
     ],    
 }
 pg = st.navigation(
