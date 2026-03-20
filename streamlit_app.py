@@ -319,7 +319,7 @@ def key_values(key):
 
 def build_menu_v2():
     for m in data_menu_v2:
-        st.write(f'menu {m}')
+        st.write(f'menu={m}, value={key_values(m)}')
 
 def is_mobile():
     if st.context:
