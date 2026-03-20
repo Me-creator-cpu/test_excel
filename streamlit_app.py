@@ -128,7 +128,15 @@ data = { #                    0                  1                  2           
         "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        cols_boss,            cols_boss_data,   cols_equip,     cols_equip_nov],
         "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss,        df_boss_data,     df_equip_data,  df_equip_nov],
         "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Upgrade costs",      "Boss details",   "Upgrade costs","Upgrade costs"],
+        "MenuCat":        ["palmon",         "calc",            "calc",             "calc",             "info",                   "info",            "boss",               "boss",           "calc",         "calc"],
        }
+
+data_menu = {
+        "main": ["palmon","calc",       "boss","info"],
+        "title":["Palmon","Calculator", "Boss","Information"],
+        "sub":  ["",      "",           "",    ""]
+    }
+
 df_xls = pd.DataFrame(data)
 data_flags={'en':flag_en,'fr':flag_fr}
 
@@ -2022,10 +2030,13 @@ pages = {
     get_text_trad(site_langu,'menu_home'):[ 
         st.Page(pg_home, title=get_text_trad(site_langu,'menu_home_1'), icon="🏠"),
     ],
-    get_text_trad(site_langu,'menu_resources'): [
+    get_text_trad(site_langu,'menu_myteam'):[ 
         st.Page(pg_menu_0, title=get_text_trad(site_langu,'full_list'),icon="🗂️"),
         #st.Page(pg_menu_050, title='Per type',icon="🗂️"),
         st.Page(pg_menu_100, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
+    ],
+    get_text_trad(site_langu,'menu_resources'): [
+        st.Page(pg_tips_img, title=get_text_trad(site_langu,'menu_tips'),icon="🌟"),
         st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
     ],
     get_text_trad(site_langu,'menu_info'): [
@@ -2035,7 +2046,6 @@ pages = {
     ],
     get_text_trad(site_langu,'menu_param'): [
         st.Page(pg_options, title=get_text_trad(site_langu,'menu_options'),icon="⚙️"), #🛠️
-        st.Page(pg_tips_img, title=get_text_trad(site_langu,'menu_tips'),icon="🌟"),
         st.Page('./git_translations.py', title=get_text_trad(site_langu,'menu_git_translate'),icon="🛠️"),
         st.Page("./tests/test_eval.py", title="Tests",icon="🛠️"),
         st.Page("./tests/test2_github.py", title="Test Github",icon="🛠️")
