@@ -324,9 +324,9 @@ def key_menu(key):
         ret_val=None
     return ret_val
 
-def key_values(key):
+def key_values(key,lst=data_menu_v2):
     try:
-        ret_val=data_menu_v2.get(key)
+        ret_val=lst.get(key)
     except:
         ret_val=None
     return ret_val
