@@ -1811,7 +1811,7 @@ def df_change(selected_rows):
         st.write(f'i={i}')
         selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]*4
         selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
-        row_d1 = st.columns(2,border=col_border, width="stretch")
+        row_d1 = st.columns(2,border=True, width="stretch")
         if i>0:
             iBefore=-1*i
             iAfter=len(rows)-i
