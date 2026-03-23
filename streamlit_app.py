@@ -1818,7 +1818,7 @@ def calc_dreamium_final(df_source,df_input):
         for l in rows:
             calc_qty=df_source["calculated"][l]
             df_source["calculated"][l]=calc_qty + df_input[i]["quantity"]*(4**(i-l))
-            df_source["quantity"][l]+=df_input[i]["quantity"]
+            df_source["quantity"][l]+=df_input[i]["quantity"] if i==l else 0
     st.write('df_source')
     df_source
     st.session_state.updated_df=df_source
