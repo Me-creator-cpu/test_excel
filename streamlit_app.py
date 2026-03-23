@@ -1813,17 +1813,17 @@ def df_change(selected_rows):
         selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
         row_d1 = st.columns(3,border=True, width="stretch")
         if i>0:
-            with row_d1[0]:
-                if l<i:
-                    st.write(f'l<i => {l}/{i}')
-                if l==i:
-                    st.write(f'l==i => {l}/{i}')
-                if l>i:
-                    st.write(f'l>i => {l}/{i}')                                        
-            with row_d1[1]:
-                st.empty()
-            with row_d1[2]:
-                for l in rows:
+            for l in rows:
+                with row_d1[0]:
+                    if l<i:
+                        st.write(f'l<i => {l}/{i}')
+                    if l==i:
+                        st.write(f'l==i => {l}/{i}')
+                    if l>i:
+                        st.write(f'l>i => {l}/{i}')                                        
+                with row_d1[1]:
+                    st.empty()
+                with row_d1[2]:
                     if l<i:
                         st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
                     if l==i:
