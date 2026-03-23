@@ -1766,8 +1766,10 @@ def pg_tests():
     #st.empty()
     calc_dreamium()
 
-def calc_dreamium(updated_df=None):
-    if updated_df is None:
+def calc_dreamium():
+    if 'updated_df' in st.session_state:
+        df = st.session_state.updated_df
+    else:
         df = pd.DataFrame(
             [
                 {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": 0},
@@ -1777,8 +1779,6 @@ def calc_dreamium(updated_df=None):
                 {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": 0},
             ]
         )
-    else:
-        df = updated_df
 
     st.subheader('edited_df')
     edited_df = st.data_editor(
@@ -1820,7 +1820,7 @@ def calc_dreamium_final(df_source,df_input):
             df_source["calculated"][l]=calc_qty + df_input[i]["quantity"]*(4**(i-l))
     st.write('df_source')
     df_source
-    calc_dreamium(df_source)
+    st.session_state.updated_df=df_source
 
 def df_change(selected_rows):   
     input_df=st.session_state["my_key"]["edited_rows"]
