@@ -1800,11 +1800,13 @@ def df_change(selected_rows):
     st.write("Here's the value in Session State:")
     st.write(st.session_state["my_key"])
     st.divider()
+    st.write('selected_rows before')
     selected_rows
     result_df=st.session_state["my_key"]["edited_rows"]
     for i in result_df:
-        i
+        st.write(f'i={i}')
     st.divider()
+    st.write('selected_rows after')
     selected_rows
 
 @st.fragment(run_every="1s")
