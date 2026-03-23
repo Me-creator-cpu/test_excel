@@ -1799,11 +1799,10 @@ def df_change(selected_rows):
     st.write("Here's the value in Session State:")
     st.write(st.session_state["my_key"])
     st.divider()
-    selected_rows
-    for i in selected_rows.keys():
+    result_df=st.session_state["my_key"]
+    for i in st.session_state["my_key"].keys():
         i
-        selected_rows["calculated"] = selected_rows["quantity"] * 4
-    st.session_state.selected_rows=selected_rows
+        result_df["calculated"] = result_df["quantity"] * 4
 
 @st.fragment(run_every="1s")
 def test_colors():
