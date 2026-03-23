@@ -213,6 +213,9 @@ def df_change():
 def save_change():
     if 'updated_trad' in st.session_state:
         st.session_state.updated_trad
+        st.toast('save_change', icon='ℹ️️', duration='short')
+    else:
+        st.toast('save_change KO', icon='ℹ️️', duration='short')
 
 def cancel_change():
     if 'updated_trad' in st.session_state:
