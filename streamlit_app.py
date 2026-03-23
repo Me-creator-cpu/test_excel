@@ -1813,22 +1813,23 @@ def df_change(selected_rows):
         selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
         row_d1 = st.columns(3,border=True, width="stretch")
         if i>0:
-            iBefore=-1*i
-            iAfter=len(rows)-i
             with row_d1[0]:
-                for j in rows[iBefore:]:
-                    st.write(f'Before {iBefore}-->j={j}')
+                if l<i:
+                    st.write(f'l<i => {l}/{i}')
+                if l==i:
+                    st.write(f'l==i => {l}/{i}')
+                if l>i:
+                    st.write(f'l>i => {l}/{i}')                                        
             with row_d1[1]:
-                for k in rows[:iAfter]:
-                    st.write(f'After {iAfter}-->k={k}')
+                st.empty()
             with row_d1[2]:
                 for l in rows:
                     if l<i:
-                        st.write(f'l<i => {l}/{i} => {st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
+                        st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
                     if l==i:
-                        st.write(f'l=i => {l}/{i} => {st.session_state["my_key"]["edited_rows"][i]["quantity"]}')
+                        st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]}')
                     if l>i:
-                        st.write(f'l>i => {l}/{i} => {st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
+                        st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
     st.divider()
     st.write('selected_rows after')
     selected_rows
