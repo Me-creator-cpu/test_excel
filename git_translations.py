@@ -18,12 +18,12 @@ site_langu='en'
 if 'site_langu' in st.session_state:
     site_langu=st.session_state.site_langu
 
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
 if 'dek' not in st.session_state:
     #st.session_state.dek = str(uuid.uuid4())
     st.session_state.dek = id_generator()
-
-def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
 
 def get_id_dek():
     if 'dek' not in st.session_state:
