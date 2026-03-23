@@ -1769,11 +1769,11 @@ def pg_tests():
 def calc_dreamium():
     df = pd.DataFrame(
         [
-            {"dreamium": "I",   "level": 1, "quantity": 1, "calculated": 1},
-            {"dreamium": "II",  "level": 2, "quantity": 1, "calculated": 1},
-            {"dreamium": "III", "level": 3, "quantity": 1, "calculated": 1},
-            {"dreamium": "IV",  "level": 4, "quantity": 1, "calculated": 1},
-            {"dreamium": "V",   "level": 5, "quantity": 1, "calculated": 1},
+            {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": 0},
+            {"dreamium": "II",  "level": 2, "quantity": 0, "calculated": 0},
+            {"dreamium": "III", "level": 3, "quantity": 0, "calculated": 0},
+            {"dreamium": "IV",  "level": 4, "quantity": 0, "calculated": 0},
+            {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": 0},
         ]
     ) 
     st.subheader('edited_df')
@@ -1784,7 +1784,7 @@ def calc_dreamium():
             "level": "Level",
             "quantity": st.column_config.NumberColumn(
                 "Input quantity",
-                min_value=1,
+                min_value=0,
                 step=1,
                 format="%d",
             ),
