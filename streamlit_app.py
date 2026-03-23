@@ -1793,6 +1793,7 @@ def calc_dreamium():
     )       
     #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
     for i in edited_df.keys():
+        i
         df["calculated"] = df["quantity"] * 4
 
 
