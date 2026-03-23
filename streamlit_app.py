@@ -1795,6 +1795,7 @@ def calc_dreamium():
     )
     #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
 def df_change(selected_rows):  
+    selected_rows
     for i in selected_rows.keys():
         i
         selected_rows["calculated"] = selected_rows["quantity"] * 4
