@@ -1826,7 +1826,7 @@ def df_change(selected_rows):
                     if l<i:
                         st.write(f'l<i => {l}/{i}')
                     if l>i:
-                        st.write(f'l>i => {l}/{i} => {st.session_state["my_key"]["edited_rows"][i]["quantity"]**(i-l)}')
+                        st.write(f'l>i => {l}/{i} => {st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
     st.divider()
     st.write('selected_rows after')
     selected_rows
