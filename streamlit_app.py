@@ -1800,6 +1800,7 @@ def df_change(selected_rows):
     st.write("Here's the value in Session State:")
     st.write(st.session_state["my_key"])
     st.divider()
+    selected_rows
     result_df=st.session_state["my_key"]["edited_rows"]
     for i in result_df.keys():
         i
