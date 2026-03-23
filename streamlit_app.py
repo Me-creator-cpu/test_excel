@@ -1806,7 +1806,7 @@ def df_change(selected_rows):
     result_df=st.session_state["my_key"]["edited_rows"]
     for i in result_df:
         st.write(f'i={i}')
-        selected_rows[i]["calculated"]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
+        selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
     st.divider()
     st.write('selected_rows after')
     selected_rows
