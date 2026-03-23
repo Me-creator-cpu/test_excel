@@ -1828,13 +1828,13 @@ def df_change(selected_rows):
                     st.empty()
                 with row_d1[2]:
                     if l<i:
-                        calc_qty +=st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))
-                        st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
+                        calc_qty +=st.session_state["my_key"]["edited_rows"][l]["quantity"]*(4**(i-l))
+                        st.write(f'{st.session_state["my_key"]["edited_rows"][l]["quantity"]*(4**(i-l))}')
                     if l==i:
-                        st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]}')
+                        st.write(f'{st.session_state["my_key"]["edited_rows"][l]["quantity"]}')
                     if l>i:
-                        calc_qty +=st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))
-                        st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
+                        calc_qty +=st.session_state["my_key"]["edited_rows"][l]["quantity"]*(4**(i-l))
+                        st.write(f'{st.session_state["my_key"]["edited_rows"][l]["quantity"]*(4**(i-l))}')
             selected_rows["quantity"][i]=calc_qty
     st.divider()
     st.write('selected_rows after')
