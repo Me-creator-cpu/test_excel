@@ -1802,7 +1802,7 @@ def df_change(selected_rows):
     result_df=st.session_state["my_key"]
     for i in st.session_state["my_key"].keys():
         i
-        result_df["calculated"] = result_df["quantity"] * 4
+        result_df["calculated"] = int(result_df["quantity"]) * 4
 
 @st.fragment(run_every="1s")
 def test_colors():
