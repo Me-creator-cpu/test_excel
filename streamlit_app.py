@@ -1796,6 +1796,25 @@ def calc_dreamium():
         kwargs=dict(selected_rows=df),
     )
     #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
+
+def calc_dreamium_final(df_source,df_input):
+    row_d0 = st.columns(2,border=True, width="stretch")
+    with row_d0[0]:
+        st.write('df_source')
+        df_source
+    with row_d0[1]:
+        st.write('df_input')
+        df_input
+
+    rows = df_source.index.tolist()
+    for i in rows:
+        selected_rows["calculated"][i]=selected_rows["quantity"][i]
+    for i in df_input:
+        calc_qty=selected_rows["quantity"][i]
+        for l in rows:
+            calc_qty +=df_input["quantity"][i]*(4**(i-l)) if l<>i else 0
+        selected_rows["calculated"][i]=calc_qty
+
 def df_change(selected_rows):
 #def df_change():
     st.write("Here's the value in Session State:")
@@ -1807,38 +1826,42 @@ def df_change(selected_rows):
     rows = selected_rows.index.tolist()
     st.write(rows,len(rows))
     result_df=st.session_state["my_key"]["edited_rows"]
-    for i in rows:
-        selected_rows["calculated"][i]=selected_rows["quantity"][i]
-    for i in result_df:
-        st.write(f'i={i}')
-        #selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]*4
-        selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
-        row_d1 = st.columns(3,border=True, width="stretch")
-        if i>0:
-            calc_qty=selected_rows["quantity"][i]
-            for l in rows:
-                with row_d1[0]:
-                    if l<i:
-                        st.write(f'l<i => {l}/{i}')
-                    if l==i:
-                        st.write(f'l==i => {l}/{i}')
-                    if l>i:
-                        st.write(f'l>i => {l}/{i}')                                        
-                with row_d1[1]:
-                    st.empty()
-                with row_d1[2]:
-                    if l<i:
-                        calc_qty +=st.session_state["my_key"]["edited_rows"][l]["quantity"]*(4**(i-l))
-                        st.write(f'{st.session_state["my_key"]["edited_rows"][l]["quantity"]*(4**(i-l))}')
-                    if l==i:
-                        st.write(f'{st.session_state["my_key"]["edited_rows"][l]["quantity"]}')
-                    if l>i:
-                        calc_qty +=st.session_state["my_key"]["edited_rows"][l]["quantity"]*(4**(i-l))
-                        st.write(f'{st.session_state["my_key"]["edited_rows"][l]["quantity"]*(4**(i-l))}')
-            selected_rows["quantity"][i]=calc_qty
-    st.divider()
-    st.write('selected_rows after')
-    selected_rows
+    
+    input_df=st.session_state["my_key"]["edited_rows"]
+    calc_dreamium_final(selected_rows,input_df)
+    if 1 == 2:
+        for i in rows:
+            selected_rows["calculated"][i]=selected_rows["quantity"][i]
+        for i in result_df:
+            st.write(f'i={i}')
+            #selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]*4
+            selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
+            row_d1 = st.columns(3,border=True, width="stretch")
+            if i>0:
+                calc_qty=selected_rows["quantity"][i]
+                for l in rows:
+                    with row_d1[0]:
+                        if l<i:
+                            st.write(f'l<i => {l}/{i}')
+                        if l==i:
+                            st.write(f'l==i => {l}/{i}')
+                        if l>i:
+                            st.write(f'l>i => {l}/{i}')                                        
+                    with row_d1[1]:
+                        st.empty()
+                    with row_d1[2]:
+                        if l<i:
+                            calc_qty +=st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))
+                            st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
+                        if l==i:
+                            st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]}')
+                        if l>i:
+                            calc_qty +=st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))
+                            st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
+                selected_rows["quantity"][i]=calc_qty
+        st.divider()
+        st.write('selected_rows after')
+        selected_rows
 
 @st.fragment(run_every="1s")
 def test_colors():
