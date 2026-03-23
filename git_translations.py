@@ -8,7 +8,9 @@ from github import Github
 import base64
 import json
 from collections import defaultdict
-import uuid
+#import uuid
+import string
+import random
 
 
 json_file='./textes.json'
@@ -17,7 +19,11 @@ if 'site_langu' in st.session_state:
     site_langu=st.session_state.site_langu
 
 if 'dek' not in st.session_state:
-    st.session_state.dek = str(uuid.uuid4())
+    #st.session_state.dek = str(uuid.uuid4())
+    st.session_state.dek = id_generator()
+
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 def write_data(sInfo, data):
     with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
@@ -110,7 +116,8 @@ def update_value():
     """
     Located on top of the data editor.
     """
-    st.session_state.dek = str(uuid.uuid4())
+    #st.session_state.dek = str(uuid.uuid4())
+    st.session_state.dek = id_generator()
 
 def subTitle(txt):
     st.subheader(f'{txt}', divider=True)           
