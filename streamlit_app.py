@@ -1793,7 +1793,6 @@ def calc_dreamium():
         on_change=df_change,
         kwargs=dict(selected_rows=[]),
     )
-    edited_rows = st.session_state.edited_df  
     #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
 def df_change(selected_rows):  
     for i in selected_rows.keys():
