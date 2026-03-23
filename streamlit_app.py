@@ -1790,11 +1790,15 @@ def calc_dreamium():
         },
         disabled=["dreamium", "level", "calculated"],
         hide_index=True,
+        key="my_key"
         on_change=df_change,
         kwargs=dict(selected_rows=[]),
     )
     #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
-def df_change(selected_rows):  
+def df_change(selected_rows):
+    st.write("Here's the value in Session State:")
+    st.write(st.session_state["my_key"])
+    st.divider()
     selected_rows
     for i in selected_rows.keys():
         i
