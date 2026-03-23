@@ -1785,7 +1785,8 @@ def calc_dreamium():
         df,
         column_config={
             "dreamium": "Dreamium",
-            "level": "Level",
+            #"level": "Level",
+            "level": None,
             "quantity": st.column_config.NumberColumn(
                 "Input quantity",
                 min_value=0,
