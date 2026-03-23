@@ -1790,7 +1790,7 @@ def calc_dreamium():
         },
         disabled=["dreamium", "level", "calculated"],
         hide_index=True,
-        key="my_key"
+        key="my_key",
         on_change=df_change,
         kwargs=dict(selected_rows=[]),
     )
