@@ -1805,15 +1805,19 @@ def df_change(selected_rows):
     selected_rows
     st.write('rows')
     rows = selected_rows.index.tolist()
-    st.write(rows)
+    st.write(rows,len(rows))
     result_df=st.session_state["my_key"]["edited_rows"]
     for i in result_df:
         st.write(f'i={i}')
         selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]*4
         selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
         if i>0:
-            for j in rows[i:]:
-                st.write(f'j={j}')
+            iBefore=-1*i
+            iAfter=len(rows)-i
+            for j in rows[iBefore:]:
+                st.write(f'-->j={j}')
+            for k in rows[iAfter:]:
+                st.write(f'-->k={k}')
     st.divider()
     st.write('selected_rows after')
     selected_rows
