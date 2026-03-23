@@ -1803,10 +1803,14 @@ def df_change(selected_rows):
     st.divider()
     st.write('selected_rows before')
     selected_rows
+    st.write('selected_rows keys')
+    selected_rows.keys().unique()
     result_df=st.session_state["my_key"]["edited_rows"]
     for i in result_df:
         st.write(f'i={i}')
-        selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
+        selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]*4
+        selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
+        for j in 
     st.divider()
     st.write('selected_rows after')
     selected_rows
