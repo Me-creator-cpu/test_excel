@@ -200,16 +200,16 @@ def json_langu(val_langu,langu):
     ret_val = val_langu[langu]
     return ret_val
 
+#def df_change():
+#    #if 'dek' in st.session_state:
+#    if 'updated_trad' in st.session_state:
+#        edited_rows = st.session_state.updated_trad['edited_rows']    
+#        st.toast('editor_df on_change', icon='ℹ️️', duration='short')
+
 def df_change():
     if 'dek' in st.session_state:
-    #if 'updated_trad' in st.session_state:
-        edited_rows = st.session_state.updated_trad['edited_rows']    
+        edited_rows = st.session_state.dek['edited_rows']    
         st.toast('editor_df on_change', icon='ℹ️️', duration='short')
-
-#def df_change():
-#    if 'dek' in st.session_state:
-#        edited_rows = st.session_state.dek['edited_rows']    
-#        st.toast('editor_df on_change', icon='ℹ️️', duration='short')
 
 def save_change():
     if 'updated_trad' in st.session_state:
