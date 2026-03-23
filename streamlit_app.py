@@ -1790,12 +1790,13 @@ def calc_dreamium():
         },
         disabled=["dreamium", "level", "calculated"],
         hide_index=True,
+        on_change=df_change
     )       
     #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
+def df_change():    
     for i in edited_df.keys():
         i
         df["calculated"] = df["quantity"] * 4
-
 
 @st.fragment(run_every="1s")
 def test_colors():
