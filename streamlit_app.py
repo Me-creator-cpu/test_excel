@@ -1803,9 +1803,9 @@ def df_change(selected_rows):
     st.divider()
     st.write('selected_rows before')
     selected_rows
-    st.write('columns')
-    columns = list(selected_rows)
-    st.write(columns)
+    st.write('rows')
+    rows = selected_rows.index.tolist()
+    st.write(rows)
     result_df=st.session_state["my_key"]["edited_rows"]
     for i in result_df:
         st.write(f'i={i}')
