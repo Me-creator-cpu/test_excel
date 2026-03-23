@@ -153,8 +153,6 @@ def json_to_frame():
     editor_df = st.data_editor(
         df3, 
         key=st.session_state.dek,
-        #key=get_id_dek(),
-        #key="updated_trad",
         column_config={"langu": None},
         num_rows="dynamic",
         on_change=df_change
@@ -211,6 +209,7 @@ def df_change():
     if 'dek' in st.session_state:
         st.session_state.dek
         st.session_state.dek['edited_rows']
+        st.session_state.df_edit
         edited_rows = st.session_state.dek['edited_rows']    
         st.toast('editor_df on_change', icon='ℹ️️', duration='short')
 
