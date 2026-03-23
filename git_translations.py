@@ -211,8 +211,8 @@ def df_change():
 #        st.toast('editor_df on_change', icon='ℹ️️', duration='short')
 
 def save_change():
-    if 'edited_rows' in st.session_state:
-        st.session_state.updated_trad
+    if 'updated_trad' in st.session_state:
+        st.session_state.updated_trad['edited_rows']
         st.toast('save_change', icon='ℹ️️', duration='short')
     else:
         st.toast('save_change KO', icon='ℹ️️', duration='short')
