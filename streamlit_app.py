@@ -1804,6 +1804,8 @@ def df_change(selected_rows):
     result_df=st.session_state["my_key"]["edited_rows"]
     for i in result_df:
         i
+    st.divider()
+    selected_rows
 
 @st.fragment(run_every="1s")
 def test_colors():
