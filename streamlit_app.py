@@ -1807,7 +1807,7 @@ def df_change(selected_rows):
     rows = selected_rows.index.tolist()
     st.write(rows,len(rows))
     result_df=st.session_state["my_key"]["edited_rows"]
-    for i in selected_rows:
+    for i in rows:
         selected_rows["calculated"][i]=selected_rows["quantity"][i]
     for i in result_df:
         st.write(f'i={i}')
