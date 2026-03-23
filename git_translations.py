@@ -208,7 +208,7 @@ def json_langu(val_langu,langu):
 def df_change():
     if 'dek' in st.session_state:
         st.session_state.dek
-        st.session_state.dek['edited_rows']
+        #st.session_state.dek['edited_rows']
         st.session_state.df_edit
         edited_rows = st.session_state.dek['edited_rows']    
         st.toast('editor_df on_change', icon='ℹ️️', duration='short')
