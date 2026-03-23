@@ -1800,7 +1800,7 @@ def df_change():
     st.write("Here's the value in Session State:")
     st.write(st.session_state["my_key"])
     st.divider()
-    result_df=st.session_state["my_key"][edited_rows]
+    result_df=st.session_state["my_key"]["edited_rows"]
     for i in result_df.keys():
         i
         result_df["calculated"] = int(result_df["quantity"]) * 4
