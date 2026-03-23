@@ -1815,9 +1815,9 @@ def df_change(selected_rows):
             iBefore=-1*i
             iAfter=len(rows)-i
             for j in rows[iBefore:]:
-                st.write(f'-->j={j}')
-            for k in rows[iAfter:]:
-                st.write(f'-->k={k}')
+                st.write(f'Before-->j={j}')
+            for k in rows[:iAfter]:
+                st.write(f'After-->k={k}')
     st.divider()
     st.write('selected_rows after')
     selected_rows
