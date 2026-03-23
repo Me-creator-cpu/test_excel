@@ -1763,7 +1763,38 @@ def test_listing():
             st.text(x)
 
 def pg_tests():
-    st.empty()
+    #st.empty()
+    calc_dreamium()
+
+def calc_dreamium():
+    df = pd.DataFrame(
+        [
+            {"dreamium": "I",   "level": 1, "quantity": 1, "calculated": 1},
+            {"dreamium": "II",  "level": 2, "quantity": 1, "calculated": 1},
+            {"dreamium": "III", "level": 3, "quantity": 1, "calculated": 1},
+            {"dreamium": "IV",  "level": 4, "quantity": 1, "calculated": 1},
+            {"dreamium": "V",   "level": 5, "quantity": 1, "calculated": 1},
+        ]
+    ) 
+    edited_df = st.data_editor(
+        df,
+        column_config={
+            "dreamium": "Dreamium",
+            "level": "Level",
+            "quantity": st.column_config.NumberColumn(
+                "Input quantity",
+                min_value=1,
+                step=1,
+                format="%d",
+            ),
+        },
+        disabled=["dreamium", "level", "calculated"],
+        hide_index=True,
+    )       
+    #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
+    for i in edited_df.keys():
+        df["calculated"] = df["quantity"] * 4
+
 
 @st.fragment(run_every="1s")
 def test_colors():
