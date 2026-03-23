@@ -1823,7 +1823,10 @@ def df_change(selected_rows):
                     st.write(f'After {iAfter}-->k={k}')
             with row_d1[2]:
                 for l in rows:
-                    st.write(f'Before {iBefore}-->l={l}')
+                    if l<i:
+                        st.write(f'l<i => {l}/{i}')
+                    if l>i:
+                        st.write(f'l>i => {l}/{i}')
     st.divider()
     st.write('selected_rows after')
     selected_rows
