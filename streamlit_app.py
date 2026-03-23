@@ -1815,7 +1815,7 @@ def df_change(selected_rows):
         if i>0:
             iBefore=-1*i
             iAfter=len(rows)-i
-            with with row_d1[0]:
+            with row_d1[0]:
                 for j in rows[iBefore:]:
                     st.write(f'Before {iBefore}-->j={j}')
             with row_d1[1]:
