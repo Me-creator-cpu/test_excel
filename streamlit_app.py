@@ -1804,7 +1804,7 @@ def df_change(selected_rows):
     st.write('selected_rows before')
     selected_rows
     st.write('columns')
-    columns = list(df_selected_rowsxls)
+    columns = list(selected_rows)
     st.write(columns)
     result_df=st.session_state["my_key"]["edited_rows"]
     for i in result_df:
