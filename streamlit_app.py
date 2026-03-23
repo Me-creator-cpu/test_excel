@@ -1812,12 +1812,21 @@ def df_change(selected_rows):
         selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]*4
         selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
         if i>0:
+<<<<<<< HEAD
+            iAfter=-1*i
+            iBefore=len(rows)-i
+            for j in rows[:iBefore]:
+                st.write(f'-->j={j}')
+            for k in rows[iAfter:]:
+                st.write(f'-->k={k}')
+=======
             iBefore=-1*i
             iAfter=len(rows)-i
             for j in rows[iBefore:]:
                 st.write(f'Before-->j={j}')
             for k in rows[:iAfter]:
                 st.write(f'After-->k={k}')
+>>>>>>> beff31bf1cd7131193bdbfef098b92453bb5ee96
     st.divider()
     st.write('selected_rows after')
     selected_rows
