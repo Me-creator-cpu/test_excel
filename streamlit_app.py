@@ -1807,12 +1807,15 @@ def df_change(selected_rows):
     rows = selected_rows.index.tolist()
     st.write(rows,len(rows))
     result_df=st.session_state["my_key"]["edited_rows"]
+    for i in selected_rows:
+        selected_rows["calculated"][i]=selected_rows["quantity"][i]
     for i in result_df:
         st.write(f'i={i}')
-        selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]*4
+        #selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]*4
         selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
         row_d1 = st.columns(3,border=True, width="stretch")
         if i>0:
+            calc_qty=selected_rows["quantity"][i]
             for l in rows:
                 with row_d1[0]:
                     if l<i:
@@ -1825,11 +1828,14 @@ def df_change(selected_rows):
                     st.empty()
                 with row_d1[2]:
                     if l<i:
+                        calc_qty +=st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))
                         st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
                     if l==i:
                         st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]}')
                     if l>i:
+                        calc_qty +=st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))
                         st.write(f'{st.session_state["my_key"]["edited_rows"][i]["quantity"]*(4**(i-l))}')
+            selected_rows["quantity"][i]=calc_qty
     st.divider()
     st.write('selected_rows after')
     selected_rows
