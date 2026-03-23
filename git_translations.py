@@ -168,10 +168,10 @@ def json_to_frame():
             cancel_change()            
 
     edited_rows=None
-    #if 'updated_trad' in st.session_state:
-    #   edited_rows = st.session_state.updated_trad['edited_rows']
-    if 'dek' in st.session_state:
-        edited_rows = st.session_state.dek['edited_rows']
+    if 'updated_trad' in st.session_state:
+       edited_rows = st.session_state.updated_trad['edited_rows']
+    #if 'dek' in st.session_state:
+    #   edited_rows = st.session_state.dek['edited_rows']
 
     # pour fonction "Save changes"
     if edited_rows is not None:
