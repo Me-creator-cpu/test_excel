@@ -25,6 +25,11 @@ if 'dek' not in st.session_state:
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
+def get_id_dek():
+    if 'dek' not in st.session_state:
+        st.session_state.dek = id_generator()
+    return st.session_state.dek
+
 def write_data(sInfo, data):
     with st.expander(f'{sInfo}', expanded=False, icon=':material/table_view:',width='stretch',height='content'):
         data
@@ -146,7 +151,8 @@ def json_to_frame():
 
     editor_df = st.data_editor(
         df3, 
-        key=st.session_state.dek
+        #key=st.session_state.dek
+        key=get_id_dek()
         #key="updated_trad",
         column_config={"langu": None},
         num_rows="dynamic",
