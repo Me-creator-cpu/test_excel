@@ -1766,16 +1766,20 @@ def pg_tests():
     #st.empty()
     calc_dreamium()
 
-def calc_dreamium():
-    df = pd.DataFrame(
-        [
-            {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": 0},
-            {"dreamium": "II",  "level": 2, "quantity": 0, "calculated": 0},
-            {"dreamium": "III", "level": 3, "quantity": 0, "calculated": 0},
-            {"dreamium": "IV",  "level": 4, "quantity": 0, "calculated": 0},
-            {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": 0},
-        ]
-    ) 
+def calc_dreamium(updated_df=None):
+    if updated_df is None:
+        df = pd.DataFrame(
+            [
+                {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": 0},
+                {"dreamium": "II",  "level": 2, "quantity": 0, "calculated": 0},
+                {"dreamium": "III", "level": 3, "quantity": 0, "calculated": 0},
+                {"dreamium": "IV",  "level": 4, "quantity": 0, "calculated": 0},
+                {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": 0},
+            ]
+        )
+    else:
+        df = updated_df
+
     st.subheader('edited_df')
     edited_df = st.data_editor(
         df,
@@ -1816,6 +1820,7 @@ def calc_dreamium_final(df_source,df_input):
             df_source["calculated"][l]=calc_qty + df_input[i]["quantity"]*(4**(i-l))
     st.write('df_source')
     df_source
+    calc_dreamium(df_source)
 
 def df_change(selected_rows):   
     input_df=st.session_state["my_key"]["edited_rows"]
