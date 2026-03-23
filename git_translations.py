@@ -165,7 +165,7 @@ def json_to_frame():
             cancel_change()
     with row_menu[1]:
         if st.button("Save changes"):
-            cancel_change()            
+            save_change()            
 
     edited_rows=None
     if 'updated_trad' in st.session_state:
@@ -209,6 +209,10 @@ def df_change():
 #    if 'dek' in st.session_state:
 #        edited_rows = st.session_state.dek['edited_rows']    
 #        st.toast('editor_df on_change', icon='ℹ️️', duration='short')
+
+def save_change():
+    if 'updated_trad' in st.session_state:
+        st.session_state.updated_trad
 
 def cancel_change():
     if 'updated_trad' in st.session_state:
