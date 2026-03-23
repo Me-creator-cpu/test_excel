@@ -2089,7 +2089,8 @@ pages = {
     get_text_trad(site_langu,'menu_param'): [
         st.Page(pg_options, title=get_text_trad(site_langu,'menu_options'),icon='⚙️'), #🛠️
         st.Page('./git_translations.py', title=get_text_trad(site_langu,'menu_git_translate'),icon='🛠️'),
-        st.Page('./tests/test_eval.py', title='Tests',icon='🛠️'),
+        st.Page(pg_tests, title='Tests',icon='🛠️'),
+        st.Page('./tests/test_eval.py', title='Tests EVAL',icon='🛠️'),
         st.Page('./tests/test2_github.py', title='Test Github',icon='🛠️'),
         st.Page(page_tests, title='Test Python',icon='🛠️')
     ],    
