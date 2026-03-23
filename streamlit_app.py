@@ -1776,6 +1776,7 @@ def calc_dreamium():
             {"dreamium": "V",   "level": 5, "quantity": 1, "calculated": 1},
         ]
     ) 
+    st.subheader('edited_df')
     edited_df = st.data_editor(
         df,
         column_config={
