@@ -151,8 +151,8 @@ def json_to_frame():
 
     editor_df = st.data_editor(
         df3, 
-        #key=st.session_state.dek
-        key=get_id_dek()
+        #key=st.session_state.dek,
+        key=get_id_dek(),
         #key="updated_trad",
         column_config={"langu": None},
         num_rows="dynamic",
