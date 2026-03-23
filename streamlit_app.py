@@ -1811,7 +1811,9 @@ def df_change(selected_rows):
         st.write(f'i={i}')
         selected_rows["calculated"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]*4
         selected_rows["quantity"][i]=st.session_state["my_key"]["edited_rows"][i]["quantity"]
-        #for j in 
+        if i>0:
+            for j in rows[rows.max()-i]:
+                st.write(f'j={j}')
     st.divider()
     st.write('selected_rows after')
     selected_rows
