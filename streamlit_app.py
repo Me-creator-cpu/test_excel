@@ -1815,6 +1815,8 @@ def calc_dreamium_final(df_source,df_input):
             if l!=i:
                 calc_qty +=df_input[i]["quantity"]*(4**(i-l))
         df_source["calculated"][i]=calc_qty
+    st.write('df_source')
+    df_source
 
 def df_change(selected_rows):
 #def df_change():
