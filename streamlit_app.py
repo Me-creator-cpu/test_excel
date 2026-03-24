@@ -1785,7 +1785,7 @@ def calc_dreamium():
     st.subheader('edited_df')
     edited_df = st.data_editor(
         #df,
-        styled_df
+        styled_df,
         column_config={
             "dreamium": "Dreamium",
             #"level": "Level",
