@@ -333,7 +333,9 @@ def key_values(key,lst=data_menu_v2):
 
 def on_tab_change():
     st.toast(f"You opened the {st.session_state.animal} tab.")
-    
+    with st.container(horizontal=True):
+        st.write(f'This is the {st.session_state.animal}')
+
 def build_menu_v2():
     cat, dog, owl = st.tabs(
         ["Cat", "Dog", "Owl"], on_change=on_tab_change, key="animal"
