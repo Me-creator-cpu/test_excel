@@ -432,24 +432,25 @@ def test_dummy():
     menu_v2_idx_boss        =st.Page(lambda: menu_tab_show(idx_boss), title="Boss", icon=":material/security:")
     menu_v2_idx_boss_data   =st.Page(lambda: menu_tab_show(idx_boss_data), title="Boss data", icon=":material/security:")
 
-    menu_v2_m0= [menu_v2_idx_palmon]
-    menu_v2_m50=[menu_v2_idx_costs,menu_v2_idx_comp,menu_v2_idx_mut]
-    menu_v2_m60=[menu_v2_idx_val,menu_v2_idx_equip,menu_v2_idx_equip_nov]
-    menu_v2_m6= [menu_v2_idx_boss,menu_v2_idx_boss_data]
+    menu_v2_m0  =[menu_v2_idx_palmon]
+    menu_v2_m50 =[menu_v2_idx_costs,menu_v2_idx_comp,menu_v2_idx_mut]
+    menu_v2_m60 =[menu_v2_idx_val,menu_v2_idx_equip,menu_v2_idx_equip_nov]
+    menu_v2_m6  =[menu_v2_idx_boss,menu_v2_idx_boss_data]
 
     settings = st.Page(pg_options, title="Settings v2", icon=":material/settings:")
     account_pages = [settings]
-    page_dict_m0 = {}
-    page_dict_m0["Palmons"] = menu_v2_m0
-    page_dict_m50 = {}
-    page_dict_m50["Calculators"] = menu_v2_m50
-    page_dict_m60 = {}
-    page_dict_m60["Informations"] = menu_v2_m60
-    page_dict_m6 = {}
-    page_dict_m6["Boss"] = menu_v2_m6
+    page_dict_m0    = {}
+    page_dict_m50   = {}
+    page_dict_m60   = {}
+    page_dict_m6    = {}
+
+    page_dict_m0["Palmons"]         = menu_v2_m0
+    page_dict_m50["Calculators"]    = menu_v2_m50
+    page_dict_m60["Informations"]   = menu_v2_m60
+    page_dict_m6["Boss"]            = menu_v2_m6
 
     #if len(page_dict) > 0:
-    pg = st.navigation({"Account": account_pages} | page_dict_m0 | page_dict_m50 | page_dict_m60 | page_dict_m6)
+    pg = st.navigation(page_dict_m0 | page_dict_m50)# | page_dict_m60 | page_dict_m6)
     #pg.run()
     st.toast(f"Menu v2.")
     #if st.query_params["first_key"] == "1":
