@@ -456,6 +456,16 @@ def write_coming_soon():
         st.image(img_maintenance, caption=None, width="content")
     return maintenance
 
+def df_highlight(value,threshold):
+    return "background-color: yellow;"
+
+def df_highlight_cond(value,threshold):
+    #https://discuss.streamlit.io/t/how-i-can-color-a-st-data-editor-cell-based-on-a-condition/114385/2
+    # couleur sur condition
+    return "background-color: yellow;" if value<threshold else None 
+    #styled_df=df.style.applymap(highlight,threshold=4,subset=["rating"])
+    #edited_df = st.data_editor(styled_df)    
+
 def data_info(df):
     tabs_cols=df.columns.values.tolist()
     tabs_cols
@@ -1019,6 +1029,73 @@ def pal_deltail(palmon,df,pic_width=300):
         write_info('Total competencies cost',large_num_format(total_comp_costs))
     with row1[2]:
         st.metric("Competencies cost", large_num_format(total_comp_costs), 'Max')
+
+def calc_dreamium():
+    if 'updated_df' in st.session_state:
+        df = st.session_state.updated_df
+    else:
+        df = pd.DataFrame(
+            [
+                {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": 0},
+                {"dreamium": "II",  "level": 2, "quantity": 0, "calculated": 0},
+                {"dreamium": "III", "level": 3, "quantity": 0, "calculated": 0},
+                {"dreamium": "IV",  "level": 4, "quantity": 0, "calculated": 0},
+                {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": 0},
+            ]
+        )
+
+    #styled_df=df.style.applymap(df_highlight,threshold=4,subset=["quantity"])
+
+    st.subheader('Dreamium calculator')
+    edited_df = st.data_editor(
+        df,
+        #styled_df,
+        column_config={
+            "dreamium": "Dreamium",
+            #"level": "Level",
+            "level": None,
+            "quantity": st.column_config.NumberColumn(
+                "Input quantity",
+                min_value=0,
+                step=1,
+                format="%d",
+            ),
+        },
+        disabled=["dreamium", "level", "calculated"],
+        hide_index=True,
+        key="my_key",
+        on_change=df_change,
+        kwargs=dict(selected_rows=df),
+        #kwargs=dict(selected_rows=styled_df),
+    )
+    #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
+
+def calc_dreamium_final(df_source,df_input):
+    if 1==2:
+        row_d0 = st.columns(2,border=True, width="stretch")
+        with row_d0[0]:
+            st.write('df_source')
+            df_source
+        with row_d0[1]:
+            st.write('df_input')
+            df_input
+
+    rows = df_source.index.tolist()
+    for i in rows:
+        df_source["calculated"][i]=df_source["quantity"][i]
+    
+    for i in df_input:
+        for l in rows:
+            calc_qty=df_source["calculated"][l]
+            df_source["calculated"][l]=calc_qty + df_input[i]["quantity"]*(4**(i-l))
+            #df_source["quantity"][l]+=df_input[i]["quantity"] if i==l else 0
+    #st.write('df_source')
+    #df_source
+    st.session_state.updated_df=df_source
+
+def df_change(selected_rows):   
+    input_df=st.session_state["my_key"]["edited_rows"]
+    calc_dreamium_final(selected_rows,input_df)
 
 # ======================================================================================================
 #
@@ -1765,83 +1842,6 @@ def test_listing():
 def pg_tests():
     #st.empty()
     calc_dreamium()
-
-def calc_dreamium():
-    if 'updated_df' in st.session_state:
-        df = st.session_state.updated_df
-    else:
-        df = pd.DataFrame(
-            [
-                {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": 0},
-                {"dreamium": "II",  "level": 2, "quantity": 0, "calculated": 0},
-                {"dreamium": "III", "level": 3, "quantity": 0, "calculated": 0},
-                {"dreamium": "IV",  "level": 4, "quantity": 0, "calculated": 0},
-                {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": 0},
-            ]
-        )
-
-    #styled_df=df.style.applymap(df_highlight,threshold=4,subset=["quantity"])
-
-    st.subheader('Dreamium calculator')
-    edited_df = st.data_editor(
-        df,
-        #styled_df,
-        column_config={
-            "dreamium": "Dreamium",
-            #"level": "Level",
-            "level": None,
-            "quantity": st.column_config.NumberColumn(
-                "Input quantity",
-                min_value=0,
-                step=1,
-                format="%d",
-            ),
-        },
-        disabled=["dreamium", "level", "calculated"],
-        hide_index=True,
-        key="my_key",
-        on_change=df_change,
-        kwargs=dict(selected_rows=df),
-        #kwargs=dict(selected_rows=styled_df),
-    )
-    #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
-
-def calc_dreamium_final(df_source,df_input):
-    if 1==2:
-        row_d0 = st.columns(2,border=True, width="stretch")
-        with row_d0[0]:
-            st.write('df_source')
-            df_source
-        with row_d0[1]:
-            st.write('df_input')
-            df_input
-
-    rows = df_source.index.tolist()
-    for i in rows:
-        df_source["calculated"][i]=df_source["quantity"][i]
-    
-    for i in df_input:
-        for l in rows:
-            calc_qty=df_source["calculated"][l]
-            df_source["calculated"][l]=calc_qty + df_input[i]["quantity"]*(4**(i-l))
-            #df_source["quantity"][l]+=df_input[i]["quantity"] if i==l else 0
-    #st.write('df_source')
-    #df_source
-    st.session_state.updated_df=df_source
-
-def df_change(selected_rows):   
-    input_df=st.session_state["my_key"]["edited_rows"]
-    calc_dreamium_final(selected_rows,input_df)
-
-def df_highlight(value,threshold):
-    return "background-color: yellow;"
-
-def df_highlight_cond(value,threshold):
-    #https://discuss.streamlit.io/t/how-i-can-color-a-st-data-editor-cell-based-on-a-condition/114385/2
-    # couleur sur condition
-    return "background-color: yellow;" if value<threshold else None 
-    #styled_df=df.style.applymap(highlight,threshold=4,subset=["rating"])
-    #edited_df = st.data_editor(styled_df)    
 
 @st.fragment(run_every="1s")
 def test_colors():
