@@ -362,6 +362,7 @@ def build_menu_v2():
         lstdynsubtabs
         dynsubtabs=','.join(lstdynsubtabs)
         dynsubtabs
+        test_liste_pages()
         return True
         dyn_subtabs=st.tabs(lstdynsubtabs, on_change=on_dyntab_change, key="menuv2_tab")
 
@@ -379,14 +380,33 @@ def test_menu_v2():
         prev_m=m
     return ','.join(lstdyntabs)
 
-def test_liste():
+def test_liste_pages():
     #pages = {
     #    'Nom menu':[ 
     #        st.Page(target, title='Nom page', icon="🏠"),
     #        st.Page(target, title='Nom page', icon="🏠"),
     #    ],
-    #} 
+    #}
+    #menu_tab_show(idx)
+    menu_parent=''
+    menu_page=''
     lstpages_v2=[]  
+    prev_m=None
+    for m in data_menu_v2:
+        menu_parent=key_values(m,data_menu_rootv2)
+        st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}, name={key_values(m,data_menu_rootv2)}')
+        for sm in key_values(m):
+            subtab = df_xls["DisplayName"][sm]
+            st.write(f'menu={m}, submenu={(sm)}, name={subtab}')
+            pg=st.Page(menu_tab_show(sm), title=subtab, icon="🏠")
+            lstpages_v2.append(pg)
+        if prev_m!=m:
+            st.divider()
+        prev_m=m
+    pages_v2=dict('menu v2':lstpages_v2)
+    pages=pages+pages_v2
+
+def test_liste():
     prev_m=None
     for m in data_menu_v2:
         st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}, name={key_values(m,data_menu_rootv2)}')
@@ -396,7 +416,6 @@ def test_liste():
         if prev_m!=m:
             st.divider()
         prev_m=m
-    pages_v2={'Menu v2':[]}
 
 def is_mobile():
     if st.context:
