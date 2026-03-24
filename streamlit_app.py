@@ -345,7 +345,7 @@ def build_menu_v2():
     with st.session_state.tabsv2:
         #st.empty()
         #st.write(f'Test build_menu_v2')
-        test_menu_v2()
+        dyntabs = test_menu_v2()
 
     if 1 == 2:
         prev_m=None
@@ -360,15 +360,17 @@ def build_menu_v2():
 
 def test_menu_v2():    
     prev_m=None
+    lstdyntabs=[]
     for m in data_menu_v2:
         st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}, name={key_values(m,data_menu_rootv2)}')
+        lstdyntabs.append(m)
         for sm in key_values(m):
             subtab = df_xls["DisplayName"][sm]
             st.write(f'menu={m}, submenu={(sm)}, name={subtab}')
         if prev_m!=m:
             st.divider()
         prev_m=m
-            
+    return ','.join(lstdyntabs)        
     #data_info(df)
     #data_menu_rootv2
 
