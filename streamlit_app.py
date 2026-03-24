@@ -398,7 +398,7 @@ def test_liste_pages():
         for sm in key_values(m):
             subtab = df_xls["DisplayName"][sm]
             st.write(f'menu={m}, submenu={(sm)}, name={subtab}')
-            pg=st.Page(menu_tab_show(sm), title=subtab, icon="🏠")
+            #pg=st.Page(menu_tab_show(sm), title=subtab, icon="🏠")
             lstpages_v2.append(pg)
         if prev_m!=m:
             st.divider()
