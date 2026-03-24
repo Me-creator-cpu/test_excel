@@ -433,7 +433,7 @@ def test_dummy():
     menu_v2_idx_boss_data   =st.Page(lambda: menu_tab_show(idx_boss_data), title="Boss data", icon=":material/security:")
 
     menu_v2_m0  =[menu_v2_idx_palmon]
-    menu_v2_m50 =[menu_v2_idx_costs,menu_v2_idx_comp,menu_v2_idx_mut]
+    menu_v2_m50 =[menu_v2_idx_costs]#,menu_v2_idx_comp,menu_v2_idx_mut]
     menu_v2_m60 =[menu_v2_idx_val,menu_v2_idx_equip,menu_v2_idx_equip_nov]
     menu_v2_m6  =[menu_v2_idx_boss,menu_v2_idx_boss_data]
 
