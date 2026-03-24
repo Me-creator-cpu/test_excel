@@ -1780,6 +1780,8 @@ def calc_dreamium():
             ]
         )
 
+    df=df.style.applymap(df_highlight,threshold=4,subset=["quantity"])
+
     st.subheader('edited_df')
     edited_df = st.data_editor(
         df,
@@ -1827,6 +1829,16 @@ def calc_dreamium_final(df_source,df_input):
 def df_change(selected_rows):   
     input_df=st.session_state["my_key"]["edited_rows"]
     calc_dreamium_final(selected_rows,input_df)
+
+def df_highlight(value,threshold):
+    return "background-color: yellow;"
+
+def df_highlight_cond(value,threshold):
+    #https://discuss.streamlit.io/t/how-i-can-color-a-st-data-editor-cell-based-on-a-condition/114385/2
+    # couleur sur condition
+    return "background-color: yellow;" if value<threshold else None 
+    #styled_df=df.style.applymap(highlight,threshold=4,subset=["rating"])
+    #edited_df = st.data_editor(styled_df)    
 
 @st.fragment(run_every="1s")
 def test_colors():
