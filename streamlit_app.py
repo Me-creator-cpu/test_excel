@@ -447,7 +447,7 @@ def test_dummy():
 
     if len(page_dict) > 0:
         pg = st.navigation({"Account": account_pages} | page_dict)
-        pg.run()
+        #pg.run()
         st.toast(f"Menu v2.")
     #if st.query_params["first_key"] == "1":
     #st.query_params.first_key = 2
