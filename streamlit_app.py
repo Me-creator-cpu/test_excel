@@ -353,12 +353,18 @@ def build_menu_v2():
         #st.empty()
         #st.write(f'Test build_menu_v2')
         dyntabs = test_menu_v2()
+        dynsubtabs=[]
         st.divider()
         #dyn_tabs=st.tabs(["m0","m50","m60","m6"], on_change=on_dyntab_change, key="menuv2_tab")
         #dyn_tabs=st.tabs(list(data_menu_rootv2.keys()), on_change=on_dyntab_change, key="menuv2_tab")
         for v in data_menu_rootv2.keys():
+<<<<<<< HEAD
+            dynsubtabs.append(data_menu_rootv2[v])
+        dyn_tabs=st.tabs(','.join(dynsubtabs), on_change=on_dyntab_change, key="menuv2_tab")
+=======
             st.write(v,data_menu_rootv2[v])
         dyn_tabs=st.tabs(data_menu_rootv2.items(), on_change=on_dyntab_change, key="menuv2_tab")
+>>>>>>> d7120f3152622852b7390271e48d81aaa2c9c980
 
     if 1 == 2:
         prev_m=None
