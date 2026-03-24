@@ -418,7 +418,7 @@ def test_liste():
         prev_m=m
 
 def test_dummy():
-    return True
+    st.toast(f"Building Menu v2.")
     menu_v2_idx_palmon=st.Page(menu_tab_show(idx_palmon), title="Full list", icon=":material/security:")
     
     menu_v2_idx_costs=st.Page(menu_tab_show(idx_costs), title="Upgrade costs", icon=":material/security:")
