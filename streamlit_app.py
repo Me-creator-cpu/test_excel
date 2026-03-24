@@ -425,17 +425,17 @@ def test_dummy():
     menu_v2_idx_comp=st.Page(lambda: menu_tab_show(idx_comp), title="Competencies", icon=":material/security:")
     menu_v2_idx_mut=st.Page(lambda: menu_tab_show(idx_mut), title="Mutation costs", icon=":material/security:")
     
-    #menu_v2_idx_val=st.Page(lambda: menu_tab_show(idx_val), title="Upgrade full costs", icon=":material/security:")
-    #menu_v2_idx_equip=st.Page(lambda: menu_tab_show(idx_equip), title="Equipments", icon=":material/security:")
-    #menu_v2_idx_equip_nov=st.Page(lambda: menu_tab_show(idx_equip_nov), title="Equipments Explorer", icon=":material/security:")
+    menu_v2_idx_val=st.Page(lambda: menu_tab_show(idx_val), title="Upgrade full costs", icon=":material/security:")
+    menu_v2_idx_equip=st.Page(lambda: menu_tab_show(idx_equip), title="Equipments", icon=":material/security:")
+    menu_v2_idx_equip_nov=st.Page(lambda: menu_tab_show(idx_equip_nov), title="Equipments Explorer", icon=":material/security:")
 
-    #menu_v2_idx_boss=st.Page(lambda: menu_tab_show(idx_boss), title="Boss", icon=":material/security:")
-    #menu_v2_idx_boss_data=st.Page(lambda: menu_tab_show(boss_data), title="Boss data", icon=":material/security:")
+    menu_v2_idx_boss=st.Page(lambda: menu_tab_show(idx_boss), title="Boss", icon=":material/security:")
+    menu_v2_idx_boss_data=st.Page(lambda: menu_tab_show(boss_data), title="Boss data", icon=":material/security:")
 
     menu_v2_m0=[menu_v2_idx_palmon]
     menu_v2_m50=[menu_v2_idx_costs,menu_v2_idx_comp,menu_v2_idx_mut]
-    #menu_v2_m60=[menu_v2_idx_val,menu_v2_idx_equip,menu_v2_idx_equip_nov]
-    #menu_v2_m6=[menu_v2_idx_boss,menu_v2_idx_boss_data]
+    menu_v2_m60=[menu_v2_idx_val,menu_v2_idx_equip,menu_v2_idx_equip_nov]
+    menu_v2_m6=[menu_v2_idx_boss,menu_v2_idx_boss_data]
 
     settings = st.Page(pg_options, title="Settings v2", icon=":material/settings:")
     account_pages = [settings]
