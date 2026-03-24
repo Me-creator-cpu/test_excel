@@ -356,8 +356,8 @@ def build_menu_v2():
         st.divider()
         #dyn_tabs=st.tabs(["m0","m50","m60","m6"], on_change=on_dyntab_change, key="menuv2_tab")
         #dyn_tabs=st.tabs(list(data_menu_rootv2.keys()), on_change=on_dyntab_change, key="menuv2_tab")
-        for v in data_menu_rootv2.items():
-            st.write(v,data_menu_rootv2[v])
+        for v in data_menu_rootv2.keys():
+            st.write(v)
         dyn_tabs=st.tabs(data_menu_rootv2.items(), on_change=on_dyntab_change, key="menuv2_tab")
 
     if 1 == 2:
