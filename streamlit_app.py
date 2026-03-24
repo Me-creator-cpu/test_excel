@@ -445,6 +445,7 @@ def test_dummy():
     page_dict["Boss"] = menu_v2_m6
     if len(page_dict) > 0:
         pg = st.navigation({"Account": account_pages} | page_dict)
+        st.toast(f"Menu v2.")
 
 def is_mobile():
     if st.context:
