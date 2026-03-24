@@ -343,7 +343,8 @@ def build_menu_v2():
     )
     st.session_state.tabsv2=st.container(horizontal=True)
     with st.session_state.tabsv2:
-        st.write(f'Test build_menu_v2')
+        st.empty()
+        #st.write(f'Test build_menu_v2')
 
     if 1 == 2:
         prev_m=None
