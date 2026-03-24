@@ -342,6 +342,7 @@ def on_dyntab_change():
     with st.session_state.tabsv2:
     #with st.container(horizontal=True):
         st.write(f'This is the {st.session_state.menuv2_tab}')
+        data_menu_v2[st.session_state.menuv2_tab]
 
 def build_menu_v2():
     cat, dog, owl = st.tabs(
@@ -355,7 +356,6 @@ def build_menu_v2():
         st.divider()
         #dyn_tabs=st.tabs(["m0","m50","m60","m6"], on_change=on_dyntab_change, key="menuv2_tab")
         dyn_tabs=st.tabs(list(data_menu_rootv2.keys()), on_change=on_dyntab_change, key="menuv2_tab")
-        st.write(list(data_menu_rootv2.keys()))
 
     if 1 == 2:
         prev_m=None
