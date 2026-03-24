@@ -421,16 +421,16 @@ def test_dummy():
     st.toast(f"Building Menu v2.")
     page_v2_idx_palmon      =st.Page(eval('lambda: menu_tab_show(idx_palmon)'), title="Full list", icon=":material/security:")
     
-    page_v2_idx_costs       =st.Page(lambda: menu_tab_show(idx_costs), title="Upgrade costs", icon=":material/security:")
-    page_v2_idx_comp        =st.Page(lambda: menu_tab_show(idx_comp), title="Competencies", icon=":material/security:")
-    page_v2_idx_mut         =st.Page(lambda: menu_tab_show(idx_mut), title="Mutation costs", icon=":material/security:")
+    page_v2_idx_costs       =st.Page(eval('lambda: menu_tab_show(idx_costs)'), title="Upgrade costs", icon=":material/security:")
+    page_v2_idx_comp        =st.Page(eval('lambda: menu_tab_show(idx_comp)'), title="Competencies", icon=":material/security:")
+    page_v2_idx_mut         =st.Page(eval('lambda: menu_tab_show(idx_mut)'), title="Mutation costs", icon=":material/security:")
     
-    page_v2_idx_val         =st.Page(lambda: menu_tab_show(idx_val), title="Upgrade full costs", icon=":material/security:")
-    page_v2_idx_equip       =st.Page(lambda: menu_tab_show(idx_equip), title="Equipments", icon=":material/security:")
-    page_v2_idx_equip_nov   =st.Page(lambda: menu_tab_show(idx_equip_nov), title="Equipments Explorer", icon=":material/security:")
+    page_v2_idx_val         =st.Page(eval('lambda: menu_tab_show(idx_val)'), title="Upgrade full costs", icon=":material/security:")
+    page_v2_idx_equip       =st.Page(eval('lambda: menu_tab_show(idx_equip)'), title="Equipments", icon=":material/security:")
+    page_v2_idx_equip_nov   =st.Page(eval('lambda: menu_tab_show(idx_equip_nov)'), title="Equipments Explorer", icon=":material/security:")
 
-    page_v2_idx_boss        =st.Page(lambda: menu_tab_show(idx_boss), title="Boss", icon=":material/security:")
-    page_v2_idx_boss_data   =st.Page(lambda: menu_tab_show(idx_boss_data), title="Boss data", icon=":material/security:")
+    page_v2_idx_boss        =st.Page(eval('lambda: menu_tab_show(idx_boss)'), title="Boss", icon=":material/security:")
+    page_v2_idx_boss_data   =st.Page(eval('lambda: menu_tab_show(idx_boss_data)'), title="Boss data", icon=":material/security:")
 
     menu_v2_m0  =[page_v2_idx_palmon]
     menu_v2_m50 =[page_v2_idx_costs,page_v2_idx_comp,page_v2_idx_mut]
