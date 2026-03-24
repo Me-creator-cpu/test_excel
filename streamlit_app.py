@@ -1807,13 +1807,14 @@ def calc_dreamium():
     #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
 
 def calc_dreamium_final(df_source,df_input):
-    row_d0 = st.columns(2,border=True, width="stretch")
-    with row_d0[0]:
-        st.write('df_source')
-        df_source
-    with row_d0[1]:
-        st.write('df_input')
-        df_input
+    if 1==2:
+        row_d0 = st.columns(2,border=True, width="stretch")
+        with row_d0[0]:
+            st.write('df_source')
+            df_source
+        with row_d0[1]:
+            st.write('df_input')
+            df_input
 
     rows = df_source.index.tolist()
     for i in rows:
@@ -1824,8 +1825,8 @@ def calc_dreamium_final(df_source,df_input):
             calc_qty=df_source["calculated"][l]
             df_source["calculated"][l]=calc_qty + df_input[i]["quantity"]*(4**(i-l))
             #df_source["quantity"][l]+=df_input[i]["quantity"] if i==l else 0
-    st.write('df_source')
-    df_source
+    #st.write('df_source')
+    #df_source
     st.session_state.updated_df=df_source
 
 def df_change(selected_rows):   
