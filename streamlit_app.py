@@ -419,7 +419,7 @@ def test_liste():
 
 def test_dummy():
     st.toast(f"Building Menu v2.")
-    menu_v2_idx_palmon=st.Page(menu_tab_show(idx_palmon), title="Full list", icon=":material/security:")
+    menu_v2_idx_palmon=st.Page(lambda: menu_tab_show(idx_palmon), title="Full list", icon=":material/security:")
     
     menu_v2_idx_costs=st.Page(menu_tab_show(idx_costs), title="Upgrade costs", icon=":material/security:")
     menu_v2_idx_comp=st.Page(menu_tab_show(idx_comp), title="Competencies", icon=":material/security:")
@@ -444,10 +444,21 @@ def test_dummy():
     page_dict["Calculators"] = menu_v2_m50
     page_dict["Informations"] = menu_v2_m60
     page_dict["Boss"] = menu_v2_m6
+
     if len(page_dict) > 0:
         pg = st.navigation({"Account": account_pages} | page_dict)
         pg.run()
         st.toast(f"Menu v2.")
+    #if st.query_params["first_key"] == "1":
+    #st.query_params.first_key = 2
+    #st.query_params.clear()
+
+def pg_menu_dyn():
+    if st.query_params['menu_id'] is not None:
+        st.toast(f"st.query_params['menu_id'] is not None => {st.query_params['menu_id']}")
+        menu_tab_show(int(st.query_params['menu_id']))
+    else:
+        st.toast(f"Aucun st.query_params")
 
 def is_mobile():
     if st.context:
