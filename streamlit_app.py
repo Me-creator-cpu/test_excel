@@ -403,7 +403,7 @@ def test_liste_pages():
         if prev_m!=m:
             st.divider()
         prev_m=m
-    pages_v2=dict({'menu v2':lstpages_v2})
+    pages_v2={'menu v2':lstpages_v2}
     pages=pages+pages_v2
 
 def test_liste():
