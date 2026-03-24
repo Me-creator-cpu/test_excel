@@ -1780,12 +1780,12 @@ def calc_dreamium():
             ]
         )
 
-    styled_df=df.style.applymap(df_highlight,threshold=4,subset=["quantity"])
+    #styled_df=df.style.applymap(df_highlight,threshold=4,subset=["quantity"])
 
     st.subheader('edited_df')
     edited_df = st.data_editor(
-        #df,
-        styled_df,
+        df,
+        #styled_df,
         column_config={
             "dreamium": "Dreamium",
             #"level": "Level",
@@ -1801,8 +1801,8 @@ def calc_dreamium():
         hide_index=True,
         key="my_key",
         on_change=df_change,
-        #kwargs=dict(selected_rows=df),
-        kwargs=dict(selected_rows=styled_df),
+        kwargs=dict(selected_rows=df),
+        #kwargs=dict(selected_rows=styled_df),
     )
     #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
 
