@@ -347,7 +347,7 @@ def build_menu_v2():
         #st.write(f'Test build_menu_v2')
         dyntabs = test_menu_v2()
         st.divider()
-        dyntabs
+        eval(dyntabs)=st.tabs(["m0","m50","m60","m6"], on_change=on_tab_change, key="menuv2_tab")
 
     if 1 == 2:
         prev_m=None
