@@ -441,7 +441,7 @@ def test_dummy():
     account_pages = [settings]
     page_dict = {}
     page_dict["Palmons"] = menu_v2_m0
-    #page_dict["Calculators"] = menu_v2_m50
+    page_dict["Calculators"] = menu_v2_m50
     #page_dict["Informations"] = menu_v2_m60
     #page_dict["Boss"] = menu_v2_m6
 
