@@ -378,7 +378,7 @@ def test_menu_v2():
         prev_m=m
     return ','.join(lstdyntabs)
 
-def test_liste()
+def test_liste():
     prev_m=None
     for m in data_menu_v2:
         st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}, name={key_values(m,data_menu_rootv2)}')
