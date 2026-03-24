@@ -403,8 +403,8 @@ def test_liste_pages():
         if prev_m!=m:
             st.divider()
         prev_m=m
-    pages_v2={'menu v2':lstpages_v2}
-    pages=pages+pages_v2
+    #pages_v2={'menu v2':lstpages_v2}
+    #pages=pages+pages_v2
 
 def test_liste():
     prev_m=None
@@ -416,6 +416,16 @@ def test_liste():
         if prev_m!=m:
             st.divider()
         prev_m=m
+
+def test_dummy():
+    menu_v2_m0=st.Page("admin/admin_2.py", title="Full list", icon=":material/security:")
+    menu_rootv2=[]
+
+    settings = st.Page("settings.py", title="Settings", icon=":material/settings:")
+    account_pages = [settings]
+
+    if len(page_dict) > 0:
+        pg = st.navigation({"Account": account_pages} | page_dict)
 
 def is_mobile():
     if st.context:
