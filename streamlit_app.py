@@ -1822,7 +1822,7 @@ def pg_options():
         if st.button("Get issues"):
             test_github_issues()   
 
-def page_tests():
+def pg_test_menu_v2():
     build_menu_v2()
 
 def pg_tips_img():
@@ -2170,7 +2170,7 @@ pages = {
         st.Page(pg_tests, title='Tests',icon='🛠️'),
         st.Page('./tests/test_eval.py', title='Tests EVAL',icon='🛠️'),
         st.Page('./tests/test2_github.py', title='Test Github',icon='🛠️'),
-        st.Page(page_tests, title='Test Python',icon='🛠️')
+        st.Page(pg_test_menu_v2, title='Test Menu v2',icon='🛠️')
     ],    
 }
 pg = st.navigation(
