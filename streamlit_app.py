@@ -417,20 +417,39 @@ def test_liste():
             st.divider()
         prev_m=m
 
+def pg_v2_idx_palmon():
+    menu_tab_show(idx_palmon)
+def pg_v2_idx_costs():
+    menu_tab_show(idx_costs)
+def pg_v2_idx_comp():
+    menu_tab_show(idx_comp)
+def pg_v2_idx_mut():
+    menu_tab_show(idx_mut)
+def pg_v2_idx_val():
+    menu_tab_show(idx_val)
+def pg_v2_idx_equip():
+    menu_tab_show(idx_equip)
+def pg_v2_idx_equip_nov():
+    menu_tab_show(idx_equip_nov)
+def pg_v2_idx_boss():
+    menu_tab_show(idx_boss)
+def pg_v2_idx_boss_data():
+    menu_tab_show(idx_boss_data)
+
 def test_dummy():
     st.toast(f"Building Menu v2.")
-    page_v2_idx_palmon      =st.Page(eval('lambda: menu_tab_show(idx_palmon)'), title="Full list", icon=":material/security:")
+    page_v2_idx_palmon      =st.Page(pg_v2_idx_palmon, title="Full list", icon=":material/security:")
     
-    page_v2_idx_costs       =st.Page(eval('lambda: menu_tab_show(idx_costs)'), title="Upgrade costs", icon=":material/security:")
-    page_v2_idx_comp        =st.Page(eval('lambda: menu_tab_show(idx_comp)'), title="Competencies", icon=":material/security:")
-    page_v2_idx_mut         =st.Page(eval('lambda: menu_tab_show(idx_mut)'), title="Mutation costs", icon=":material/security:")
+    page_v2_idx_costs       =st.Page(pg_v2_idx_costs, title="Upgrade costs", icon=":material/security:")
+    page_v2_idx_comp        =st.Page(pg_v2_idx_comp, title="Competencies", icon=":material/security:")
+    page_v2_idx_mut         =st.Page(pg_v2_idx_mut, title="Mutation costs", icon=":material/security:")
     
-    page_v2_idx_val         =st.Page(eval('lambda: menu_tab_show(idx_val)'), title="Upgrade full costs", icon=":material/security:")
-    page_v2_idx_equip       =st.Page(eval('lambda: menu_tab_show(idx_equip)'), title="Equipments", icon=":material/security:")
-    page_v2_idx_equip_nov   =st.Page(eval('lambda: menu_tab_show(idx_equip_nov)'), title="Equipments Explorer", icon=":material/security:")
+    page_v2_idx_val         =st.Page(pg_v2_idx_val, title="Upgrade full costs", icon=":material/security:")
+    page_v2_idx_equip       =st.Page(pg_v2_idx_equip, title="Equipments", icon=":material/security:")
+    page_v2_idx_equip_nov   =st.Page(pg_v2_idx_equip_nov, title="Equipments Explorer", icon=":material/security:")
 
-    page_v2_idx_boss        =st.Page(eval('lambda: menu_tab_show(idx_boss)'), title="Boss", icon=":material/security:")
-    page_v2_idx_boss_data   =st.Page(eval('lambda: menu_tab_show(idx_boss_data)'), title="Boss data", icon=":material/security:")
+    page_v2_idx_boss        =st.Page(pg_v2_idx_boss, title="Boss", icon=":material/security:")
+    page_v2_idx_boss_data   =st.Page(pg_v2_idx_boss_data, title="Boss data", icon=":material/security:")
 
     menu_v2_m0  =[page_v2_idx_palmon]
     menu_v2_m50 =[page_v2_idx_costs,page_v2_idx_comp,page_v2_idx_mut]
