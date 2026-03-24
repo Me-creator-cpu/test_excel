@@ -346,6 +346,8 @@ def build_menu_v2():
         #st.empty()
         #st.write(f'Test build_menu_v2')
         dyntabs = test_menu_v2()
+        st.divider()
+        dyntabs
 
     if 1 == 2:
         prev_m=None
