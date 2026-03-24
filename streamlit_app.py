@@ -359,6 +359,7 @@ def build_menu_v2():
         #dyn_tabs=st.tabs(list(data_menu_rootv2.keys()), on_change=on_dyntab_change, key="menuv2_tab")
         for v in data_menu_rootv2.keys():
             dynsubtabs.append(data_menu_rootv2[v])
+        dynsubtabs
         dyn_tabs=st.tabs(','.join(dynsubtabs), on_change=on_dyntab_change, key="menuv2_tab")
 
     if 1 == 2:
