@@ -337,6 +337,12 @@ def on_tab_change():
     #with st.container(horizontal=True):
         st.write(f'This is the {st.session_state.animal}')
 
+def on_dyntab_change():
+    st.toast(f"You opened the {st.session_state.menuv2_tab} tab.")
+    with st.session_state.tabsv2:
+    #with st.container(horizontal=True):
+        st.write(f'This is the {st.session_state.menuv2_tab}')
+
 def build_menu_v2():
     cat, dog, owl = st.tabs(
         ["Cat", "Dog", "Owl"], on_change=on_tab_change, key="animal"
@@ -347,7 +353,7 @@ def build_menu_v2():
         #st.write(f'Test build_menu_v2')
         dyntabs = test_menu_v2()
         st.divider()
-        dyn_tabs=st.tabs(["m0","m50","m60","m6"], on_change=on_tab_change, key="menuv2_tab")
+        dyn_tabs=st.tabs(["m0","m50","m60","m6"], on_change=on_dyntab_change, key="menuv2_tab")
 
     if 1 == 2:
         prev_m=None
