@@ -362,18 +362,7 @@ def build_menu_v2():
         lstdynsubtabs
         dynsubtabs=','.join(lstdynsubtabs)
         dynsubtabs
-        dyn_tabs=st.tabs(dynsubtabs, on_change=on_dyntab_change, key="menuv2_tab")
-
-    if 1 == 2:
-        prev_m=None
-        for m in data_menu_v2:
-            st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}, name={key_values(m,data_menu_rootv2)}')
-            for sm in key_values(m):
-                subtab = df_xls["DisplayName"][sm]
-                st.write(f'menu={m}, submenu={(sm)}, name={subtab}')
-            if prev_m!=m:
-                st.divider()
-            prev_m=m
+        dyn_tabs=st.tabs(dyntabs, on_change=on_dyntab_change, key="menuv2_tab")
 
 def test_menu_v2():    
     prev_m=None
@@ -387,10 +376,18 @@ def test_menu_v2():
         if prev_m!=m:
             st.divider()
         prev_m=m
-    return ','.join(lstdyntabs)        
-    #data_info(df)
-    #data_menu_rootv2
+    return ','.join(lstdyntabs)
 
+def test_liste()
+    prev_m=None
+    for m in data_menu_v2:
+        st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}, name={key_values(m,data_menu_rootv2)}')
+        for sm in key_values(m):
+            subtab = df_xls["DisplayName"][sm]
+            st.write(f'menu={m}, submenu={(sm)}, name={subtab}')
+        if prev_m!=m:
+            st.divider()
+        prev_m=m
 
 def is_mobile():
     if st.context:
