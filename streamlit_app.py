@@ -362,7 +362,7 @@ def build_menu_v2():
         lstdynsubtabs
         dynsubtabs=','.join(lstdynsubtabs)
         dynsubtabs
-        dyn_tabs=st.tabs(dyntabs, on_change=on_dyntab_change, key="menuv2_tab")
+        dyn_tabs=st.tabs(list(dyntabs), on_change=on_dyntab_change, key="menuv2_tab")
 
 def test_menu_v2():    
     prev_m=None
