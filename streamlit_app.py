@@ -437,7 +437,7 @@ def test_dummy():
     menu_v2_m60=[menu_v2_idx_val,menu_v2_idx_equip,menu_v2_idx_equip_nov]
     menu_v2_m6=[menu_v2_idx_boss,menu_v2_idx_boss_data]
 
-    settings = st.Page(pg_options, title="Settings", icon=":material/settings:")
+    settings = st.Page(pg_options, title="Settings v2", icon=":material/settings:")
     account_pages = [settings]
     page_dict = {}
     page_dict["Palmons"] = menu_v2_m0
