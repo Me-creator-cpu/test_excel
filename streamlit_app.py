@@ -362,7 +362,7 @@ def build_menu_v2():
         lstdynsubtabs
         dynsubtabs=','.join(lstdynsubtabs)
         dynsubtabs
-        dyn_subtabs=st.tabs(dict(dynsubtabs), on_change=on_dyntab_change, key="menuv2_tab")
+        dyn_subtabs=st.tabs(dynsubtabs()), on_change=on_dyntab_change, key="menuv2_tab")
 
 def test_menu_v2():    
     prev_m=None
@@ -379,6 +379,13 @@ def test_menu_v2():
     return ','.join(lstdyntabs)
 
 def test_liste():
+    #pages = {
+    #    'Nom menu':[ 
+    #        st.Page(target, title='Nom page', icon="🏠"),
+    #        st.Page(target, title='Nom page', icon="🏠"),
+    #    ],
+    #} 
+    lstpages_v2=[]  
     prev_m=None
     for m in data_menu_v2:
         st.write(f'menu={m}, value={key_values(m)}, nb tabs={len(key_values(m))}, name={key_values(m,data_menu_rootv2)}')
@@ -388,6 +395,7 @@ def test_liste():
         if prev_m!=m:
             st.divider()
         prev_m=m
+    pages_v2={'Menu v2':[]}
 
 def is_mobile():
     if st.context:
