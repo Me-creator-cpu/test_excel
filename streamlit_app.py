@@ -439,14 +439,17 @@ def test_dummy():
 
     settings = st.Page(pg_options, title="Settings v2", icon=":material/settings:")
     account_pages = [settings]
-    page_dict = {}
-    page_dict["Palmons"] = menu_v2_m0
-    page_dict["Calculators"] = menu_v2_m50
-    #page_dict["Informations"] = menu_v2_m60
-    #page_dict["Boss"] = menu_v2_m6
+    page_dict_m0 = {}
+    page_dict_m0["Palmons"] = menu_v2_m0
+    page_dict_m50 = {}
+    page_dict_m50["Calculators"] = menu_v2_m50
+    page_dict_m60 = {}
+    page_dict_m60["Informations"] = menu_v2_m60
+    page_dict_m6 = {}
+    page_dict_m6["Boss"] = menu_v2_m6
 
     if len(page_dict) > 0:
-        pg = st.navigation({"Account": account_pages} | page_dict)
+        pg = st.navigation({"Account": account_pages} | page_dict_m0)
         #pg.run()
         st.toast(f"Menu v2.")
     #if st.query_params["first_key"] == "1":
