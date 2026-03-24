@@ -419,7 +419,7 @@ def test_liste():
 
 def test_dummy():
     st.toast(f"Building Menu v2.")
-    page_v2_idx_palmon      =st.Page(lambda: menu_tab_show(idx_palmon), title="Full list", icon=":material/security:")
+    page_v2_idx_palmon      =st.Page(lambda(1): menu_tab_show(idx_palmon), title="Full list", icon=":material/security:")
     
     page_v2_idx_costs       =st.Page(lambda: menu_tab_show(idx_costs), title="Upgrade costs", icon=":material/security:")
     page_v2_idx_comp        =st.Page(lambda: menu_tab_show(idx_comp), title="Competencies", icon=":material/security:")
