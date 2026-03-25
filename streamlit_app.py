@@ -1162,10 +1162,10 @@ def pal_deltail(palmon,df,pic_width=300):
         cost_upg=calcul_upgrade_costs(df.loc[df.index[0], 'Level'],max_upg)
         st.metric("Cost", large_num_format(cost_upg), level_max)
     with row2[0]:
-        st.write('Competencies')
+        st.write(get_text_trad('menu_calc_comp'))
         build_table_any(df[cols_comp])
     with row2[1]:
-        st.write('Competencies upgrade costs')
+        st.write(get_text_trad('menu_calc_costs'))
         df_comp_u=df[cols_comp]
         df_comp_costs = df_xls["DataFrame"][idx_costs]
         total_comp_costs=0
@@ -1404,18 +1404,18 @@ def menu_tab_costs():
         row2 = st.columns(3,border=False, width="stretch")
         row3 = st.columns(3,border=False, width="stretch")
         with row1[0]:
-            st.write(f"Upgrade costs for {nb_pal} UR:")
+            st.write(f"{get_text_trad('text_001')} {nb_pal} UR:")
         with row1[1]:
             st.write(large_num_format(cost_nb))
         with row2[0]:
-            st.write("Event points:")
+            st.write(f"{get_text_trad('text_002')}")
         with row2[1]:    
             if event_points>=int(15000):
                 st.markdown(f':green[{large_num_format(event_points)}]')
             else:
                 st.write(large_num_format(event_points))
         with row3[0]:
-            st.write(f"Event points for {nb_pal} UR:")
+            st.write(f"{get_text_trad('text_003')} {nb_pal} UR:")
         with row3[1]:
             if event_points_nb>=int(15000):
                 st.markdown(f':green[{large_num_format(event_points_nb)}]')
@@ -2261,9 +2261,9 @@ if is_mobile():
     write_js_menu()
 
 with st.sidebar:
-    top_nav = st.toggle("Top navigation", False)
-    nav_sections = st.toggle("Page sections", True)
-    use_pics = st.toggle("Show images", False)
+    top_nav = st.toggle(get_text_trad('side_nav'), False)
+    nav_sections = st.toggle(get_text_trad('side_page'), True)
+    use_pics = st.toggle(get_text_trad('side_pics'), False)
     range_langu = st.columns(2, vertical_alignment='center')
     with range_langu[0]:
         on = st.toggle("EN / FR")
@@ -2272,7 +2272,7 @@ with st.sidebar:
     with range_langu[1]:
         pic(data_flags[site_langu],24,force=True)
     menu_load_excel()
-    st.session_state.stream=st.toggle("Check loaded", False)
+    st.session_state.stream=st.toggle(get_text_trad('side_file'), False)
 
 
 
