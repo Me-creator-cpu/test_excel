@@ -2322,8 +2322,11 @@ pages = {
 }
 st.session_state.pages_base = pages
 if len(st.session_state.pages_add)>0:
+    txt=get_text_trad(site_langu,'menu_myteam')
     for x in st.session_state.pages_base:
         st.write(x)
+        if x == txt:
+            st.write('=>to delete')
 pages = st.session_state.pages_base | st.session_state.pages_add
 pg = st.navigation(
     pages if nav_sections else [page for section in pages.values() for page in section],
