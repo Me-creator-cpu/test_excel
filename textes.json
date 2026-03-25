@@ -31,6 +31,7 @@
     "switch_axis": [{"en": "Switch axis","fr": "Permuter axes"}],
     "total_nrj_cost": [{"en": "Total Energy cost from","fr": "Coût total énergie de"}],
     "to": [{"en": "to","fr": "à"}],
+    "for": [{"en": "for","fr": "pour"}],
     "calc_dreamium": [{"en": "Dreamium calculator","fr": "Calculateur Dreamium"}],
     "dashboard_avg_level": [{"en": "Average Level by Type","fr": "Niveau par type"}],
     "dashboard_avg_power": [{"en": "Average power by Type","fr": "Puissance par type"}],
