@@ -2313,7 +2313,7 @@ pages = {
     "Boss":[
         st.Page(pg_v2_idx_boss, title="Boss", icon="🐦‍🔥"),
         st.Page(pg_v2_idx_boss_data, title="Boss data", icon="🗂️"),
-    ]
+    ],
     get_text_trad(site_langu,'menu_resources'): [
         st.Page(pg_tips_img, title=get_text_trad(site_langu,'menu_tips'),icon="🌟"),
         st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
