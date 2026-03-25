@@ -65,11 +65,11 @@
     "text_001": [{"en": "Upgrade costs for","fr": "Coût évolution pour"}],
     "text_002": [{"en": "Event points:","fr": "Points événement:"}],
     "text_003": [{"en": "Event points for","fr": "Points événement pour"}],
-    "text_id9": [{"en": "text_id_en","fr": "text_id_fr"}],
-    "text_id9": [{"en": "text_id_en","fr": "text_id_fr"}],
-    "text_id9": [{"en": "text_id_en","fr": "text_id_fr"}],
-    "text_id9": [{"en": "text_id_en","fr": "text_id_fr"}],
-    "text_id9": [{"en": "text_id_en","fr": "text_id_fr"}],
-    "text_id9": [{"en": "text_id_en","fr": "text_id_fr"}]
+    "text_id2": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id3": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id4": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id5": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id6": [{"en": "text_id_en","fr": "text_id_fr"}],
+    "text_id7": [{"en": "text_id_en","fr": "text_id_fr"}]
   }
 }
