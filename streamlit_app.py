@@ -2322,7 +2322,8 @@ pages = {
 }
 st.session_state.pages_base = pages
 if len(st.session_state.pages_add)>0:
-    st.session_state.pages_base.pop(1)
+    for x in st.session_state.pages_base:
+        st.write(x)
 pages = st.session_state.pages_base | st.session_state.pages_add
 pg = st.navigation(
     pages if nav_sections else [page for section in pages.values() for page in section],
