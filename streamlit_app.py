@@ -2292,20 +2292,20 @@ pages = {
         #st.Page(pg_menu_050, title='Per type',icon="🗂️"),
         st.Page(pg_menu_100, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
     ],
-    "Calculators":[
-        st.Page(pg_v2_idx_costs, title="Upgrade costs", icon="💰"),
-        st.Page(pg_v2_idx_comp, title="Competencies", icon="🎓"),
-        st.Page(pg_v2_idx_mut, title="Mutation costs", icon="🧬"),
-        st.Page(pg_v2_calc_dreamium, title="Dreamium", icon="💎"),
+    get_text_trad(site_langu,'menu_calc'):[
+        st.Page(pg_v2_idx_costs, title=get_text_trad(site_langu,'menu_calc_costs'), icon="💰"),
+        st.Page(pg_v2_idx_comp, title=get_text_trad(site_langu,'menu_calc_comp'), icon="🎓"),
+        st.Page(pg_v2_idx_mut, title=get_text_trad(site_langu,'menu_calc_mut'), icon="🧬"),
+        st.Page(pg_v2_calc_dreamium, title=get_text_trad(site_langu,'menu_calc_dream'), icon="💎"),
     ],
-    "Upgrades data":[
-        st.Page(pg_v2_idx_val, title="Upgrade full costs", icon="🚀"),
-        st.Page(pg_v2_idx_equip, title="Equipments", icon="🧰"),
-        st.Page(pg_v2_idx_equip_nov, title="Equipments Explorer", icon="🎒"),
+    get_text_trad(site_langu,'menu_upg'):[
+        st.Page(pg_v2_idx_val, title=get_text_trad(site_langu,'menu_upg_costs'), icon="🚀"),
+        st.Page(pg_v2_idx_equip, title=get_text_trad(site_langu,'menu_upg_equip'), icon="🧰"),
+        st.Page(pg_v2_idx_equip_nov, title=get_text_trad(site_langu,'menu_upg_nov'), icon="🎒"),
     ],
-    "Boss":[
-        st.Page(pg_v2_idx_boss, title="Boss", icon="🐦‍🔥"),
-        st.Page(pg_v2_idx_boss_data, title="Boss data", icon="🗂️"),
+    get_text_trad(site_langu,'menu_boss'):[
+        st.Page(pg_v2_idx_boss, title=get_text_trad(site_langu,'menu_boss_all'), icon="🐦‍🔥"),
+        st.Page(pg_v2_idx_boss_data, title=get_text_trad(site_langu,'menu_boss_data'), icon="🗂️"),
     ],
     get_text_trad(site_langu,'menu_resources'): [
         st.Page(pg_tips_img, title=get_text_trad(site_langu,'menu_tips'),icon="🌟"),
