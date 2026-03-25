@@ -1498,6 +1498,7 @@ def menu_tab_boss():
             
 def menu_tab_boss_detail():
     st.subheader(df_xls["DisplayName"][idx_boss_data])
+    pic(img_menu_boss)
     try:
         df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
         #df_boss_det
