@@ -687,6 +687,13 @@ def icon_upgradable(value):
     except:
         return '🟥'
 
+def check_needs(value):
+    try:
+        if int(value)<0:
+            return 0
+        else:
+            return int(value)
+
 def clear_cache():
     keys = list(st.session_state.keys())
     for key in keys:
@@ -1560,7 +1567,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
     df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
     df['Skill']=df['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1]) 
     df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
-    df['Needs']=df['Needs'].apply(lambda b: b if >0 else 0) 
+    df['Needs']=df['Needs'].apply(lambda b: check_needs(b)) 
     df_display=df[cols_palmon]
     event = None
     if with_expander:
