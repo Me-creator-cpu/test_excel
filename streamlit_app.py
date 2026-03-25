@@ -1946,6 +1946,7 @@ def page4():
 
 def pg_options():
     pic(url_logo_01)
+    st.subheader('Options', divider=True)
     tab1,tab2,tab3,tab4,tab5 = st.tabs(["Excel file","JSON file","Maintain JSON","Errors","Others"], key="tab_option")
     with tab1:
         #Excel
