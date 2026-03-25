@@ -1200,7 +1200,7 @@ def calc_dreamium():
                 step=1,
                 format="%d",
             ),
-            "calculated":st.column_config.NumberColumn("Calculated")
+            "calculated":st.column_config.TextColumn("Calculated","alignment": "right")
         },
         disabled=["dreamium", "level", "calculated"],
         hide_index=True,
