@@ -2320,7 +2320,7 @@ pages = {
     ],    
 }
 st.session_state.pages_base = pages
-pages = st.session_state.pages_base #| st.session_state.pages_add
+pages = st.session_state.pages_base | st.session_state.pages_add
 pg = st.navigation(
     pages if nav_sections else [page for section in pages.values() for page in section],
     position="top" if top_nav else "sidebar"
