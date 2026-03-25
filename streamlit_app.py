@@ -58,6 +58,13 @@ texts_trad = None
 run_every = None
 
 #def init_session():
+pages_base={}
+pages_add={}
+if 'pages_base' not in st.session_state:
+    st.session_state.pages_base = pages_base
+if 'pages_add' not in st.session_state:
+    st.session_state.pages_add = pages_add 
+
 if 'texts_trad' not in st.session_state:
     st.session_state.texts_trad = None
 if 'site_langu' not in st.session_state:
@@ -469,6 +476,8 @@ def test_dummy():
     page_dict_m6["Boss"]            = menu_v2_m6
 
     #if len(page_dict) > 0:
+    pages_add = page_dict_m0 | page_dict_m50 | page_dict_m60 | page_dict_m6
+    st.session_state.pages_add = pages_add
     pg = st.navigation(page_dict_m0 | page_dict_m50 | page_dict_m60 | page_dict_m6)
     pg.run()
     st.toast(f"Menu v2.")
@@ -2310,6 +2319,8 @@ pages = {
         st.Page(pg_test_menu_v2, title='Test Menu v2',icon='🛠️')
     ],    
 }
+st.session_state.pages_base = pages
+pages = st.session_state.pages_base #| st.session_state.pages_add
 pg = st.navigation(
     pages if nav_sections else [page for section in pages.values() for page in section],
     position="top" if top_nav else "sidebar"
