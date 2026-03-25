@@ -446,7 +446,8 @@ def pg_v2_idx_boss_data():
 def test_dummy():
     st.toast(f"Building Menu v2.")
     page_v2_idx_palmon      =st.Page(pg_v2_idx_palmon, title="Full list", icon=":material/security:")
-    
+    page_v2_dashboard       =st.Page(pg_menu_100, title=get_text_trad(site_langu,'dashboards'),icon="📊")
+
     page_v2_idx_costs       =st.Page(pg_v2_idx_costs, title="Upgrade costs", icon=":material/security:")
     page_v2_idx_comp        =st.Page(pg_v2_idx_comp, title="Competencies", icon=":material/security:")
     page_v2_idx_mut         =st.Page(pg_v2_idx_mut, title="Mutation costs", icon=":material/security:")
@@ -458,7 +459,7 @@ def test_dummy():
     page_v2_idx_boss        =st.Page(pg_v2_idx_boss, title="Boss", icon=":material/security:")
     page_v2_idx_boss_data   =st.Page(pg_v2_idx_boss_data, title="Boss data", icon=":material/security:")
 
-    menu_v2_m0  =[page_v2_idx_palmon]
+    menu_v2_m0  =[page_v2_idx_palmon,page_v2_dashboard]
     menu_v2_m50 =[page_v2_idx_costs,page_v2_idx_comp,page_v2_idx_mut]
     menu_v2_m60 =[page_v2_idx_val,page_v2_idx_equip,page_v2_idx_equip_nov]
     menu_v2_m6  =[page_v2_idx_boss,page_v2_idx_boss_data]
@@ -2320,6 +2321,8 @@ pages = {
     ],    
 }
 st.session_state.pages_base = pages
+if len(st.session_state.pages_add)>0:
+    pages.remove(get_text_trad(site_langu,'menu_myteam'))
 pages = st.session_state.pages_base | st.session_state.pages_add
 pg = st.navigation(
     pages if nav_sections else [page for section in pages.values() for page in section],
