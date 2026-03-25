@@ -1944,6 +1944,48 @@ def page4():
 
 def pg_options():
     pic(url_logo_01)
+    tab1,tab2,tab3,tab4 = st.tabs["Excel file","JSON file","Maintain JSON","Errors","Others"]
+    with tab1:
+        #Excel
+        check_file_loaded()
+        if st.button("Reload"):
+            local_load_excel(True)       
+    with tab2:
+        #JSON
+        st.button('Load JSON', on_click=read_json_trads)
+        st.button('Clear Cache', on_click=clear_cache)
+    with tab3:
+        #Git JSON
+        form_file_param(file_txt='./textes.json')
+    with tab4:
+        #Errors
+        err_details=st.toggle('ShowErrorDetails', True)
+        st.set_option('client.showErrorDetails', err_details)
+    with tab5:
+        #Others
+        file_txt='./data/todo.txt'
+        file_txt='./test_w_api.txt'
+        with st.expander('Text file', expanded=False, icon=':material/table_view:', width='stretch'):
+            if st.button("Load Text file"):
+                st.text(test_read_txt(file_txt))
+            if st.button("Update Text file"):
+                test_append_txt(file_txt)
+            if st.button("Write Text file"):
+                test_write_txt(file_txt)
+        with st.expander('Other', expanded=False, icon=':material/table_view:', width='stretch'):
+            if st.button("Test listing"):
+                test_listing()
+            if st.button("Donut graph"):
+                build_graph_donut_test()
+            if st.button("Colors"):
+                test_colors()
+        with st.expander('Github', expanded=False, icon=':material/table_view:', width='stretch'):
+            check_github_access()
+            if st.button("Get issues"):
+                test_github_issues()
+
+def pg_options_old():
+    pic(url_logo_01)
     with st.expander('JSON file', expanded=False, icon=':material/table_view:', width='stretch'):
         st.button('Load JSON', on_click=read_json_trads)
         st.button('Clear Cache', on_click=clear_cache)
@@ -1976,7 +2018,7 @@ def pg_options():
     with st.expander('Github', expanded=False, icon=':material/table_view:', width='stretch'):
         check_github_access()
         if st.button("Get issues"):
-            test_github_issues()   
+            test_github_issues()
 
 def pg_test_menu_v2():
     build_menu_v2()
