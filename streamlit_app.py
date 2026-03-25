@@ -1560,6 +1560,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
     df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
     df['Skill']=df['Skill'].apply(lambda b: option_skill[0] if b=='Attack' else option_skill[1]) 
     df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b)) 
+    df['Needs']=df['Needs'].apply(lambda b: b if >0 else 0) 
     df_display=df[cols_palmon]
     event = None
     if with_expander:
