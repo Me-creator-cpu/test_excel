@@ -1836,7 +1836,7 @@ def pg_v2_idx_val():
 def pg_v2_idx_equip():
     menu_tab_show(idx_equip)
 def pg_v2_idx_equip_nov():
-    menu_tab_show(idx_equip_nov)
+    menu_tab_show(idx_equip_nov)  
 def pg_v2_idx_boss():
     menu_tab_show(idx_boss)
 def pg_v2_idx_boss_data():
@@ -1850,7 +1850,10 @@ def pg_menu_100():
     menu_tab_show(100)
 def pg_menu_200():
     menu_tab_show(200)
-    
+
+def pg_v2_calc_dreamium():
+    calc_dreamium()  
+
 def pg_info_device():
     ico="📱" if is_mobile() else "💻"
     st.title(f"{ico}Device info")
@@ -2303,7 +2306,7 @@ pages = {
         st.Page(pg_v2_idx_costs, title="Upgrade costs", icon="💰"),
         st.Page(pg_v2_idx_comp, title="Competencies", icon="🎓"),
         st.Page(pg_v2_idx_mut, title="Mutation costs", icon="🧬"),
-
+        st.Page(pg_v2_calc_dreamium, title="Dreamium", icon="💎"),
     ],
     "Upgrades data":[
         st.Page(pg_v2_idx_val, title="Upgrade full costs", icon="🚀"),
