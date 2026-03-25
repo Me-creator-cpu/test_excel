@@ -424,25 +424,6 @@ def test_liste():
             st.divider()
         prev_m=m
 
-def pg_v2_idx_palmon():
-    menu_tab_show(idx_palmon)
-def pg_v2_idx_costs():
-    menu_tab_show(idx_costs)
-def pg_v2_idx_comp():
-    menu_tab_show(idx_comp)
-def pg_v2_idx_mut():
-    menu_tab_show(idx_mut)
-def pg_v2_idx_val():
-    menu_tab_show(idx_val)
-def pg_v2_idx_equip():
-    menu_tab_show(idx_equip)
-def pg_v2_idx_equip_nov():
-    menu_tab_show(idx_equip_nov)
-def pg_v2_idx_boss():
-    menu_tab_show(idx_boss)
-def pg_v2_idx_boss_data():
-    menu_tab_show(idx_boss_data)
-
 def test_dummy():
     st.toast(f"Building Menu v2.")
     page_v2_idx_palmon      =st.Page(pg_v2_idx_palmon, title="Full list", icon=":material/security:")
@@ -473,7 +454,7 @@ def test_dummy():
 
     page_dict_m0["Palmons"]         = menu_v2_m0
     page_dict_m50["Calculators"]    = menu_v2_m50
-    page_dict_m60["Informations"]   = menu_v2_m60
+    page_dict_m60["Informations"]   = menu_v2_m60 #"Upgrades data"
     page_dict_m6["Boss"]            = menu_v2_m6
 
     #if len(page_dict) > 0:
@@ -739,7 +720,19 @@ def check_file_loaded():
         return st.success(f'{now} - File loaded', icon="✅")
     else:
         return st.warning(f'{now} - File is NOT loaded', icon="⚠️")
-        
+
+def build_table_params(df):
+    try:
+        st.dataframe(df,
+             column_config={
+                0: st.column_config.TextColumn("Parameter", pinned = True),
+                1: st.column_config.TextColumn("Value"),},
+             hide_index=False,
+             #height='content'
+                    )    
+    except:
+        return st.empty()
+
 def build_main_chart(raw_data,title_expander=None,x_axis=None,y_axis=None):
     if title_expander is not None:
         container = st.expander(title_expander, expanded=True, width="stretch")
@@ -1829,39 +1822,43 @@ def pg_home():
         menu_build_tabs()
     else:
         file_err()
-        
+
+def pg_v2_idx_palmon():
+    menu_tab_show(idx_palmon)
+def pg_v2_idx_costs():
+    menu_tab_show(idx_costs)
+def pg_v2_idx_comp():
+    menu_tab_show(idx_comp)
+def pg_v2_idx_mut():
+    menu_tab_show(idx_mut)
+def pg_v2_idx_val():
+    menu_tab_show(idx_val)
+def pg_v2_idx_equip():
+    menu_tab_show(idx_equip)
+def pg_v2_idx_equip_nov():
+    menu_tab_show(idx_equip_nov)
+def pg_v2_idx_boss():
+    menu_tab_show(idx_boss)
+def pg_v2_idx_boss_data():
+    menu_tab_show(idx_boss_data)
+
 def pg_menu_0():
     menu_tab_show(0)
-
 def pg_menu_050():    
     pal_view_types()
-
 def pg_menu_100():
     menu_tab_show(100)
-
 def pg_menu_200():
     menu_tab_show(200)
     
-def page1():
+def pg_info_device():
     ico="📱" if is_mobile() else "💻"
     st.title(f"{ico}Device info")
     #pic(url_logo_03)
     write_one_info(f"is_mobile: {is_mobile()}")
     write_one_info(get_device_type())    
 
-def build_table_params(df):
-    try:
-        st.dataframe(df,
-             column_config={
-                0: st.column_config.TextColumn("Parameter", pinned = True),
-                1: st.column_config.TextColumn("Value"),},
-             hide_index=False,
-             #height='content'
-                    )    
-    except:
-        return st.empty()
-
-def page2():
+def pg_info_os():
     st.title("💻Server OS information")
     st.subheader("os.environ")
     df_os_environ = pd.DataFrame([dict(os.environ)]).T
@@ -1870,7 +1867,7 @@ def page2():
     df_os_sysconf_names = pd.DataFrame([os.sysconf_names]).T
     build_table_params(df_os_sysconf_names) 
 
-def page3():
+def pg_info_file():
     st.subheader(f'📋{get_text_trad(site_langu,'info_file')}', divider=False)
     try:
         if st.session_state.uploaded_file is not None:
@@ -2302,18 +2299,35 @@ pages = {
         #st.Page(pg_menu_050, title='Per type',icon="🗂️"),
         st.Page(pg_menu_100, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
     ],
+    "Calculators":[
+        st.Page(pg_v2_idx_costs, title="Upgrade costs", icon="💰"),
+        st.Page(pg_v2_idx_comp, title="Competencies", icon="🎓"),
+        st.Page(pg_v2_idx_mut, title="Mutation costs", icon="🧬"),
+
+    ],
+    "Upgrades data":[
+        st.Page(pg_v2_idx_val, title="Upgrade full costs", icon="🚀"),
+        st.Page(pg_v2_idx_equip, title="Equipments", icon="🧰"),
+        st.Page(pg_v2_idx_equip_nov, title="Equipments Explorer", icon="🎒"),
+    ],
+    "Boss":[
+        st.Page(pg_v2_idx_boss, title="Boss", icon="🐦‍🔥"),
+        st.Page(pg_v2_idx_boss_data, title="Boss data", icon="🗂️"),
+    ]
     get_text_trad(site_langu,'menu_resources'): [
         st.Page(pg_tips_img, title=get_text_trad(site_langu,'menu_tips'),icon="🌟"),
         st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
     ],
     get_text_trad(site_langu,'menu_info'): [
-        st.Page(page1, title=get_text_trad(site_langu,'menu_info_device'),icon="📱" if is_mobile() else "💻"),
-        st.Page(page2, title=get_text_trad(site_langu,'menu_info_os'),icon="🖥️"),
-        st.Page(page3, title=get_text_trad(site_langu,'menu_info_file'),icon="📋"),
+        st.Page(pg_info_device, title=get_text_trad(site_langu,'menu_info_device'),icon="📱" if is_mobile() else "💻"),
+        st.Page(pg_info_os, title=get_text_trad(site_langu,'menu_info_os'),icon="🖥️"),
+        st.Page(pg_info_file, title=get_text_trad(site_langu,'menu_info_file'),icon="📋"),
     ],
     get_text_trad(site_langu,'menu_param'): [
         st.Page(pg_options, title=get_text_trad(site_langu,'menu_options'),icon='⚙️'), #🛠️
         st.Page('./git_translations.py', title=get_text_trad(site_langu,'menu_git_translate'),icon='🛠️'),
+    ],
+    "Tests": [
         st.Page(pg_tests, title='Tests',icon='🛠️'),
         st.Page('./tests/test_eval.py', title='Tests EVAL',icon='🛠️'),
         st.Page('./tests/test2_github.py', title='Test Github',icon='🛠️'),
@@ -2321,16 +2335,7 @@ pages = {
     ],    
 }
 st.session_state.pages_base = pages
-if len(st.session_state.pages_add)>0:
-    txt=get_text_trad(site_langu,'menu_myteam')
-    #del pages[txt]
-    pages[txt]=st.session_state.pages_add["Palmons"]
-    for x in st.session_state.pages_base:
-        st.write(x)
-        if x == txt:
-            st.write('=>to delete')
-    
-#pages = st.session_state.pages_base | st.session_state.pages_add
+
 pg = st.navigation(
     pages if nav_sections else [page for section in pages.values() for page in section],
     position="top" if top_nav else "sidebar"
