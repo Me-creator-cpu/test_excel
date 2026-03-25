@@ -14,3 +14,4 @@ url_logo_06='./data/logo_06.jpg'
 
 img_costs_camp='.data/Costs_Camp_Upgrade.jpg'
 img_costs_exp='.data/Costs_EXP.png'
+img_palmon_traits='.data/Palmon_Traits.png'

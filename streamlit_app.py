@@ -2029,7 +2029,7 @@ def pg_test_menu_v2():
 def pg_tips_img():
     st.subheader('Tips', divider=True)
     for x in os.listdir('.//data'):
-        if x.startswith("Costs_"):
+        if x.startswith("Costs_") or x.startswith("Palmon_"):
             st.image('./data/'+x, caption=x)    
             
 def test_listing():
