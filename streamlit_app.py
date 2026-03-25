@@ -1186,7 +1186,7 @@ def calc_dreamium():
 
     #styled_df=df.style.applymap(df_highlight,threshold=4,subset=["quantity"])
     pic(url_logo_03)
-    st.subheader('Dreamium calculator')
+    st.subheader(get_text_trad(site_langu,'calc_dreamium'))
     edited_df = st.data_editor(
         df,
         #styled_df,
