@@ -158,11 +158,14 @@ def json_to_frame():
         on_change=df_change
     )
     
-    row_menu = st.columns(2,border=False, width="stretch")
+    row_menu = st.columns(3,border=False, width="stretch")
     with row_menu[0]:
         if st.button("Cancel changes"):
             cancel_change()
     with row_menu[1]:
+        if st.button("Reload"):
+            form_file_param(file_txt=json_file)
+    with row_menu[2]:
         if st.button("Save changes"):
             save_change()            
 
