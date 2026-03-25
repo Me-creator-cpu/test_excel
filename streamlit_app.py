@@ -127,7 +127,7 @@ idx_equip=8
 idx_equip_nov=9
 idx_cal=50
 idx_info=60
-#✨
+#?
 data = { #                    0                  1                  2                    3                4                        5                    6                    7                8                 9
         "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs",        "Valeurs",      "Valeurs"],
         "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss",               "Boss data",      "Equipments",   "Equipments Explorer"],
@@ -157,31 +157,31 @@ data_menu_v2={
 df_xls = pd.DataFrame(data)
 data_flags={'en':flag_en,'fr':flag_fr}
 
-option_skill=["⚔ Attack","🛡 Defend"]
+option_skill=["? Attack","?? Defend"]
 data_skills={
     "Skill":["Attack","Defend"],
     "Icon":option_skill
 }
 data_type={
     "Type":["Water",      "Fire",    "Electricity",    "Wood",    "Any"],
-    "Icon":["💧",        "🔥",      "⚡",             "🪵",     "🌐"] ,
+    "Icon":["??",        "??",      "?",             "??",     "??"] ,
     "Color":["#EEF527","#F54927",    "#2784F5",    "#F57D27",    "#27F549"]
 }
 data_values={
     "Value":["Energy","Crystals","Pieces","Level300"],
-    "Icon":["🟢",     "💎",     "🧩",    "🔝"],
+    "Icon":["??",     "??",     "??",    "??"],
 }
-map_values={"Energy":"🟢Energy",
-            "Crystals":"💎Crystals",
-            "Pieces":"🧩Pieces",
-            "Level300":"🔝Level300" }
+map_values={"Energy":"??Energy",
+            "Crystals":"??Crystals",
+            "Pieces":"??Pieces",
+            "Level300":"??Level300" }
 
 option_type=data_type['Icon']
 df_data_type = pd.DataFrame(data_type)
 option_values=data_values['Icon']
 df_data_values = pd.DataFrame(data_values)
 # ======================================================================================================
-#format="%d ⭐",
+#format="%d ?",
  
 cols_palmon = ['Name','Type','Skill','Level','Upgradable','Step','Stars','Achievement','Needs','Cost to max']
 
@@ -213,7 +213,7 @@ column_config={
         "Step",
         min_value=0,
         max_value=5,
-        format="%d ⭐",
+        format="%d ?",
     ),
     "Steps": st.column_config.TextColumn("Steps"),
     "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),
@@ -269,7 +269,7 @@ column_config_lst={
         "Step",
         min_value=0,
         max_value=5,
-        format="%d ⭐",
+        format="%d ?",
     ),
     "Steps": st.column_config.TextColumn("Steps"),
     "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),
@@ -390,8 +390,8 @@ def test_menu_v2():
 def test_liste_pages():
     #pages = {
     #    'Nom menu':[ 
-    #        st.Page(target, title='Nom page', icon="🏠"),
-    #        st.Page(target, title='Nom page', icon="🏠"),
+    #        st.Page(target, title='Nom page', icon="??"),
+    #        st.Page(target, title='Nom page', icon="??"),
     #    ],
     #}
     #menu_tab_show(idx)
@@ -405,7 +405,7 @@ def test_liste_pages():
         for sm in key_values(m):
             subtab = df_xls["DisplayName"][sm]
             st.write(f'menu={m}, submenu={(sm)}, name={subtab}')
-            #pg=st.Page(menu_tab_show(sm), title=subtab, icon="🏠")
+            #pg=st.Page(menu_tab_show(sm), title=subtab, icon="??")
             lstpages_v2.append(pg)
         if prev_m!=m:
             st.divider()
@@ -427,7 +427,7 @@ def test_liste():
 def test_dummy():
     st.toast(f"Building Menu v2.")
     page_v2_idx_palmon      =st.Page(pg_v2_idx_palmon, title="Full list", icon=":material/security:")
-    page_v2_dashboard       =st.Page(pg_menu_100, title=get_text_trad(site_langu,'dashboards'),icon="📊")
+    page_v2_dashboard       =st.Page(pg_menu_100, title=get_text_trad('dashboards'),icon="??")
 
     page_v2_idx_costs       =st.Page(pg_v2_idx_costs, title="Upgrade costs", icon=":material/security:")
     page_v2_idx_comp        =st.Page(pg_v2_idx_comp, title="Competencies", icon=":material/security:")
@@ -568,14 +568,14 @@ def do_nothing():
     return None
     
 def file_err():
-    msg_no_file=get_text_trad(site_langu,'no_file')
-    return st.markdown(f":orange-badge[⚠️ {msg_no_file}]")
+    msg_no_file=get_text_trad('no_file')
+    return st.markdown(f":orange-badge[?? {msg_no_file}]")
 
 def write_info(msg,val):
     return st.markdown(f":orange-badge[{msg} : {val}]")
 
 def write_one_info(msg):
-    return st.info(f"{msg}", icon="ℹ️", width="stretch")
+    return st.info(f"{msg}", icon="??", width="stretch")
 
 def write_coming_soon():
     maintenance=st.container(border=False, width='stretch', height='content')
@@ -683,28 +683,29 @@ def icon_skill(value):
 
 def icon_upgradable(value):
     try:
-        return '✅' if int(value)==1 else '🟥' 
+        return '?' if int(value)==1 else '??' 
     except:
-        return '🟥'
+        return '??'
 
 def clear_cache():
     keys = list(st.session_state.keys())
     for key in keys:
         st.session_state.pop(key)
-    st.toast('Cache cleared', icon='ℹ️️', duration='short')
+    st.toast('Cache cleared', icon='???', duration='short')
 
 def read_json_trads(sFile='textes.json'):
     json_data = None
     try:
         with open(sFile, encoding='utf-8', errors='ignore') as f:
             json_data = json.load(f, strict=False) 
-        st.toast('JSON file loaded', icon='ℹ️️', duration='short')
+        st.toast('JSON file loaded', icon='???', duration='short')
     except:
-        st.toast('Error loading JSON file', icon='🔴', duration='short')
+        st.toast('Error loading JSON file', icon='??', duration='short')
     return json_data
 
-def get_text_trad(langu='en',textId='text_id'):
+def get_text_trad(textId='text_id'):
     ret_val = ''
+    langu=st.session_state.site_langu
     try:
         texts_trad=st.session_state.texts_trad
         ret_val = texts_trad['data'][textId][0][langu]
@@ -713,13 +714,23 @@ def get_text_trad(langu='en',textId='text_id'):
         ret_val=f'Trad err {textId}/{langu}'
     return ret_val
 
+def get_text_trad_old(langu='en',textId='text_id'):
+    ret_val = ''
+    try:
+        texts_trad=st.session_state.texts_trad
+        ret_val = texts_trad['data'][textId][0][langu]
+    except:
+        st.session_state.texts_trad = read_json_trads()
+        ret_val=f'Trad err {textId}/{langu}'
+    return ret_val    
+
 @st.fragment(run_every=run_every)
 def check_file_loaded():
     now = datetime.now()
     if df_xls["DataFrame"][idx_palmon] is not None:
-        return st.success(f'{now} - File loaded', icon="✅")
+        return st.success(f'{now} - File loaded', icon="?")
     else:
-        return st.warning(f'{now} - File is NOT loaded', icon="⚠️")
+        return st.warning(f'{now} - File is NOT loaded', icon="??")
 
 def build_table_params(df):
     try:
@@ -751,7 +762,7 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
         switch_axis = False
         try:
             if with_switch:
-                switch_axis = st.toggle(get_text_trad(site_langu,'switch_axis'))
+                switch_axis = st.toggle(get_text_trad('switch_axis'))
         except:
             switch_axis = False
         x_Field = xField
@@ -778,8 +789,8 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
             
             st.bar_chart(df2, x=x_Field, y=[y_Field,'Selection'], color=["#0068c9", "#ff4b4b"], stack=False)            
             df = df_chart.loc[(df_chart[x_Field] >= int(range_level_min)) & (df_chart[x_Field] <= int(range_level_max))]
-            total_txt=get_text_trad(site_langu,'total_nrj_cost')
-            to_txt=get_text_trad(site_langu,'to')
+            total_txt=get_text_trad('total_nrj_cost')
+            to_txt=get_text_trad('to')
             total_col = f"{total_txt} {range_level_min} {to_txt} {range_level_max}"
             try:
                 st.markdown(f":orange-badge[{total_col} : {large_num_format(int(df[y_Field].sum()))}]")
@@ -790,8 +801,8 @@ def build_chart_bar(df_chart,xField,yField,sLabel,selMin=1,selMax=30,with_slider
         else:
             st.bar_chart(df_chart, x=x_Field, y=y_Field, stack=False)
             df = df_chart.loc[(df_chart[xField] >= int(selMin)) & (df_chart[xField] <= int(selMax))]
-            total_txt=get_text_trad(site_langu,'total_cry_cost')
-            to_txt=get_text_trad(site_langu,'to')
+            total_txt=get_text_trad('total_cry_cost')
+            to_txt=get_text_trad('to')
             total_col = f"{total_txt} {selMin} {to_txt} {selMax}"
             st.markdown(f":orange-badge[{total_col} : {int(df[yField].sum())}]")
             return selMin,selMax
@@ -800,9 +811,9 @@ def build_graph_select():
     st.set_page_config(
         layout="wide",
     )
-    field_1 = 'Level' #get_text_trad(site_langu,'level') #'Level'
-    field_2 = 'Stars' #get_text_trad(site_langu,'stars') #'Stars'
-    on = st.toggle(f'{get_text_trad(site_langu,'switch_axis')} {field_1}/{field_2}')
+    field_1 = 'Level' #get_text_trad('level') #'Level'
+    field_2 = 'Stars' #get_text_trad('stars') #'Stars'
+    on = st.toggle(f'{get_text_trad('switch_axis')} {field_1}/{field_2}')
     if on:
         field_x = field_2
         field_y = field_1
@@ -941,8 +952,8 @@ def build_pivot_table(raw_data,val_value: str, val_index: str, val_columns: str,
             palmon_types_df.style.highlight_max(axis=0),
             column_config={
                 "Type": st.column_config.TextColumn( "Type", pinned = True ),
-                "Attack": st.column_config.NumberColumn( "⚔ Attack", step=".01" ), #:crossed_swords:
-                "Defend": st.column_config.NumberColumn( "🛡 Defend", step=".01" ), #:shield:
+                "Attack": st.column_config.NumberColumn( "? Attack", step=".01" ), #:crossed_swords:
+                "Defend": st.column_config.NumberColumn( "?? Defend", step=".01" ), #:shield:
                 "Level": st.column_config.NumberColumn( "Level", step=".01" ),
                 "Level": st.column_config.NumberColumn( "Count", step="0" ),
             },
@@ -966,9 +977,9 @@ def apply_cols_icons(df):
     df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
     return df
     
-def format_stars(x): #⭐
+def format_stars(x): #?
     try:
-        return ("⭐" * int(x))[0:int(x)]
+        return ("?" * int(x))[0:int(x)]
     except:
         return x
 
@@ -1186,7 +1197,7 @@ def calc_dreamium():
 
     #styled_df=df.style.applymap(df_highlight,threshold=4,subset=["quantity"])
     pic(url_logo_03)
-    st.subheader(get_text_trad(site_langu,'calc_dreamium'))
+    st.subheader(get_text_trad('calc_dreamium'))
     edited_df = st.data_editor(
         df,
         #styled_df,
@@ -1209,7 +1220,7 @@ def calc_dreamium():
         kwargs=dict(selected_rows=df),
         #kwargs=dict(selected_rows=styled_df),
     )
-    #st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
+    #st.markdown(f"Your favorite command is **{favorite_command}** ??")
 
 def calc_dreamium_final(df_source,df_input):
     rows = df_source.index.tolist()
@@ -1265,11 +1276,11 @@ def local_load_excel(getnewfile=True):
 def menu_load_excel(with_expander=True,getnewfile=True,expanded=False):
     if getnewfile:
         if with_expander:
-            container=st.expander(get_text_trad(site_langu,'xls'), expanded=expanded, width="stretch")
+            container=st.expander(get_text_trad('xls'), expanded=expanded, width="stretch")
         else:
             container=st.container(border=False, width='stretch', height='content')
         with container:
-            uploaded_file  = st.file_uploader(get_text_trad(site_langu,'xls_sel'), type = 'xlsx')
+            uploaded_file  = st.file_uploader(get_text_trad('xls_sel'), type = 'xlsx')
             excel_loaded=False
             if uploaded_file is not None:
                 st.session_state.uploaded_file = uploaded_file
@@ -1289,9 +1300,9 @@ def menu_load_excel(with_expander=True,getnewfile=True,expanded=False):
         uploaded_file = st.session_state.uploaded_file
         #file = pd.ExcelFile(st.session_state.uploaded_file)    
     
-        #st.toast(f'df_xls.shape={df_xls.shape}', icon='ℹ️️', duration='short')
-        #st.toast(f'uploaded_file={uploaded_file}', icon='ℹ️️', duration='short')
-        #st.toast(f'st.session_state.uploaded_file={st.session_state.uploaded_file}', icon='ℹ️️', duration='short')
+        #st.toast(f'df_xls.shape={df_xls.shape}', icon='???', duration='short')
+        #st.toast(f'uploaded_file={uploaded_file}', icon='???', duration='short')
+        #st.toast(f'st.session_state.uploaded_file={st.session_state.uploaded_file}', icon='???', duration='short')
     
     tabs_data=[]
     row, col = df_xls.shape
@@ -1361,7 +1372,7 @@ def menu_tab_comp():
     st.subheader(df_xls["DisplayName"][idx_comp])
     df = df_xls["DataFrame"][idx_comp]
     range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
-    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
+    with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
 
     
@@ -1411,7 +1422,7 @@ def menu_tab_costs():
             else:
                 st.write(large_num_format(event_points_nb))
         
-    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
+    with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level to'] <= range_level_max)])    
 
 def menu_tab_mut():
@@ -1419,28 +1430,28 @@ def menu_tab_mut():
     df = df_xls["DataFrame"][idx_mut]
     df_energy=df.loc[(df['Step'] != 0)]
     df_crystal=df.loc[(df['Step'] == 0)]  
-    st.subheader("🟢Energy")
+    st.subheader("??Energy")
     range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(df_energy['Level'].min()),int(df_energy['Level'].max()))
-    st.subheader("💎Crystals")
+    st.subheader("??Crystals")
     build_chart_bar(df_crystal,'Level','Cost level','Mutation costs from level:',int(df_crystal['Level'].min()),int(df_crystal['Level'].max()),False)
-    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
-        st.subheader("🟢Energy", divider="green")
+    with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
+        st.subheader("??Energy", divider="green")
         build_table_any(df_energy.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
-        st.subheader("💎Crystals", divider="blue")
+        st.subheader("??Crystals", divider="blue")
         build_table_any(df_crystal.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])        
 
 def menu_tab_equip():
-    st.header("✨"+df_xls["DisplayName"][idx_equip]) 
+    st.header("?"+df_xls["DisplayName"][idx_equip]) 
     df = df_xls["DataFrame"][idx_equip]
     range_level_min, range_level_max = build_chart_bar(df,'Level','Opus pearls','Costs from level:',int(df['Level'].min()),int(df['Level'].max()),with_slider=True, with_switch=False)
-    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
+    with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
 
 def menu_tab_equip_nov():
-    st.header("✨"+df_xls["DisplayName"][idx_equip_nov]) 
+    st.header("?"+df_xls["DisplayName"][idx_equip_nov]) 
     df = df_xls["DataFrame"][idx_equip_nov]
     range_level_min, range_level_max = build_chart_bar(df,'Level','Cost','Costs from level:',int(df['Level'].min()),int(df['Level'].max()),with_slider=True, with_switch=False)
-    with st.expander(get_text_trad(site_langu,'data_graph'), expanded=False, width="stretch"):
+    with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
 
 def menu_tab_val():
@@ -1538,7 +1549,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
     if with_select:
         #options = st.pills(f"Filter values for {column}:", df[column].unique(), selection_mode="multi", default=list(df[column].unique()))
         options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
-        lbl=get_text_trad(site_langu,'opt_owned')
+        lbl=get_text_trad('opt_owned')
         if st.toggle(f'{lbl}'):
             df=df.loc[(df["Level"]>0)]
     else:
@@ -1569,7 +1580,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
 
 def menu_tab_dashboards():
     col_border=False
-    st.header(get_text_trad(site_langu,'dashboards'))
+    st.header(get_text_trad('dashboards'))
     df=df_xls["DataFrame"][idx_palmon]
 
     column='Type'
@@ -1603,10 +1614,10 @@ def menu_tab_dashboards():
         df_d=df2.copy()
         df_a = df_a[df_a[column].isin(options)]
         df_d = df_d[df_d[column].isin(options)]    
-        df_a = df_a[df2['Skill'].isin(['⚔ Attack','Attack','⚔ AttackAttack'])].head(7)
-        df_d = df_d[df2['Skill'].isin(['🛡 Defend','Defend','🛡 DefendDefend'])].head(7)
+        df_a = df_a[df2['Skill'].isin(['? Attack','Attack','? AttackAttack'])].head(7)
+        df_d = df_d[df2['Skill'].isin(['?? Defend','Defend','?? DefendDefend'])].head(7)
         
-        st.subheader(f'⚔ {get_text_trad(site_langu,'dashboard_title_a')}')
+        st.subheader(f'? {get_text_trad('dashboard_title_a')}')
         df_a = apply_cols_icons(df_a)
         build_table_dashboard(df_a)
         #event_a = build_table_dashboard(df_a)
@@ -1618,7 +1629,7 @@ def menu_tab_dashboards():
             #show_details(event_a.selection.rows,df_a,True)
             #event_a = None   
         #event_detail    st.session_state.event_detail
-        st.subheader(f'🛡 {get_text_trad(site_langu,'dashboard_title_b')}')
+        st.subheader(f'?? {get_text_trad('dashboard_title_b')}')
         df_d = apply_cols_icons(df_d)
         build_table_dashboard(df_d)
         #event_d = build_table_dashboard(df_d)
@@ -1638,13 +1649,13 @@ def menu_tab_dashboards():
         
         row_d1 = st.columns(2,border=col_border, width="stretch")
         with row_d1[0]:
-            st.subheader(get_text_trad(site_langu,'dashboard_avg_level'))
+            st.subheader(get_text_trad('dashboard_avg_level'))
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
             avg_lvl_df
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
             st.bar_chart(avg_lvl_df, y='Level', horizontal=True)
         with row_d1[1]:
-            st.subheader(get_text_trad(site_langu,'dashboard_avg_power'))
+            st.subheader(get_text_trad('dashboard_avg_power'))
             avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
             avg_pwr_df  
             avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
@@ -1652,11 +1663,11 @@ def menu_tab_dashboards():
     
         row_d2 = st.columns(2,border=col_border, width="stretch")
         with row_d2[0]:
-            st.subheader(get_text_trad(site_langu,'dashboard_avg_skill'))
+            st.subheader(get_text_trad('dashboard_avg_skill'))
             df_tcd1['Type']=df_tcd1['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
             build_pivot_table(df_tcd1,'Level','Type','Skill')
         with row_d2[1]:
-            st.subheader(get_text_trad(site_langu,'dashboard_nb_type'))
+            st.subheader(get_text_trad('dashboard_nb_type'))
             df_tcd2['Type']=df_tcd2['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
             #build_main_chart(df_tcd2,None,'Type','Level')
             #build_pivot_table(df_tcd3,'Level','Type','Skill')
@@ -1666,11 +1677,11 @@ def menu_tab_dashboards():
         row_d3 = st.columns(2,border=col_border, width="stretch")
         with row_d3[1]:
             df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
-            donut1=build_graph_donut(df_tcd3,get_text_trad(site_langu,'dashboard_donut_pct'))
+            donut1=build_graph_donut(df_tcd3,get_text_trad('dashboard_donut_pct'))
             donut1
         with row_d3[0]:
             df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].mean(), include_groups=True).to_frame('Nb')
-            donut2=build_graph_donut(df_tcd4,get_text_trad(site_langu,'dashboard_donut_nb'))
+            donut2=build_graph_donut(df_tcd4,get_text_trad('dashboard_donut_nb'))
             donut2
         
     except:
@@ -1845,14 +1856,14 @@ def pg_v2_calc_dreamium():
     calc_dreamium()  
 
 def pg_info_device():
-    ico="📱" if is_mobile() else "💻"
+    ico="??" if is_mobile() else "??"
     st.title(f"{ico}Device info")
     #pic(url_logo_03)
     write_one_info(f"is_mobile: {is_mobile()}")
     write_one_info(get_device_type())    
 
 def pg_info_os():
-    st.title("💻Server OS information")
+    st.title("??Server OS information")
     st.subheader("os.environ")
     df_os_environ = pd.DataFrame([dict(os.environ)]).T
     build_table_params(df_os_environ) 
@@ -1861,14 +1872,14 @@ def pg_info_os():
     build_table_params(df_os_sysconf_names) 
 
 def pg_info_file():
-    st.subheader(f'📋{get_text_trad(site_langu,'info_file')}', divider=False)
+    st.subheader(f'??{get_text_trad('info_file')}', divider=False)
     try:
         if st.session_state.uploaded_file is not None:
             obj_fle=st.session_state.uploaded_file
             fileinfo={
-               get_text_trad(site_langu,'info_file_name'):obj_fle.name,
-               get_text_trad(site_langu,'info_file_type'):obj_fle.type,
-               get_text_trad(site_langu,'info_file_size'):large_num_format(obj_fle.size)
+               get_text_trad('info_file_name'):obj_fle.name,
+               get_text_trad('info_file_type'):obj_fle.type,
+               get_text_trad('info_file_size'):large_num_format(obj_fle.size)
             }
             st.dataframe(
                 fileinfo,
@@ -1880,10 +1891,10 @@ def pg_info_file():
             file = pd.ExcelFile(st.session_state.uploaded_file)
             if file is not None:
                 option = st.selectbox(
-                    get_text_trad(site_langu,'wks'),
+                    get_text_trad('wks'),
                     file.sheet_names,
                     index=None,
-                    placeholder=get_text_trad(site_langu,'wks_sel'),
+                    placeholder=get_text_trad('wks_sel'),
                 )
                 if option is not None:
                     if option == "Tableaux":
@@ -1908,10 +1919,10 @@ def page4():
         st.session_state.texts_trad = read_json_trads()
     if st.button("Load JSON"):
         st.session_state.texts_trad = read_json_trads()
-    test_trad = get_text_trad(site_langu,'text_id')
+    test_trad = get_text_trad('text_id')
     write_one_info(test_trad)
     st.divider()
-    test_trad = get_text_trad(site_langu,'menu_home')
+    test_trad = get_text_trad('menu_home')
     write_one_info(test_trad)
     st.divider()
     st.button('Clear Cache', on_click=clear_cache)
@@ -2007,16 +2018,16 @@ def rgb2hex(r,g,b):
 @st.fragment(run_every="1s")
 def check_github_access():
     if 'REPLICATE_API_TOKEN' in st.secrets.tests:
-        st.success('API key already provided!', icon='✅')
+        st.success('API key already provided!', icon='?')
         replicate_api = st.secrets.tests.REPLICATE_API_TOKEN
     else:
-        st.warning('No API key provided!', icon='⚠️')
+        st.warning('No API key provided!', icon='??')
 
     if 'DB_TOKEN' in st.secrets:
-        st.success('DB_TOKEN key already provided!', icon='✅')
+        st.success('DB_TOKEN key already provided!', icon='?')
         replicate_api = st.secrets['DB_TOKEN']
     else:
-        st.warning('No DB_TOKEN key provided!', icon='⚠️')    
+        st.warning('No DB_TOKEN key provided!', icon='??')    
 
 def test_read_txt(file_txt):
     data_txt=''
@@ -2030,19 +2041,19 @@ def test_append_txt(file_txt):
             f.write("Hello again\n")
             f.flush()
             f.close()
-        return st.success('update OK', icon='✅')
+        return st.success('update OK', icon='?')
     except:
-        return st.error('update KO', icon='🚨')
+        return st.error('update KO', icon='??')
 
 def form_file_param(file_txt='data/todo.txt'):
-    #get_text_trad(site_langu,'download')
+    #get_text_trad('download')
     raw_data_txt=open(file_txt, mode='r').read()
     data_txt=''
     if raw_data_txt is not None:
         textsplit = raw_data_txt.splitlines()
         for x in textsplit:
             data_txt += f'{x}\n'
-    lbl=get_text_trad(site_langu,'file_update')
+    lbl=get_text_trad('file_update')
     form_file_update = st.form('form_file_update')
     with form_file_update:
         txt_update = st.text_area(
@@ -2078,11 +2089,11 @@ def update_file_param(file_txt='data/todo.txt',content=None):
             repo_upd_result
             container_git = st.container(border=False, width='stretch', height='content')
             with container_git:
-                st.success('write OK', icon='✅')
+                st.success('write OK', icon='?')
                 test_read_txt(file_txt)
                 read_json_trads(sFile=file_txt)
         except:
-            st.error('write KO', icon='🚨')        
+            st.error('write KO', icon='??')        
         retval = True
     else:
         retval = False
@@ -2106,18 +2117,18 @@ def test_write_txt(file_txt='data/todo.txt'):
         repo_upd_result
         container_git = st.container(border=False, width='stretch', height='content')
         with container_git:
-            st.success('write OK', icon='✅')
+            st.success('write OK', icon='?')
             test_read_txt(file_txt)
     except:
-        st.error('write KO', icon='🚨')
+        st.error('write KO', icon='??')
     #try:
     #    with open(file_txt, mode='w') as f:
     #        f.write("This is the 1st line to write...\n")
     #        f.write("This is the 2nd line to write...\n")
     #        f.close()
-    #    return st.success('write OK', icon='✅')
+    #    return st.success('write OK', icon='?')
     #except:
-    #    return st.error('write KO', icon='🚨')
+    #    return st.error('write KO', icon='??')
     
 
 def test_github_repo():
@@ -2229,12 +2240,12 @@ if st.session_state.texts_trad is None:
 if st.session_state.site_langu is None:
     st.session_state.site_langu = site_langu
 
-app_title=get_text_trad(site_langu,'app_title')
-#app_title='Application pour Eva 🥰'
+app_title=get_text_trad('app_title')
+#app_title='Application pour Eva ??'
 
 st.set_page_config(
     page_title=app_title,
-    page_icon="🧊",
+    page_icon="??",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={        # <===================================== #top right menu (triple dots) near GitHub icon
@@ -2266,7 +2277,7 @@ with st.sidebar:
 
 
 if site_langu != langu:
-    #st.toast('RELOADING', icon='ℹ️️', duration='short')
+    #st.toast('RELOADING', icon='???', duration='short')
     menu_load_excel(with_expander=False,getnewfile=False)
 langu = st.session_state.site_langu
 
@@ -2284,47 +2295,47 @@ if use_pics:
 write_no_streamlit_link()
 
 pages = {
-    get_text_trad(site_langu,'menu_home'):[ 
-        st.Page(pg_home, title=get_text_trad(site_langu,'menu_home_1'), icon="🏠"),
+    get_text_trad('menu_home'):[ 
+        st.Page(pg_home, title=get_text_trad('menu_home_1'), icon="??"),
     ],
-    get_text_trad(site_langu,'menu_myteam'):[ 
-        st.Page(pg_menu_0, title=get_text_trad(site_langu,'full_list'),icon="🗂️"),
-        #st.Page(pg_menu_050, title='Per type',icon="🗂️"),
-        st.Page(pg_menu_100, title=get_text_trad(site_langu,'dashboards'),icon="📊"),
+    get_text_trad('menu_myteam'):[ 
+        st.Page(pg_menu_0, title=get_text_trad('full_list'),icon="???"),
+        #st.Page(pg_menu_050, title='Per type',icon="???"),
+        st.Page(pg_menu_100, title=get_text_trad('dashboards'),icon="??"),
     ],
-    get_text_trad(site_langu,'menu_calc'):[
-        st.Page(pg_v2_idx_costs, title=get_text_trad(site_langu,'menu_calc_costs'), icon="💰"),
-        st.Page(pg_v2_idx_comp, title=get_text_trad(site_langu,'menu_calc_comp'), icon="🎓"),
-        st.Page(pg_v2_idx_mut, title=get_text_trad(site_langu,'menu_calc_mut'), icon="🧬"),
-        st.Page(pg_v2_calc_dreamium, title=get_text_trad(site_langu,'menu_calc_dream'), icon="💎"),
+    get_text_trad('menu_calc'):[
+        st.Page(pg_v2_idx_costs, title=get_text_trad('menu_calc_costs'), icon="??"),
+        st.Page(pg_v2_idx_comp, title=get_text_trad('menu_calc_comp'), icon="??"),
+        st.Page(pg_v2_idx_mut, title=get_text_trad('menu_calc_mut'), icon="??"),
+        st.Page(pg_v2_calc_dreamium, title=get_text_trad('menu_calc_dream'), icon="??"),
     ],
-    get_text_trad(site_langu,'menu_upg'):[
-        st.Page(pg_v2_idx_val, title=get_text_trad(site_langu,'menu_upg_costs'), icon="🚀"),
-        st.Page(pg_v2_idx_equip, title=get_text_trad(site_langu,'menu_upg_equip'), icon="🧰"),
-        st.Page(pg_v2_idx_equip_nov, title=get_text_trad(site_langu,'menu_upg_nov'), icon="🎒"),
+    get_text_trad('menu_upg'):[
+        st.Page(pg_v2_idx_val, title=get_text_trad('menu_upg_costs'), icon="??"),
+        st.Page(pg_v2_idx_equip, title=get_text_trad('menu_upg_equip'), icon="??"),
+        st.Page(pg_v2_idx_equip_nov, title=get_text_trad('menu_upg_nov'), icon="??"),
     ],
-    get_text_trad(site_langu,'menu_boss'):[
-        st.Page(pg_v2_idx_boss, title=get_text_trad(site_langu,'menu_boss_all'), icon="🐦‍🔥"),
-        st.Page(pg_v2_idx_boss_data, title=get_text_trad(site_langu,'menu_boss_data'), icon="🗂️"),
+    get_text_trad('menu_boss'):[
+        st.Page(pg_v2_idx_boss, title=get_text_trad('menu_boss_all'), icon="?????"),
+        st.Page(pg_v2_idx_boss_data, title=get_text_trad('menu_boss_data'), icon="???"),
     ],
-    get_text_trad(site_langu,'menu_resources'): [
-        st.Page(pg_tips_img, title=get_text_trad(site_langu,'menu_tips'),icon="🌟"),
-        st.Page(pg_menu_200, title=get_text_trad(site_langu,'download'),icon="📥"),
+    get_text_trad('menu_resources'): [
+        st.Page(pg_tips_img, title=get_text_trad('menu_tips'),icon="??"),
+        st.Page(pg_menu_200, title=get_text_trad('download'),icon="??"),
     ],
-    get_text_trad(site_langu,'menu_info'): [
-        st.Page(pg_info_device, title=get_text_trad(site_langu,'menu_info_device'),icon="📱" if is_mobile() else "💻"),
-        st.Page(pg_info_os, title=get_text_trad(site_langu,'menu_info_os'),icon="🖥️"),
-        st.Page(pg_info_file, title=get_text_trad(site_langu,'menu_info_file'),icon="📋"),
+    get_text_trad('menu_info'): [
+        st.Page(pg_info_device, title=get_text_trad('menu_info_device'),icon="??" if is_mobile() else "??"),
+        st.Page(pg_info_os, title=get_text_trad('menu_info_os'),icon="???"),
+        st.Page(pg_info_file, title=get_text_trad('menu_info_file'),icon="??"),
     ],
-    get_text_trad(site_langu,'menu_param'): [
-        st.Page(pg_options, title=get_text_trad(site_langu,'menu_options'),icon='⚙️'), #🛠️
-        st.Page('./git_translations.py', title=get_text_trad(site_langu,'menu_git_translate'),icon='🛠️'),
+    get_text_trad('menu_param'): [
+        st.Page(pg_options, title=get_text_trad('menu_options'),icon='??'), #???
+        st.Page('./git_translations.py', title=get_text_trad('menu_git_translate'),icon='???'),
     ],
     "Tests": [
-        st.Page(pg_tests, title='Tests',icon='🛠️'),
-        st.Page('./tests/test_eval.py', title='Tests EVAL',icon='🛠️'),
-        st.Page('./tests/test2_github.py', title='Test Github',icon='🛠️'),
-        st.Page(pg_test_menu_v2, title='Test Menu v2',icon='🛠️')
+        st.Page(pg_tests, title='Tests',icon='???'),
+        st.Page('./tests/test_eval.py', title='Tests EVAL',icon='???'),
+        st.Page('./tests/test2_github.py', title='Test Github',icon='???'),
+        st.Page(pg_test_menu_v2, title='Test Menu v2',icon='???')
     ],    
 }
 st.session_state.pages_base = pages
