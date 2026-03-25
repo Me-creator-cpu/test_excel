@@ -693,6 +693,8 @@ def check_needs(value):
             return 0
         else:
             return int(value)
+    except:
+        return value
 
 def clear_cache():
     keys = list(st.session_state.keys())
