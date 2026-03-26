@@ -51,6 +51,7 @@
     "menu_param": [{"en": "Parameters","fr": "Paramètres"}],
     "menu_git_translate": [{"en": "Translations","fr": "Traductions"}],
     "menu_tips": [{"en": "Tips","fr": "Astuces"}],
+    "menu_simu": [{"en": "Simulations","fr": "Simulations"}],
     "menu_options": [{"en": "Options","fr": "Options"}],
     "side_nav": [{"en": "Top navigation","fr": "Menu top"}],
     "side_page": [{"en": "Page sections","fr": "Sections pages"}],

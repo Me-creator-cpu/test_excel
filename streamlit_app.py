@@ -894,6 +894,11 @@ def build_table_any(df):
         hide_index=True,
      )    
 
+def obj_multiselect(df,column):
+    return st.multiselect(f"Filter values for {column}:", 
+                          df[column].unique(), 
+                          default=list(df[column].unique()))    
+
 def get_df_base():
     try:
         #df=get_df_idx(idx_palmon)
@@ -1865,6 +1870,17 @@ def pg_menu_200():
 def pg_v2_calc_dreamium():
     calc_dreamium()  
 
+def pg_simu_team():
+    st.subheader(get_text_trad('menu_simu'))
+    df=get_df_base().copy(deep=True).sort_values(by=['Level','Achievement'],ascending=False,ignore_index=False)
+    lst_type=df['Type'].unique()
+    df_a=df.loc[(df["Type"] == lst_type[0]) & (df["Level"]>0)]
+    df_d=df.loc[(df["Type"] == lst_type[1]) & (df["Level"]>0)]
+    with st.container(horizontal=True, horizontal_alignment="center")
+        opt_skill = obj_multiselect(df,'Skill')
+        opt_type = obj_multiselect(df,'Type')
+    pal_per_type(opt_type)
+
 def pg_info_device():
     ico="📱" if is_mobile() else "💻"
     st.title(f"{ico}Device info")
@@ -2346,7 +2362,7 @@ if use_pics:
         unsafe_allow_html=True)
 
 write_no_streamlit_link()
-
+#🧮📱
 pages = {
     get_text_trad('menu_home'):[ 
         st.Page(pg_home, title=get_text_trad('menu_home_1'), icon="🏠"),
@@ -2360,6 +2376,7 @@ pages = {
         st.Page(pg_v2_idx_costs, title=get_text_trad('menu_calc_costs'), icon="💰"),
         st.Page(pg_v2_idx_comp, title=get_text_trad('menu_calc_comp'), icon="🎓"),
         st.Page(pg_v2_idx_mut, title=get_text_trad('menu_calc_mut'), icon="🧬"),
+        st.Page(pg_simu_team, title=get_text_trad('menu_simu'), icon="📐"),
         st.Page(pg_v2_calc_dreamium, title=get_text_trad('menu_calc_dream'), icon="💎"),
     ],
     get_text_trad('menu_upg'):[
