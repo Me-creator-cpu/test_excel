@@ -1920,8 +1920,8 @@ def pg_simu_team():
         st.write('Top 7')        
     with row_d3[1]:
         df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
-        apply_cols_format(df_result.head(7))
-        build_table_dashboard(df_result,False) 
+        apply_cols_format(df_result)
+        build_table_dashboard(df_result.head(7),False) 
     
     #apply_cols_format(df_result)
     #build_table_dashboard(df_result,False)
