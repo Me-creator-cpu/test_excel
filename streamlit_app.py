@@ -894,6 +894,9 @@ def build_table_any(df):
         hide_index=True,
      )    
 
+def obj_row_2(with_border=False):
+    return st.columns(2,border=with_border, width="stretch")
+
 def obj_multiselect(df,column):
     return st.multiselect(f"Filter values for {column}:", 
                           df[column].unique(), 
@@ -997,7 +1000,13 @@ def apply_cols_icons(df):
     #df['Skill']=df['Skill'].apply(lambda b: icon_skill(b)) 
     df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
     return df
-    
+
+def apply_cols_format(df):
+    df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
+    df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
+    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+    df['Skill']=df['Skill'].apply(lambda b: icon_skill(b))     
+
 def format_stars(x): #⭐
     try:
         return ("⭐" * int(x))[0:int(x)]
@@ -1884,32 +1893,37 @@ def pg_simu_team():
     with st.container(horizontal=True, horizontal_alignment="center"):
         opt_skill = obj_multiselect(df,'Skill')
         opt_type = obj_multiselect(df,'Type')
-    row_d0 = st.columns(2,border=False, width="stretch")
-    row_d1 = st.columns(2,border=False, width="stretch")
+    row_d0 = obj_row_2()
+    row_d1 = obj_row_2()
+    row_d2 = obj_row_2()
+    row_d3 = obj_row_2()
     with row_d0[0]:
         st.write(lst_type[0])
-    with row_d0[1]:
-        st.write(lst_type[1])
     with row_d1[0]:
         #df[df['Skill'].str.contains("Attack")]
         df_a=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Attack")) & (df["Level"]>0)].copy(deep=True)
-        cols_apply_format(df_a)
+        apply_cols_format(df_a)
         build_table_dashboard(df_a,False)        
+    with row_d0[1]:
+        st.write(lst_type[1])    
     with row_d1[1]:
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Defend")) & (df["Level"]>0)].copy(deep=True)
-        cols_apply_format(df_b)
+        apply_cols_format(df_b)
         build_table_dashboard(df_b,False)
-    df_simu=pd.concat([df_a.head(4), df_b.head(3)], ignore_index=True, sort=False)
-    build_table_dashboard(df_simu,False) 
-    df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
-    cols_apply_format(df_result)
-    #build_table_dashboard(df_result,False)
 
-def cols_apply_format(df):
-    df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
-    df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
-    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-    df['Skill']=df['Skill'].apply(lambda b: icon_skill(b)) 
+    with row_d2[0]:
+        st.write('Top Attack 4 & Top Defend 3')
+    with row_d3[0]:
+        df_simu=pd.concat([df_a.head(4), df_b.head(3)], ignore_index=True, sort=False)
+        build_table_dashboard(df_simu,False) 
+    with row_d2[1]:
+        st.write('Top 7')        
+    with row_d3[1]:
+        df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
+        build_table_dashboard(df_result,False) 
+    
+    #apply_cols_format(df_result)
+    #build_table_dashboard(df_result,False)
 
 def pg_info_device():
     ico="📱" if is_mobile() else "💻"
