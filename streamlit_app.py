@@ -314,7 +314,7 @@ column_config_team={
     "Name": st.column_config.TextColumn( "Name", pinned = True ),
     "Type": st.column_config.TextColumn( "Type", pinned = True ),
     "Skill": st.column_config.TextColumn( "Skill", pinned = True ),
-    "Level":st.column_config.NumberColumn(format="compact"),
+    "Level":st.column_config.NumberColumn(width="small",format="compact"),
     "Step": st.column_config.NumberColumn(
         "Step",
         min_value=0,
