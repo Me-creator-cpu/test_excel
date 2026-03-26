@@ -175,7 +175,7 @@ map_values={"Energy":"🟢Energy",
             "Crystals":"💎Crystals",
             "Pieces":"🧩Pieces",
             "Level300":"🔝Level300" }
-
+bonus_value={0:"",1:"",2:"",3:"+5%",4:"+10",5:"+20%",6:"+25%",7:"+30%"}
 option_type=data_type['Icon']
 df_data_type = pd.DataFrame(data_type)
 option_values=data_values['Icon']
@@ -1056,7 +1056,7 @@ def get_team_simu(df_ref,teamNb=1):
     df_t1=df_ref.head(7*int(teamNb)).tail(7)
     build_table_team(df_t1)
     df_t1_tcd1=df_t1[["Type","Name"]].head(7).groupby(["Type"]).agg("count").reset_index()
-    df_t1_tcd1["Bonus"]=df_t1_tcd1['Name'].apply(lambda b: "Bonus" if int(b)>2 else "" )
+    df_t1_tcd1["Bonus"]=df_t1_tcd1['Name'].apply(lambda b: key_values(b,bonus_value) )
     df_t1_tcd2=df_t1[["Type","Level"]].head(7).groupby(["Type"]).agg("mean").reset_index()
     st.dataframe(df_t1_tcd1,hide_index=True)
     st.dataframe(df_t1_tcd2,hide_index=True)    
