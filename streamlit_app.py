@@ -1952,8 +1952,7 @@ def pg_simu_team():
         opt_type = obj_multiselect(df,'Type')
     row_d0 = obj_row()
     row_d1 = obj_row()
-    row_d2 = obj_row()
-    row_d3 = obj_row()
+
     with row_d0[0]:
         st.write(lst_type[0])
     with row_d1[0]:
@@ -1967,7 +1966,10 @@ def pg_simu_team():
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Defend")) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_b)
         build_table_dashboard(df_b,False)
+    
     st.subheader('Team simulation')
+    row_d2 = obj_row()
+    row_d3 = obj_row()    
     with row_d2[0]:
         st.write('Top Attack 4 & Top Defend 3')
     with row_d3[0]:
@@ -1980,7 +1982,7 @@ def pg_simu_team():
         apply_cols_format(df_result)
         build_table_dashboard(df_result.head(7),False)
 
-    st.subheader('Team simulation')
+    st.subheader('Teams selection')
     row_d4 = obj_row(4)
     with row_d4[0]:
         st.write('Team 1')
