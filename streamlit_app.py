@@ -1989,6 +1989,11 @@ def pg_simu_team():
         df_t1=df.copy(deep=True)
         apply_cols_format(df_t1)
         build_table_team(df_t1.head(7))
+        df_t1_tcd1=df_t1[["Type","Skill","Level"]].groupby(["Type", "Skill"]).agg("count").reset_index()
+        df_t1_tcd2=df_t1[["Type","Skill","Level"]].groupby(["Type", "Skill"]).agg("mean").reset_index()
+        df_t1[["Type","Skill","Level"]].groupby(["Type", "Skill"]).agg("count").reset_index()
+        df_t1[["Type","Skill","Level"]].groupby(["Type", "Skill"]).agg("mean").reset_index()
+
     with row_d4[1]:
         st.write('Team 2')
         df_t2=df_t1.head(14)
