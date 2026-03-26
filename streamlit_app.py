@@ -1991,8 +1991,8 @@ def pg_simu_team():
         build_table_team(df_t1.head(7))
         df_t1_tcd1=df_t1[["Type","Skill","Level"]].groupby(["Type", "Skill"]).agg("count").reset_index()
         df_t1_tcd2=df_t1[["Type","Skill","Level"]].groupby(["Type", "Skill"]).agg("mean").reset_index()
-        df_t1[["Type","Skill","Level"]].groupby(["Type", "Skill"]).agg("count").reset_index()
-        df_t1[["Type","Skill","Level"]].groupby(["Type", "Skill"]).agg("mean").reset_index()
+        df_t1_tcd1
+        df_t1_tcd2
 
     with row_d4[1]:
         st.write('Team 2')
