@@ -1056,6 +1056,7 @@ def get_team_simu(df_ref,teamNb=1):
     df_t1=df_ref.head(7*int(teamNb)).tail(7)
     build_table_team(df_t1)
     df_t1_tcd1=df_t1[["Type","Name"]].head(7).groupby(["Type"]).agg("count").reset_index()
+    df_t1_tcd1["Bonus"]=df_t1_tcd1['Name'].apply(lambda b: "Bonus" if int(b)>2 else "" )
     df_t1_tcd2=df_t1[["Type","Level"]].head(7).groupby(["Type"]).agg("mean").reset_index()
     st.dataframe(df_t1_tcd1,hide_index=True)
     st.dataframe(df_t1_tcd2,hide_index=True)    
@@ -1965,7 +1966,6 @@ def pg_simu_team():
     with row_d0[0]:
         st.write(lst_type[0])
     with row_d1[0]:
-        #df[df['Skill'].str.contains("Attack")]
         df_a=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Attack")) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_a)
         build_table_dashboard(df_a,False)        
@@ -2004,8 +2004,6 @@ def pg_simu_team():
         get_team_simu(df_ref,teamNb=3)
     with row_d4[3]:
         get_team_simu(df_ref,teamNb=4)
-    #apply_cols_format(df_result)
-    #build_table_dashboard(df_result,False)
 
 def pg_info_device():
     ico="📱" if is_mobile() else "💻"
