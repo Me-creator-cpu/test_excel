@@ -1882,7 +1882,7 @@ def pg_simu_team():
     st.divider()
     st.write(opt_skill)
     st.write(opt_type)
-    pal_per_type(opt_type)
+    df.loc[(df["Type"].isin(opt_type)) & (df["Level"]>0)]
 
 def pg_info_device():
     ico="📱" if is_mobile() else "💻"
