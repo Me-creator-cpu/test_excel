@@ -1976,22 +1976,22 @@ def pg_simu_team():
         apply_cols_format(df_b)
         build_table_dashboard(df_b,False)
     
-    st.subheader('Team simulation')
+    st.subheader(f'🏆Team 1 simulation')
     row_d2 = obj_row()
     row_d3 = obj_row()    
     with row_d2[0]:
-        st.write('Top Attack 4 & Top Defend 3')
+        st.write('⚔️Top Attack 4 & 🛡️Top Defend 3')
     with row_d3[0]:
         df_simu=pd.concat([df_a.head(4), df_b.head(3)], ignore_index=True, sort=False)
         build_table_dashboard(df_simu,False) 
     with row_d2[1]:
-        st.write('Top 7')        
+        st.write('💪Top 7')        
     with row_d3[1]:
         df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_result)
         build_table_dashboard(df_result.head(7),False)
 
-    st.subheader('Teams selection')
+    st.subheader('🔎Teams selection')
     df_ref=df.copy(deep=True)
     apply_cols_format(df_ref)    
     row_d4 = obj_row(4)
