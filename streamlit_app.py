@@ -1964,13 +1964,13 @@ def pg_simu_team():
     row_d1 = obj_row()
 
     with row_d0[0]:
-        st.write(lst_type[0])
+        st.write(f'⚔️{lst_type[0]}')
     with row_d1[0]:
         df_a=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Attack")) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_a)
         build_table_dashboard(df_a,False)        
     with row_d0[1]:
-        st.write(lst_type[1])    
+        st.write(f'🛡️{lst_type[1]}')    
     with row_d1[1]:
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Defend")) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_b)
