@@ -1051,6 +1051,15 @@ def build_table_team(df):
                 hide_index=True,
             )
 
+def get_team_simu(df_ref,teamNb=1):
+    st.write(f'Team {teamNb}')
+    df_t1=df_ref.head(7*int(teamNb)).tail(7)
+    build_table_team(df_t1)
+    df_t1_tcd1=df_t1[["Type","Name"]].head(7).groupby(["Type"]).agg("count").reset_index()
+    df_t1_tcd2=df_t1[["Type","Level"]].head(7).groupby(["Type"]).agg("mean").reset_index()
+    st.dataframe(df_t1_tcd1,hide_index=True)
+    st.dataframe(df_t1_tcd2,hide_index=True)    
+
 def apply_cols_icons(df):
     df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
     df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
@@ -1983,29 +1992,18 @@ def pg_simu_team():
         build_table_dashboard(df_result.head(7),False)
 
     st.subheader('Teams selection')
+    df_ref=df.copy(deep=True)
+    apply_cols_format(df_ref)    
     row_d4 = obj_row(4)
     with row_d4[0]:
-        st.write('Team 1')
-        df_t1=df.copy(deep=True)
-        apply_cols_format(df_t1)
-        build_table_team(df_t1.head(7))
-        df_t1_tcd1=df_t1[["Type","Name"]].head(7).groupby(["Type"]).agg("count").reset_index()
-        df_t1_tcd2=df_t1[["Type","Level"]].head(7).groupby(["Type"]).agg("mean").reset_index()
-        st.dataframe(df_t1_tcd1,hide_index=True)
-        st.dataframe(df_t1_tcd2,hide_index=True)
+        get_team_simu(df_ref,teamNb=1)
 #pg_simu_team
     with row_d4[1]:
-        st.write('Team 2')
-        df_t2=df_t1.head(14)
-        build_table_team(df_t2.tail(7))
+        get_team_simu(df_ref,teamNb=2)
     with row_d4[2]:
-        st.write('Team 3')
-        df_t3=df_t1.head(21)
-        build_table_team(df_t3.tail(7))        
+        get_team_simu(df_ref,teamNb=3)
     with row_d4[3]:
-        st.write('Team 4')
-        df_t4=df_t1.head(28)
-        build_table_team(df_t4.tail(7))   
+        get_team_simu(df_ref,teamNb=4)
     #apply_cols_format(df_result)
     #build_table_dashboard(df_result,False)
 
