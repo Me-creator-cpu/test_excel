@@ -894,8 +894,8 @@ def build_table_any(df):
         hide_index=True,
      )    
 
-def obj_row_2(with_border=False):
-    return st.columns(2,border=with_border, width="stretch")
+def obj_row(nb_cells=2,with_border=False):
+    return st.columns(nb_cells,border=with_border, width="stretch")
 
 def obj_multiselect(df,column):
     return st.multiselect(f"Filter values for {column}:", 
@@ -1893,10 +1893,10 @@ def pg_simu_team():
     with st.container(horizontal=True, horizontal_alignment="center"):
         opt_skill = obj_multiselect(df,'Skill')
         opt_type = obj_multiselect(df,'Type')
-    row_d0 = obj_row_2()
-    row_d1 = obj_row_2()
-    row_d2 = obj_row_2()
-    row_d3 = obj_row_2()
+    row_d0 = obj_row()
+    row_d1 = obj_row()
+    row_d2 = obj_row()
+    row_d3 = obj_row()
     with row_d0[0]:
         st.write(lst_type[0])
     with row_d1[0]:
@@ -1910,7 +1910,7 @@ def pg_simu_team():
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Defend")) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_b)
         build_table_dashboard(df_b,False)
-
+    st.subheader('Team simulation')
     with row_d2[0]:
         st.write('Top Attack 4 & Top Defend 3')
     with row_d3[0]:
@@ -1921,8 +1921,27 @@ def pg_simu_team():
     with row_d3[1]:
         df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_result)
-        build_table_dashboard(df_result.head(7),False) 
-    
+        build_table_dashboard(df_result.head(7),False)
+
+    st.subheader('Team simulation')
+    row_d4 = obj_row(4)
+    with row_d4[0]:
+        st.write('Team 1')
+        df_t1=df.copy(deep=True)
+        apply_cols_format(df_t1)
+        build_table_dashboard(df_t1.head(7),False)
+    with row_d4[1]:
+        st.write('Team 2')
+        df_t2=df_t1.head(14)
+        build_table_dashboard(df_t2.tail(7),False)
+    with row_d4[2]:
+        st.write('Team 3')
+        df_t3=df_t1.head(21)
+        build_table_dashboard(df_t3.tail(7),False)        
+    with row_d4[3]:
+        st.write('Team 4')
+        df_t4=df_t1.head(21)
+        build_table_dashboard(df_t4.tail(7),False)   
     #apply_cols_format(df_result)
     #build_table_dashboard(df_result,False)
 
