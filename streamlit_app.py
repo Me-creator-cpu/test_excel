@@ -1888,11 +1888,23 @@ def pg_simu_team():
     with row_d1[0]:
         df_a=df.loc[(df["Type"].isin(opt_type)) & (df["Type"] == lst_type[0]) & (df["Level"]>0)].copy(deep=True)
         cols_apply_format(df_a)
-        build_table_dashboard(df_a)        
+        st.dataframe(
+                df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                column_config=column_config_lst,
+                on_select="rerun",
+                selection_mode="single-row",                    
+                hide_index=True,
+            )        
     with row_d1[1]:
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df["Type"] == lst_type[0]) & (df["Level"]>0)].copy(deep=True)
         cols_apply_format(df_b)
-        build_table_dashboard(df_b)   
+        st.dataframe(
+                df_b[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                column_config=column_config_lst,
+                on_select="rerun",
+                selection_mode="single-row",                    
+                hide_index=True,
+            )   
     #st.write(opt_skill)
     #st.write(opt_type)
     df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
