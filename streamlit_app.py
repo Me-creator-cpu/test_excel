@@ -994,6 +994,13 @@ def build_table_dashboard(df,with_select=True):
                     hide_index=True,
                 )
 
+def build_table_team(df):
+    return st.dataframe(
+                df[['Name','Type','Level','Steps']],
+                column_config=column_config_lst,
+                hide_index=True,
+            )
+
 def apply_cols_icons(df):
     df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
     df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
@@ -1929,19 +1936,19 @@ def pg_simu_team():
         st.write('Team 1')
         df_t1=df.copy(deep=True)
         apply_cols_format(df_t1)
-        build_table_dashboard(df_t1.head(7),False)
+        build_table_team(df_t1.head(7))
     with row_d4[1]:
         st.write('Team 2')
         df_t2=df_t1.head(14)
-        build_table_dashboard(df_t2.tail(7),False)
+        build_table_team(df_t2.tail(7))
     with row_d4[2]:
         st.write('Team 3')
         df_t3=df_t1.head(21)
-        build_table_dashboard(df_t3.tail(7),False)        
+        build_table_team(df_t3.tail(7))        
     with row_d4[3]:
         st.write('Team 4')
         df_t4=df_t1.head(28)
-        build_table_dashboard(df_t4.tail(7),False)   
+        build_table_team(df_t4.tail(7))   
     #apply_cols_format(df_result)
     #build_table_dashboard(df_result,False)
 
