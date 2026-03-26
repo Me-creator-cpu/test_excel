@@ -1874,8 +1874,6 @@ def pg_simu_team():
     st.subheader(get_text_trad('menu_simu'))
     df=get_df_base().copy(deep=True).sort_values(by=['Level','Achievement'],ascending=False,ignore_index=False)
     lst_type=df['Type'].unique()
-    df_a=df.loc[(df["Type"] == lst_type[0]) & (df["Level"]>0)]
-    df_d=df.loc[(df["Type"] == lst_type[1]) & (df["Level"]>0)]
     with st.container(horizontal=True, horizontal_alignment="center"):
         opt_skill = obj_multiselect(df,'Skill')
         opt_type = obj_multiselect(df,'Type')
@@ -1890,9 +1888,7 @@ def pg_simu_team():
         cols_apply_format(df_a)
         st.dataframe(
                 df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
-                column_config=column_config_lst,
-                on_select="rerun",
-                selection_mode="single-row",                    
+                column_config=column_config_lst,                 
                 hide_index=True,
             )        
     with row_d1[1]:
@@ -1900,9 +1896,7 @@ def pg_simu_team():
         cols_apply_format(df_b)
         st.dataframe(
                 df_b[['Name','Type','Level','Upgradable','Steps','Achievement']],
-                column_config=column_config_lst,
-                on_select="rerun",
-                selection_mode="single-row",                    
+                column_config=column_config_lst,              
                 hide_index=True,
             )   
     #st.write(opt_skill)
