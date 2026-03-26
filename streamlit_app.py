@@ -1883,7 +1883,7 @@ def pg_simu_team():
     st.write(opt_skill)
     st.write(opt_type)
     df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)]
-    df_result=cols_apply_format(df_result)
+    cols_apply_format(df_result)
     df_result
     build_table_dashboard(
         df_result
