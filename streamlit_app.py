@@ -1940,7 +1940,7 @@ def pg_simu_team():
         build_table_dashboard(df_t3.tail(7),False)        
     with row_d4[3]:
         st.write('Team 4')
-        df_t4=df_t1.head(21)
+        df_t4=df_t1.head(28)
         build_table_dashboard(df_t4.tail(7),False)   
     #apply_cols_format(df_result)
     #build_table_dashboard(df_result,False)
