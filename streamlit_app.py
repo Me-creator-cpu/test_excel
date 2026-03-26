@@ -1879,6 +1879,9 @@ def pg_simu_team():
     with st.container(horizontal=True, horizontal_alignment="center"):
         opt_skill = obj_multiselect(df,'Skill')
         opt_type = obj_multiselect(df,'Type')
+    st.divider()
+    st.write(opt_skill)
+    st.write(opt_type)
     pal_per_type(opt_type)
 
 def pg_info_device():
