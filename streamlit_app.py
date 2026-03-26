@@ -975,14 +975,21 @@ def build_pivot_table(raw_data,val_value: str, val_index: str, val_columns: str,
             hide_index=None,
         )
 
-def build_table_dashboard(df):
-    return st.dataframe(
-                df[['Name','Type','Level','Upgradable','Steps','Achievement']],
-                column_config=column_config_lst,
-                on_select="rerun",
-                selection_mode="single-row",                    
-                hide_index=True,
-            )
+def build_table_dashboard(df,with_select=True):
+    if with_select:
+        return st.dataframe(
+                    df[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                    column_config=column_config_lst,
+                    on_select="rerun",
+                    selection_mode="single-row",                    
+                    hide_index=True,
+                )
+    else:   
+        return st.dataframe(
+                    df[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                    column_config=column_config_lst,
+                    hide_index=True,
+                )
 
 def apply_cols_icons(df):
     df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
@@ -1887,27 +1894,16 @@ def pg_simu_team():
         #df[df['Skill'].str.contains("Attack")]
         df_a=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Attack")) & (df["Level"]>0)].copy(deep=True)
         cols_apply_format(df_a)
-        st.dataframe(
-                df_a[['Name','Type','Skill','Level','Upgradable','Steps','Achievement']],
-                column_config=column_config_lst,                 
-                hide_index=True,
-            )        
+        build_table_dashboard(df_a,False)        
     with row_d1[1]:
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Defend")) & (df["Level"]>0)].copy(deep=True)
         cols_apply_format(df_b)
-        st.dataframe(
-                df_b[['Name','Type','Skill','Level','Upgradable','Steps','Achievement']],
-                column_config=column_config_lst,              
-                hide_index=True,
-            )   
-    #st.write(opt_skill)
-    #st.write(opt_type)
+        build_table_dashboard(df_b,False)
+    df_simu=df_a.head(4)+df_b.head(3)
+    build_table_dashboard(df_simu,False) 
     df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
     cols_apply_format(df_result)
-    #df_result
-    build_table_dashboard(
-        df_result
-    )
+    #build_table_dashboard(df_result,False)
 
 def cols_apply_format(df):
     df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
