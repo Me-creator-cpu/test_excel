@@ -1876,7 +1876,7 @@ def pg_simu_team():
     lst_type=df['Type'].unique()
     df_a=df.loc[(df["Type"] == lst_type[0]) & (df["Level"]>0)]
     df_d=df.loc[(df["Type"] == lst_type[1]) & (df["Level"]>0)]
-    with st.container(horizontal=True, horizontal_alignment="center")
+    with st.container(horizontal=True, horizontal_alignment="center"):
         opt_skill = obj_multiselect(df,'Skill')
         opt_type = obj_multiselect(df,'Type')
     pal_per_type(opt_type)
