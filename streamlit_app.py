@@ -1880,11 +1880,11 @@ def pg_simu_team():
         opt_skill = obj_multiselect(df,'Skill')
         opt_type = obj_multiselect(df,'Type')
     st.divider()
-    st.write(opt_skill)
-    st.write(opt_type)
-    df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)]
+    #st.write(opt_skill)
+    #st.write(opt_type)
+    df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
     cols_apply_format(df_result)
-    df_result
+    #df_result
     build_table_dashboard(
         df_result
     )
