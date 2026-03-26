@@ -175,7 +175,7 @@ map_values={"Energy":"🟢Energy",
             "Crystals":"💎Crystals",
             "Pieces":"🧩Pieces",
             "Level300":"🔝Level300" }
-bonus_value={0:"",1:"",2:"",3:"+5%",4:"+10",5:"+20%",6:"+25%",7:"+30%"}
+bonus_value={0:"",1:"",2:"",3:"+5%",4:"+10%",5:"+20%",6:"+25%",7:"+30%"}
 option_type=data_type['Icon']
 df_data_type = pd.DataFrame(data_type)
 option_values=data_values['Icon']
