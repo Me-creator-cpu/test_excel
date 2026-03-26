@@ -1887,7 +1887,7 @@ def pg_simu_team():
         df_a=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"] == lst_type[0]) & (df["Level"]>0)].copy(deep=True)
         cols_apply_format(df_a)
         st.dataframe(
-                df_a[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                df_a[['Name','Type','Skill','Level','Upgradable','Steps','Achievement']],
                 column_config=column_config_lst,                 
                 hide_index=True,
             )        
@@ -1895,7 +1895,7 @@ def pg_simu_team():
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"] == lst_type[0]) & (df["Level"]>0)].copy(deep=True)
         cols_apply_format(df_b)
         st.dataframe(
-                df_b[['Name','Type','Level','Upgradable','Steps','Achievement']],
+                df_b[['Name','Type','Skill','Level','Upgradable','Steps','Achievement']],
                 column_config=column_config_lst,              
                 hide_index=True,
             )   
