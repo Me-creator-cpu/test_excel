@@ -1882,9 +1882,17 @@ def pg_simu_team():
     st.divider()
     st.write(opt_skill)
     st.write(opt_type)
+    df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)]
+    df_result=cols_apply_format(df_result)
     build_table_dashboard(
-        df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)]
+        df_result
     )
+
+def cols_apply_format(df):
+    df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
+    df['Upgradable']=df['Upgradable'].apply(lambda b: icon_upgradable(b))
+    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+    df['Skill']=df['Skill'].apply(lambda b: icon_skill(b)) 
 
 def pg_info_device():
     ico="📱" if is_mobile() else "💻"
