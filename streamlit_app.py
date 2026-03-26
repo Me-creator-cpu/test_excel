@@ -310,6 +310,56 @@ column_config_lst={
         format="compact",
     )
 }
+column_config_team={
+    "Name": st.column_config.TextColumn( "Name", pinned = True ),
+    "Type": st.column_config.TextColumn( "Type", pinned = True ),
+    "Skill": st.column_config.TextColumn( "Skill", pinned = True ),
+    "Level":st.column_config.NumberColumn(format="compact"),
+    "Step": st.column_config.NumberColumn(
+        "Step",
+        min_value=0,
+        max_value=5,
+        format="%d ⭐",
+    ),
+    "Steps": st.column_config.TextColumn("Steps"),
+    "Achievement": col_progress(0,1,"Achievement","Achievement","percent"),
+    "Cost to max": st.column_config.NumberColumn(
+        "Cost to max",
+        #format="localized",
+        format="compact",
+    ),
+    "RankPower": None,
+    "URL": None,
+    "URL Mutation": None,
+    "Stock": None,
+    "Star 1": None,
+    "Star 2": None,
+    "Star 3": None,
+    "Star 4": None,
+    "Star 5": None,    
+    "Comp 1": None,
+    "Comp 2": None,
+    "Comp 3": None,
+    "Comp 4": None,
+    "Comp 5": None,
+    "Unused1": None,
+    "Unused2": None,
+    "Unused3": None,
+    "Unused4": None,
+    "Unused5": None,
+    "Unused6": None,
+    "Unused7": None,
+    "Unused8": None,
+    "Rank": None,
+    "Team": None,
+    "Mutation 1": None,
+    "Mutation 2": None,
+    "Type_txt": None,
+    "Cost upgrade": st.column_config.NumberColumn(
+        "Cost upgrade",
+        format="compact",
+    )
+}
 # ======================================================================================================
 
 def toggle_excel_loaded():
@@ -997,7 +1047,7 @@ def build_table_dashboard(df,with_select=True):
 def build_table_team(df):
     return st.dataframe(
                 df[['Name','Type','Level','Steps']],
-                column_config=column_config_lst,
+                column_config=column_config_team,
                 hide_index=True,
             )
 
