@@ -1899,7 +1899,7 @@ def pg_simu_team():
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Defend")) & (df["Level"]>0)].copy(deep=True)
         cols_apply_format(df_b)
         build_table_dashboard(df_b,False)
-    df_simu=df_a.head(4)+df_b.head(3)
+    df_simu=pd.concat([df_a.head(4), df_b.head(3)], ignore_index=True, sort=False)
     build_table_dashboard(df_simu,False) 
     df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
     cols_apply_format(df_result)
