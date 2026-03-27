@@ -1970,34 +1970,28 @@ def pg_simu_team():
     with st.container(horizontal=True, horizontal_alignment="center"):
         opt_skill = obj_multiselect(df,'Skill')
         opt_type = obj_multiselect(df,'Type')
+    
     row_d0 = obj_row()
-    row_d1 = obj_row()
-
     with row_d0[0]:
         st.write(f'⚔️{lst_type[0]}')
-    with row_d1[0]:
         df_a=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Attack")) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_a)
         build_table_dashboard(df_a,False)        
     with row_d0[1]:
         st.write(f'🛡️{lst_type[1]}')    
-    with row_d1[1]:
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Defend")) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_b)
         build_table_dashboard(df_b,False)
     
     st.subheader(f'🏆Team 1 simulation')
     row_d2 = obj_row()
-    row_d3 = obj_row()    
     with row_d2[0]:
         st.write('⚔️Top Attack 4 & 🛡️Top Defend 3')
-    with row_d3[0]:
         df_simu=pd.concat([df_a.head(4), df_b.head(3)], ignore_index=True, sort=False)
         build_table_dashboard(df_simu,False)
         get_team_simu(df_simu,teamNb=1,with_main=False) 
     with row_d2[1]:
         st.write('💪Top 7')        
-    with row_d3[1]:
         df_result=df.loc[(df["Type"].isin(opt_type)) & (df["Skill"].isin(opt_skill)) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_result)
         build_table_dashboard(df_result.head(7),False)
