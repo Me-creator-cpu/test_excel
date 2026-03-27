@@ -1052,10 +1052,11 @@ def build_table_team(df):
                 hide_index=True,
             )
 
-def get_team_simu(df_ref,teamNb=1):
-    st.write(f'Team {teamNb}')
+def get_team_simu(df_ref,teamNb=1,with_main=True):
     df_t1=df_ref.head(7*int(teamNb)).tail(7)
-    build_table_team(df_t1)
+    if with_main:
+        st.write(f'Team {teamNb}')
+        build_table_team(df_t1)
     df_t1_tcd1=df_t1[["Type","Name"]].head(7).groupby(["Type"]).agg("count").reset_index()
     df_t1_tcd1["Bonus"]=df_t1_tcd1['Name'].apply(lambda b: key_values(b,bonus_value) )
     df_t1_tcd2=df_t1[["Type","Level"]].head(7).groupby(["Type"]).agg("mean").reset_index()
@@ -1974,13 +1975,15 @@ def pg_simu_team():
     with row_d1[0]:
         df_a=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Attack")) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_a)
-        build_table_dashboard(df_a,False)        
+        build_table_dashboard(df_a,False)
+        get_team_simu(df_a,teamNb=1,with_main=False)        
     with row_d0[1]:
         st.write(f'🛡️{lst_type[1]}')    
     with row_d1[1]:
         df_b=df.loc[(df["Type"].isin(opt_type)) & (df['Skill'].str.contains("Defend")) & (df["Level"]>0)].copy(deep=True)
         apply_cols_format(df_b)
         build_table_dashboard(df_b,False)
+        get_team_simu(df_b,teamNb=1,with_main=False)
     
     st.subheader(f'🏆Team 1 simulation')
     row_d2 = obj_row()
