@@ -1061,7 +1061,7 @@ def get_team_simu(df_ref,teamNb=1,with_main=True):
         df_t1_tcd1=df_t1[["Type","Name"]].head(7).groupby(["Type"]).agg("count").reset_index()
         df_t1_tcd1["Bonus"]=df_t1_tcd1['Name'].apply(lambda b: key_values(b,bonus_value) )
         df_t1_tcd2=df_t1[["Type","Level"]].head(7).groupby(["Type"]).agg("mean").reset_index()
-        df_t1_tcd3=df_t1[["Skill","Level"]].head(7).groupby(["Skill"]).agg("mean").reset_index()
+        df_t1_tcd3=df_t1[["Skill","Level"]].head(7).groupby(["Skill"]).agg("count").reset_index()
         st.dataframe(df_t1_tcd1,hide_index=True)
         st.dataframe(df_t1_tcd2,hide_index=True)
         st.dataframe(df_t1_tcd3,hide_index=True)    
