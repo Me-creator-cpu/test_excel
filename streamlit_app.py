@@ -1061,7 +1061,7 @@ def get_team_simu(df_ref,teamNb=1,with_main=True):
         df_t1_tcd1=df_t1[["Type","Name"]].head(7).groupby(["Type"]).agg("count").reset_index()
         df_t1_tcd1["Bonus"]=df_t1_tcd1['Name'].apply(lambda b: key_values(b,bonus_value) )
         df_t1_tcd2=df_t1[["Type","Level"]].head(7).groupby(["Type"]).agg("mean").reset_index()
-        df_t1_tcd3=df_t1[["Skill","Level"]].head(7).groupby(["Type"]).agg("mean").reset_index()
+        df_t1_tcd3=df_t1[["Skill","Level"]].head(7).groupby(["Skill"]).agg("mean").reset_index()
         st.dataframe(df_t1_tcd1,hide_index=True)
         st.dataframe(df_t1_tcd2,hide_index=True)
         st.dataframe(df_t1_tcd3,hide_index=True)    
@@ -2008,9 +2008,9 @@ def pg_simu_team():
     apply_cols_format(df_ref)
     df_ref['Name'] = df_ref.apply(lambda x: apply_col_iconame(x['Name'], x['Skill'],x['Upgradable']), axis=1)
     row_d4 = obj_row(4)
+#pg_simu_team    
     with row_d4[0]:
         get_team_simu(df_ref,teamNb=1)
-#pg_simu_team
     with row_d4[1]:
         get_team_simu(df_ref,teamNb=2)
     with row_d4[2]:
