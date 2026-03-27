@@ -1998,6 +1998,11 @@ def pg_simu_team():
     st.subheader('🔎Teams selection')
     df_ref=df.copy(deep=True)
     apply_cols_format(df_ref)
+
+    st.divider()
+    df_ref
+    st.divider()
+
     df_ref['Name'] = df_ref.apply(lambda x: apply_col_skill(x['Name'], x['Skill']), axis=1)
     #df_ref[["Name","Skill"]]=df_ref[["Name","Skill"]].apply(lambda a,b: a + key_values(b,bonus_value) )
     #data_skill_ico      
