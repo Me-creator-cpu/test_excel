@@ -1063,7 +1063,9 @@ def get_team_simu(df_ref,teamNb=1):
     st.dataframe(df_t1_tcd2,hide_index=True)    
 
 def apply_col_skill(name,skill):
-    return  str(name) + str(key_values(skill,data_skill_ico))
+    #[:5]
+    return  str(name) + str(skill[:1])
+    #return  str(name) + str(key_values(skill,data_skill_ico))
 
 def apply_cols_icons(df):
     df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
