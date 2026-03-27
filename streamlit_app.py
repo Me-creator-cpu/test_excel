@@ -728,7 +728,7 @@ def percent_format(value):
 
 def icon_skill(value):
     try:
-        return option_skill[data_skills['Skill'].index(value)]+value
+        return option_skill[data_skills['Skill'].index(value)]
     except:
         return value
 
