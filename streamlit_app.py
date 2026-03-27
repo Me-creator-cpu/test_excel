@@ -1057,7 +1057,7 @@ def get_team_simu(df_ref,teamNb=1,with_main=True):
     if with_main:
         st.write(f'Team {teamNb}')
         build_table_team(df_t1)
-    with st.expander('Details',expanded=True, width='stretch'):
+    with st.expander('Details',expanded=False, width='stretch'):
         df_t1_tcd1=df_t1[["Type","Name"]].head(7).groupby(["Type"]).agg("count").reset_index()
         df_t1_tcd1["Bonus"]=df_t1_tcd1['Name'].apply(lambda b: key_values(b,bonus_value) )
         df_t1_tcd2=df_t1[["Type","Level"]].head(7).groupby(["Type"]).agg("mean").reset_index()
