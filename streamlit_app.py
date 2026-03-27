@@ -162,6 +162,7 @@ data_skills={
     "Skill":["Attack","Defend"],
     "Icon":option_skill
 }
+data_skill_ico={"Attack":"⚔️","Defend":"🛡️"}
 data_type={
     "Type":["Water",      "Fire",    "Electricity",    "Wood",    "Any"],
     "Icon":["💧",        "🔥",      "⚡",             "🪵",     "🌐"] ,
@@ -1993,7 +1994,9 @@ def pg_simu_team():
 
     st.subheader('🔎Teams selection')
     df_ref=df.copy(deep=True)
-    apply_cols_format(df_ref)    
+    apply_cols_format(df_ref)
+    df_ref["Name","Skill"].apply(lambda a,b: a + key_values(b,bonus_value) )
+    #data_skill_ico      
     row_d4 = obj_row(4)
     with row_d4[0]:
         get_team_simu(df_ref,teamNb=1)
