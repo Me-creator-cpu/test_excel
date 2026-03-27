@@ -1062,9 +1062,9 @@ def get_team_simu(df_ref,teamNb=1):
     st.dataframe(df_t1_tcd1,hide_index=True)
     st.dataframe(df_t1_tcd2,hide_index=True)    
 
-def apply_col_skill(name,skill):
+def apply_col_iconame(name,skill,upg):
     #[:5]
-    return  str(name) + str(skill[:1])
+    return  str(skill[:1])+str(upg[:1])+str(name)
     #return  str(name) + str(key_values(skill,data_skill_ico))
 
 def apply_cols_icons(df):
@@ -2000,14 +2000,7 @@ def pg_simu_team():
     st.subheader('🔎Teams selection')
     df_ref=df.copy(deep=True)
     apply_cols_format(df_ref)
-
-    st.divider()
-    df_ref
-    st.divider()
-
-    df_ref['Name'] = df_ref.apply(lambda x: apply_col_skill(x['Name'], x['Skill']), axis=1)
-    #df_ref[["Name","Skill"]]=df_ref[["Name","Skill"]].apply(lambda a,b: a + key_values(b,bonus_value) )
-    #data_skill_ico      
+    df_ref['Name'] = df_ref.apply(lambda x: apply_col_iconame(x['Name'], x['Skill'],x['Upgradable']), axis=1)
     row_d4 = obj_row(4)
     with row_d4[0]:
         get_team_simu(df_ref,teamNb=1)
