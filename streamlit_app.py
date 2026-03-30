@@ -14,9 +14,10 @@ import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extr
 import matplotlib.pyplot as plt
 
 from pictures import *
-#from test_github import *
-sys.path.insert(0, "./tests")  # add "tests" path to search list
-import test_graph as gv
+#sys.path.insert(0, "./tests")  # add "tests" path to search list
+#import test_graph as gv
+import graphviz
+
 #from myproject.models import some_model
 #Me-creator-cpu/test_excel/tests/test_graph.py
 
@@ -2201,10 +2202,20 @@ def test_listing():
         else:
             st.text(x)
 
+def build_graph_links(df,parent,child):
+    graph = graphviz.Digraph()
+    graph.edge("run", "intr")
+    df
+    for p,c in df[[parent,child]]:
+        st.write(p,c)
+
+    return st.graphviz_chart(graph),df
+
 def pg_tests():
     #st.empty()
-    gv.build_graph_links(get_df_idx(),'Type','Name')
-
+    df=get_df_idx()
+    build_graph_links(df,'Type','Name')
+    
 @st.fragment(run_every="1s")
 def test_colors():
     color_r = st.slider("Red value", 0, 255, 25)
