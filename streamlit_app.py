@@ -14,7 +14,8 @@ import matplotlib.pyplot as plt
 
 from pictures import *
 #from test_github import *
-from test_excel.tests.test_graph import *
+sys.path.insert(0, "./tests")  # add "tests" path to search list
+import test_graph
 #from myproject.models import some_model
 #Me-creator-cpu/test_excel/tests/test_graph.py
 
@@ -29,6 +30,7 @@ from github import Github
 #import os
 #sys.path.insert(0, os.path.abspath('relative/path/to/application/folder'))
 #import [file]
+#https://stackoverflow.com/questions/49039436/how-to-import-a-module-from-a-different-folder
 
 #img.flag_en
 #import platform
