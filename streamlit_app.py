@@ -2213,8 +2213,7 @@ def build_graph_links(df,parent,child):
     for r in range(row):
         st.write(r,parent,df_g[parent][r])
         st.write(r,child,df_g[child][r])
-        for c in range(col):
-            st.write(r,c,df_g.T[r][c])
+        graph.edge(df_g[parent][r], df_g[child][r])
     #graph.edge(df_g[parent], df_g[child])
     #for p,c in df_g:
     #    st.write(p,c)
