@@ -2205,8 +2205,8 @@ def test_listing():
 def build_graph_links(df,parent,child):
     graph = graphviz.Digraph()
     graph.edge("run", "intr")
-    df
-    for p,c in df[[parent,child]]:
+    df_g=df[parent,child]
+    for p,c in df_g:
         st.write(p,c)
 
     return st.graphviz_chart(graph),df
