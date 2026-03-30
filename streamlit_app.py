@@ -2206,9 +2206,10 @@ def build_graph_links(df,parent,child):
     graph = graphviz.Digraph()
     graph.edge("run", "intr")
     df_g=df[[parent,child]]
-    df_g
-    for p,c in df_g:
-        st.write(p,c)
+    
+    graph.edge(df_g[parent], df_g[child])
+    #for p,c in df_g:
+    #    st.write(p,c)
 
     return st.graphviz_chart(graph),df
 
