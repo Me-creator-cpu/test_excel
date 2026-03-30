@@ -4,6 +4,8 @@ import graphviz
 def build_graph_links(df,parent,child):
     graph = graphviz.Digraph()
     graph.edge("run", "intr")
+    for p,c in df[[parent,child]]:
+        st.write(p,c)
 
     return st.graphviz_chart(graph)
 
