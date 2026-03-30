@@ -2203,9 +2203,10 @@ def test_listing():
             st.text(x)
 
 def build_graph_links(df,parent,child):
-    graph = graphviz.Digraph(orientation='L')
-    graph.edge("run", "intr")
+    graph = graphviz.Digraph()
+    df['Color']=df[parent].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
     df_g=df[[parent,child]]
+    
     df_g
     df_g.T
     row, col = df_g.shape
