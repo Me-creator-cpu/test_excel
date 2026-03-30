@@ -14,12 +14,21 @@ import matplotlib.pyplot as plt
 
 from pictures import *
 #from test_github import *
-from test_graph import *
+from test_excel.tests import test_graph
+#from myproject.models import some_model
+#Me-creator-cpu/test_excel/tests/test_graph.py
 
 #GitHub 
 from pathlib import Path
 from github import Auth
 from github import Github
+
+#Import auto des modules
+#It is important to import sys and set the directory path before you import the file.
+#import sys
+#import os
+#sys.path.insert(0, os.path.abspath('relative/path/to/application/folder'))
+#import [file]
 
 #img.flag_en
 #import platform
