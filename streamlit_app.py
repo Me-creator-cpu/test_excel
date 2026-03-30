@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 from pictures import *
 #from test_github import *
 sys.path.insert(0, "./tests")  # add "tests" path to search list
-import test_graph
+import test_graph as gv
 #from myproject.models import some_model
 #Me-creator-cpu/test_excel/tests/test_graph.py
 
@@ -2203,7 +2203,7 @@ def test_listing():
 
 def pg_tests():
     #st.empty()
-    build_graph_links(get_df_idx(),'Type','Name')
+    gv.build_graph_links(get_df_idx(),'Type','Name')
 
 @st.fragment(run_every="1s")
 def test_colors():
