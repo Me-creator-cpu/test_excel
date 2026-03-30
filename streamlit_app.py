@@ -2205,7 +2205,7 @@ def test_listing():
 def build_graph_links(df,parent,child):
     graph = graphviz.Digraph()
     df['Color']=df[parent].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
-    df_g=df[[parent,child]]
+    df_g=df[[parent,child,'Color']]
     
     df_g
     df_g.T
