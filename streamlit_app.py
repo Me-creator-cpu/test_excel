@@ -2207,6 +2207,7 @@ def build_graph_links(df,parent,child):
     graph.edge("run", "intr")
     df_g=df[[parent,child]]
     df_g
+    df_g.T
     row, col = df_g.shape
     st.write(row,col)
     for r in range(row):
