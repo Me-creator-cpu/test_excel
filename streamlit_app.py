@@ -2203,7 +2203,7 @@ def test_listing():
             st.text(x)
 
 def build_graph_links(df,parent,child):
-    graph = graphviz.Digraph()
+    graph = graphviz.Digraph(orientation=L)
     graph.edge("run", "intr")
     df_g=df[[parent,child]]
     df_g
@@ -2211,14 +2211,37 @@ def build_graph_links(df,parent,child):
     row, col = df_g.shape
     st.write(row,col)
     for r in range(row):
-        st.write(r,parent,df_g[parent][r])
-        st.write(r,child,df_g[child][r])
         graph.edge(df_g[parent][r], df_g[child][r])
-    #graph.edge(df_g[parent], df_g[child])
-    #for p,c in df_g:
-    #    st.write(p,c)
 
     return st.graphviz_chart(graph),df
+
+#def build_graph_links_v2(df,parent,child):
+#        graph = graphviz.Twelve_colors(
+#        label = "Neato layout"
+#        labelloc = "b"
+#        layout = neato
+#        fontname = Arial
+#        node [
+#            shape = circle
+#            width = 1.5
+#            color="#00000088"
+#            style = filled
+#            fontname="Helvetica,Arial,sans-serif"
+#        ]
+#        edge [len = 2 penwidth = 1.5 arrowhead=open]
+#        start = regular
+#        normalize = 0        
+#    )
+#    graph.edge("run", "intr")
+#    df_g=df[[parent,child]]
+#    df_g
+#    df_g.T
+#    row, col = df_g.shape
+#    st.write(row,col)
+#    for r in range(row):
+#        graph.edge(df_g[parent][r], df_g[child][r])
+#
+#    return st.graphviz_chart(graph),df
 
 def pg_tests():
     #st.empty()
