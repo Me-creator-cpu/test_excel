@@ -6,6 +6,7 @@ import statistics
 from openpyxl import load_workbook
 import locale
 import logging
+import sys
 import os
 import json
 from user_agents import parse
