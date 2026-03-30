@@ -14,7 +14,9 @@ import matplotlib.pyplot as plt
 
 from pictures import *
 #from test_github import *
+from test_graph import *
 
+#GitHub 
 from pathlib import Path
 from github import Auth
 from github import Github
@@ -2536,6 +2538,7 @@ pages = {
         st.Page(pg_tests, title='Tests',icon='🛠️'),
         st.Page('./tests/test_eval.py', title='Tests EVAL',icon='🛠️'),
         st.Page('./tests/test2_github.py', title='Test Github',icon='🛠️'),
+        st.Page('./tests/test_graph.py', title='Test graphviz',icon='🛠️'),
         st.Page(pg_test_menu_v2, title='Test Menu v2',icon='🛠️')
     ],    
 }
