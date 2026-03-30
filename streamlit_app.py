@@ -2203,7 +2203,7 @@ def test_listing():
             st.text(x)
 
 def build_graph_links(df,parent,child):
-    graph = graphviz.Digraph(orientation=L)
+    graph = graphviz.Digraph(orientation='L')
     graph.edge("run", "intr")
     df_g=df[[parent,child]]
     df_g
