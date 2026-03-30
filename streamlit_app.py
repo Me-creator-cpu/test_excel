@@ -2205,7 +2205,7 @@ def test_listing():
 def build_graph_links(df,parent,child):
     graph = graphviz.Digraph()
     graph.edge("run", "intr")
-    df_g=df[[parent,child]].T
+    df_g=df[[parent,child]]
     df_g
     for x,y in df_g:
         st.write(x,y)
