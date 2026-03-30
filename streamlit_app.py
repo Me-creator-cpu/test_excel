@@ -2208,6 +2208,7 @@ def build_graph_links(df,parent,child):
     df_g=df[[parent,child]]
     df_g
     row, col = df_g.shape
+    st.write(row,col)
     for r in range(row):
         for c in range(col):
             st.write(df_g[r][c])
