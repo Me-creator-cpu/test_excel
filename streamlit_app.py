@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 from pictures import *
 #from test_github import *
-from test_excel.tests import test_graph
+from test_excel.tests.test_graph import *
 #from myproject.models import some_model
 #Me-creator-cpu/test_excel/tests/test_graph.py
 
