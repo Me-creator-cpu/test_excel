@@ -2203,7 +2203,7 @@ def test_listing():
 
 def pg_tests():
     #st.empty()
-    calc_dreamium()
+    build_graph_links(get_df_idx(),'Type','Name')
 
 @st.fragment(run_every="1s")
 def test_colors():
