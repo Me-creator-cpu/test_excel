@@ -2299,7 +2299,7 @@ def build_graph_links(df,parent,child):
         t=df['Skill'][r]
         m=df['Mutation 1'][r]
         color=get_cell_value(data_type,"Type","Color",p)
-        st.badge(p+":"+color, color=color)
+        st.write(st.badge(p+":"+color, color=color))
         if color is None:
             graph.edge(p, c)
         else:
