@@ -2295,7 +2295,7 @@ def build_graph_links_hier(df,parent,child):
 def build_graph_data(df):
     row, col = df.shape
     nodes=[] #Parent / Child
-    node={"parent":"","child":""}
+    node={"parent":"","child":"","type":"","color":"","typeico":"","skillico":""}
     for r in range(row):
         ptype=df['Type'][r]
         color=get_cell_value(data_type,"Type","Color",ptype)
@@ -2304,21 +2304,41 @@ def build_graph_data(df):
         if df['Mutation 1'][r]!='Non':
             node['parent']=df['Name'][r]
             node['child']=df['Mutation 1'][r]
+            node['type']=ptype
+            node['color']=color
+            node['typeico']=ptypeico
+            node['skillico']=skillico
             nodes.append(node)
         if df['Mutation 2'][r]!='Non':
             if df['Mutation 1'][r]!='Non':
                 node['parent']=df['Mutation 1'][r]
                 node['child']=df['Mutation 2'][r]
+                node['type']=ptype
+                node['color']=color
+                node['typeico']=ptypeico
+                node['skillico']=skillico
                 nodes.append(node)
             else:
                 node['parent']=df['Name'][r]
                 node['child']=df['Mutation 2'][r]
+                node['type']=ptype
+                node['color']=color
+                node['typeico']=ptypeico
+                node['skillico']=skillico
                 nodes.append(node)
         node['parent']=df['Type'][r]
         node['child']=df['Skill'][r]
+        node['type']=ptype
+        node['color']=color
+        node['typeico']=ptypeico
+        node['skillico']=skillico
         nodes.append(node)
         node['parent']=df['Skill'][r]
         node['child']=df['Name'][r]
+        node['type']=ptype
+        node['color']=color
+        node['typeico']=ptypeico
+        node['skillico']=skillico
         nodes.append(node)
 
     st.write(nodes)
