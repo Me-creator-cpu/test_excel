@@ -2301,7 +2301,7 @@ def build_graph_links(df,parent,child):
         m=df['Mutation 1'][r]
         color=get_cell_value(data_type,"Type","Color",p)
         with debug:
-            st.markdown(f"The next word is <span style='color:red'>red</span>",
+            st.markdown(f"{color} <span style='color:red'>red</span>",
                         unsafe_allow_html=True)
         if color is None:
             graph.edge(p, c)
