@@ -2273,7 +2273,7 @@ def build_graph_links(df,parent,child):
                     graph.node(m2, m1, shape = "plaintext")
                     graph.edge(m2, m1, style = "filled", color = color)
                 else:           #Mutation 2 existe mais pas de Mutation 1
-                    graph.node(m2, c, shape = "plaintext")
+                    graph.node(m2, m2, shape = "plaintext")
                     graph.edge(m2, c, style = "filled", color = color)
             else:               #Aucune Mutation
                 do_nothing()
