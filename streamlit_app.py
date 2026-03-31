@@ -2265,7 +2265,8 @@ def build_graph_links(df,parent,child):
             ico=get_cell_value(data_type,"Type","Icon",p)
             ico_skill=data_skill_ico.get(t)
             graph.node(c, ico_skill+c, shape = "plaintext")
-            graph.node(p, ico+p, style = "filled", color = color)  
+            graph.node(p, ico+p, style = "filled", color = color) 
+            st.write(p,c,t,m1,m2) 
             if m2!='0':         #Mutation 2 existe
                 if m1!='0':     #Mutation 1 existe
                     graph.node(m2, m1, shape = "plaintext")
