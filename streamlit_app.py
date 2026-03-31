@@ -2230,6 +2230,13 @@ def test_listing():
 #
 #    return st.graphviz_chart(graph),df
 
+def get_cell_value(d,src,ret,valsrc):
+    #data_type.get("Color")[data_type["Type"].index("Fire")]
+    try:
+        d.get(ret)[d[src].index(valsrc)]
+    except:
+        return None
+
 def build_graph_links(df,parent,child):
     graph = graphviz.Digraph()option_type
     df_g=df[[parent,child]]
@@ -2240,7 +2247,11 @@ def build_graph_links(df,parent,child):
     row, col = df_g.shape
     st.write(row,col)
     for r in range(row):
-        graph.edge(df_g[parent][r], df_g[child][r])
+        color=get_cell_value(data_type,"Type","Color",df_g[parent][r])
+        if color is None:
+            graph.edge(df_g[parent][r], df_g[child][r])
+        else:
+            graph.edge(df_g[parent][r], df_g[child][r], style = "filled", color = color)
 
     return st.graphviz_chart(graph),df
 
