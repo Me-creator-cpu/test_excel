@@ -2220,13 +2220,12 @@ def test_listing():
 
 def build_graph_nodes(graph,df,parent,child):
     n=["skill+type"]
-    df_g=df[[parent,child]]
+    df_g=df[[parent,child,'Type','Skill']]
     row, col = df_g.shape
     for r in range(row):
         p=df_g[parent][r]
         c=df_g[child][r]
-        t=df['Skill'][r]
-        m=df['Mutation 1'][r]
+        t=df_g['Skill'][r]
         color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
             graph.edge(p, c)
@@ -2237,11 +2236,7 @@ def build_graph_nodes(graph,df,parent,child):
             graph.node(p, ico+p, style = "filled", color = color)          
             if no_arrow==False:
                 graph.node(p+t, data_skill_ico.get(t), shape = "plaintext")   
-                graph.edge(p, p+t, style = "filled", color = color)
                 n.append(p+t)
-            graph.edge(p+t, c, style = "filled", color = color)
-            if m!='':
-                m=''
     n=[]    
 
 def build_graph_links(df,parent,child):
@@ -2250,6 +2245,11 @@ def build_graph_links(df,parent,child):
     df_sorted=df.sort_values(by=['Type','Skill','Mutation 2','Mutation 1'],ascending=True,ignore_index=False)
     df_g=df_sorted[[parent,child]]
     df_sorted
+
+    #build_graph_nodes(graph,df,parent,child)
+    build_graph_nodes(graph,df_sorted,'Name','Mutation 1')
+    build_graph_nodes(graph,df_sorted,'Mutation 1','Mutation 2')
+
     row, col = df_g.shape
     for r in range(row):
         p=df_g[parent][r]
