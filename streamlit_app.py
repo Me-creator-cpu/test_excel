@@ -2268,21 +2268,22 @@ def build_graph_links(df,parent,child):
             graph.node(c, ico_skill+c, shape = "plaintext")
             graph.node(p, ico+p, style = "filled", color = color) 
             st.write(p,c,t,m1,m2) 
-            #if m2!='Non':         #Mutation 2 existe
-            #    if m1!='Non':     #Mutation 1 existe
-            #        graph.node(m2, m1, shape = "plaintext")
-            #        graph.edge(m2, m1, style = "filled", color = color)
-            #    else:           #Mutation 2 existe mais pas de Mutation 1
-            #        graph.node(m2, m2, shape = "plaintext")
-            #        graph.edge(m2, c, style = "filled", color = color)
-            #else:               #Aucune Mutation
-            #    do_nothing()
-                                    
             if no_arrow==False:
                 graph.node(p+t, ico_skill, shape = "plaintext")   
                 graph.edge(p, p+t, style = "filled", color = color)
                 n.append(p+t)
-            graph.edge(p+t, c, style = "filled", color = color)
+            if m2!='Non':         #Mutation 2 existe
+                if m1!='Non':     #Mutation 1 existe
+                    graph.edge(m1, m2, style = "filled", color = color)
+            #        graph.node(m2, m1, shape = "plaintext")
+            #        graph.edge(m2, m1, style = "filled", color = color)
+                else:           #Mutation 2 existe mais pas de Mutation 1
+                    graph.edge(c, m2, style = "filled", color = color)
+            #        graph.node(m2, m2, shape = "plaintext")
+            #        graph.edge(m2, c, style = "filled", color = color)
+            else:               #Aucune Mutation
+                graph.edge(p+t, c, style = "filled", color = color)
+            #graph.edge(p+t, c, style = "filled", color = color)
 
     n=[]
     return st.graphviz_chart(graph)
