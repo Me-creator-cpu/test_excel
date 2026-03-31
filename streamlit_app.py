@@ -2256,13 +2256,13 @@ def build_graph_links(df,parent,child):
         c=df_g[child][r]
         t=df_sorted['Skill'][r]
         if len(str(df_sorted['Mutation 1'][r]))>1:
-            m1='Vide'
-        else:
             m1=df_sorted['Mutation 1'][r]
-        if len(str(df_sorted['Mutation 2'][r]))>1:
-            m2='Vide'
         else:
+            m1='Vide'
+        if len(str(df_sorted['Mutation 2'][r])+'x')>1:
             m2=df_sorted['Mutation 2'][r]
+        else:
+            m2='Vide'
         color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
             graph.edge(p, c)
