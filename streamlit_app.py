@@ -2240,16 +2240,14 @@ def get_cell_value(d,src,ret,valsrc):
 def build_graph_links(df,parent,child):
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR'}) #option_type
     df_g=df[[parent,child]]
-    df_g
-    df_g.T
-    st.divider()
     row, col = df_g.shape
     for r in range(row):
         p=df_g[parent][r]
         c=df_g[child][r]
+        t=df['Skill'][r]
         color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
-            ico=icon_skill(c)
+            ico=icon_skill(t)
             graph.node(c, ico+c, shape = "plaintext")
             graph.edge(p, c)
         else:
