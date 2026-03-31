@@ -2247,8 +2247,8 @@ def build_graph_links(df,parent,child):
     df_sorted
 
     #build_graph_nodes(graph,df,parent,child)
-    build_graph_nodes(graph,df_sorted,'Name','Mutation 1')
-    build_graph_nodes(graph,df_sorted,'Mutation 1','Mutation 2')
+    #build_graph_nodes(graph,df_sorted,'Name','Mutation 1')
+    #build_graph_nodes(graph,df_sorted,'Mutation 1','Mutation 2')
 
     row, col = df_g.shape
     for r in range(row):
@@ -2268,15 +2268,15 @@ def build_graph_links(df,parent,child):
             graph.node(c, ico_skill+c, shape = "plaintext")
             graph.node(p, ico+p, style = "filled", color = color) 
             st.write(p,c,t,m1,m2) 
-            if m2!='Non':         #Mutation 2 existe
-                if m1!='Non':     #Mutation 1 existe
-                    graph.node(m2, m1, shape = "plaintext")
-                    graph.edge(m2, m1, style = "filled", color = color)
-                else:           #Mutation 2 existe mais pas de Mutation 1
-                    graph.node(m2, m2, shape = "plaintext")
-                    graph.edge(m2, c, style = "filled", color = color)
-            else:               #Aucune Mutation
-                do_nothing()
+            #if m2!='Non':         #Mutation 2 existe
+            #    if m1!='Non':     #Mutation 1 existe
+            #        graph.node(m2, m1, shape = "plaintext")
+            #        graph.edge(m2, m1, style = "filled", color = color)
+            #    else:           #Mutation 2 existe mais pas de Mutation 1
+            #        graph.node(m2, m2, shape = "plaintext")
+            #        graph.edge(m2, c, style = "filled", color = color)
+            #else:               #Aucune Mutation
+            #    do_nothing()
                                     
             if no_arrow==False:
                 graph.node(p+t, ico_skill, shape = "plaintext")   
