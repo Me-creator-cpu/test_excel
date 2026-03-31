@@ -2239,8 +2239,7 @@ def get_cell_value(d,src,ret,valsrc):
 def is_in_list(lst,val):
     try:
         test=lst.index(val)
-        if val is in lst:
-        #if test>=0:
+        if test>=0:
             return True
         else:
             return False
