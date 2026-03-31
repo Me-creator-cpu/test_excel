@@ -2217,35 +2217,62 @@ def test_listing():
         else:
             st.text(x)
 
-#def build_graph_links_v2(df,parent,child):
-#        graph = graphviz.Twelve_colors(
-#        label = "Neato layout"
-#        labelloc = "b"
-#        layout = neato
-#        fontname = Arial
-#        node [
-#            shape = circle
-#            width = 1.5
-#            color="#00000088"
-#            style = filled
-#            fontname="Helvetica,Arial,sans-serif"
-#        ]
-#        edge [len = 2 penwidth = 1.5 arrowhead=open]
-#        start = regular
-#        normalize = 0        
-#    )
-#    graph.edge("run", "intr")
-#    df_g=df[[parent,child]]
-#    df_g
-#    df_g.T
-#    row, col = df_g.shape
-#    st.write(row,col)
-#    for r in range(row):
-#        graph.edge(df_g[parent][r], df_g[child][r])
-#
-#    return st.graphviz_chart(graph),df
+
+def build_graph_nodes(graph,df,parent,child):
+    n=["skill+type"]
+    df_g=df[[parent,child]]
+    row, col = df_g.shape
+    for r in range(row):
+        p=df_g[parent][r]
+        c=df_g[child][r]
+        t=df['Skill'][r]
+        m=df['Mutation 1'][r]
+        color=get_cell_value(data_type,"Type","Color",p)
+        if color is None:
+            graph.edge(p, c)
+        else:
+            no_arrow=is_in_list(n,p+t)
+            ico=get_cell_value(data_type,"Type","Icon",p)
+            graph.node(c, data_skill_ico.get(t) + c, shape = "plaintext")
+            graph.node(p, ico+p, style = "filled", color = color)          
+            if no_arrow==False:
+                graph.node(p+t, data_skill_ico.get(t), shape = "plaintext")   
+                graph.edge(p, p+t, style = "filled", color = color)
+                n.append(p+t)
+            graph.edge(p+t, c, style = "filled", color = color)
+            if m!='':
+                m=''
+    n=[]    
 
 def build_graph_links(df,parent,child):
+    n=["skill+type"]
+    graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
+    df_g=df[[parent,child]].sort_values(by=['Type','Skill','Mutation 2','Mutation 1'],ascending=True,ignore_index=False)
+    row, col = df_g.shape
+    for r in range(row):
+        p=df_g[parent][r]
+        c=df_g[child][r]
+        t=df['Skill'][r]
+        m=df['Mutation 1'][r]
+        color=get_cell_value(data_type,"Type","Color",p)
+        if color is None:
+            graph.edge(p, c)
+        else:
+            no_arrow=is_in_list(n,p+t)
+            ico=get_cell_value(data_type,"Type","Icon",p)
+            graph.node(c, data_skill_ico.get(t) + c, shape = "plaintext")
+            graph.node(p, ico+p, style = "filled", color = color)          
+            if no_arrow==False:
+                graph.node(p+t, data_skill_ico.get(t), shape = "plaintext")   
+                graph.edge(p, p+t, style = "filled", color = color)
+                n.append(p+t)
+            graph.edge(p+t, c, style = "filled", color = color)
+            if m!='':
+                m=''
+    n=[]
+    return st.graphviz_chart(graph)
+
+def build_graph_links_old(df,parent,child):
     n=["skill+type"]
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
     df_g=df[[parent,child]]
