@@ -2238,7 +2238,7 @@ def get_cell_value(d,src,ret,valsrc):
         return None
 
 def build_graph_links(df,parent,child):
-    graph = graphviz.Digraph(graph_attr={'rankdir':'LR'}) #option_type
+    graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
     df_g=df[[parent,child]]
     row, col = df_g.shape
     for r in range(row):
@@ -2248,9 +2248,6 @@ def build_graph_links(df,parent,child):
         m=df['Mutation 1'][r]
         color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
-            ico=icon_skill(t)
-            st.write(t)
-            graph.node(c, label=ico+c, shape = "box")
             graph.edge(p, c)
         else:
             ico=get_cell_value(data_type,"Type","Icon",p)
