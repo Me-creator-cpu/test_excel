@@ -2267,8 +2267,8 @@ def build_graph_links(df,parent,child):
             graph.node(c, ico_skill+c, shape = "plaintext")
             graph.node(p, ico+p, style = "filled", color = color) 
             st.write(p,c,t,m1,m2) 
-            if m2 is not None:         #Mutation 2 existe
-                if m1 is not None:     #Mutation 1 existe
+            if np.isnan(m2)==False:         #Mutation 2 existe
+                if np.isnan(m1)==False:     #Mutation 1 existe
                     graph.node(m2, m1, shape = "plaintext")
                     graph.edge(m2, m1, style = "filled", color = color)
                 else:           #Mutation 2 existe mais pas de Mutation 1
