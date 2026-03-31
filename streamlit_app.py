@@ -2249,7 +2249,7 @@ def build_graph_links(df,parent,child):
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
     df_sorted=df.sort_values(by=['Type','Skill','Mutation 2','Mutation 1'],ascending=True,ignore_index=False)
     df_g=df_sorted[[parent,child]]
-    df_g
+    df_sorted
     row, col = df_g.shape
     for r in range(row):
         p=df_g[parent][r]
