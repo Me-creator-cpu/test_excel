@@ -2254,9 +2254,11 @@ def build_graph_links(df,parent,child):
             graph.edge(p, c)
         else:
             ico=get_cell_value(data_type,"Type","Icon",p)
+            graph.node(p+t, data_skill_ico.get(t), shape = "plaintext")
             graph.node(c, data_skill_ico.get(t) + c, shape = "plaintext")
             graph.node(p, ico+p, style = "filled", color = color)
-            graph.edge(p, c, style = "filled", color = color)
+            graph.edge(p, p+t, style = "filled", color = color)
+            graph.edge(p+t, c, style = "filled", color = color)
 
     return st.graphviz_chart(graph)
 
