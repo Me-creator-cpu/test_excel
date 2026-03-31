@@ -2295,6 +2295,7 @@ def build_graph_links_hier(df,parent,child):
 def build_graph_data(df):
     row, col = df.shape
     nodes=[] #Parent / Child
+    node={"parent":"","child":""}
     for r in range(row):
         ptype=df['Type'][r]
         color=get_cell_value(data_type,"Type","Color",ptype)
