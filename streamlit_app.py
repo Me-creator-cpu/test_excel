@@ -2255,11 +2255,11 @@ def build_graph_links(df,parent,child):
         p=df_g[parent][r]
         c=df_g[child][r]
         t=df_sorted['Skill'][r]
-        if df_sorted['Mutation 1'][r].isna() or df_sorted['Mutation 1'][r].isnull():
+        if len(str(df_sorted['Mutation 1'][r]))>1:
             m1='Vide'
         else:
             m1=df_sorted['Mutation 1'][r]
-        if df_sorted['Mutation 2'][r].isna() or df_sorted['Mutation 2'][r].isnull():
+        if len(str(df_sorted['Mutation 2'][r]))>1:
             m2='Vide'
         else:
             m2=df_sorted['Mutation 2'][r]
