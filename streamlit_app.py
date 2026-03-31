@@ -2246,6 +2246,7 @@ def build_graph_links(df,parent,child):
         c=df_g[child][r]
         t=df['Skill'][r]
         color=get_cell_value(data_type,"Type","Color",p)
+        st.write(df['Skill'][r],t)
         if color is None:
             ico=icon_skill(t)
             graph.node(c, ico+c, shape = "box")
