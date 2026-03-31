@@ -2245,11 +2245,14 @@ def build_graph_links(df,parent,child):
     st.divider()
     row, col = df_g.shape
     for r in range(row):
-        color=get_cell_value(data_type,"Type","Color",df_g[parent][r])
+        p=df_g[parent][r]
+        c=df_g[child][r]
+        color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
-            graph.edge(df_g[parent][r], df_g[child][r])
+            graph.edge(p, c)
         else:
-            graph.edge(df_g[parent][r], df_g[child][r], style = "filled", color = color)
+            graph.node(p, p, style = "filled", color = color)
+            graph.edge(p, c, style = "filled", color = color)
 
     return st.graphviz_chart(graph)
 
