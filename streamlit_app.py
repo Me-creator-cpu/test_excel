@@ -2247,7 +2247,8 @@ def build_graph_nodes(graph,df,parent,child):
 def build_graph_links(df,parent,child):
     n=["skill+type"]
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
-    df_g=df[[parent,child]].sort_values(by=['Type','Skill','Mutation 2','Mutation 1'],ascending=True,ignore_index=False)
+    df_sorted=df.sort_values(by=['Type','Skill','Mutation 2','Mutation 1'],ascending=True,ignore_index=False)
+    df_g=df_sorted[[parent,child]]
     row, col = df_g.shape
     for r in range(row):
         p=df_g[parent][r]
