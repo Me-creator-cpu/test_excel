@@ -2274,7 +2274,8 @@ def build_graph_links(df,parent,child):
                     graph.node(m2, c, shape = "plaintext")
                     graph.edge(m2, c, style = "filled", color = color)
             else:               #Aucune Mutation
-                #                    
+                do_nothing()
+                                    
             if no_arrow==False:
                 graph.node(p+t, ico_skill, shape = "plaintext")   
                 graph.edge(p, p+t, style = "filled", color = color)
