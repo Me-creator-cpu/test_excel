@@ -2248,7 +2248,7 @@ def build_graph_links(df,parent,child):
         color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
             ico=icon_skill(t)
-            st.write(df['Skill'][r],ico)
+            st.write(t,ico)
             graph.node(c, label=ico+c, shape = "box")
             graph.edge(p, c)
         else:
