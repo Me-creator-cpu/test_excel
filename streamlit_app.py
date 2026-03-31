@@ -2269,7 +2269,7 @@ def build_graph_links(df,parent,child):
                 n.append(p+t)
             graph.edge(p+t, c, style = "filled", color = color)
             if m!='':
-
+                m=''
     n=[]
     return st.graphviz_chart(graph)
 
