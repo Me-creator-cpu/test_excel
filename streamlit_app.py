@@ -2202,20 +2202,6 @@ def test_listing():
         else:
             st.text(x)
 
-def build_graph_links(df,parent,child):
-    graph = graphviz.Digraph()
-    df['Color']=df[parent].apply(lambda b: option_type[data_type['Color'].index(b)]+b)
-    df_g=df[[parent,child,'Color']]
-    
-    df_g
-    df_g.T
-    row, col = df_g.shape
-    st.write(row,col)
-    for r in range(row):
-        graph.edge(df_g[parent][r], df_g[child][r])
-
-    return st.graphviz_chart(graph),df
-
 #def build_graph_links_v2(df,parent,child):
 #        graph = graphviz.Twelve_colors(
 #        label = "Neato layout"
@@ -2244,9 +2230,24 @@ def build_graph_links(df,parent,child):
 #
 #    return st.graphviz_chart(graph),df
 
+def build_graph_links(df,parent,child):
+    graph = graphviz.Digraph()option_type
+    df['Color']=df[parent].apply(lambda b: data_type['Color'][data_type['Type'].index(b)]+b)
+    df_g=df[[parent,child,'Color']]
+    
+    df_g
+    df_g.T
+    row, col = df_g.shape
+    st.write(row,col)
+    for r in range(row):
+        graph.edge(df_g[parent][r], df_g[child][r])
+
+    return st.graphviz_chart(graph),df
+
 def pg_tests():
     #st.empty()
     df=get_df_idx()
+    st.write(data_type['Color'][2])
     build_graph_links(df,'Type','Name')
     
 @st.fragment(run_every="1s")
