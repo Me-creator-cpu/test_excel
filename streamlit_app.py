@@ -2301,14 +2301,25 @@ def build_graph_data(df):
         ptypeico=get_cell_value(data_type,"Type","Icon",ptype)
         skillico=data_skill_ico.get(df['Skill'][r])
         if df['Mutation 1'][r]!='Non':
-            nodes.append(df['Name'][r],df['Mutation 1'][r])
+            node['parent']=df['Name'][r]
+            node['child']=df['Mutation 1'][r]
+            nodes.append(node)
         if df['Mutation 2'][r]!='Non':
             if df['Mutation 1'][r]!='Non':
-                nodes.append(df['Mutation 1'][r],df['Mutation 2'][r])
+                node['parent']=df['Mutation 1'][r]
+                node['child']=df['Mutation 2'][r]
+                nodes.append(node)
             else:
-                nodes.append(list(df['Name'][r],df['Mutation 2'][r]))
-        nodes.append(df['Type'][r],df['Skill'][r])
-        nodes.append(df['Skill'][r],df['Name'][r])
+                node['parent']=df['Name'][r]
+                node['child']=df['Mutation 2'][r]
+                nodes.append(node)
+        node['parent']=df['Type'][r]
+        node['child']=df['Skill'][r]
+        nodes.append(node)
+        node['parent']=df['Skill'][r]
+        node['child']=df['Name'][r]
+        nodes.append(node)
+
     st.write(nodes)
 
 
