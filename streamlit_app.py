@@ -404,6 +404,21 @@ def key_values(key,lst=data_menu_v2):
         ret_val=None
     return ret_val
 
+def get_cell_value(d,src,ret,valsrc):
+    #data_type.get("Color")[data_type["Type"].index("Fire")]
+    try:
+        return d.get(ret)[d[src].index(valsrc)]
+    except:
+        return None
+def is_in_list(lst,val):
+    try:
+        if lst.index(val)>=0:
+            return True
+        else:
+            return False
+    except:
+        return False
+
 def on_tab_change():
     st.toast(f"You opened the {st.session_state.animal} tab.")
     with st.session_state.tabsv2:
@@ -2230,22 +2245,6 @@ def test_listing():
 #
 #    return st.graphviz_chart(graph),df
 
-def get_cell_value(d,src,ret,valsrc):
-    #data_type.get("Color")[data_type["Type"].index("Fire")]
-    try:
-        return d.get(ret)[d[src].index(valsrc)]
-    except:
-        return None
-def is_in_list(lst,val):
-    try:
-        test=lst.index(val)
-        if test>=0:
-            return True
-        else:
-            return False
-    except:
-        return False
-
 def build_graph_links(df,parent,child):
     n=["skill+type"]
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
@@ -2269,7 +2268,8 @@ def build_graph_links(df,parent,child):
                 graph.edge(p, p+t, style = "filled", color = color)
                 n.append(p+t)
             graph.edge(p+t, c, style = "filled", color = color)
-    st.write(n)
+            if m!='':
+
     n=[]
     return st.graphviz_chart(graph)
 
