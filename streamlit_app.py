@@ -2240,12 +2240,10 @@ def get_cell_value(d,src,ret,valsrc):
 def build_graph_links(df,parent,child):
     graph = graphviz.Digraph() #option_type
     df_g=df[[parent,child]]
-    
     df_g
     df_g.T
     st.divider()
     row, col = df_g.shape
-    st.write(row,col)
     for r in range(row):
         color=get_cell_value(data_type,"Type","Color",df_g[parent][r])
         if color is None:
@@ -2258,7 +2256,6 @@ def build_graph_links(df,parent,child):
 def pg_tests():
     #st.empty()
     df=get_df_idx()
-    st.write(data_type['Color'][2])
     #key_values(key,lst=data_menu_v2)
     build_graph_links(df,'Type','Name')
     
