@@ -2238,7 +2238,7 @@ def get_cell_value(d,src,ret,valsrc):
         return None
 
 def build_graph_links(df,parent,child):
-    graph = graphviz.Digraph(layout = "dot") #option_type
+    graph = graphviz.Digraph() #option_type
     df_g=df[[parent,child]]
     df_g
     df_g.T
