@@ -2236,6 +2236,12 @@ def get_cell_value(d,src,ret,valsrc):
         return d.get(ret)[d[src].index(valsrc)]
     except:
         return None
+def is_in_list(lst,val):
+    try:
+        test=n.index(p+t)
+        return True
+    except:
+        return False
 
 def build_graph_links(df,parent,child):
     n=["skill+type"]
@@ -2252,7 +2258,7 @@ def build_graph_links(df,parent,child):
             graph.edge(p, c)
         else:
             ico=get_cell_value(data_type,"Type","Icon",p)
-            if n.index(p+t) is None:
+            if is_in_list(n,p+t)==False:
                 graph.node(p+t, data_skill_ico.get(t), shape = "plaintext")
                 n.append(p+t)
             graph.node(c, data_skill_ico.get(t) + c, shape = "plaintext")
