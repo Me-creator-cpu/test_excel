@@ -2248,10 +2248,12 @@ def build_graph_links(df,parent,child):
         p=df_g[parent][r]
         c=df_g[child][r]
         color=get_cell_value(data_type,"Type","Color",p)
-        ico=get_cell_value(data_type,"Type","Icon",p)
         if color is None:
+            ico=get_cell_value(data_type,"Type","Icon",c)
+            graph.node(c, ico+c, shape = "plaintext")
             graph.edge(p, c)
         else:
+            ico=get_cell_value(data_type,"Type","Icon",p)
             graph.node(p, ico+p, style = "filled", color = color)
             graph.edge(p, c, style = "filled", color = color)
 
