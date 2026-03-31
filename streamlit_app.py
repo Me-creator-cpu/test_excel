@@ -2290,6 +2290,7 @@ def build_graph_links_hier(df,parent,child):
 
 def build_graph_links(df,parent,child):
     n=["skill+type"]
+    debug=st.container(border=False, width='stretch', height='content')
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
     df_g=df[[parent,child]]
     row, col = df_g.shape
@@ -2299,7 +2300,8 @@ def build_graph_links(df,parent,child):
         t=df['Skill'][r]
         m=df['Mutation 1'][r]
         color=get_cell_value(data_type,"Type","Color",p)
-        st.write(st.badge(p+":"+color, color=color))
+        with debug:
+            st.write(st.badge(p+":"+color, color=color))
         if color is None:
             graph.edge(p, c)
         else:
