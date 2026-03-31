@@ -2239,6 +2239,7 @@ def get_cell_value(d,src,ret,valsrc):
 def is_in_list(lst,val):
     try:
         test=n.index(p+t)
+        st.write(test,p+t)
         return True
     except:
         return False
