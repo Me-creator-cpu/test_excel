@@ -12,7 +12,6 @@ import json
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 import matplotlib.pyplot as plt
-import gv_python as gv
 
 from pictures import *
 #sys.path.insert(0, "./tests")  # add "tests" path to search list
@@ -2240,7 +2239,8 @@ def get_cell_value(d,src,ret,valsrc):
 def is_in_list(lst,val):
     try:
         test=lst.index(val)
-        if test>=0:
+        if val is in lst:
+        #if test>=0:
             return True
         else:
             return False
@@ -2264,8 +2264,7 @@ def build_graph_links(df,parent,child):
             no_arrow=is_in_list(n,p+t)
             ico=get_cell_value(data_type,"Type","Icon",p)
             graph.node(c, data_skill_ico.get(t) + c, shape = "plaintext")
-            graph.node(p, ico+p, style = "filled", color = color)
-            graph.findnode(graph, p+t)           
+            graph.node(p, ico+p, style = "filled", color = color)          
             if no_arrow==False:
                 graph.node(p+t, data_skill_ico.get(t), shape = "plaintext")   
                 graph.edge(p, p+t, style = "filled", color = color)
