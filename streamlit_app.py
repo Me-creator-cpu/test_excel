@@ -12,7 +12,7 @@ import json
 from user_agents import parse
 import extra_streamlit_components as stx    #https://github.com/Mohamed-512/Extra-Streamlit-Components
 import matplotlib.pyplot as plt
-import gv
+import gv_python as gv
 
 from pictures import *
 #sys.path.insert(0, "./tests")  # add "tests" path to search list
