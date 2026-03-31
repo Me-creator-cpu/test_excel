@@ -2306,7 +2306,7 @@ def build_graph_data(df):
             if df['Mutation 1'][r]!='Non':
                 nodes.append(df['Mutation 1'][r],df['Mutation 2'][r])
             else:
-                nodes.append(df['Name'][r],df['Mutation 2'][r])
+                nodes.append(list(df['Name'][r],df['Mutation 2'][r]))
         nodes.append(df['Type'][r],df['Skill'][r])
         nodes.append(df['Skill'][r],df['Name'][r])
     st.write(nodes)
