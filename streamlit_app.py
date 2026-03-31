@@ -2238,7 +2238,7 @@ def get_cell_value(d,src,ret,valsrc):
         return None
 
 def build_graph_links(df,parent,child):
-    graph = graphviz.Digraph(layout=neato) #option_type
+    graph = graphviz.Digraph("layout": "dot") #option_type
     df_g=df[[parent,child]]
     df_g
     df_g.T
@@ -2251,13 +2251,14 @@ def build_graph_links(df,parent,child):
         else:
             graph.edge(df_g[parent][r], df_g[child][r], style = "filled", color = color)
 
-    return st.graphviz_chart(graph),df
+    return st.graphviz_chart(graph)
 
 def pg_tests():
     #st.empty()
     df=get_df_idx()
     #key_values(key,lst=data_menu_v2)
-    build_graph_links(df,'Type','Name')
+    dot=build_graph_links(df,'Type','Name')
+    #dot.render('graph', view=True)
     
 @st.fragment(run_every="1s")
 def test_colors():
