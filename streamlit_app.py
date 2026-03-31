@@ -2249,6 +2249,7 @@ def build_graph_links(df,parent,child):
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
     df_sorted=df.sort_values(by=['Type','Skill','Mutation 2','Mutation 1'],ascending=True,ignore_index=False)
     df_g=df_sorted[[parent,child]]
+    df_g
     row, col = df_g.shape
     for r in range(row):
         p=df_g[parent][r]
@@ -2261,6 +2262,8 @@ def build_graph_links(df,parent,child):
         else:
             no_arrow=is_in_list(n,p+t)
             ico=get_cell_value(data_type,"Type","Icon",p)
+            if m!='':
+                m=''
             graph.node(c, data_skill_ico.get(t) + c, shape = "plaintext")
             graph.node(p, ico+p, style = "filled", color = color)          
             if no_arrow==False:
@@ -2268,8 +2271,7 @@ def build_graph_links(df,parent,child):
                 graph.edge(p, p+t, style = "filled", color = color)
                 n.append(p+t)
             graph.edge(p+t, c, style = "filled", color = color)
-            if m!='':
-                m=''
+
     n=[]
     return st.graphviz_chart(graph)
 
