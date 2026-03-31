@@ -2267,8 +2267,8 @@ def build_graph_links(df,parent,child):
             if no_arrow==False:
                 graph.node(p+t, data_skill_ico.get(t), shape = "plaintext")   
                 graph.edge(p, p+t, style = "filled", color = color)
-                graph.edge(p+t, c, style = "filled", color = color)
                 n.append(p+t)
+            graph.edge(p+t, c, style = "filled", color = color)
     st.write(n)
     n=[]
     return st.graphviz_chart(graph)
