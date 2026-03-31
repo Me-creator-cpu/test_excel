@@ -2263,7 +2263,8 @@ def build_graph_links(df,parent,child):
             no_arrow=is_in_list(n,p+t)
             ico=get_cell_value(data_type,"Type","Icon",p)
             graph.node(c, data_skill_ico.get(t) + c, shape = "plaintext")
-            graph.node(p, ico+p, style = "filled", color = color)            
+            graph.node(p, ico+p, style = "filled", color = color)
+            graph.findnode (graph, p+t)           
             if no_arrow==False:
                 graph.node(p+t, data_skill_ico.get(t), shape = "plaintext")   
                 graph.edge(p, p+t, style = "filled", color = color)
