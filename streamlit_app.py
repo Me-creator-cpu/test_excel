@@ -2249,7 +2249,7 @@ def build_graph_links(df,parent,child):
         c=df_g[child][r]
         color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
-            ico=get_cell_value(data_type,"Type","Icon",c)
+            ico=icon_skill(c)
             graph.node(c, ico+c, shape = "plaintext")
             graph.edge(p, c)
         else:
