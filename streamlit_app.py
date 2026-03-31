@@ -2232,11 +2232,11 @@ def test_listing():
 
 def build_graph_links(df,parent,child):
     graph = graphviz.Digraph()option_type
-    df['Color']=df[parent].apply(lambda b: data_type['Color'][data_type['Type'].index(b)]+b)
-    df_g=df[[parent,child,'Color']]
+    df_g=df[[parent,child]]
     
     df_g
     df_g.T
+    st.divider()
     row, col = df_g.shape
     st.write(row,col)
     for r in range(row):
@@ -2248,6 +2248,7 @@ def pg_tests():
     #st.empty()
     df=get_df_idx()
     st.write(data_type['Color'][2])
+    #key_values(key,lst=data_menu_v2)
     build_graph_links(df,'Type','Name')
     
 @st.fragment(run_every="1s")
