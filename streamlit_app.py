@@ -2255,14 +2255,9 @@ def build_graph_links(df,parent,child):
         p=df_g[parent][r]
         c=df_g[child][r]
         t=df_sorted['Skill'][r]
-        if len(str(df_sorted['Mutation 1'][r])+'x')>2:
-            m1=df_sorted['Mutation 1'][r]
-        else:
-            m1='Vide'
-        if len(str(df_sorted['Mutation 2'][r])+'x')>2:
-            m2=df_sorted['Mutation 2'][r]
-        else:
-            m2='Vide'
+        m1=df_sorted['Mutation 1'][r]
+        m2=df_sorted['Mutation 2'][r]
+
         color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
             graph.edge(p, c)
@@ -2273,8 +2268,8 @@ def build_graph_links(df,parent,child):
             graph.node(c, ico_skill+c, shape = "plaintext")
             graph.node(p, ico+p, style = "filled", color = color) 
             st.write(p,c,t,m1,m2) 
-            if m2!='Vide':         #Mutation 2 existe
-                if m1!='Vide':     #Mutation 1 existe
+            if m2!='Non':         #Mutation 2 existe
+                if m1!='Non':     #Mutation 1 existe
                     graph.node(m2, m1, shape = "plaintext")
                     graph.edge(m2, m1, style = "filled", color = color)
                 else:           #Mutation 2 existe mais pas de Mutation 1
