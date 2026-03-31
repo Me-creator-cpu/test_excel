@@ -2239,7 +2239,7 @@ def build_graph_nodes(graph,df,parent,child):
                 n.append(p+t)
     n=[]    
 
-def build_graph_links(df,parent,child):
+def build_graph_links_hier(df,parent,child):
     n=["skill+type"]
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
     df_sorted=df.sort_values(by=['Type','Skill','Mutation 2','Mutation 1'],ascending=True,ignore_index=False)
@@ -2288,7 +2288,7 @@ def build_graph_links(df,parent,child):
     n=[]
     return st.graphviz_chart(graph)
 
-def build_graph_links_old(df,parent,child):
+def build_graph_links(df,parent,child):
     n=["skill+type"]
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
     df_g=df[[parent,child]]
@@ -2311,8 +2311,6 @@ def build_graph_links_old(df,parent,child):
                 graph.edge(p, p+t, style = "filled", color = color)
                 n.append(p+t)
             graph.edge(p+t, c, style = "filled", color = color)
-            if m!='':
-                m=''
     n=[]
     return st.graphviz_chart(graph)
 
