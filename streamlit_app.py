@@ -2298,7 +2298,7 @@ def build_graph_links(df,parent,child):
         c=df_g[child][r]
         t=df['Skill'][r]
         m=df['Mutation 1'][r]
-        st.badge(f"{p}:{get_cell_value(data_type,"Type","Color",p)}", color=get_cell_value(data_type,"Type","Color",p))
+        st.badge(f"{p}:{get_cell_value(data_type,'Type','Color',p)}", color=get_cell_value(data_type,"Type","Color",p))
         color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
             graph.edge(p, c)
