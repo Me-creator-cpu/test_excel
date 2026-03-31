@@ -658,6 +658,10 @@ def write_info(msg,val):
 def write_one_info(msg):
     return st.info(f"{msg}", icon="ℹ️", width="stretch")
 
+def write_debug_html(txt,color):
+    st.markdown(f"{txt} <span style='color:{color}'>{color}</span>",
+                        unsafe_allow_html=True)
+
 def write_coming_soon():
     maintenance=st.container(border=False, width='stretch', height='content')
     with maintenance:
@@ -2288,9 +2292,28 @@ def build_graph_links_hier(df,parent,child):
     n=[]
     return st.graphviz_chart(graph)
 
+def build_graph_data(df):
+    row, col = df.shape
+    nodes=[] #Parent / Child
+    for r in range(row):
+        ptype=df['Type'][r]
+        color=get_cell_value(data_type,"Type","Color",ptype)
+        ptypeico=get_cell_value(data_type,"Type","Icon",ptype)
+        skillico=data_skill_ico.get(df['Skill'][r])
+        if df['Mutation 1'][r]!='Non':
+            nodes.append(df['Name'][r],df['Mutation 1'][r])
+        if df['Mutation 2'][r]!='Non':
+            if df['Mutation 1'][r]!='Non':
+                nodes.append(df['Mutation 1'][r],df['Mutation 2'][r])
+            else:
+                nodes.append(df['Name'][r],df['Mutation 2'][r])
+        nodes.append(df['Type'][r],df['Skill'][r])
+        nodes.append(df['Skill'][r],df['Name'][r])
+    st.write(nodes)
+
+
 def build_graph_links(df,parent,child):
     n=["skill+type"]
-    debug=st.container(border=False, width='stretch', height='content')
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
     df_g=df[[parent,child]]
     row, col = df_g.shape
@@ -2300,9 +2323,6 @@ def build_graph_links(df,parent,child):
         t=df['Skill'][r]
         m=df['Mutation 1'][r]
         color=get_cell_value(data_type,"Type","Color",p)
-        with debug:
-            st.markdown(f"{p} <span style='color:{color}'>{color}</span>",
-                        unsafe_allow_html=True)
         if color is None:
             graph.edge(p, c)
         else:
@@ -2321,9 +2341,8 @@ def build_graph_links(df,parent,child):
 def pg_tests():
     #st.empty()
     df=get_df_idx()
-    #key_values(key,lst=data_menu_v2)
-    dot=build_graph_links(df,'Type','Name')
-    #dot.render('graph', view=True)
+    #dot=build_graph_links(df,'Type','Name')
+    build_graph_data(df)
     
 @st.fragment(run_every="1s")
 def test_colors():
