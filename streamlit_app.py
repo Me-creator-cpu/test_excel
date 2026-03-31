@@ -2233,7 +2233,7 @@ def test_listing():
 def get_cell_value(d,src,ret,valsrc):
     #data_type.get("Color")[data_type["Type"].index("Fire")]
     try:
-        d.get(ret)[d[src].index(valsrc)]
+        return d.get(ret)[d[src].index(valsrc)]
     except:
         return None
 
