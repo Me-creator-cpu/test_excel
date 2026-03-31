@@ -2254,20 +2254,29 @@ def build_graph_links(df,parent,child):
     for r in range(row):
         p=df_g[parent][r]
         c=df_g[child][r]
-        t=df['Skill'][r]
-        m=df['Mutation 1'][r]
+        t=df_sorted['Skill'][r]
+        m1=df_sorted['Mutation 1'][r]
+        m2=df_sorted['Mutation 2'][r]
         color=get_cell_value(data_type,"Type","Color",p)
         if color is None:
             graph.edge(p, c)
         else:
             no_arrow=is_in_list(n,p+t)
             ico=get_cell_value(data_type,"Type","Icon",p)
-            if m!='':
-                m=''
-            graph.node(c, data_skill_ico.get(t) + c, shape = "plaintext")
-            graph.node(p, ico+p, style = "filled", color = color)          
+            ico_skill=data_skill_ico.get(t)
+            graph.node(c, ico_skill+c, shape = "plaintext")
+            graph.node(p, ico+p, style = "filled", color = color)  
+            if m2!='0':         #Mutation 2 existe
+                if m1!='0':     #Mutation 1 existe
+                    graph.node(m2, m1, shape = "plaintext")
+                    graph.edge(m2, m1, style = "filled", color = color)
+                else:           #Mutation 2 existe mais pas de Mutation 1
+                    graph.node(m2, c, shape = "plaintext")
+                    graph.edge(m2, c, style = "filled", color = color)
+            else:               #Aucune Mutation
+                #                    
             if no_arrow==False:
-                graph.node(p+t, data_skill_ico.get(t), shape = "plaintext")   
+                graph.node(p+t, ico_skill, shape = "plaintext")   
                 graph.edge(p, p+t, style = "filled", color = color)
                 n.append(p+t)
             graph.edge(p+t, c, style = "filled", color = color)
