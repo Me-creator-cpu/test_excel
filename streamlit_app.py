@@ -1007,6 +1007,7 @@ def obj_multiselect(df,column):
 def get_df_base():
     try:
         #return get_df_idx(idx_palmon)
+        idx=idx_palmon
         data_values=get_data_from_excel(xls_file=local_xls,
                                         xls_sheet=df_xls["Worksheet"][idx],
                                         skip=df_xls["SkipRows"][idx],
