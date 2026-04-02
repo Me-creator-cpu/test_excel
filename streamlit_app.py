@@ -1830,7 +1830,6 @@ def menu_tab_dashboards():
         with row_d1[0]:
             st.subheader(get_text_trad('dashboard_avg_level'))
             #avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
-            df1
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True)
             avg_lvl_df
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
@@ -2409,27 +2408,11 @@ def build_graph_links(df,parent,child):
 def pg_tests_df():
     idx=idx_palmon
     st.write('get_df_idx')
-    t0=get_df_idx(idx_palmon)
-    t0
+    df1=get_df_idx(idx_palmon)
+    df1
     st.divider()
-    st.write('get_data')
-    t1=get_data(local_xls,idx_palmon,False)
-    t1
-    st.divider()
-    st.write('get_data_from_excel')
-    data_values=get_data_from_excel(xls_file=local_xls,
-                                    xls_sheet=df_xls["Worksheet"][idx],
-                                    skip=df_xls["SkipRows"][idx],
-                                    rng_cols=df_xls["Range"][idx],
-                                    rng_rows=df_xls["UpToRow"][idx],
-                                    rencols=df_xls["DisplayColumns"][idx],
-                                    show_table=False
-                                    )
-    data_values   
-    st.divider()
-    st.write('get_df_base')
-    ret_val=get_df_base()
-    ret_val
+    avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True)
+    avg_lvl_df
 
 def pg_tests():
     #st.empty()
