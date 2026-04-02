@@ -729,7 +729,7 @@ def get_data(file,idx,show_table=False):
                                                 rencols=df_xls["DisplayColumns"][idx],
                                                 show_table=show_table
                                                 )
-    df.loc[idx, "DataFrame"] = data_values
+    df_xls.loc[idx, "DataFrame"] = data_values
     #df_xls.loc[idx, "DataFrame"]=data_values
     df_xls.loc[idx, "DataFrame"]
 
