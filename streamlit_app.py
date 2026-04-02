@@ -714,6 +714,7 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
                 df=df
         try:
             df['URL'] = df['URL'].fillna('')
+            st.toast("df['URL'].fillna('')")
         except:
             df=df
         if show_table == True:
