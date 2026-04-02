@@ -1022,6 +1022,21 @@ def get_df_base():
 
 def get_df_idx(idx=idx_palmon):
     try:
+        #return get_df_idx(idx_palmon)
+        data_values=get_data_from_excel(xls_file=local_xls,
+                                        xls_sheet=df_xls["Worksheet"][idx],
+                                        skip=df_xls["SkipRows"][idx],
+                                        rng_cols=df_xls["Range"][idx],
+                                        rng_rows=df_xls["UpToRow"][idx],
+                                        rencols=df_xls["DisplayColumns"][idx],
+                                        show_table=False
+                                        )        
+        return data_values
+    except:
+        return None
+
+def get_df_idx_old_ko(idx=idx_palmon):
+    try:
         return df_xls["DataFrame"][idx].copy(deep=True)
     except:
         return None
