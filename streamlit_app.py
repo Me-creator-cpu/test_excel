@@ -1370,11 +1370,11 @@ def calc_dreamium():
     else:
         df = pd.DataFrame(
             [
-                {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": ''},
-                {"dreamium": "II",  "level": 2, "quantity": 0, "calculated": ''},
-                {"dreamium": "III", "level": 3, "quantity": 0, "calculated": ''},
-                {"dreamium": "IV",  "level": 4, "quantity": 0, "calculated": ''},
-                {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": ''},
+                {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": '0'},
+                {"dreamium": "II",  "level": 2, "quantity": 0, "calculated": '0'},
+                {"dreamium": "III", "level": 3, "quantity": 0, "calculated": '0'},
+                {"dreamium": "IV",  "level": 4, "quantity": 0, "calculated": '0'},
+                {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": '0'},
             ]
         )
 
@@ -1408,7 +1408,7 @@ def calc_dreamium():
 def calc_dreamium_final(df_source,df_input):
     rows = df_source.index.tolist()
     for i in rows:
-        df_source["calculated"][i]=df_source["quantity"][i]
+        df_source["calculated"][i]=str(df_source["quantity"][i])
     
     for i in df_input:
         for l in rows:
