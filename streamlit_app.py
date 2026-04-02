@@ -2421,6 +2421,9 @@ def build_graph_links(df,parent,child):
     n=[]
     return st.graphviz_chart(graph)
 
+def pg_tests_df():
+    get_df_idx(idx_palmon)
+
 def pg_tests():
     #st.empty()
     df=get_df_idx()
@@ -2769,6 +2772,7 @@ pages = {
         st.Page('./git_translations.py', title=get_text_trad('menu_git_translate'),icon='🛠️'),
     ],
     "Tests": [
+        st.Page(pg_tests_df, title='Tests DF',icon='🛠️'),
         st.Page(pg_tests, title='Tests',icon='🛠️'),
         st.Page('./tests/test_eval.py', title='Tests EVAL',icon='🛠️'),
         st.Page('./tests/test2_github.py', title='Test Github',icon='🛠️'),
