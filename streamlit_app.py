@@ -1412,9 +1412,17 @@ def calc_dreamium_final(df_source,df_input):
     
     for i in df_input:
         for l in rows:
-            calc_qty=df_source["calculated"][l].replace(' ','')
+            #calc_qty=df_source["calculated"][l].replace(' ','')
+            calc_qty=str2number(df_source["calculated"][l])
             df_source["calculated"][l]=large_num_format(calc_qty + df_input[i]["quantity"]*(4**(i-l)))
     st.session_state.updated_df=df_source
+
+def str2number(val):
+    try:
+        t=str(val).replace(' ','')
+        return int(t)
+    except:
+        return int(0)
 
 def df_change(selected_rows):   
     input_df=st.session_state["my_key"]["edited_rows"]
