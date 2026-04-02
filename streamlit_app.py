@@ -838,7 +838,9 @@ def get_text_trad_old(langu='en',textId='text_id'):
 @st.fragment(run_every=run_every)
 def check_file_loaded():
     now = datetime.now()
-    if df_xls["DataFrame"][idx_palmon] is not None:
+    df=get_df_idx(idx_palmon)
+    #if df_xls["DataFrame"][idx_palmon] is not None:
+    if df is not None:
         return st.success(f'{now} - File loaded', icon="✅")
     else:
         return st.warning(f'{now} - File is NOT loaded', icon="⚠️")
@@ -1164,15 +1166,15 @@ def format_stars(x): #⭐
         return x
 
 def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
-    if df_xls["DataFrame"][idx_palmon] is not None:
-        df = df_xls["DataFrame"][idx_costs]
+    df=get_df_idx(idx_costs)
+    if df is not None:
         val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
         return val_cost
     else:
         return None
 
 def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
-    if df_xls["DataFrame"][idx_palmon] is not None:
+    if get_df_idx(idx_palmon) is not None:
         #df = df_xls["DataFrame"][idx_comp]
         #val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
         val_cost=get_upgrade_comp_costs(from_lvl,to_lvl)
@@ -1181,8 +1183,8 @@ def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
         return None
 
 def get_upgrade_comp_costs(from_lvl=1,to_lvl=30):
-    if df_xls["DataFrame"][idx_palmon] is not None:
-        df = df_xls["DataFrame"][idx_comp]
+    df=get_df_idx(idx_comp)
+    if df is not None:
         val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
         return int(val_cost)
     else:
@@ -1191,7 +1193,7 @@ def get_upgrade_comp_costs(from_lvl=1,to_lvl=30):
 def show_details(palmon,df,popup=False):
     #st.markdown(f":orange-badge[palmon : {palmon}]")
     if 1 == 1:
-        df_costs = df_xls["DataFrame"][idx_costs]
+        df_costs = get_df_idx(idx_costs)
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
         filtered_df = df.copy().iloc[palmon]
         if len(filtered_df) > 0:
@@ -1312,7 +1314,7 @@ def pal_deltail(palmon,df,pic_width=300):
     row1 = st.columns(3,border=col_border, width="stretch")
     row2 = st.columns(2,border=col_border, width="stretch")
 
-    df_cost = df_xls["DataFrame"][idx_costs]
+    df_cost = get_df_idx(idx_costs)
     level_max=df_cost.loc[(df_cost["Cost"] >= 1)]["Level to"].max()
     level_pal=df.loc[df.index[0], 'Level']
     if level_pal >= level_max:
@@ -1337,7 +1339,7 @@ def pal_deltail(palmon,df,pic_width=300):
     with row1[0]:
         st.metric("Level upgrade", level_pal, level_max)
     with row1[1]:
-        df_costs = df_xls["DataFrame"][idx_costs]
+        df_costs = get_df_idx(idx_costs)
         max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level to"].max()
         cost_upg=calcul_upgrade_costs(df.loc[df.index[0], 'Level'],max_upg)
         st.metric("Cost", large_num_format(cost_upg), level_max)
@@ -1347,7 +1349,7 @@ def pal_deltail(palmon,df,pic_width=300):
     with row2[1]:
         st.write(get_text_trad('menu_calc_costs'))
         df_comp_u=df[cols_comp]
-        df_comp_costs = df_xls["DataFrame"][idx_costs]
+        df_comp_costs = get_df_idx(idx_costs)
         total_comp_costs=0
         for i in [1,2,3,5]:
             comp_cost=get_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
@@ -1435,7 +1437,7 @@ def local_load_excel(getnewfile=True):
             else:
                 uploaded_file=None
 
-        if df_xls["DataFrame"][idx_costs] is not None:
+        if get_df_idx(idx_costs) is not None:
             excel_loaded=True
             st.session_state.uploaded_file = uploaded_file
         else:
@@ -1471,7 +1473,7 @@ def menu_load_excel(with_expander=True,getnewfile=True,expanded=False):
                     uploaded_file=None
             expanded=False
             
-        if df_xls["DataFrame"][idx_costs] is not None:
+        if get_df_idx(idx_costs) is not None:
             excel_loaded=True
             st.session_state.uploaded_file = uploaded_file
         else:
@@ -1550,8 +1552,9 @@ def menu_tab_show(idx):
 
 def menu_tab_comp():
     st.subheader(df_xls["DisplayName"][idx_comp])
-    df = df_xls["DataFrame"][idx_comp]
-    range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_comp],'Level from','Cost','Competencies costs from level:',int(1),int(30))
+    
+    df = get_df_idx(idx_comp)
+    range_level_min, range_level_max = build_chart_bar(df,'Level from','Cost','Competencies costs from level:',int(1),int(30))
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
 
@@ -1566,12 +1569,12 @@ def menu_tab_comp():
     #range_level_min, range_level_max = build_chart_bar(df_test,'Level from',['Cost','Cost Selected'],'Competencies costs from level:',int(range_level_min2),int(range_level_max2),with_switch=False)
 
 def menu_tab_costs():
-    df = df_xls["DataFrame"][idx_costs]
-    df_pal=df_xls["DataFrame"][idx_palmon]
+    df = get_df_idx(idx_costs)
+    df_pal=get_df_idx(idx_palmon)
     st.subheader(df_xls["DisplayName"][idx_costs])
     min_upg=df_pal.loc[(df_pal["Level"] >= 1)]["Level"].min()
     max_upg=df.loc[(df["Cost"] >= 1)]["Level to"].max()
-    range_level_min, range_level_max = build_chart_bar(df_xls["DataFrame"][idx_costs],'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
+    range_level_min, range_level_max = build_chart_bar(df,'Level from','Cost','Upgrade costs from level:',int(min_upg),int(max_upg))
     with st.container(horizontal_alignment="center", 
                       vertical_alignment="center", 
                       border=True):
@@ -1607,7 +1610,7 @@ def menu_tab_costs():
 
 def menu_tab_mut():
     st.header(df_xls["DisplayName"][idx_mut]) 
-    df = df_xls["DataFrame"][idx_mut]
+    df = get_df_idx(idx_mut)
     df_energy=df.loc[(df['Step'] != 0)]
     df_crystal=df.loc[(df['Step'] == 0)]  
     st.subheader("🟢Energy")
@@ -1622,14 +1625,14 @@ def menu_tab_mut():
 
 def menu_tab_equip():
     st.header("✨"+df_xls["DisplayName"][idx_equip]) 
-    df = df_xls["DataFrame"][idx_equip]
+    df = get_df_idx(idx_equip)
     range_level_min, range_level_max = build_chart_bar(df,'Level','Opus pearls','Costs from level:',int(df['Level'].min()),int(df['Level'].max()),with_slider=True, with_switch=False)
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
 
 def menu_tab_equip_nov():
     st.header("✨"+df_xls["DisplayName"][idx_equip_nov]) 
-    df = df_xls["DataFrame"][idx_equip_nov]
+    df = get_df_idx(idx_equip_nov)
     range_level_min, range_level_max = build_chart_bar(df,'Level','Cost','Costs from level:',int(df['Level'].min()),int(df['Level'].max()),with_slider=True, with_switch=False)
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
@@ -1638,11 +1641,12 @@ def menu_tab_val():
     rowval = st.columns(2,border=False, width="stretch")
     with rowval[0]:
         st.subheader(df_xls["DisplayName"][idx_val]) 
-        build_table_full_costs(df_xls["DataFrame"][idx_val])
+        build_table_full_costs(get_df_idx(idx_val))
         #build_table_any(df_xls["DataFrame"][idx_val])
     with rowval[1]:
         st.subheader(df_xls["DisplayName"][idx_stars])
-        df_stars=df_xls["DataFrame"][idx_stars].copy(deep=True)
+        df=get_df_idx(idx_stars)
+        df_stars=df.copy(deep=True)
         df_stars = df_stars[:-1]
         df_stars['Stars level']=df_stars['Stars level'].apply(lambda b: format_stars(b) )
         df_stars.at['Total','Unit Cost']=df_stars['Unit Cost'].mean()
@@ -1656,15 +1660,17 @@ def menu_tab_boss():
     with rowpic[1]:
         pic(img_menu_boss)
     with rowval[0]:
+        df=get_df_idx(idx_boss)
         st.subheader(df_xls["DisplayName"][idx_stars]) 
-        df_boss=df_xls["DataFrame"][idx_boss].copy(deep=True)
+        df_boss=df.copy(deep=True)
         df_boss['Stars']=df_boss['Stars'].apply(lambda b: format_stars(b) )
         df_boss['Total']=df_boss['Unit cost'].apply(lambda b: int(b)*int(5) )
         build_table_any(df_boss)
     with rowval[1]:
         st.subheader(df_xls["DisplayName"][idx_comp])
         try:
-            df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
+            df2=get_df_idx(idx_boss_data)
+            df_boss_det=df2.copy(deep=True)
             df_boss_det['Stars level']=df_boss_det['Stars'].apply(lambda b: format_stars(abs(b)) )
             df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
             st.dataframe(
@@ -1691,7 +1697,8 @@ def menu_tab_boss_detail():
     st.subheader(df_xls["DisplayName"][idx_boss_data])
     pic(img_menu_boss)
     try:
-        df_boss_det=df_xls["DataFrame"][idx_boss_data].copy(deep=True)
+        df=get_df_idx(idx_boss_data)
+        df_boss_det=df.copy(deep=True)
         #df_boss_det
         df_boss_det['Stars']=df_boss_det['Stars'].apply(lambda b: format_stars(b) )
         df_boss_det['Skill']=df_boss_det['Type'].apply(lambda b: option_type[data_type['Type'].index(b)])
@@ -1720,7 +1727,7 @@ def menu_tab_boss_detail():
 def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_select=True):
     if df_source is None:
         st.subheader(df_xls["DisplayName"][idx_palmon])
-        df = df_xls["DataFrame"][idx_palmon]
+        df = get_df_idx(idx_palmon)
     else:
         df = df_source
     column='Type'
@@ -1762,7 +1769,7 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
 def menu_tab_dashboards():
     col_border=False
     st.header(get_text_trad('dashboards'))
-    df=df_xls["DataFrame"][idx_palmon]
+    df=get_df_idx(idx_palmon)
 
     column='Type'
     try:
@@ -1901,7 +1908,6 @@ def menu_tab_downloads():
         range_cols[0].download_button(
             #label="Palmons data",
             label=df_xls["DisplayName"][idx_palmon],
-            #data=df_xls["DataFrame"][idx_palmon].to_csv().encode("utf-8"),
             data=get_df_idx(idx_palmon).to_csv().encode("utf-8"),
             file_name="base_data.csv",
             mime="text/csv",
@@ -1910,7 +1916,6 @@ def menu_tab_downloads():
         range_cols[1].download_button(
             #label="EXP costs",
             label=df_xls["DisplayName"][idx_costs],
-            #data=df_xls["DataFrame"][idx_costs].to_csv().encode("utf-8"),
             data=get_df_idx(idx_costs).to_csv().encode("utf-8"),
             file_name="exp_data.csv",
             mime="text/csv",
@@ -1919,7 +1924,6 @@ def menu_tab_downloads():
         range_cols[2].download_button(
             #label="COMP costs",
             label=df_xls["DisplayName"][idx_comp],
-            #data=df_xls["DataFrame"][idx_comp].to_csv().encode("utf-8"),
             data=get_df_idx(idx_comp).to_csv().encode("utf-8"),
             file_name="comp_data.csv",
             mime="text/csv",
