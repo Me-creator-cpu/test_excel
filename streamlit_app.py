@@ -64,6 +64,7 @@ pal_test=None    # Test pour class
 
 # Définitions variables
 df_xls = None
+local_xls='./data/PS - Estimation (version 1).xlsx'
 #uploaded_file = None
 excel_loaded=False
 tabs_data=[]
@@ -1023,7 +1024,8 @@ def get_df_idx(idx=idx_palmon):
     
     if ret_val is None:
         st.toast("ret_val is None")
-        ret_val = get_data('./data/PS - Estimation (version 1).xlsx',idx,False)
+        ret_val = get_data(local_xls,idx,False)
+        ret_val
         if 1 == 2:
             match idx:
                 case 0:
@@ -1434,7 +1436,7 @@ def df_change(selected_rows):
 #./data/PS - Estimation (version 1).xlsx
 def local_load_excel(getnewfile=True):
     if getnewfile:
-        uploaded_file  = './data/PS - Estimation (version 1).xlsx'
+        uploaded_file  = local_xls
         excel_loaded=False
         if uploaded_file is not None:
             st.session_state.uploaded_file = uploaded_file
