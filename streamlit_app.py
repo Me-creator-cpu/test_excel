@@ -1020,30 +1020,33 @@ def get_df_idx(idx=idx_palmon):
         ret_val = df_xls["DataFrame"][idx].copy(deep=True)
     except:
         ret_val = None
+    
     if ret_val is None:
-        match idx:
-            case 0:
-                ret_val = df_pal_data
-            case 1:
-                ret_val = df_costs_exp
-            case 2:
-                ret_val = df_costs_comp
-            case 3:
-                ret_val = df_costs_mut
-            case 4:
-                ret_val = df_costs_mut_full
-            case 5:
-                ret_val = df_costs_stars
-            case 6:
-                ret_val = df_costs_boss
-            case 7:
-                ret_val = df_boss_data
-            case 8:
-                ret_val = df_equip_data
-            case 9:
-                ret_val = df_equip_nov
-            case _:
-                ret_val = None
+        ret_val = get_data('./data/PS - Estimation (version 1).xlsx',idx,False)
+        if 1 == 2:
+            match idx:
+                case 0:
+                    ret_val = df_pal_data
+                case 1:
+                    ret_val = df_costs_exp
+                case 2:
+                    ret_val = df_costs_comp
+                case 3:
+                    ret_val = df_costs_mut
+                case 4:
+                    ret_val = df_costs_mut_full
+                case 5:
+                    ret_val = df_costs_stars
+                case 6:
+                    ret_val = df_costs_boss
+                case 7:
+                    ret_val = df_boss_data
+                case 8:
+                    ret_val = df_equip_data
+                case 9:
+                    ret_val = df_equip_nov
+                case _:
+                    ret_val = None
     return ret_val
 
 def data_to_tiles(df_data=None): 
