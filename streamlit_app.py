@@ -2422,11 +2422,23 @@ def build_graph_links(df,parent,child):
     return st.graphviz_chart(graph)
 
 def pg_tests_df():
+    idx=idx_palmon
     st.write('get_df_idx')
     get_df_idx(idx_palmon)
     st.divider()
     st.write('get_data')
     get_data(local_xls,idx_palmon,False)
+    st.divider()
+    st.write('get_data_from_excel')
+    data_values=get_data_from_excel(xls_file=file,
+                                    xls_sheet=df_xls["Worksheet"][idx],
+                                    skip=df_xls["SkipRows"][idx],
+                                    rng_cols=df_xls["Range"][idx],
+                                    rng_rows=df_xls["UpToRow"][idx],
+                                    rencols=df_xls["DisplayColumns"][idx],
+                                    show_table=show_table
+                                    )
+    data_values   
 
 def pg_tests():
     #st.empty()
