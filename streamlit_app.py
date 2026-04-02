@@ -716,10 +716,6 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
                 st.dataframe(df)
     except:
         df = None
-    st.write("Debug get_data_from_excel "+xls_sheet,df)
-    if xls_sheet=="Palmon_data":
-        df_pal_data=df
-        df_xls.loc[idx_palmon, "DataFrame"] = df_pal_data
     return df
 
 def get_data(file,idx,show_table=False):
@@ -1016,10 +1012,39 @@ def get_df_base():
         return None
 
 def get_df_idx(idx=idx_palmon):
+    #try:
+    #    return df_xls["DataFrame"][idx].copy(deep=True)
+    #except:
+    #    return None
     try:
-        return df_xls["DataFrame"][idx].copy(deep=True)
+        ret_val = df_xls["DataFrame"][idx].copy(deep=True)
     except:
-        return None
+        ret_val = None
+    if ret_val is None:
+        match idx:
+            case idx_palmon:
+                ret_val = df_pal_data
+            case idx_costs:
+                ret_val = df_costs_exp
+            case idx_comp:
+                ret_val = df_costs_comp
+            case idx_mut:
+                ret_val = df_costs_mut
+            case idx_val:
+                ret_val = df_costs_mut_full
+            case idx_stars:
+                ret_val = df_costs_stars
+            case idx_boss:
+                ret_val = df_costs_boss
+            case idx_boss_data:
+                ret_val = df_boss_data
+            case idx_equip:
+                ret_val = df_equip_data
+            case idx_equip_nov:
+                ret_val = df_equip_nov
+            case _:
+                ret_val = None
+    return ret_val
 
 def data_to_tiles(df_data=None): 
     df_srv = get_df_idx() #get_df_base()
