@@ -712,7 +712,9 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
                 st.dataframe(df)
     except:
         df = None
-    st.write("Debug get_data_from_excel"+xls_sheet,df)
+    st.write("Debug get_data_from_excel "+xls_sheet,df)
+    if xls_sheet=="Palmon_data":
+        df_pal_data=df
     return df
 
 def get_data(file,idx,show_table=False):
