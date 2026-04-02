@@ -1018,6 +1018,7 @@ def get_df_base():
                                         )        
         return data_values
     except:
+        st.toast("get_df_base => NONE")
         return None
 
 def get_df_idx(idx=idx_palmon):
