@@ -839,7 +839,6 @@ def get_text_trad_old(langu='en',textId='text_id'):
 def check_file_loaded():
     now = datetime.now()
     df=get_df_idx(idx_palmon)
-    #if df_xls["DataFrame"][idx_palmon] is not None:
     if df is not None:
         return st.success(f'{now} - File loaded', icon="✅")
     else:
@@ -1192,25 +1191,22 @@ def get_upgrade_comp_costs(from_lvl=1,to_lvl=30):
 
 def show_details(palmon,df,popup=False):
     #st.markdown(f":orange-badge[palmon : {palmon}]")
-    if 1 == 1:
-        df_costs = get_df_idx(idx_costs)
-        max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
-        filtered_df = df.copy().iloc[palmon]
-        if len(filtered_df) > 0:
-            #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
-            filtered_df['Cost to max']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
-            filtered_df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
-            if popup==True:
-                pal_deltail_dialog(palmon,filtered_df)
-            else:
-                st.dataframe(
-                    filtered_df,
-                    column_config=column_config,
-                    hide_index=True,
-                )                
-                pal_deltail(palmon,filtered_df)
-    else:
-        st.empty()
+    df_costs = get_df_idx(idx_costs)
+    max_upg=df_costs.loc[(df_costs["Cost"] >= 1)]["Level from"].max()
+    filtered_df = df.copy().iloc[palmon]
+    if len(filtered_df) > 0:
+        #filtered_df['Cost upgrade']=df['Level'].apply(lambda b: large_num_format(int(calcul_upgrade_costs(b,max_upg))) )
+        filtered_df['Cost to max']=df['Level'].apply(lambda b: int(calcul_upgrade_costs(b,max_upg)) )
+        filtered_df['Steps']=df['Step'].apply(lambda b: format_stars(b) )
+        if popup==True:
+            pal_deltail_dialog(palmon,filtered_df)
+        else:
+            st.dataframe(
+                filtered_df,
+                column_config=column_config,
+                hide_index=True,
+            )                
+            pal_deltail(palmon,filtered_df)
 
 def get_cell_detail(df,fld):
     try:
@@ -1514,7 +1510,7 @@ def menu_build_tabs(idx_selected=0):
 def menu_tab_show(idx):
     #write_info("chosen_id=",int(idx))
     #if df_xls.loc[idx_palmon, "DataFrame"] is not None:
-    if df_xls["DataFrame"][idx_palmon] is not None:
+    if get_df_idx(idx_palmon) is not None:
         idx_tab = idx
     else:
         if int(idx) < 100:
@@ -1557,16 +1553,6 @@ def menu_tab_comp():
     range_level_min, range_level_max = build_chart_bar(df,'Level from','Cost','Competencies costs from level:',int(1),int(30))
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level from'] >= range_level_min) & (df['Level from'] <= range_level_max)])
-
-    
-    #df_test=df_xls["DataFrame"][idx_comp]
-    #range_level_min2=df_test['Level from'].min()+1
-    #range_level_max2=df_test['Level from'].max()+1
-    #df_test['Cost Selected']=df_test['Cost'].loc[(df_test['Level from'] >= range_level_min2) & (df_test['Level from'] <= range_level_max2)]
-    
-    #list(map(lambda x:0.05, range(len(Labels))))
-    #st.bar_chart(df_test, x='Level from', y=['Cost','Cost Selected'], stack=False) #, color="site"
-    #range_level_min, range_level_max = build_chart_bar(df_test,'Level from',['Cost','Cost Selected'],'Competencies costs from level:',int(range_level_min2),int(range_level_max2),with_switch=False)
 
 def menu_tab_costs():
     df = get_df_idx(idx_costs)
@@ -1642,7 +1628,6 @@ def menu_tab_val():
     with rowval[0]:
         st.subheader(df_xls["DisplayName"][idx_val]) 
         build_table_full_costs(get_df_idx(idx_val))
-        #build_table_any(df_xls["DataFrame"][idx_val])
     with rowval[1]:
         st.subheader(df_xls["DisplayName"][idx_stars])
         df=get_df_idx(idx_stars)
@@ -1775,7 +1760,7 @@ def menu_tab_dashboards():
     try:
         options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
         df_pie=df.copy(deep=True)
-        df1=df.copy()
+        df1=df.copy(deep=True)
         df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
         df1['Upgradable']=df1['Upgradable'].apply(lambda b: icon_upgradable(b)) 
         #df1['Skill']=df1['Skill'].apply(lambda b: icon_skill(b)) 
