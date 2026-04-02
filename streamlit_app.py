@@ -1022,6 +1022,7 @@ def get_df_idx(idx=idx_palmon):
         ret_val = None
     
     if ret_val is None:
+        st.toast("ret_val is None")
         ret_val = get_data('./data/PS - Estimation (version 1).xlsx',idx,False)
         if 1 == 2:
             match idx:
