@@ -2430,13 +2430,13 @@ def pg_tests_df():
     get_data(local_xls,idx_palmon,False)
     st.divider()
     st.write('get_data_from_excel')
-    data_values=get_data_from_excel(xls_file=file,
+    data_values=get_data_from_excel(xls_file=local_xls,
                                     xls_sheet=df_xls["Worksheet"][idx],
                                     skip=df_xls["SkipRows"][idx],
                                     rng_cols=df_xls["Range"][idx],
                                     rng_rows=df_xls["UpToRow"][idx],
                                     rencols=df_xls["DisplayColumns"][idx],
-                                    show_table=show_table
+                                    show_table=False
                                     )
     data_values   
 
