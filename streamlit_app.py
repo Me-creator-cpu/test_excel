@@ -143,6 +143,9 @@ idx_equip_nov=9
 idx_cal=50
 idx_info=60
 #✨
+
+data_init={"Value":[""]}
+
 data = { #                    0                  1                  2                    3                4                        5                    6                    7                8                 9
         "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs",        "Valeurs",      "Valeurs"],
         "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss",               "Boss data",      "Equipments",   "Equipments Explorer"],
@@ -151,7 +154,7 @@ data = { #                    0                  1                  2           
         "UpToRow":        [46,               302,               31,                 224,                4,                        7,                 5,                    5,                12,             12],
         "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        cols_boss,            cols_boss_data,   cols_equip,     cols_equip_nov],
         "DataFrameOld":   [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss,        df_boss_data,     df_equip_data,  df_equip_nov],
-#        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss,        df_boss_data,     df_equip_data,  df_equip_nov],
+        "DataFrame":      [pd.DataFrame(data_init),      pd.DataFrame(data_init),      pd.DataFrame(data_init),      pd.DataFrame(data_init),       pd.DataFrame(data_init),        pd.DataFrame(data_init),    pd.DataFrame(data_init),        pd.DataFrame(data_init),     pd.DataFrame(data_init),  pd.DataFrame(data_init)],
         "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Upgrade costs",      "Boss details",   "Upgrade costs","Upgrade costs"],
         "MenuParent":     [idx_palmon,       idx_cal,           idx_cal,            idx_cal,            idx_info,                 None,              idx_boss,             idx_boss,         idx_cal,        idx_cal],
        }
