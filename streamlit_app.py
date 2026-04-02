@@ -2414,7 +2414,8 @@ def pg_tests_df():
     data_values   
     st.divider()
     st.write('get_df_base')
-    get_df_base()
+    ret_val=get_df_base()
+    ret_val
 
 def pg_tests():
     #st.empty()
