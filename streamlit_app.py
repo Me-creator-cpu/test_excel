@@ -715,6 +715,7 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
     st.write("Debug get_data_from_excel "+xls_sheet,df)
     if xls_sheet=="Palmon_data":
         df_pal_data=df
+        df_xls.loc[idx, "DataFrame"] = df_pal_data
     return df
 
 def get_data(file,idx,show_table=False):
@@ -733,7 +734,7 @@ def get_data(file,idx,show_table=False):
                                                 show_table=show_table
                                                 )
     #df_xls.loc[idx, "DataFrame"] = None
-    df_xls.loc[idx, "DataFrame"] = data_values
+    #df_xls.loc[idx, "DataFrame"] = data_values
     row_debug = st.columns(2,border=True, width="stretch")
     with row_debug[0]:
         df_xls.loc[idx, "DataFrame"]
