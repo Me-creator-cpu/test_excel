@@ -2411,7 +2411,7 @@ def pg_tests_df():
     df1=get_df_idx(idx_palmon)
     df1
     st.divider()
-    avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=False)
+    avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=False).to_frame('Level')
     avg_lvl_df
 
 def pg_tests():
