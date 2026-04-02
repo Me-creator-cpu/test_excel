@@ -712,6 +712,7 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
                 st.dataframe(df)
     except:
         df = None
+    st.write("Debug get_data_from_excel"+xls_sheet,df)
     return df
 
 def get_data(file,idx,show_table=False):
@@ -729,13 +730,12 @@ def get_data(file,idx,show_table=False):
                                                 rencols=df_xls["DisplayColumns"][idx],
                                                 show_table=show_table
                                                 )
-    df_xls.loc[idx, "DataFrame"] = pd.DataFrame(data_values)
-    #df_xls.loc[idx, "DataFrame"]=data_values
+    df_xls.loc[idx, "DataFrame"] = data_values
     row_debug = st.columns(2,border=True, width="stretch")
     with row_debug[0]:
         df_xls.loc[idx, "DataFrame"]
     with row_debug[1]:
-        pd.DataFrame(data_values)
+        data_values
 
 def get_data_v0(file,idx,show_table=False):
     # FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
