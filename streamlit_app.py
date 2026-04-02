@@ -698,7 +698,7 @@ def pic(pic_url=None,pic_width='content',force=False):
         st.image(pic_url, caption=None, width=pic_width)
 
 def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,show_table=False):
-    try:
+    try: 
         df = pd.read_excel(
             io=xls_file,
             engine="openpyxl",
