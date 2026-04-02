@@ -1408,13 +1408,15 @@ def calc_dreamium():
 def calc_dreamium_final(df_source,df_input):
     rows = df_source.index.tolist()
     for i in rows:
-        df_source["calculated"][i]=str(df_source["quantity"][i])
+        #df_source["calculated"][i]=str(df_source["quantity"][i])
+        df_source.loc[i, "calculated"]=str(df_source["quantity"][i])
     
     for i in df_input:
         for l in rows:
             #calc_qty=df_source["calculated"][l].replace(' ','')
             calc_qty=str2number(df_source["calculated"][l])
-            df_source["calculated"][l]=large_num_format(calc_qty + df_input[i]["quantity"]*(4**(i-l)))
+            #df_source["calculated"][l]=large_num_format(calc_qty + df_input[i]["quantity"]*(4**(i-l)))
+            df_source.loc[l, "calculated"]=large_num_format(calc_qty + df_input[i]["quantity"]*(4**(i-l)))
     st.session_state.updated_df=df_source
 
 def str2number(val):
