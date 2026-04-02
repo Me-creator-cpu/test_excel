@@ -1006,52 +1006,24 @@ def obj_multiselect(df,column):
 
 def get_df_base():
     try:
-        #df=get_df_idx(idx_palmon)
-        #if df_xls["DataFrame"][idx_palmon] is not None:
-        #    return df_xls["DataFrame"][idx_palmon]
-        return get_df_idx(idx_palmon)
+        #return get_df_idx(idx_palmon)
+        data_values=get_data_from_excel(xls_file=local_xls,
+                                        xls_sheet=df_xls["Worksheet"][idx],
+                                        skip=df_xls["SkipRows"][idx],
+                                        rng_cols=df_xls["Range"][idx],
+                                        rng_rows=df_xls["UpToRow"][idx],
+                                        rencols=df_xls["DisplayColumns"][idx],
+                                        show_table=False
+                                        )        
+        return data_values
     except:
         return None
 
 def get_df_idx(idx=idx_palmon):
-    #try:
-    #    return df_xls["DataFrame"][idx].copy(deep=True)
-    #except:
-    #    return None
     try:
-        ret_val = df_xls["DataFrame"][idx].copy(deep=True)
+        return df_xls["DataFrame"][idx].copy(deep=True)
     except:
-        ret_val = None
-    
-    if ret_val is None:
-        st.toast("ret_val is None")
-        ret_val = get_data(local_xls,idx,False)
-        ret_val
-        if 1 == 2:
-            match idx:
-                case 0:
-                    ret_val = df_pal_data
-                case 1:
-                    ret_val = df_costs_exp
-                case 2:
-                    ret_val = df_costs_comp
-                case 3:
-                    ret_val = df_costs_mut
-                case 4:
-                    ret_val = df_costs_mut_full
-                case 5:
-                    ret_val = df_costs_stars
-                case 6:
-                    ret_val = df_costs_boss
-                case 7:
-                    ret_val = df_boss_data
-                case 8:
-                    ret_val = df_equip_data
-                case 9:
-                    ret_val = df_equip_nov
-                case _:
-                    ret_val = None
-    return ret_val
+        return None
 
 def data_to_tiles(df_data=None): 
     df_srv = get_df_idx() #get_df_base()
