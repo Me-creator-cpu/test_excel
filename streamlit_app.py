@@ -1829,7 +1829,8 @@ def menu_tab_dashboards():
         row_d1 = st.columns(2,border=col_border, width="stretch")
         with row_d1[0]:
             st.subheader(get_text_trad('dashboard_avg_level'))
-            avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
+            #avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
+            avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
             avg_lvl_df
             avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
             st.bar_chart(avg_lvl_df, y='Level', horizontal=True)
