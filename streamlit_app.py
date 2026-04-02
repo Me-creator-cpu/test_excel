@@ -1829,16 +1829,15 @@ def menu_tab_dashboards():
         row_d1 = st.columns(2,border=col_border, width="stretch")
         with row_d1[0]:
             st.subheader(get_text_trad('dashboard_avg_level'))
-            #avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=True).to_frame('Level')
-            avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True)
+            avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['Level'].sum() / x['Level'].count()), include_groups=False).to_frame('Level')
             avg_lvl_df
-            avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=True).to_frame('Level')
+            avg_lvl_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].sum() / x['Level'].count(), include_groups=False).to_frame('Level')
             st.bar_chart(avg_lvl_df, y='Level', horizontal=True)
         with row_d1[1]:
             st.subheader(get_text_trad('dashboard_avg_power'))
-            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=True).to_frame('Power')
+            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: large_num_format(x['RankPower'].sum() / x['Level'].count()), include_groups=False).to_frame('Power')
             avg_pwr_df  
-            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=True).to_frame('Power')
+            avg_pwr_df = df1.set_index('Type').groupby('Type').apply(lambda x: x['RankPower'].sum() / x['Level'].count(), include_groups=False).to_frame('Power')
             st.bar_chart(avg_pwr_df, y='Power', horizontal=True)        
     
         row_d2 = st.columns(2,border=col_border, width="stretch")
@@ -1851,16 +1850,16 @@ def menu_tab_dashboards():
             df_tcd2['Type']=df_tcd2['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
             #build_main_chart(df_tcd2,None,'Type','Level')
             #build_pivot_table(df_tcd3,'Level','Type','Skill')
-            df_tcd2 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+            df_tcd2 = df1.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=False).to_frame('Nb')
             df_tcd2
     
         row_d3 = st.columns(2,border=col_border, width="stretch")
         with row_d3[1]:
-            df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=True).to_frame('Nb')
+            df_tcd3 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].count(), include_groups=False).to_frame('Nb')
             donut1=build_graph_donut(df_tcd3,get_text_trad('dashboard_donut_pct'))
             donut1
         with row_d3[0]:
-            df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].mean(), include_groups=True).to_frame('Nb')
+            df_tcd4 = df_pie.set_index('Type').groupby('Type').apply(lambda x: x['Level'].mean(), include_groups=False).to_frame('Nb')
             donut2=build_graph_donut(df_tcd4,get_text_trad('dashboard_donut_nb'))
             donut2
         
