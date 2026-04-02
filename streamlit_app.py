@@ -1022,7 +1022,7 @@ def get_df_idx(idx=idx_palmon):
         ret_val = None
     if ret_val is None:
         match idx:
-            case idx_palmon:
+            case 0:
                 ret_val = df_pal_data
             case idx_costs:
                 ret_val = df_costs_exp
