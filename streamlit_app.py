@@ -731,7 +731,11 @@ def get_data(file,idx,show_table=False):
                                                 )
     df_xls.loc[idx, "DataFrame"] = data_values
     #df_xls.loc[idx, "DataFrame"]=data_values
-    df_xls.loc[idx, "DataFrame"]
+    row_debug = st.columns(2,border=True, width="stretch")
+    with row_debug[0]:
+        df_xls.loc[idx, "DataFrame"]
+    with row_debug[1]:
+        data_values
 
 def get_data_v0(file,idx,show_table=False):
     # FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
