@@ -809,7 +809,7 @@ def read_json_trads(sFile='textes.json'):
     try:
         with open(sFile, encoding='utf-8', errors='ignore') as f:
             json_data = json.load(f, strict=False) 
-        st.toast('JSON file loaded', icon='ℹ️️', duration='short')
+        #st.toast('JSON file loaded', icon='ℹ️️', duration='short')
     except:
         st.toast('Error loading JSON file', icon='🔴', duration='short')
     return json_data
@@ -1018,7 +1018,6 @@ def get_df_base():
                                         )        
         return data_values
     except:
-        st.toast("get_df_base => NONE")
         return None
 
 def get_df_idx(idx=idx_palmon):
@@ -2415,7 +2414,7 @@ def pg_tests_df():
     data_values   
     st.divider()
     st.write('get_df_base')
-    get_df_base
+    get_df_base()
 
 def pg_tests():
     #st.empty()
