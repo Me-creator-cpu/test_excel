@@ -1370,11 +1370,11 @@ def calc_dreamium():
     else:
         df = pd.DataFrame(
             [
-                {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": 0},
-                {"dreamium": "II",  "level": 2, "quantity": 0, "calculated": 0},
-                {"dreamium": "III", "level": 3, "quantity": 0, "calculated": 0},
-                {"dreamium": "IV",  "level": 4, "quantity": 0, "calculated": 0},
-                {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": 0},
+                {"dreamium": "I",   "level": 1, "quantity": 0, "calculated": '0'},
+                {"dreamium": "II",  "level": 2, "quantity": 0, "calculated": '0'},
+                {"dreamium": "III", "level": 3, "quantity": 0, "calculated": '0'},
+                {"dreamium": "IV",  "level": 4, "quantity": 0, "calculated": '0'},
+                {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": '0'},
             ]
         )
 
