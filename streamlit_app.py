@@ -732,7 +732,7 @@ def get_data(file,idx,show_table=False):
                                                 rencols=df_xls["DisplayColumns"][idx],
                                                 show_table=show_table
                                                 )
-    df_xls.loc[idx, "DataFrame"] = None
+    #df_xls.loc[idx, "DataFrame"] = None
     df_xls.loc[idx, "DataFrame"] = data_values
     row_debug = st.columns(2,border=True, width="stretch")
     with row_debug[0]:
