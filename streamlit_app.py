@@ -2397,10 +2397,12 @@ def build_graph_links(df,parent,child):
 def pg_tests_df():
     idx=idx_palmon
     st.write('get_df_idx')
-    get_df_idx(idx_palmon)
+    t0=get_df_idx(idx_palmon)
+    t0
     st.divider()
     st.write('get_data')
-    get_data(local_xls,idx_palmon,False)
+    t1=get_data(local_xls,idx_palmon,False)
+    t1
     st.divider()
     st.write('get_data_from_excel')
     data_values=get_data_from_excel(xls_file=local_xls,
