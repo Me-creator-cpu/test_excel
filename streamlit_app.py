@@ -2423,6 +2423,7 @@ def build_graph_links(df,parent,child):
 
 def pg_tests_df():
     get_df_idx(idx_palmon)
+    get_data(local_xls,idx_palmon,False)
 
 def pg_tests():
     #st.empty()
