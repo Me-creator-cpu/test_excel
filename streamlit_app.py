@@ -1765,7 +1765,8 @@ def menu_tab_dashboards():
     try:
         options = st.multiselect(f"Filter values for {column}:", df[column].unique(), default=list(df[column].unique()))
         df_pie=df.copy(deep=True)
-        df1=df.copy(deep=True)
+        #df1=df.copy(deep=True)
+        df1=get_df_idx(idx_palmon)
         df1['Steps']=df['Step'].apply(lambda b: format_stars(b) )
         df1['Upgradable']=df1['Upgradable'].apply(lambda b: icon_upgradable(b)) 
         #df1['Skill']=df1['Skill'].apply(lambda b: icon_skill(b)) 
