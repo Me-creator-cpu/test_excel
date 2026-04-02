@@ -1024,23 +1024,23 @@ def get_df_idx(idx=idx_palmon):
         match idx:
             case 0:
                 ret_val = df_pal_data
-            case idx_costs:
+            case 1:
                 ret_val = df_costs_exp
-            case idx_comp:
+            case 2:
                 ret_val = df_costs_comp
-            case idx_mut:
+            case 3:
                 ret_val = df_costs_mut
-            case idx_val:
+            case 4:
                 ret_val = df_costs_mut_full
-            case idx_stars:
+            case 5:
                 ret_val = df_costs_stars
-            case idx_boss:
+            case 6:
                 ret_val = df_costs_boss
-            case idx_boss_data:
+            case 7:
                 ret_val = df_boss_data
-            case idx_equip:
+            case 8:
                 ret_val = df_equip_data
-            case idx_equip_nov:
+            case 9:
                 ret_val = df_equip_nov
             case _:
                 ret_val = None
