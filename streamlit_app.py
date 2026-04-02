@@ -712,6 +712,10 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
                 df.columns = rencols
             except:
                 df=df
+        try:
+            df['URL'] = df['URL'].fillna('')
+        except:
+            df=df
         if show_table == True:
             with st.expander(xls_sheet, expanded=False, icon=':material/table_view:', width='stretch'):
                 st.dataframe(df)
