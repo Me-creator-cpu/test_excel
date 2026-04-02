@@ -1412,7 +1412,7 @@ def calc_dreamium_final(df_source,df_input):
     
     for i in df_input:
         for l in rows:
-            calc_qty=df_source["calculated"][l]
+            calc_qty=df_source["calculated"][l].replace(' ','')
             df_source["calculated"][l]=large_num_format(calc_qty + df_input[i]["quantity"]*(4**(i-l)))
     st.session_state.updated_df=df_source
 
