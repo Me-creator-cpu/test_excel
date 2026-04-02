@@ -2422,7 +2422,10 @@ def build_graph_links(df,parent,child):
     return st.graphviz_chart(graph)
 
 def pg_tests_df():
+    st.write('get_df_idx')
     get_df_idx(idx_palmon)
+    st.divider()
+    st.write('get_data')
     get_data(local_xls,idx_palmon,False)
 
 def pg_tests():
