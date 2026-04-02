@@ -714,7 +714,7 @@ def get_data_from_excel(xls_file,xls_sheet,skip,rng_cols,rng_rows,rencols=None,s
         df = None
     return df
 
-def get_data_todo(file,idx,show_table=False):
+def get_data(file,idx,show_table=False):
     # FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
     # df["col"][row_indexer] = value
     # voir pour remplacer avec: df.loc[row_indexer, "col"] = values
@@ -732,10 +732,14 @@ def get_data_todo(file,idx,show_table=False):
     df_xls.loc[idx, "DataFrame"]=data_values
     df_xls.loc[idx, "DataFrame"]
 
-def get_data(file,idx,show_table=False):
+def get_data_v0(file,idx,show_table=False):
     # FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
     # df["col"][row_indexer] = value
     # voir pour remplacer avec: df.loc[row_indexer, "col"] = values
+
+    #Try using '.loc[row_indexer, col_indexer] = value' instead, to perform the assignment in a single step.
+    # au lieu de: df["foo"][df["bar"] > 5] = 100
+    # utiliser: df.loc[df["bar"] > 5, "foo"] = 100
     df_xls["DataFrame"][idx]=get_data_from_excel(
                                                 xls_file=file,
                                                 xls_sheet=df_xls["Worksheet"][idx],
