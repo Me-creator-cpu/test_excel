@@ -2337,6 +2337,7 @@ def build_graph_links_hier(df,parent,child):
     return st.graphviz_chart(graph)
 
 def build_graph_data(df):
+    df
     row, col = df.shape
     nodes=[] #Parent / Child
     node={"parent":"","child":"","type":"","color":"","typeico":"","skillico":""}
