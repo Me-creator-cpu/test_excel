@@ -1562,7 +1562,9 @@ def menu_tab_show(idx):
         case 8:    #idx_equip
             menu_tab_equip()
         case 9:    #idx_equip_nov
-            menu_tab_equip_nov()                           
+            menu_tab_equip_nov()
+        case 10:   #idx_traits
+            menu_tab_traits()
         case 100:
             menu_tab_dashboards()
         case 150:
@@ -1648,6 +1650,10 @@ def menu_tab_equip_nov():
     range_level_min, range_level_max = build_chart_bar(df,'Step','Cost','Costs from level:',int(df['Cost'].min()),int(df['Cost'].max()),with_slider=True, with_switch=False)
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Step'] >= range_level_min) & (df['Step'] <= range_level_max)])
+
+def menu_tab_traits():
+    df = get_df_idx(idx_traits)
+    df
 
 def menu_tab_val():
     rowval = st.columns(2,border=False, width="stretch")
