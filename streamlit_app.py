@@ -1652,7 +1652,7 @@ def menu_tab_equip_nov():
         build_table_any(df.loc[(df['Step'] >= range_level_min) & (df['Step'] <= range_level_max)])
 
 def menu_tab_traits():
-    df = get_df_idx(idx_traits)
+    df = get_df_idx(idx_traits).fillna('pct')
     with st.container(horizontal=True, horizontal_alignment="center"):
         opt_cat = obj_multiselect(df,'Category')
         opt_type = obj_multiselect(df,'Type')
