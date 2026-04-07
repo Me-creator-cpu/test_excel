@@ -1775,8 +1775,6 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
             height='content'
         )
     if event is not None and with_event:
-        event.selection.rows
-        df
         show_details(event.selection.rows,df) 
 
 def menu_tab_dashboards():
