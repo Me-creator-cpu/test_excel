@@ -1653,7 +1653,7 @@ def menu_tab_equip_nov():
 
 def menu_tab_traits():
     df = get_df_idx(idx_traits)
-    df
+    build_table_any(df)
 
 def menu_tab_val():
     rowval = st.columns(2,border=False, width="stretch")
