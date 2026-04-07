@@ -1362,12 +1362,13 @@ def pal_deltail(palmon,df,pic_width=300):
         df_comp_u=df[cols_comp]
         df_comp_costs = get_df_idx(idx_costs)
         total_comp_costs=int(0)
+        df_comp_u.dtypes
         for i in [1,2,3,5]:
             comp_cost=int( get_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 ) )
             df_comp_u
             #df_comp_u.loc[df.index[int(0)], f'Comp {str(i)}']=large_num_format(comp_cost)
             df_comp_u.loc[df.index[0], f'Comp {str(i)}']=' '
-            df_comp_u.loc[df.index[0], f'Comp {str(i)}']=np.float64(large_num_format(comp_cost))
+            df_comp_u.loc[df.index[0], f'Comp {str(i)}']=str(large_num_format(comp_cost))
             total_comp_costs=total_comp_costs+comp_cost
             #st.write(df_comp_u.loc[df.index[0], f'Comp {str(i)}'])
             #st.write(comp_cost)
