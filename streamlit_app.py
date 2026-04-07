@@ -1654,7 +1654,7 @@ def menu_tab_equip_nov():
 def menu_tab_traits():
     st.header("🎓"+df_xls["DisplayName"][idx_traits]) 
     df = get_df_idx(idx_traits).fillna('%')
-    df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
+    #df['Type']=df['Type'].apply(lambda b: option_type[data_type['Type'].index(b)]+b)
     with st.container(horizontal=True, horizontal_alignment="center"):
         opt_cat = obj_multiselect(df,'Category')
         opt_type = obj_multiselect(df,'Type')
