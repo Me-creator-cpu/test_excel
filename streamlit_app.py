@@ -1333,8 +1333,14 @@ def pal_deltail(palmon,df,pic_width=300):
             st.empty()
     with row0[1]:
         df_info=df[['Type','Skill','Steps','Achievement','Level','Cost to max']]
-        df_info.loc[df.index[0], 'Achievement'] = percent_format(df_info.loc[df.index[0], 'Achievement'])
-        df_info.loc[df.index[0], 'Cost to max'] = large_num_format(df_info.loc[df.index[0], 'Cost to max'])
+        try:
+            df_info.loc[df.index[0], 'Achievement'] = percent_format(df_info.loc[df.index[0], 'Achievement'])
+        except:
+            df_info.loc[df.index[0], 'Achievement'] = df_info.loc[df.index[0], 'Achievement']
+        try:
+            df_info.loc[df.index[0], 'Cost to max'] = large_num_format(df_info.loc[df.index[0], 'Cost to max'])
+        except:
+            df_info.loc[df.index[0], 'Cost to max'] = df_info.loc[df.index[0], 'Cost to max']
         df_info=df_info.reset_index().T
         st.dataframe(df_info,
                     column_config={
