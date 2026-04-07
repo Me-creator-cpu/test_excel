@@ -1653,7 +1653,12 @@ def menu_tab_equip_nov():
 
 def menu_tab_traits():
     df = get_df_idx(idx_traits)
-    build_table_any(df)
+    with st.container(horizontal=True, horizontal_alignment="center"):
+        opt_cat = obj_multiselect(df,'Category')
+        opt_type = obj_multiselect(df,'Type')
+        opt_level = obj_multiselect(df,'Level')    
+    df_a=df.loc[(df["Type"].isin(opt_type)) & (df["Category"].isin(opt_cat)) & (df["Level"].isin(opt_level))].copy(deep=True)
+    build_table_any(df_a)
 
 def menu_tab_val():
     rowval = st.columns(2,border=False, width="stretch")
