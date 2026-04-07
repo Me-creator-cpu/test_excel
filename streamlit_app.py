@@ -1658,6 +1658,7 @@ def menu_tab_traits():
         opt_type = obj_multiselect(df,'Type')
         opt_level = obj_multiselect(df,'Level')    
     df_a=df.loc[(df["Type"].isin(opt_type)) & (df["Category"].isin(opt_cat)) & (df["Level"].isin(opt_level))].copy(deep=True)
+    df_a["Unit"].fillna('pct')
     build_table_any(df_a)
 
 def menu_tab_val():
