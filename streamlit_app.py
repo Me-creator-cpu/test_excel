@@ -1364,7 +1364,7 @@ def pal_deltail(palmon,df,pic_width=300):
         total_comp_costs=int(0)
         for i in [1,2,3,5]:
             comp_cost=get_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
-            df_comp_u.loc[df.index[0], f'Comp {i}']=large_num_format(comp_cost)
+            df_comp_u.loc[df.index[0], f'Comp {str(i)}']=large_num_format(comp_cost)
             total_comp_costs=total_comp_costs+int(comp_cost)
             #df_comp_u.loc[df.index[0], f'Comp {i}']=calcul_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 )
         #total_comp_costs=get_upgrade_comp_costs( df_comp_u.loc[df.index[0], 0],30)
