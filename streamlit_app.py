@@ -1363,6 +1363,8 @@ def pal_deltail(palmon,df,pic_width=300):
         df_comp_costs = get_df_idx(idx_costs)
         total_comp_costs=int(0)
         df_comp_u.dtypes
+        dfn=df_comp_u.convert_dtypes()
+        dfn
         for i in [1,2,3,5]:
             comp_cost=int( get_upgrade_comp_costs( df_comp_u.loc[df.index[0], f'Comp {i}'],10 if i==5 else 30 ) )
             df_comp_u
