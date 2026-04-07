@@ -118,7 +118,8 @@ cols_stars = ['Stars level', 'Unit Cost', 'Total']
 cols_boss = ['Stars level', 'Unit Cost', 'Total']
 cols_boss_data = ['Name','Type', 'Level', 'Stars','Comp 1','Comp 2','Comp 3','Comp 4','Comp 5','URL']
 cols_equip = ['Level', 'Opus pearls']
-cols_equip_nov = ['Level', 'Cost']
+cols_equip_nov = ['Step', 'Name', 'Stars', 'Cost']
+cols_traits = ['Category', 'Type', 'Sub type', 'Name', 'Level', 'Bonus', 'Unit']
 
 df_pal_data=None
 df_costs_exp=None
@@ -130,6 +131,7 @@ df_costs_boss=None
 df_boss_data=None
 df_equip_data=None
 df_equip_nov=None
+df_traits=None
 
 idx_palmon=0
 idx_costs=1
@@ -141,24 +143,26 @@ idx_boss=6
 idx_boss_data=7
 idx_equip=8
 idx_equip_nov=9
+idx_traits=10
 idx_cal=50
 idx_info=60
 #✨
 
 data_init={"Value":[""]}
 
-data = { #                    0                  1                  2                    3                4                        5                    6                    7                8                 9
-        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs",        "Valeurs",      "Valeurs"],
-        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss",               "Boss data",      "Equipments",   "Equipments Explorer"],
-        "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C",             "D:E",                "H:Q",            "Z:AA",         "AC:AD"],
-        "SkipRows":       [0,                1,                 1,                  1,                  0,                        0,                 1,                    1,                1,              1],
-        "UpToRow":        [46,               302,               31,                 224,                4,                        7,                 5,                    5,                12,             12],
-        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        cols_boss,            cols_boss_data,   cols_equip,     cols_equip_nov],
-        "DataFrameOld":   [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss,        df_boss_data,     df_equip_data,  df_equip_nov],
-        "DataFrame":      [pd.DataFrame(data_init),      pd.DataFrame(data_init),      pd.DataFrame(data_init),      pd.DataFrame(data_init),       pd.DataFrame(data_init),        pd.DataFrame(data_init),    pd.DataFrame(data_init),        pd.DataFrame(data_init),     pd.DataFrame(data_init),  pd.DataFrame(data_init)],
-        "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Upgrade costs",      "Boss details",   "Upgrade costs","Upgrade costs"],
-        "MenuParent":     [idx_palmon,       idx_cal,           idx_cal,            idx_cal,            idx_info,                 None,              idx_boss,             idx_boss,         idx_cal,        idx_cal],
+data = { #                    0                  1                  2                    3                4                        5                    6                    7                8                 9                       10
+        "Worksheet":      ["Palmon_data",    "Tableaux",        "Tableaux",         "Tableaux",         "Valeurs",                "Stars",           "Valeurs",            "Valeurs",        "Valeurs",      "Equipement",          "Equipement"],
+        "DisplayName":    ["Palmons",        "Upgrade costs",   "Competencies",     "Mutation costs",   "Upgrade full costs",     "Stars",           "Boss",               "Boss data",      "Equipments",   "Equipments Explorer", "Traits"],
+        "Range":          ["A:AJ",           "A:C",             "H:I",              "N:Q",              "A:B",                    "A:C",             "D:E",                "H:Q",            "Z:AA",         "A:D",                 "F:L"],
+        "SkipRows":       [0,                1,                 1,                  1,                  0,                        0,                 1,                    1,                1,              1,                     1],
+        "UpToRow":        [46,               302,               31,                 224,                4,                        7,                 5,                    5,                12,             44,                    96],
+        "DisplayColumns": [cols_data,        cols_exp,          cols_comp,          cols_mut,           cols_mut_full,            cols_stars,        cols_boss,            cols_boss_data,   cols_equip,     cols_equip_nov,        cols_traits],
+        "DataFrame":      [df_pal_data,      df_costs_exp,      df_costs_comp,      df_costs_mut,       df_costs_mut_full,        df_costs_stars,    df_costs_boss,        df_boss_data,     df_equip_data,  df_equip_nov,          fd_traits],
+        "Description":    ["Full list",      "EXP per level",   "Any palmon type",  "UR only",          "Defined values",         "Omni UR costs",   "Upgrade costs",      "Boss details",   "Upgrade costs","Upgrade costs",       "Traits list"],
+        "MenuParent":     [idx_palmon,       idx_cal,           idx_cal,            idx_cal,            idx_info,                 None,              idx_boss,             idx_boss,         idx_cal,        idx_cal,               idx_traits],
        }
+
+#"DataFrame":      [pd.DataFrame(data_init),      pd.DataFrame(data_init),      pd.DataFrame(data_init),      pd.DataFrame(data_init),       pd.DataFrame(data_init),        pd.DataFrame(data_init),    pd.DataFrame(data_init),        pd.DataFrame(data_init),     pd.DataFrame(data_init),  pd.DataFrame(data_init)],
 
 data_menu_rootv2={
         "m0":   "Palmons",
@@ -1634,9 +1638,9 @@ def menu_tab_equip():
 def menu_tab_equip_nov():
     st.header("✨"+df_xls["DisplayName"][idx_equip_nov]) 
     df = get_df_idx(idx_equip_nov)
-    range_level_min, range_level_max = build_chart_bar(df,'Level','Cost','Costs from level:',int(df['Level'].min()),int(df['Level'].max()),with_slider=True, with_switch=False)
+    range_level_min, range_level_max = build_chart_bar(df,'Step','Cost','Costs from level:',int(df['Level'].min()),int(df['Level'].max()),with_slider=True, with_switch=False)
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
-        build_table_any(df.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
+        build_table_any(df.loc[(df['Step'] >= range_level_min) & (df['Step'] <= range_level_max)])
 
 def menu_tab_val():
     rowval = st.columns(2,border=False, width="stretch")
@@ -1764,6 +1768,8 @@ def menu_tab_palmons(df_source=None,with_event=True,with_expander=True,with_sele
             height='content'
         )
     if event is not None and with_event:
+        event.selection.rows
+        df
         show_details(event.selection.rows,df) 
 
 def menu_tab_dashboards():
