@@ -1662,7 +1662,7 @@ def menu_tab_equip_nov():
     lambda_steps = lambda x: str(x['Step']) + '.' + str(x['Stars'])
     lambda_name_ver = lambda x: (str(x['Name']).split(" ", 1)[0],str(str(x['Name'])+" ").split(" ", 1)[1])
     df['Steps'] = df.apply(lambda_steps, axis=1)
-    df['Category','Stage']=df.apply(lambda_name_ver,axis=1, result_type='expand')
+    df[['Category','Stage']]=df.apply(lambda_name_ver,axis=1, result_type='expand')
     #df['Steps']=df[['Step','Stars']].apply(lambda a,b: a+'.'+b)
     #df['Stage']=df['Name'].apply(lambda a: get_equip_nov_categ(a,2))
     range_level_min, range_level_max = build_chart_bar(df,'Step','Cost','Costs from level:',int(df['Cost'].min()),int(df['Cost'].max()),with_slider=True, with_switch=False)
