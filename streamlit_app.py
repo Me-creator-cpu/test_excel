@@ -1665,10 +1665,11 @@ def menu_tab_equip_nov():
     df[['Category','Stage']]=df.apply(lambda_name_ver,axis=1, result_type='expand')
     #df['Steps']=df[['Step','Stars']].apply(lambda a,b: a+'.'+b)
     #df['Stage']=df['Name'].apply(lambda a: get_equip_nov_categ(a,2))
-    range_level_min, range_level_max = build_chart_bar(df,'Step','Cost','Costs from level:',int(df['Cost'].min()),int(df['Cost'].max()),with_slider=True, with_switch=False)
+    range_level_min, range_level_max = build_chart_bar(df,'Step','Cost','Costs from level:',int(df['Step'].min()),int(df['Step'].max()),with_slider=True, with_switch=False)
+    opt_cat = obj_multiselect(df,'Category')
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         df
-        #build_table_any(df.loc[(df['Step'] >= range_level_min) & (df['Step'] <= range_level_max)])
+        build_table_any(df.loc[(df['Step'] >= range_level_min) & (df['Step'] <= range_level_max) & (df["Category"].isin(opt_cat))])
 
 def menu_tab_traits():
     st.header("🎓"+df_xls["DisplayName"][idx_traits]) 
