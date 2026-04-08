@@ -1665,7 +1665,7 @@ def menu_tab_equip_nov():
     df[['Category','Stage']]=df.apply(lambda_name_ver,axis=1, result_type='expand')
     #df['Steps']=df[['Step','Stars']].apply(lambda a,b: a+'.'+b)
     #df['Stage']=df['Name'].apply(lambda a: get_equip_nov_categ(a,2))
-    df_g=df[['Step','Cost']].set_index('Step').groupby(["Step"]).agg("sum").to_frame('Costs') #.reset_index()
+    df_g=df[['Step','Cost']].set_index('Step').groupby(["Step"]).agg("sum").reset_index()
     range_level_min, range_level_max = build_chart_bar(df_g,'Step','Costs','Costs from level:',int(df['Step'].min()),int(df['Step'].max()),with_slider=True, with_switch=False)
     opt_cat = obj_multiselect(df,'Category')
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
