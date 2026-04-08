@@ -1658,7 +1658,7 @@ def menu_tab_equip_nov():
     st.header("✨"+df_xls["DisplayName"][idx_equip_nov]) 
     df = get_df_idx(idx_equip_nov)
     df
-    df['Steps']=df[['Step','Stars']].apply(lambda a,b: a+'.'+b)
+    #df['Steps']=df[['Step','Stars']].apply(lambda a,b: a+'.'+b)
     df['Category']=df['Name'].apply(lambda a: get_equip_nov_categ(a,1))
     df['Stage']=df['Name'].apply(lambda a: get_equip_nov_categ(a,2))
     range_level_min, range_level_max = build_chart_bar(df,'Step','Cost','Costs from level:',int(df['Cost'].min()),int(df['Cost'].max()),with_slider=True, with_switch=False)
