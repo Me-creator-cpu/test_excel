@@ -1657,6 +1657,7 @@ def get_equip_nov_categ(val,part=1):
 def menu_tab_equip_nov():
     st.header("✨"+df_xls["DisplayName"][idx_equip_nov]) 
     df = get_df_idx(idx_equip_nov)
+    df
     df['Steps']=df['Step','Stars'].apply(lambda a,b: a+'.'+b)
     df['Category']=df['Name'].apply(lambda a: get_equip_nov_categ(a,1))
     df['Stage']=df['Name'].apply(lambda a: get_equip_nov_categ(a,2))
