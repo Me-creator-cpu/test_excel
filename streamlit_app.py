@@ -1644,9 +1644,22 @@ def menu_tab_equip():
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Level'] >= range_level_min) & (df['Level'] <= range_level_max)])
 
+def get_equip_nov_categ(val,part=1):
+    s=str(val).split(" ", 1)
+    if part==1:
+        return s[0]
+    else:
+        if len(s)==1:
+            return '0'
+        else:
+            return s[1]
+
 def menu_tab_equip_nov():
     st.header("✨"+df_xls["DisplayName"][idx_equip_nov]) 
     df = get_df_idx(idx_equip_nov)
+    df['Steps']=df[['Step','Stars']].apply(lambda a,b: a+'.'+b)
+    df['Category']=df['Name'].apply(lambda a: get_equip_nov_categ(a,1))
+    df['Stage']=df['Name'].apply(lambda a: get_equip_nov_categ(a,2))
     range_level_min, range_level_max = build_chart_bar(df,'Step','Cost','Costs from level:',int(df['Cost'].min()),int(df['Cost'].max()),with_slider=True, with_switch=False)
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
         build_table_any(df.loc[(df['Step'] >= range_level_min) & (df['Step'] <= range_level_max)])
