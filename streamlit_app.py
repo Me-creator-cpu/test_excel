@@ -1658,11 +1658,12 @@ def get_equip_nov_categ(val,part=1):
 def menu_tab_equip_nov():
     st.header("✨"+df_xls["DisplayName"][idx_equip_nov]) 
     df = get_df_idx(idx_equip_nov)
-    opt_cat = obj_multiselect(df,'Category')
+    
     lambda_steps = lambda x: str(x['Step']) + '.' + str(x['Stars'])
     lambda_name_ver = lambda x: (str(x['Name']).split(" ", 1)[0],str(str(x['Name'])+" ").split(" ", 1)[1])
     df['Steps'] = df.apply(lambda_steps, axis=1)
     df[['Category','Stage']]=df.apply(lambda_name_ver,axis=1, result_type='expand')    
+    opt_cat = obj_multiselect(df,'Category')
     df_g=df[['Step','Cost']].set_index('Step').groupby("Step").sum()
     df_g.index.name = 'Idx'
     df_g['Step']=df_g.apply(lambda x: x.index)
