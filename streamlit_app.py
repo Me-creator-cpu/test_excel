@@ -1659,7 +1659,7 @@ def menu_tab_equip_nov():
     st.header("✨"+df_xls["DisplayName"][idx_equip_nov]) 
     df = get_df_idx(idx_equip_nov)
     df
-    lambda_steps = lambda x: x['Step'] + '.' + x['Stars']
+    lambda_steps = lambda x: str(x['Step']) + '.' + str(x['Stars'])
     lambda_name_ver = lambda x: (str(x['Name']).split(" ", 1)[0],str(x['Name']+" ").split(" ", 1)[1])
     df['Steps'] = df.apply(lambda_steps, axis=1)
     df['Category','Stage']=df.apply(lambda_name_ver,axis=1, result_type='expand')
