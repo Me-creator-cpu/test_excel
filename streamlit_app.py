@@ -1668,7 +1668,7 @@ def menu_tab_equip_nov():
     
     df_g=df[['Step','Cost']].set_index('Step').groupby("Step").sum()
     df_g.index.name = 'Idx'
-    df_g['Step']=df_g.apply(lambda x: x.index.item())
+    df_g['Step']=df_g.apply(lambda x: x.index)
     range_level_min, range_level_max = build_chart_bar(df_g,'Step','Cost','Costs from level:',int(df['Step'].min()),int(df['Step'].max()),with_slider=True, with_switch=False)
     opt_cat = obj_multiselect(df,'Category')
     with st.expander(get_text_trad('data_graph'), expanded=False, width="stretch"):
