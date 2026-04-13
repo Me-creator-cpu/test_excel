@@ -2770,7 +2770,10 @@ if st.session_state.texts_trad is None:
 if st.session_state.site_langu is None:
     st.session_state.site_langu = site_langu
 
-app_title=get_text_trad('app_title')
+if islogged():
+    app_title=get_text_trad('app_title_admin')
+else:    
+    app_title=get_text_trad('app_title')
 #app_title='Application pour Eva 🥰'
 
 st.set_page_config(
