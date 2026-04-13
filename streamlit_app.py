@@ -416,7 +416,8 @@ def login():
                 login_ko()
         else:
             login_ko()
-    write_one_info(f'Currently logged as {username}')
+    if islogged():
+        write_one_info(f'Currently logged as {username}')
     return False
 
 def islogged():
