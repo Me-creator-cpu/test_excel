@@ -21,6 +21,9 @@ import graphviz
 #from myproject.models import some_model
 #Me-creator-cpu/test_excel/tests/test_graph.py
 
+#Login
+import hashlib
+
 #GitHub 
 from pathlib import Path
 from github import Auth
@@ -101,7 +104,10 @@ if "tabs_data" not in st.session_state:
 
 if "stream" not in st.session_state:
     st.session_state.stream = False
-    
+
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
 # Définitions variables de sélection de dataframes
 event = None
 event_a = None
@@ -386,7 +392,45 @@ column_config_team={
     )
 }
 # ======================================================================================================
+#   Login / Logout
+# ======================================================================================================
+# Fonction pour hasher les mots de passe
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
 
+def login():
+    username = st.text_input("User")
+    password = st.text_input("Password", type="password")
+    if st.button("Log in", type="primary"):
+        users = st.secrets.get("users", {})
+        if username in users:
+            stored_hash = users[username]["password_hash"]
+            input_hash = hash_password(password)
+            if stored_hash == input_hash:
+                login_ok()
+            else:
+                login_ko()
+        else:
+            login_ko()
+    return False
+
+def islogged():
+    return st.session_state.logged_in
+
+def login_ok():
+    st.session_state.logged_in = True
+    st.rerun()
+
+def login_ko():
+    st.session_state.logged_in = False
+    st.rerun()
+
+def logout():
+    if st.button("Log out"):
+        login_ko()
+
+ # ======================================================================================================
+       
 def toggle_excel_loaded():
     st.session_state.excel_loaded = not st.session_state.excel_loaded
 
@@ -2779,53 +2823,81 @@ if use_pics:
 
 write_no_streamlit_link()
 #🧮📱
-pages = {
-    get_text_trad('menu_home'):[ 
-        st.Page(pg_home, title=get_text_trad('menu_home_1'), icon="🏠"),
-    ],
-    get_text_trad('menu_myteam'):[ 
-        st.Page(pg_menu_0, title=get_text_trad('full_list'),icon="🗂️"),
-        #st.Page(pg_menu_050, title='Per type',icon="🗂️"),
-        st.Page(pg_menu_100, title=get_text_trad('dashboards'),icon="📊"),
-    ],
-    get_text_trad('menu_calc'):[
-        st.Page(pg_v2_idx_costs, title=get_text_trad('menu_calc_costs'), icon="💰"),
-        st.Page(pg_v2_idx_comp, title=get_text_trad('menu_calc_comp'), icon="🎓"),
-        st.Page(pg_v2_idx_mut, title=get_text_trad('menu_calc_mut'), icon="🧬"),
-        st.Page(pg_simu_team, title=get_text_trad('menu_simu'), icon="📐"),
-        st.Page(pg_v2_calc_dreamium, title=get_text_trad('menu_calc_dream'), icon="💎"),
-    ],
-    get_text_trad('menu_upg'):[
-        st.Page(pg_v2_idx_val, title=get_text_trad('menu_upg_costs'), icon="🚀"),
-        st.Page(pg_v2_idx_equip, title=get_text_trad('menu_upg_equip'), icon="🧰"),
-        st.Page(pg_v2_idx_equip_nov, title=get_text_trad('menu_upg_nov'), icon="🎒"),
-    ],
-    get_text_trad('menu_boss'):[
-        st.Page(pg_v2_idx_boss, title=get_text_trad('menu_boss_all'), icon="🐦‍🔥"),
-        st.Page(pg_v2_idx_boss_data, title=get_text_trad('menu_boss_data'), icon="🗂️"),
-    ],
-    get_text_trad('menu_resources'): [
-        st.Page(pg_tips_img, title=get_text_trad('menu_tips'),icon="🌟"),
-        st.Page(pg_menu_200, title=get_text_trad('download'),icon="📥"),
-    ],
-    get_text_trad('menu_info'): [
-        st.Page(pg_info_device, title=get_text_trad('menu_info_device'),icon="📱" if is_mobile() else "💻"),
-        st.Page(pg_info_os, title=get_text_trad('menu_info_os'),icon="🖥️"),
-        st.Page(pg_info_file, title=get_text_trad('menu_info_file'),icon="📋"),
-    ],
-    get_text_trad('menu_param'): [
-        st.Page(pg_options, title=get_text_trad('menu_options'),icon='⚙️'), #🛠️
-        st.Page('./git_translations.py', title=get_text_trad('menu_git_translate'),icon='🛠️'),
-    ],
-    "Tests": [
-        st.Page(pg_tests_df, title='Tests DF',icon='🛠️'),
-        st.Page(pg_tests, title='Tests',icon='🛠️'),
-        st.Page('./tests/test_eval.py', title='Tests EVAL',icon='🛠️'),
-        st.Page('./tests/test2_github.py', title='Test Github',icon='🛠️'),
-        st.Page('./tests/test_graph.py', title='Test graphviz',icon='🛠️'),
-        st.Page(pg_test_menu_v2, title='Test Menu v2',icon='🛠️')
-    ],    
-}
+if islogged():
+    pages = {
+        get_text_trad('menu_home'):[ 
+            st.Page(pg_home, title=get_text_trad('menu_home_1'), icon="🏠"),
+        ],
+        get_text_trad('menu_myteam'):[ 
+            st.Page(pg_menu_0, title=get_text_trad('full_list'),icon="🗂️"),
+            #st.Page(pg_menu_050, title='Per type',icon="🗂️"),
+            st.Page(pg_menu_100, title=get_text_trad('dashboards'),icon="📊"),
+        ],
+        get_text_trad('menu_calc'):[
+            st.Page(pg_v2_idx_costs, title=get_text_trad('menu_calc_costs'), icon="💰"),
+            st.Page(pg_v2_idx_comp, title=get_text_trad('menu_calc_comp'), icon="🎓"),
+            st.Page(pg_v2_idx_mut, title=get_text_trad('menu_calc_mut'), icon="🧬"),
+            st.Page(pg_simu_team, title=get_text_trad('menu_simu'), icon="📐"),
+            st.Page(pg_v2_calc_dreamium, title=get_text_trad('menu_calc_dream'), icon="💎"),
+        ],
+        get_text_trad('menu_upg'):[
+            st.Page(pg_v2_idx_val, title=get_text_trad('menu_upg_costs'), icon="🚀"),
+            st.Page(pg_v2_idx_equip, title=get_text_trad('menu_upg_equip'), icon="🧰"),
+            st.Page(pg_v2_idx_equip_nov, title=get_text_trad('menu_upg_nov'), icon="🎒"),
+        ],
+        get_text_trad('menu_boss'):[
+            st.Page(pg_v2_idx_boss, title=get_text_trad('menu_boss_all'), icon="🐦‍🔥"),
+            st.Page(pg_v2_idx_boss_data, title=get_text_trad('menu_boss_data'), icon="🗂️"),
+        ],
+        get_text_trad('menu_resources'): [
+            st.Page(pg_tips_img, title=get_text_trad('menu_tips'),icon="🌟"),
+            st.Page(pg_menu_200, title=get_text_trad('download'),icon="📥"),
+        ],
+        get_text_trad('menu_info'): [
+            st.Page(pg_info_device, title=get_text_trad('menu_info_device'),icon="📱" if is_mobile() else "💻"),
+            st.Page(pg_info_os, title=get_text_trad('menu_info_os'),icon="🖥️"),
+            st.Page(pg_info_file, title=get_text_trad('menu_info_file'),icon="📋"),
+        ],
+        get_text_trad('menu_param'): [
+            st.Page(pg_options, title=get_text_trad('menu_options'),icon='⚙️'), #🛠️
+            st.Page('./git_translations.py', title=get_text_trad('menu_git_translate'),icon='🛠️'),
+            st.Page(logout,title='Log out',icon='🔐'),
+        ],
+        "Tests": [
+            st.Page(pg_tests_df, title='Tests DF',icon='🛠️'),
+            st.Page(pg_tests, title='Tests',icon='🛠️'),
+            st.Page('./tests/test_eval.py', title='Tests EVAL',icon='🛠️'),
+            st.Page('./tests/test2_github.py', title='Test Github',icon='🛠️'),
+            st.Page('./tests/test_graph.py', title='Test graphviz',icon='🛠️'),
+            st.Page(pg_test_menu_v2, title='Test Menu v2',icon='🛠️')
+        ],    
+    }
+else:
+    pages = {
+        get_text_trad('menu_home'):[ 
+            st.Page(login, title='Log in', icon="🔐"),
+        ],
+        get_text_trad('menu_calc'):[
+            st.Page(pg_v2_idx_costs, title=get_text_trad('menu_calc_costs'), icon="💰"),
+            st.Page(pg_v2_idx_comp, title=get_text_trad('menu_calc_comp'), icon="🎓"),
+            st.Page(pg_v2_idx_mut, title=get_text_trad('menu_calc_mut'), icon="🧬"),
+            st.Page(pg_simu_team, title=get_text_trad('menu_simu'), icon="📐"),
+            st.Page(pg_v2_calc_dreamium, title=get_text_trad('menu_calc_dream'), icon="💎"),
+        ],
+        get_text_trad('menu_upg'):[
+            st.Page(pg_v2_idx_val, title=get_text_trad('menu_upg_costs'), icon="🚀"),
+            st.Page(pg_v2_idx_equip, title=get_text_trad('menu_upg_equip'), icon="🧰"),
+            st.Page(pg_v2_idx_equip_nov, title=get_text_trad('menu_upg_nov'), icon="🎒"),
+        ],
+        get_text_trad('menu_resources'): [
+            st.Page(pg_tips_img, title=get_text_trad('menu_tips'),icon="🌟"),
+            st.Page(pg_menu_200, title=get_text_trad('download'),icon="📥"),
+        ],
+        get_text_trad('menu_param'): [
+            st.Page(pg_options, title=get_text_trad('menu_options'),icon='⚙️'), #🛠️
+            st.Page('./git_translations.py', title=get_text_trad('menu_git_translate'),icon='🛠️'),
+        ],   
+    }    
 st.session_state.pages_base = pages
 
 pg = st.navigation(
