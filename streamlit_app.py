@@ -666,6 +666,7 @@ def write_no_streamlit_link():
                     ._container_gzau3_1 _viewerBadge_nim44_23 {display:none;visibility: hidden;}
                     ._profileContainer_gzau3_53 {display:none;visibility: hidden;}
                     ._link_gzau3_10 {display:none;visibility: hidden;}
+                    footer {visibility: hidden;}
                     [data-testid="appCreatorAvatar"] {display:none;visibility: hidden;}
                     [data-testid="stToolbarActionButtonLabel"] {display:none;visibility: hidden;}
                     [data-testid="stToolbarActionButtonIcon"] {display:none;visibility: hidden;}
@@ -2790,7 +2791,7 @@ st.set_page_config(
 
 run_every = '1s' if st.session_state.stream else None
 
-if is_mobile():
+if is_mobile() or islogged() == False:
     write_js_menu()
 
 with st.sidebar:
