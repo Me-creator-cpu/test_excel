@@ -437,6 +437,16 @@ def logout():
     if st.button("Log out"):
         login_ko()
 
+def define_hash_pwd():
+    pwi = st.text_input("input")
+    hpwi=hash_password(pwi)
+    st.code(hpwi,language=None)
+    users = st.secrets.get("users", {})
+    stored_hash = users['admin']["password_hash"]
+    st.write(stored_hash)
+    if hpwi==stored_hash:
+        st.badge("Success", icon=":material/check:", color="green")
+    return False
  # ======================================================================================================
        
 def toggle_excel_loaded():
@@ -2517,7 +2527,7 @@ def build_graph_links(df,parent,child):
 def pg_tests_df():
     pwi = st.text_input("input")
     hpwi=hash_password(pwi)
-    st.write(hpwi)
+    st.code(hpwi,language=None)
     users = st.secrets.get("users", {})
     stored_hash = users['admin']["password_hash"]
     st.write(stored_hash)
