@@ -2324,6 +2324,9 @@ def pg_options():
             check_github_access()
             if st.button("Get issues"):
                 test_github_issues()
+        with st.expander('Cloud logs', expanded=False, icon=':material/table_view:', width='stretch'):
+            if st.button("Clear Cloud logs"):
+                clear_cloud_logs()
 
 def pg_options_old():
     pic(url_logo_01)
