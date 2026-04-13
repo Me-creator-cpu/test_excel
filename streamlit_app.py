@@ -438,12 +438,13 @@ def logout():
         login_ko()
 
 def define_hash_pwd():
+    st.header('Define hash code', divider="blue")
     pwi = st.text_input("input")
     hpwi=hash_password(pwi)
     st.code(hpwi,language=None)
     users = st.secrets.get("users", {})
     stored_hash = users['admin']["password_hash"]
-    st.write(stored_hash)
+    st.code(stored_hash,language=None)
     if hpwi==stored_hash:
         st.badge("Same as stored", icon=":material/check:", color="green")
     return False
