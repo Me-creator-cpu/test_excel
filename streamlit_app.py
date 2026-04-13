@@ -2800,7 +2800,8 @@ with st.sidebar:
     site_langu=st.session_state.site_langu
     with range_langu[1]:
         pic(data_flags[site_langu],24,force=True)
-    menu_load_excel()
+    if islogged():
+        menu_load_excel()
     st.session_state.stream=st.toggle(get_text_trad('side_file'), False)
 
 
@@ -2881,7 +2882,6 @@ else:
             st.Page(pg_v2_idx_costs, title=get_text_trad('menu_calc_costs'), icon="💰"),
             st.Page(pg_v2_idx_comp, title=get_text_trad('menu_calc_comp'), icon="🎓"),
             st.Page(pg_v2_idx_mut, title=get_text_trad('menu_calc_mut'), icon="🧬"),
-            st.Page(pg_simu_team, title=get_text_trad('menu_simu'), icon="📐"),
             st.Page(pg_v2_calc_dreamium, title=get_text_trad('menu_calc_dream'), icon="💎"),
         ],
         get_text_trad('menu_upg'):[
@@ -2891,12 +2891,7 @@ else:
         ],
         get_text_trad('menu_resources'): [
             st.Page(pg_tips_img, title=get_text_trad('menu_tips'),icon="🌟"),
-            st.Page(pg_menu_200, title=get_text_trad('download'),icon="📥"),
         ],
-        get_text_trad('menu_param'): [
-            st.Page(pg_options, title=get_text_trad('menu_options'),icon='⚙️'), #🛠️
-            st.Page('./git_translations.py', title=get_text_trad('menu_git_translate'),icon='🛠️'),
-        ],   
     }    
 st.session_state.pages_base = pages
 
