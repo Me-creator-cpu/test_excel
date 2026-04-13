@@ -393,6 +393,7 @@ column_config_team={
 }
 # ======================================================================================================
 #   Login / Logout
+#   https://www.mes-formations-data.fr/blog/2025/12-streamlit-authentication-guide-complet
 # ======================================================================================================
 # Fonction pour hasher les mots de passe
 def hash_password(password):
