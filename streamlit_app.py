@@ -2895,6 +2895,7 @@ else:
         ],
         get_text_trad('menu_resources'): [
             st.Page(pg_tips_img, title=get_text_trad('menu_tips'),icon="🌟"),
+            st.Page(menu_tab_traits, title=get_text_trad('menu_traits'),icon="🧬"),
         ],
     }    
 st.session_state.pages_base = pages
