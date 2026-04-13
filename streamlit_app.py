@@ -2785,11 +2785,13 @@ st.set_page_config(
     page_icon="🧊",
     layout="wide",
     initial_sidebar_state="expanded",
-#    menu_items={        # <===================================== #top right menu (triple dots) near GitHub icon
+    menu_items={        # <===================================== #top right menu (triple dots) near GitHub icon
+        'Log in': login,
+        'Log out': logout
 #        'Get Help': 'https://www.extremelycoolapp.com/help',
 #        'Report a bug': "https://www.extremelycoolapp.com/bug",
 #        'About': "# This is a header. This is an *extremely* cool app!"
-#    }
+    }
 )
 
 run_every = '1s' if st.session_state.stream else None
