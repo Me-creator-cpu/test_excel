@@ -403,7 +403,7 @@ def login():
     #username = st.text_input("User")
     usernames = ["User", "Admin"]
     username = st.selectbox("Choose your access", usernames).lower()
-    if username==usernames[1]:
+    if username==usernames[1].lower():
         password = st.text_input("Password", type="password")
     if st.button("Log in", type="primary"):
         users = st.secrets.get("users", {})
