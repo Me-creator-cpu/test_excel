@@ -400,8 +400,11 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 def login():
-    username = st.text_input("User")
-    password = st.text_input("Password", type="password")
+    #username = st.text_input("User")
+    usernames = ["User", "Admin"]
+    username = st.selectbox("Choose your access", usernames).lower()
+    if username==usernames[1]:
+        password = st.text_input("Password", type="password")
     if st.button("Log in", type="primary"):
         users = st.secrets.get("users", {})
         if username in users:
