@@ -445,7 +445,7 @@ def define_hash_pwd():
     stored_hash = users['admin']["password_hash"]
     st.write(stored_hash)
     if hpwi==stored_hash:
-        st.badge("Success", icon=":material/check:", color="green")
+        st.badge("Same as stored", icon=":material/check:", color="green")
     return False
  # ======================================================================================================
        
@@ -2530,7 +2530,7 @@ def pg_tests_df():
     st.code(hpwi,language=None)
     users = st.secrets.get("users", {})
     stored_hash = users['admin']["password_hash"]
-    st.write(stored_hash)
+    st.code(stored_hash,language=None)
     if hpwi==stored_hash:
         st.badge("Success", icon=":material/check:", color="green")
     return False
@@ -2893,6 +2893,7 @@ if islogged():
         get_text_trad('menu_param'): [
             st.Page(pg_options, title=get_text_trad('menu_options'),icon='⚙️'), #🛠️
             st.Page('./git_translations.py', title=get_text_trad('menu_git_translate'),icon='🛠️'),
+            st.Page(define_hash_pwd, title='Define hash code',icon='🔑'),
             st.Page(logout,title='Log out',icon='🔐'),
         ],
         "Tests": [
