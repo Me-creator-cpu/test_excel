@@ -872,6 +872,14 @@ def clear_cache():
         st.session_state.pop(key)
     st.toast('Cache cleared', icon='ℹ️️', duration='short')
 
+def clear_cloud_logs():
+    try:
+        sys.stdout.flush()
+        st.toast('Cloud logs cleared', icon='ℹ️️', duration='short')
+    except:
+        st.toast('Error clearing Cloud logs', icon='🔴', duration='short')
+
+
 def read_json_trads(sFile='textes.json'):
     json_data = None
     try:
