@@ -400,6 +400,7 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 def login():
+    st.header('Login form', divider="blue")
     #username = st.text_input("User")
     usernames = ["User", "Admin"]
     username = st.selectbox("Choose your access", usernames).lower()
@@ -432,6 +433,7 @@ def login_ko():
     st.rerun()
 
 def logout():
+    st.header('Log out', divider="blue")
     if st.button("Log out"):
         login_ko()
 
