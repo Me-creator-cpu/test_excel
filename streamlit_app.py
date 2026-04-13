@@ -2516,8 +2516,14 @@ def build_graph_links(df,parent,child):
 
 def pg_tests_df():
     pwi = st.text_input("input")
-    st.write(hash_password(pwi))
-    return
+    hpwi=hash_password(pwi)
+    st.write(hpwi)
+    users = st.secrets.get("users", {})
+    stored_hash = users['admin']["password_hash"]
+    st.write(stored_hash)
+    if hpwi=stored_hash:
+        st.badge("Success", icon=":material/check:", color="green")
+    return False
     idx=idx_palmon
     st.write('get_df_idx')
     df1=get_df_idx(idx_palmon)
