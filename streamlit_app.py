@@ -2521,7 +2521,7 @@ def pg_tests_df():
     users = st.secrets.get("users", {})
     stored_hash = users['admin']["password_hash"]
     st.write(stored_hash)
-    if hpwi=stored_hash:
+    if hpwi==stored_hash:
         st.badge("Success", icon=":material/check:", color="green")
     return False
     idx=idx_palmon
