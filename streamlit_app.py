@@ -2524,6 +2524,8 @@ def build_graph_links(df,parent,child):
                 graph.edge(p, p+t, style = "filled", color = color)
                 n.append(p+t)
             graph.edge(p+t, c, style = "filled", color = color)
+        if m!='Non':
+            graph.edge(c+t, m, style = "filled", color = color)
     n=[]
     return st.graphviz_chart(graph)
 
