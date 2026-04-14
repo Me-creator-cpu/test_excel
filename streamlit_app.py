@@ -2460,7 +2460,7 @@ def build_graph_data(df):
     nodes=[] #Parent / Child
     node={"parent":"","child":"","type":"","color":"","typeico":"","skillico":""}
     for r in range(row):
-        st.write(df.iloc[r].Skill)
+        #st.write(df.iloc[r].Skill)
         ptype=df['Type'][r]
         color=get_cell_value(data_type,"Type","Color",ptype)
         ptypeico=get_cell_value(data_type,"Type","Icon",ptype)
@@ -2470,53 +2470,25 @@ def build_graph_data(df):
         # 'Skill'       => 2
         # 'Mutation 1'  => 33
         # 'Mutation 2'  => 34
-        if df['Mutation 1'][r]!='Non':
-            #node['parent']=df['Name'][r]
-            #node['child']=df['Mutation 1'][r]
-            #node['type']=ptype
-            #node['color']=color
-            #node['typeico']=ptypeico
-            #node['skillico']=skillico
+        if df.iloc[r,33]!='Non':
             node=build_node(df.iloc[r].Name,df.iloc[r,33],ptype,color,ptypeico,skillico)
             nodes.append(node)
-        if df['Mutation 2'][r]!='Non':
-            if df['Mutation 1'][r]!='Non':
-                #node['parent']=df['Mutation 1'][r]
-                #node['child']=df['Mutation 2'][r]
-                #node['type']=ptype
-                #node['color']=color
-                #node['typeico']=ptypeico
-                #node['skillico']=skillico
+        if df.iloc[r,34]!='Non':
+            if df.iloc[r,33]!='Non':
                 node=build_node(df.iloc[r,33],df.iloc[r,34],ptype,color,ptypeico,skillico)
                 nodes.append(node)
             else:
-                #node['parent']=df['Name'][r]
-                #node['child']=df['Mutation 2'][r]
-                #node['type']=ptype
-                #node['color']=color
-                #node['typeico']=ptypeico
-                #node['skillico']=skillico
                 node=build_node(df.iloc[r,0],df.iloc[r,34],ptype,color,ptypeico,skillico)
                 nodes.append(node)
-        
-        #node['parent']=df['Type'][r]
-        #node['child']=df['Skill'][r]
-        #node['type']=ptype
-        #node['color']=color
-        #node['typeico']=ptypeico
-        #node['skillico']=skillico
+
         node=build_node(df.iloc[r,1],df.iloc[r,2],ptype,color,ptypeico,skillico)
         nodes.append(node)
-        #node['parent']=df['Skill'][r]
-        #node['child']=df['Name'][r]
-        #node['type']=ptype
-        #node['color']=color
-        #node['typeico']=ptypeico
-        #node['skillico']=skillico
+
         node=build_node(df.iloc[r,2],df.iloc[r,0],ptype,color,ptypeico,skillico)
         nodes.append(node)
 
     st.write(nodes)
+    return build_graph_data
 
 def build_node(parent,child,ptype,color,typeico,skillico):
     newnode={"parent":"","child":"","type":"","color":"","typeico":"","skillico":""}
@@ -2575,8 +2547,8 @@ def pg_tests_df():
 def pg_tests():
     #st.empty()
     df=get_df_idx()
-    #dot=build_graph_links(df,'Type','Name')
-    build_graph_data(df)
+    dot=build_graph_links(df,'Type','Name')
+    #build_graph_data(df)
     
 @st.fragment(run_every="1s")
 def test_colors():
