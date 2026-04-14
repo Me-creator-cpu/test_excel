@@ -2454,7 +2454,9 @@ def build_graph_links_hier(df,parent,child):
 
 def build_graph_data(df):
     df
+    data_info(df)
     row, col = df.shape
+    write
     nodes=[] #Parent / Child
     node={"parent":"","child":"","type":"","color":"","typeico":"","skillico":""}
     for r in range(row):
