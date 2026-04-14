@@ -2454,12 +2454,13 @@ def build_graph_links_hier(df,parent,child):
 
 def build_graph_data(df):
     df
-    data_info(df)
+    #data_info(df)
     row, col = df.shape
-    write
+    
     nodes=[] #Parent / Child
     node={"parent":"","child":"","type":"","color":"","typeico":"","skillico":""}
     for r in range(row):
+        st.write(r)
         ptype=df['Type'][r]
         color=get_cell_value(data_type,"Type","Color",ptype)
         ptypeico=get_cell_value(data_type,"Type","Icon",ptype)
