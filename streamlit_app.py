@@ -2460,53 +2460,68 @@ def build_graph_data(df):
     nodes=[] #Parent / Child
     node={"parent":"","child":"","type":"","color":"","typeico":"","skillico":""}
     for r in range(row):
-        st.write(r)
+
         ptype=df['Type'][r]
         color=get_cell_value(data_type,"Type","Color",ptype)
         ptypeico=get_cell_value(data_type,"Type","Icon",ptype)
         skillico=data_skill_ico.get(df['Skill'][r])
         if df['Mutation 1'][r]!='Non':
-            node['parent']=df['Name'][r]
-            node['child']=df['Mutation 1'][r]
-            node['type']=ptype
-            node['color']=color
-            node['typeico']=ptypeico
-            node['skillico']=skillico
+            #node['parent']=df['Name'][r]
+            #node['child']=df['Mutation 1'][r]
+            #node['type']=ptype
+            #node['color']=color
+            #node['typeico']=ptypeico
+            #node['skillico']=skillico
+            node=build_node(df['Name'][r],df['Mutation 1'][r],ptype,color,ptypeico,skillico)
             nodes.append(node)
         if df['Mutation 2'][r]!='Non':
             if df['Mutation 1'][r]!='Non':
-                node['parent']=df['Mutation 1'][r]
-                node['child']=df['Mutation 2'][r]
-                node['type']=ptype
-                node['color']=color
-                node['typeico']=ptypeico
-                node['skillico']=skillico
+                #node['parent']=df['Mutation 1'][r]
+                #node['child']=df['Mutation 2'][r]
+                #node['type']=ptype
+                #node['color']=color
+                #node['typeico']=ptypeico
+                #node['skillico']=skillico
+                node=build_node(df['Mutation 1'][r],df['Mutation 2'][r],ptype,color,ptypeico,skillico)
                 nodes.append(node)
             else:
-                node['parent']=df['Name'][r]
-                node['child']=df['Mutation 2'][r]
-                node['type']=ptype
-                node['color']=color
-                node['typeico']=ptypeico
-                node['skillico']=skillico
+                #node['parent']=df['Name'][r]
+                #node['child']=df['Mutation 2'][r]
+                #node['type']=ptype
+                #node['color']=color
+                #node['typeico']=ptypeico
+                #node['skillico']=skillico
+                node=build_node(df['Name'][r],df['Mutation 2'][r],ptype,color,ptypeico,skillico)
                 nodes.append(node)
-        node['parent']=df['Type'][r]
-        node['child']=df['Skill'][r]
-        node['type']=ptype
-        node['color']=color
-        node['typeico']=ptypeico
-        node['skillico']=skillico
+        
+        #node['parent']=df['Type'][r]
+        #node['child']=df['Skill'][r]
+        #node['type']=ptype
+        #node['color']=color
+        #node['typeico']=ptypeico
+        #node['skillico']=skillico
+        node=build_node(df['Type'][r],df['Skill'][r],ptype,color,ptypeico,skillico)
         nodes.append(node)
-        node['parent']=df['Skill'][r]
-        node['child']=df['Name'][r]
-        node['type']=ptype
-        node['color']=color
-        node['typeico']=ptypeico
-        node['skillico']=skillico
+        #node['parent']=df['Skill'][r]
+        #node['child']=df['Name'][r]
+        #node['type']=ptype
+        #node['color']=color
+        #node['typeico']=ptypeico
+        #node['skillico']=skillico
+        node=build_node(df['Skill'][r],df['Name'][r],ptype,color,ptypeico,skillico)
         nodes.append(node)
 
     st.write(nodes)
 
+def build_node(parent,child,ptype,color,typeico,skillico):
+    newnode={"parent":"","child":"","type":"","color":"","typeico":"","skillico":""}
+    newnode['parent']=parent
+    newnode['child']=child
+    newnode['type']=ptype
+    newnode['color']=color
+    newnode['typeico']=typeico
+    newnode['skillico']=skillico
+    return newnode
 
 def build_graph_links(df,parent,child):
     n=["skill+type"]
