@@ -2464,7 +2464,7 @@ def build_graph_data(df):
         ptype=df['Type'][r]
         color=get_cell_value(data_type,"Type","Color",ptype)
         ptypeico=get_cell_value(data_type,"Type","Icon",ptype)
-        skillico=data_skill_ico.get(df['Skill'][r])
+        skillico=data_skill_ico.get(df.iloc[r].Skill)
         if df['Mutation 1'][r]!='Non':
             #node['parent']=df['Name'][r]
             #node['child']=df['Mutation 1'][r]
@@ -2472,7 +2472,7 @@ def build_graph_data(df):
             #node['color']=color
             #node['typeico']=ptypeico
             #node['skillico']=skillico
-            node=build_node(df['Name'][r],df['Mutation 1'][r],ptype,color,ptypeico,skillico)
+            node=build_node(df.iloc[r].Name,df.iloc[r]['Mutation 1'][r],ptype,color,ptypeico,skillico)
             nodes.append(node)
         if df['Mutation 2'][r]!='Non':
             if df['Mutation 1'][r]!='Non':
