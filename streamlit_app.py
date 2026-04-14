@@ -2460,7 +2460,7 @@ def build_graph_data(df):
     nodes=[] #Parent / Child
     node={"parent":"","child":"","type":"","color":"","typeico":"","skillico":""}
     for r in range(row):
-
+        st.write(df.iloc[r])
         ptype=df['Type'][r]
         color=get_cell_value(data_type,"Type","Color",ptype)
         ptypeico=get_cell_value(data_type,"Type","Icon",ptype)
