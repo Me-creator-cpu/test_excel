@@ -2472,7 +2472,7 @@ def build_graph_data(df):
             #node['color']=color
             #node['typeico']=ptypeico
             #node['skillico']=skillico
-            node=build_node(df.iloc[r].Name,df.iloc[r]['Mutation 1'][r],ptype,color,ptypeico,skillico)
+            node=build_node(df.iloc[r].Name,df.iloc[r,'Mutation 1'],ptype,color,ptypeico,skillico)
             nodes.append(node)
         if df['Mutation 2'][r]!='Non':
             if df['Mutation 1'][r]!='Non':
