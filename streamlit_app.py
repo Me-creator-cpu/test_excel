@@ -1456,7 +1456,8 @@ def calc_dreamium():
                 {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": '0'},
             ]
         )
-        df = df.style.applymap(f, subset=['quantity'])
+        #df_style = df.style
+        df = df.data.style.applymap(f, subset=['quantity'])
         #df = df.style.map(
         #    lambda val: 'background-color: yellow' if val <= 0 else '',
         #    subset=['quantity']
