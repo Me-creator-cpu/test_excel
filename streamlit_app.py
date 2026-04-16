@@ -2513,6 +2513,25 @@ def build_node(parent,child,ptype,color,typeico,skillico):
     newnode['skillico']=skillico
     return newnode
 
+def test_graphviz(df):
+    graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'})
+
+    df_base = df.loc[(df['Name'] != 'Non')]
+    for d in df_base:
+        p=df_base['Type']
+        c=df_base['Name']
+    
+    df_mut1 = df.loc[(df['Mutation 1'] != 'Non')]
+    for d in df_mut1:
+        p=df_mut1['Name']
+        c=df_mut1['Mutation 1']    
+
+    df_mut2 = df.loc[(df['Mutation 2'] != 'Non')]
+    for d in df_mut2:
+        p=df_mut2['Mutation 1']
+        c=df_mut2['Mutation 2']   
+
+
 def build_graph_links(df,parent,child):
     n=["skill+type"]
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'}) #option_type
@@ -2563,8 +2582,9 @@ def pg_tests_df():
 def pg_tests():
     #st.empty()
     df=get_df_idx()
-    dot=build_graph_links(df,'Type','Name')
+    #dot=build_graph_links(df,'Type','Name') 
     #build_graph_data(df)
+    test_graphviz(df)
     
 @st.fragment(run_every="1s")
 def test_colors():
