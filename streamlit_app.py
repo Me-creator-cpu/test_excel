@@ -2513,10 +2513,11 @@ def build_node(parent,child,ptype,color,typeico,skillico):
     newnode['skillico']=skillico
     return newnode
 
-def test_graphviz(df):
+def test_graphviz(df_input):
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'})
 
     st.subheader('Base', divider=True)
+    df=get_df_idx()
     df_base = df.loc[(df['Name'] != 'Non')]
     row, col = df_base.shape
     for r in range(row):
@@ -2527,6 +2528,7 @@ def test_graphviz(df):
         #graph.edge(p, c)
     
     st.subheader('Mut 1', divider=True)
+    df=get_df_idx()
     df_mut1 = df.loc[(df['Mutation 1'] != 'Non')]
     row, col = df_mut1.shape
     for r in range(row):
@@ -2537,6 +2539,7 @@ def test_graphviz(df):
         #graph.edge(p, c)
 
     st.subheader('Mut 2', divider=True)
+    df=get_df_idx()
     df_mut2 = df.loc[(df['Mutation 2'] != 'Non')]
     row, col = df_mut2.shape
     for r in range(row):
