@@ -2518,25 +2518,25 @@ def test_graphviz(df):
 
     df_base = df.loc[(df['Name'] != 'Non')]
     for d in df_base:
-        p=df_base['Type']
-        c=df_base['Name']
-        s=df_base['Skill']
+        p=d['Type']
+        c=d['Name']
+        s=d['Skill']
         st.write(p,c,s)
         #graph.edge(p, c)
     
     df_mut1 = df.loc[(df['Mutation 1'] != 'Non')]
     for d in df_mut1:
-        p=df_mut1['Name']
-        c=df_mut1['Mutation 1']
-        s=df_base['Skill']
+        p=d['Name']
+        c=d['Mutation 1']
+        s=d['Skill']
         st.write(p,c,s)
         #graph.edge(p, c)
 
     df_mut2 = df.loc[(df['Mutation 2'] != 'Non')]
     for d in df_mut2:
-        p=df_mut2['Mutation 1']
-        c=df_mut2['Mutation 2']
-        s=df_base['Skill']
+        p=d['Mutation 1']
+        c=d['Mutation 2']
+        s=d['Skill']
         st.write(p,c,s)
         #graph.edge(p, c)
 
