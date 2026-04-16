@@ -1746,7 +1746,7 @@ def menu_tab_traits():
     #with st.container(horizontal=True, horizontal_alignment="center"):
     with st.container():
         rowf1 = st.columns(2,border=False, width="stretch")
-        rowf2 = st.columns([2,1],border=False, width="stretch")
+        rowf2 = st.columns(1,border=False, width="stretch")
         with rowf1[0]:
             opt_cat = obj_multiselect(df,'Category')
         with rowf1[1]:
