@@ -1744,9 +1744,14 @@ def menu_tab_traits():
     df = get_df_idx(idx_traits).fillna('%')
     df['Type']=df['Type'].apply(lambda b: icon_skill(b))
     with st.container(horizontal=True, horizontal_alignment="center"):
-        opt_cat = obj_multiselect(df,'Category')
-        opt_type = obj_multiselect(df,'Type')
-        opt_level = obj_multiselect(df,'Level')    
+        rowf1 = st.columns(2,border=False, width="stretch")
+        rowf2 = st.columns([1,0],border=False, width="stretch")
+        with rowf1[0]:
+            opt_cat = obj_multiselect(df,'Category')
+        with rowf1[1]:
+            opt_type = obj_multiselect(df,'Type')
+        with rowf2[0]:
+            opt_level = obj_multiselect(df,'Level')    
     df_a=df.loc[(df["Type"].isin(opt_type)) & (df["Category"].isin(opt_cat)) & (df["Level"].isin(opt_level))].copy(deep=True)
     df_a["Unit"].fillna('pct')
     build_table_any(df_a)
