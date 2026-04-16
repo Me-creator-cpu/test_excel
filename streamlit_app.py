@@ -1459,6 +1459,12 @@ def calc_dreamium():
     #styled_df=df.style.applymap(df_highlight,threshold=4,subset=["quantity"])
     pic(url_logo_03)
     st.subheader(get_text_trad('calc_dreamium'))
+
+    df = df.style.map(
+        lambda val: 'background-color: yellow' if val <= 0 else '',
+        subset=['quantity']
+    )
+
     edited_df = st.data_editor(
         df,
         #styled_df,
