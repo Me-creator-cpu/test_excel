@@ -1464,7 +1464,10 @@ def calc_dreamium():
         lambda val: 'background-color: yellow' if val <= 0 else '',
         subset=['quantity']
     )
-
+    df = df.style.map(
+        lambda val: 'background-color: yellow' if val == 'V' else '',
+        subset=['dreamium']
+    )
     edited_df = st.data_editor(
         df,
         #styled_df,
