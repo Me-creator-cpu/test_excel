@@ -2529,7 +2529,7 @@ def test_graphviz(df_input):
     
     st.subheader('Mut 1', divider=True)
     df=get_df_idx()
-    df_mut1 = get_df_idx().loc[(df['Mutation 1'] != 'Non')]
+    df_mut1 = get_df_idx().loc[(df['Mutation 1'] != 'Non')].reset_index()
     row, col = df_mut1.shape
     for r in range(row):
         st.write(r,df_mut1)
