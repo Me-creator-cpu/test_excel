@@ -2518,6 +2518,7 @@ def test_graphviz(df):
 
     df_base = df.loc[(df['Name'] != 'Non')]
     for d in df_base:
+        st.write(d)
         p=d['Type']
         c=d['Name']
         s=d['Skill']
