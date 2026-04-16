@@ -2532,6 +2532,7 @@ def test_graphviz(df_input):
     df_mut1 = get_df_idx().loc[(df['Mutation 1'] != 'Non')]
     row, col = df_mut1.shape
     for r in range(row):
+        st.write(r,df_mut1)
         p=df_mut1['Name'][r]
         c=df_mut1['Mutation 1'][r]
         s=df_mut1['Skill'][r]
