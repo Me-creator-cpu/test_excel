@@ -1443,6 +1443,7 @@ def pal_deltail(palmon,df,pic_width=300):
         st.metric("Competencies cost", large_num_format(total_comp_costs), 'Max')
 
 def calc_dreamium():
+    f = lambda v: 'background-color: yellow'
     if 'updated_df' in st.session_state:
         df = st.session_state.updated_df
     else:
@@ -1455,14 +1456,11 @@ def calc_dreamium():
                 {"dreamium": "V",   "level": 5, "quantity": 0, "calculated": '0'},
             ]
         )
-        df = df.style.map(
-            lambda val: 'background-color: yellow' if val <= 0 else '',
-            subset=['quantity']
-        )
-        df = df.style.map(
-            lambda val: 'background-color: yellow' if val == 'V' else '',
-            subset=['dreamium']
-        )
+        df = df.style.applymap(f, subset=['quantity'])
+        #df = df.style.map(
+        #    lambda val: 'background-color: yellow' if val <= 0 else '',
+        #    subset=['quantity']
+        #)
 
     #styled_df=df.style.applymap(df_highlight,threshold=4,subset=["quantity"])
     pic(url_logo_03)
