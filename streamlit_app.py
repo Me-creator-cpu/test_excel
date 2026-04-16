@@ -2520,17 +2520,24 @@ def test_graphviz(df):
     for d in df_base:
         p=df_base['Type']
         c=df_base['Name']
+        s=df_base['Skill']
+        graph.edge(p, c)
     
     df_mut1 = df.loc[(df['Mutation 1'] != 'Non')]
     for d in df_mut1:
         p=df_mut1['Name']
-        c=df_mut1['Mutation 1']    
+        c=df_mut1['Mutation 1']
+        s=df_base['Skill']
+        graph.edge(p, c)
 
     df_mut2 = df.loc[(df['Mutation 2'] != 'Non')]
     for d in df_mut2:
         p=df_mut2['Mutation 1']
-        c=df_mut2['Mutation 2']   
+        c=df_mut2['Mutation 2']
+        s=df_base['Skill']
+        graph.edge(p, c)
 
+    return st.graphviz_chart(graph)
 
 def build_graph_links(df,parent,child):
     n=["skill+type"]
