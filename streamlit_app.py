@@ -2517,27 +2517,29 @@ def test_graphviz(df):
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'})
 
     df_base = df.loc[(df['Name'] != 'Non')]
-    for d in df_base:
-        st.write(d)
-        p=d['Type']
-        c=d['Name']
-        s=d['Skill']
+    row, col = df_base.shape
+    for r in range(row):
+        p=df_base['Type'][r]
+        c=df_base['Name'][r]
+        s=df_base['Skill'][r]
         st.write(p,c,s)
         #graph.edge(p, c)
     
     df_mut1 = df.loc[(df['Mutation 1'] != 'Non')]
-    for d in df_mut1:
-        p=d['Name']
-        c=d['Mutation 1']
-        s=d['Skill']
+    row, col = df_mut1.shape
+    for r in range(row):
+        p=df_mut1['Name'][r]
+        c=df_mut1['Mutation 1'][r]
+        s=df_mut1['Skill'][r]
         st.write(p,c,s)
         #graph.edge(p, c)
 
     df_mut2 = df.loc[(df['Mutation 2'] != 'Non')]
-    for d in df_mut2:
-        p=d['Mutation 1']
-        c=d['Mutation 2']
-        s=d['Skill']
+    row, col = df_mut2.shape
+    for r in range(row):
+        p=df_mut2['Mutation 1'][r]
+        c=df_mut2['Mutation 2'][r]
+        s=df_mut2['Skill'][r]        
         st.write(p,c,s)
         #graph.edge(p, c)
 
