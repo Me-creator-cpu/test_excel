@@ -2541,13 +2541,15 @@ def test_graphviz(df_input):
 
     st.subheader('Mut 2', divider=True)
     df=get_df_idx()
-    df_mut2 = get_df_idx().loc[(df['Mutation 1'] != 'Non') & (df['Mutation 2'] != 'Non')]
+    #df_mut2 = get_df_idx().loc[(df['Mutation 1'] != 'Non') & (df['Mutation 2'] != 'Non')]
+    df_mut2 = get_df_idx()
     row, col = df_mut2.shape
     for r in range(row):
-        p=df_mut2['Mutation 1'][r]
-        c=df_mut2['Mutation 2'][r]
-        s=df_mut2['Skill'][r]        
-        st.write(p,c,s)
+        if df_mut2['Mutation 1'][r] != 'Non' and df_mut2['Mutation 2'][r] != 'Non':
+            p=df_mut2['Mutation 1'][r]
+            c=df_mut2['Mutation 2'][r]
+            s=df_mut2['Skill'][r]        
+            st.write(p,c,s)
         #graph.edge(p, c)
 
     return st.graphviz_chart(graph)
