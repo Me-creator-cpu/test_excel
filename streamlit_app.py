@@ -2548,8 +2548,11 @@ def test_graphviz(df_input):
             ico_type=get_cell_value(data_type,"Type","Icon",p)
             ico_skill=data_skill_ico.get(s)
             color=get_cell_value(data_type,"Type","Color",p)
-            graph.node(c, ico_skill + c, shape = "plaintext")
-            graph.node(p, ico_type+p, style = "filled", color = color)  
+            try:
+                graph.node(c, ico_skill + c, shape = "plaintext")
+                graph.node(p, ico_type+p, style = "filled", color = color)
+            except:
+                pass 
 
     #st.subheader('Mut 2', divider=True)
     df=get_df_idx()
