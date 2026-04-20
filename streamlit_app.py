@@ -2565,12 +2565,16 @@ def test_graphviz(df_input):
             c=df_mut2['Mutation 2'][r]
             s=df_mut2['Skill'][r]        
             #st.write(p,c,s)
-        graph.edge(p, c)
-        ico_type=get_cell_value(data_type,"Type","Icon",p)
-        ico_skill=data_skill_ico.get(s)
-        color=get_cell_value(data_type,"Type","Color",p)
-        graph.node(c, ico_skill + c, shape = "plaintext")
-        graph.node(p, ico_type+p, style = "filled", color = color)  
+            graph.edge(p, c)
+            ico_type=get_cell_value(data_type,"Type","Icon",p)
+            ico_skill=data_skill_ico.get(s)
+            color=get_cell_value(data_type,"Type","Color",p)
+            graph.node(c, ico_skill + c, shape = "plaintext")
+            try:
+                graph.node(c, ico_skill + c, shape = "plaintext")
+                graph.node(p, ico_type+p, style = "filled", color = color)
+            except:
+                pass 
 
     return st.graphviz_chart(graph)
 
