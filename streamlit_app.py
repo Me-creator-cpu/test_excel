@@ -2524,20 +2524,20 @@ def test_graphviz(df_input):
         p=df_base['Type'][r]
         c=df_base['Name'][r]
         s=df_base['Skill'][r]
-        st.write(p,c,s)
-        #graph.edge(p, c)
+        #st.write(p,c,s)
+        graph.edge(p, c)
     
     st.subheader('Mut 1', divider=True)
     df=get_df_idx()
     df_mut1 = get_df_idx().loc[(df['Mutation 1'] != 'Non')].reset_index()
     row, col = df_mut1.shape
     for r in range(row):
-        st.write(r,df_mut1)
+        #st.write(r,df_mut1)
         p=df_mut1['Name'][r]
         c=df_mut1['Mutation 1'][r]
         s=df_mut1['Skill'][r]
-        st.write(p,c,s)
-        #graph.edge(p, c)
+        #st.write(p,c,s)
+        graph.edge(p, c)
 
     st.subheader('Mut 2', divider=True)
     df=get_df_idx()
@@ -2549,8 +2549,8 @@ def test_graphviz(df_input):
             p=df_mut2['Mutation 1'][r]
             c=df_mut2['Mutation 2'][r]
             s=df_mut2['Skill'][r]        
-            st.write(p,c,s)
-        #graph.edge(p, c)
+            #st.write(p,c,s)
+            graph.edge(p, c)
 
     return st.graphviz_chart(graph)
 
