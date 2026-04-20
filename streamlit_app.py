@@ -2630,7 +2630,12 @@ def pg_tests():
     df=get_df_idx()
     #dot=build_graph_links(df,'Type','Name') 
     #build_graph_data(df)
-    test_graphviz(df)
+    if st.button("build_graph_links"):
+        dot=build_graph_links(df,'Type','Name') 
+    if st.button("build_graph_data"):
+        build_graph_data(df)
+    if st.button("test_graphviz"):                    
+        test_graphviz(df)
     
 @st.fragment(run_every="1s")
 def test_colors():
