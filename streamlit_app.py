@@ -2516,7 +2516,7 @@ def build_node(parent,child,ptype,color,typeico,skillico):
 def test_graphviz(df_input):
     graph = graphviz.Digraph(graph_attr={'rankdir':'LR','layout':'neato'})
 
-    st.subheader('Base', divider=True)
+    #st.subheader('Base', divider=True)
     df=get_df_idx()
     df_base = get_df_idx().loc[(df['Name'] != 'Non')]
     row, col = df_base.shape
@@ -2526,8 +2526,13 @@ def test_graphviz(df_input):
         s=df_base['Skill'][r]
         #st.write(p,c,s)
         graph.edge(p, c)
+        ico_type=get_cell_value(data_type,"Type","Icon",p)
+        ico_skill=data_skill_ico.get(s)
+        color=get_cell_value(data_type,"Type","Color",p)
+        graph.node(c, ico_skill + c, shape = "plaintext")
+        graph.node(p, ico_type+p, style = "filled", color = color)          
     
-    st.subheader('Mut 1', divider=True)
+    #st.subheader('Mut 1', divider=True)
     df=get_df_idx()
     df_mut1 = get_df_idx().loc[(df['Mutation 1'] != 'Non')].reset_index()
     row, col = df_mut1.shape
@@ -2539,7 +2544,7 @@ def test_graphviz(df_input):
         #st.write(p,c,s)
         graph.edge(p, c)
 
-    st.subheader('Mut 2', divider=True)
+    #st.subheader('Mut 2', divider=True)
     df=get_df_idx()
     #df_mut2 = get_df_idx().loc[(df['Mutation 1'] != 'Non') & (df['Mutation 2'] != 'Non')]
     df_mut2 = get_df_idx()
