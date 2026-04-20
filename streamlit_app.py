@@ -2534,20 +2534,22 @@ def test_graphviz(df_input):
     
     #st.subheader('Mut 1', divider=True)
     df=get_df_idx()
-    df_mut1 = get_df_idx().loc[(df['Mutation 1'] != 'Non')].reset_index()
+    #df_mut1 = get_df_idx().loc[(df['Mutation 1'] != 'Non')].reset_index()
+    df_mut1 = get_df_idx()
     row, col = df_mut1.shape
     for r in range(row):
-        #st.write(r,df_mut1)
-        p=df_mut1['Name'][r]
-        c=df_mut1['Mutation 1'][r]
-        s=df_mut1['Skill'][r]
-        #st.write(p,c,s)
-        graph.edge(p, c)
-        ico_type=get_cell_value(data_type,"Type","Icon",p)
-        ico_skill=data_skill_ico.get(s)
-        color=get_cell_value(data_type,"Type","Color",p)
-        graph.node(c, ico_skill + c, shape = "plaintext")
-        graph.node(p, ico_type+p, style = "filled", color = color)  
+        if df_mut1['Mutation 1'][r] != 'Non':
+            #st.write(r,df_mut1)
+            p=df_mut1['Name'][r]
+            c=df_mut1['Mutation 1'][r]
+            s=df_mut1['Skill'][r]
+            #st.write(p,c,s)
+            graph.edge(p, c)
+            ico_type=get_cell_value(data_type,"Type","Icon",p)
+            ico_skill=data_skill_ico.get(s)
+            color=get_cell_value(data_type,"Type","Color",p)
+            graph.node(c, ico_skill + c, shape = "plaintext")
+            graph.node(p, ico_type+p, style = "filled", color = color)  
 
     #st.subheader('Mut 2', divider=True)
     df=get_df_idx()
