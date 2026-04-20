@@ -2632,6 +2632,8 @@ def pg_tests():
     #build_graph_data(df)
     if st.button("build_graph_links"):
         dot=build_graph_links(df,'Type','Name') 
+    if st.button("build_graph_links_hier"):
+        dot=build_graph_links_hier(df,'Type','Name')         
     if st.button("build_graph_data"):
         build_graph_data(df)
     if st.button("test_graphviz"):                    
