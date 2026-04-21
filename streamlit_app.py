@@ -447,8 +447,9 @@ def logout():
 def define_hash_pwd():
     st.header('Define hash code', divider="blue")
     pwi = st.text_input("input")
-    hpwi=hash_password(pwi)
-    st.code(hpwi,language=None)
+    if pwi!='':
+        hpwi=hash_password(pwi)
+        st.code(hpwi,language=None)
     return False
  # ======================================================================================================
        
