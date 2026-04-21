@@ -108,6 +108,9 @@ if "stream" not in st.session_state:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
+if "logged_user" not in st.session_state:
+    st.session_state.logged_in = None    
+
 # Définitions variables de sélection de dataframes
 event = None
 event_a = None
@@ -401,12 +404,10 @@ def hash_password(password):
 
 def login():
     st.header('Login form', divider="blue")
-    #username = st.text_input("User")
-    dummy=st.selectbox("Test access", st.secrets.get("users", {})).lower()
-
-    usernames = ["User", "Admin"]
+    usernames = ["User","Tonneman47","Admin"]
     username = st.selectbox("Choose your access", usernames).lower()
-    if username==usernames[1].lower():
+    #username = st.selectbox("Choose your access", st.secrets.get("users", {})).lower()
+    if username!=usernames[0].lower():
         password = st.text_input("Password", type="password")
     if st.button("Log in", type="primary"):
         users = st.secrets.get("users", {})
@@ -419,8 +420,11 @@ def login():
                 login_ko()
         else:
             login_ko()
-    if islogged() or username!=usernames[1].lower():
+    if islogged() or username!=usernames[2].lower():
         write_one_info(f'Currently logged as {username}')
+        st.session_state.logged_user=username
+    else:
+        st.session_state.logged_user=None
     return False
 
 def islogged():
@@ -3002,6 +3006,9 @@ if islogged():
             st.Page(pg_test_menu_v2, title='Test Menu v2',icon='🛠️')
         ],    
     }
+    if st.session_state.logged_user!='admin':
+        nb=len(pages)-2
+        pages=pages[:nb]
 else:
     pages = {
         get_text_trad('menu_home'):[ 
