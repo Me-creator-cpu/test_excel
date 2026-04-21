@@ -2985,7 +2985,7 @@ if islogged():
         ],
         get_text_trad('menu_resources'): [
             st.Page(pg_tips_img, title=get_text_trad('menu_tips'),icon="🌟"),
-            st.Page(pg_menu_200, title=get_text_trad('download'),icon="📥"),
+            st.Page(menu_tab_traits, title=get_text_trad('menu_traits'),icon="🧬"),
         ],
         get_text_trad('menu_info'): [
             st.Page(pg_info_device, title=get_text_trad('menu_info_device'),icon="📱" if is_mobile() else "💻"),
@@ -2994,6 +2994,7 @@ if islogged():
         ],
         get_text_trad('menu_param'): [
             st.Page(pg_options, title=get_text_trad('menu_options'),icon='⚙️'), #🛠️
+            st.Page(pg_menu_200, title=get_text_trad('download'),icon="📥"),
             st.Page('./git_translations.py', title=get_text_trad('menu_git_translate'),icon='🛠️'),
             st.Page(define_hash_pwd, title='Define hash code',icon='🔑'),
             st.Page(logout,title='Log out',icon='🔐'),
@@ -3009,7 +3010,7 @@ if islogged():
     }
     if st.session_state.logged_user!='admin':
         pages.pop("Tests")
-        #pages=pages.pop()
+        pages.pop(get_text_trad('menu_param'))
 else:
     pages = {
         get_text_trad('menu_home'):[ 
