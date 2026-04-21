@@ -3008,8 +3008,8 @@ if islogged():
         ],    
     }
     if st.session_state.logged_user!='admin':
-        nb=len(pages)-2
-        pages=pages[:nb]
+        pages=pages.pop("Tests")
+        pages=pages.pop(get_text_trad('menu_param'))
 else:
     pages = {
         get_text_trad('menu_home'):[ 
