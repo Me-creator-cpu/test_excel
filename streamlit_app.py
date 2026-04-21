@@ -1705,7 +1705,7 @@ def menu_tab_mut():
         df_energy
         df01 = get_df_idx(idx_mut)[(df['Step'] != 0)].set_index('Level').groupby('Level').apply(lambda x: x['Cost level'].sum(), include_groups=False).to_frame('Cost level')
         df01
-        df_energy.rename(columns={'Level':'Level base'})
+        #df_energy.rename(columns={'Level':'Level base'})
         df02=df_energy.groupby(['Level']).sum()
         df02['Level base']=df02['Level']
         df02
