@@ -2961,6 +2961,7 @@ if islogged():
     pages = {
         get_text_trad('menu_home'):[ 
             st.Page(pg_home, title=get_text_trad('menu_home_1'), icon="🏠"),
+            st.Page(login, title='Log in', icon="🔐"),
         ],
         get_text_trad('menu_myteam'):[ 
             st.Page(pg_menu_0, title=get_text_trad('full_list'),icon="🗂️"),
