@@ -402,6 +402,8 @@ def hash_password(password):
 def login():
     st.header('Login form', divider="blue")
     #username = st.text_input("User")
+    users = st.secrets.get("users", {})
+    users
     usernames = ["User", "Admin"]
     username = st.selectbox("Choose your access", usernames).lower()
     if username==usernames[1].lower():
