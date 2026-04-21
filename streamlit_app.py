@@ -403,7 +403,7 @@ def login():
     st.header('Login form', divider="blue")
     #username = st.text_input("User")
     users = st.secrets.get("users", {})
-    users.columns.tolist()
+    st.dataframe(users).columns.tolist()
     usernames = ["User", "Admin"]
     username = st.selectbox("Choose your access", usernames).lower()
     if username==usernames[1].lower():
