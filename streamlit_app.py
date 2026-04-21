@@ -402,10 +402,7 @@ def hash_password(password):
 def login():
     st.header('Login form', divider="blue")
     #username = st.text_input("User")
-    users = st.secrets.get("users", {})
-    df=st.dataframe(users)
-    #df.index.tolist()
-    dummy=st.selectbox("Test access", users).lower()
+    dummy=st.selectbox("Test access", st.secrets.get("users", {})).lower()
 
     usernames = ["User", "Admin"]
     username = st.selectbox("Choose your access", usernames).lower()
