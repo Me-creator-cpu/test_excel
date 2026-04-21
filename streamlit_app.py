@@ -1706,7 +1706,7 @@ def menu_tab_mut():
         df01 = get_df_idx(idx_mut)[(df['Step'] != 0)].set_index('Level').groupby('Level').apply(lambda x: x['Cost level'].sum(), include_groups=False).to_frame('Cost level')
         df01
         df_energy.rename(columns={'Level':'Level base'})
-        df02=df_energy.groupby(['Level base']).sum()
+        df02=df_energy.groupby(['Level']).sum()
         df02
     st.subheader("🟢Energy")
     #range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(df_energy['Level'].min()),int(df_energy['Level'].max()))
