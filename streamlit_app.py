@@ -1701,6 +1701,9 @@ def menu_tab_mut():
     df = get_df_idx(idx_mut)
     df_energy=get_df_idx(idx_mut)[(df['Step'] != 0)]
     df_crystal=df.loc[(df['Step'] == 0)]  
+    with st.expander('df', expanded=True, width="stretch"):
+        df_energy
+        df_crystal
     st.subheader("🟢Energy")
     range_level_min, range_level_max = build_chart_bar(df_energy,'Level','Cost level','Mutation costs from level:',int(df_energy['Level'].min()),int(df_energy['Level'].max()))
     st.subheader("💎Crystals")
