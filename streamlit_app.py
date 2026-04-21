@@ -3009,7 +3009,7 @@ if islogged():
     }
     if st.session_state.logged_user!='admin':
         pages=pages.pop("Tests")
-        pages=pages.pop()
+        #pages=pages.pop()
 else:
     pages = {
         get_text_trad('menu_home'):[ 
