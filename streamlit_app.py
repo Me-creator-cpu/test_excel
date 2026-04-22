@@ -424,7 +424,7 @@ def login():
     if islogged() or username!=usernames[2].lower():
         write_one_info(f'Currently logged as {username}')
         st.session_state.logged_user=username
-        st.switch_page(pg_v2_idx_costs)
+        st.navigation(pg_v2_idx_costs)
     else:
         st.session_state.logged_user=None
     return False
