@@ -425,7 +425,7 @@ def login():
         write_one_info(f'Currently logged as {username}')
         st.session_state.logged_user=username
         st.navigation([
-            st.page(pg_v2_idx_costs)
+            st.Page(pg_v2_idx_costs)
         ])
     else:
         st.session_state.logged_user=None
