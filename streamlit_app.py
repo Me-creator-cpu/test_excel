@@ -1673,7 +1673,7 @@ def menu_tab_comp():
                       border=True):
         nb_pal=st.slider('Nb palmons', min_value=1, max_value=7, value=1, step=1)
         cost_unit=calcul_upgrade_comp_costs(from_lvl=range_level_min,to_lvl=range_level_max)
-        
+        st.write(cost_unit)
         # 200 / 80 / 40
         even_ratio=st.selectbox("Points ratio", [200,80,40])
         event_points=int(cost_unit)/int(even_ratio)
