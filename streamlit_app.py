@@ -407,6 +407,9 @@ def login():
     usernames = ["User","Tonneman47","Admin"]
     username = st.selectbox("Choose your access", usernames).lower()
     #username = st.selectbox("Choose your access", st.secrets.get("users", {})).lower()
+    st.write(username)
+    st.write(usernames[0].lower())
+    
     if username!=usernames[0].lower():
         password = st.text_input("Password", type="password")
     if st.button("Log in", type="primary"):
@@ -2889,7 +2892,15 @@ def build_graph_donut_test():
         
         # Displaying Chart
         fig2
-        
+# ======================================================================================================
+#
+#    Build Menus for user
+#
+# ======================================================================================================
+page_dict = {}
+
+
+
 # ======================================================================================================
 #
 #    Start MAIN page
