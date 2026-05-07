@@ -1261,12 +1261,15 @@ def calcul_upgrade_costs(from_lvl=1,to_lvl=300):
     else:
         return None
 
-def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30):
+def calcul_upgrade_comp_costs(from_lvl=1,to_lvl=30,formated=True):
     if get_df_idx(idx_palmon) is not None:
         #df = df_xls["DataFrame"][idx_comp]
         #val_cost=df.loc[(df["Level from"] >= from_lvl) & (df["Level from"] <= to_lvl)]["Cost"].sum()
         val_cost=get_upgrade_comp_costs(from_lvl,to_lvl)
-        return large_num_format(val_cost)
+        if formated:
+            return large_num_format(val_cost)
+        else:
+            return val_cost
     else:
         return None
 
@@ -1672,7 +1675,7 @@ def menu_tab_comp():
                       vertical_alignment="center", 
                       border=True):
         nb_pal=st.slider('Nb palmons', min_value=1, max_value=7, value=1, step=1)
-        cost_unit=calcul_upgrade_comp_costs(from_lvl=range_level_min,to_lvl=range_level_max)
+        cost_unit=calcul_upgrade_comp_costs(from_lvl=range_level_min,to_lvl=range_level_max,formated=False)
         st.write(cost_unit)
         # 200 / 80 / 40
         even_ratio=st.selectbox("Points ratio", [200,80,40])
