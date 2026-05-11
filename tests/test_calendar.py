@@ -24,7 +24,8 @@ calendar_options = {
     "headerToolbar": {
         "left": "prev,next today",
         "center": "title",
-        "right": "dayGridMonth,timeGridWeek,listMonth"
+        "right": "dayGridMonth,timeGridWeek,listMonth,resourceTimelineDay"
+        #"right": "resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth",
     }
 }
 
@@ -38,7 +39,20 @@ room_capacity = {
     "Room 5": 14,
 }
 
-# ...
+calendar_custom_css="""
+    .fc-event-past {
+        opacity: 0.8;
+    }
+    .fc-event-time {
+        font-style: italic;
+    }
+    .fc-event-title {
+        font-weight: 700;
+    }
+    .fc-toolbar-title {
+        font-size: 2rem;
+    }
+"""
 # Define file paths for storing booking data
 booking_data_file = "booking_data.csv"
 
@@ -173,12 +187,34 @@ def resa_book():
 st.title("Editable & Selectable Calendar")
 
 # Calendar Default Events
-events = [
-    {"title": "Conference", "start": "2025-09-15", "end": "2025-09-17"},
-    {"title": "Team Meeting", "start": "2025-09-21", "end": "2025-09-21"}
+calendar_events = [
+    {
+        "title": "Event 1",
+        "start": "2023-07-31T08:30:00",
+        "end": "2023-07-31T10:30:00",
+        "resourceId": "a",
+    },
+    {
+        "title": "Event 2",
+        "start": "2023-07-31T07:30:00",
+        "end": "2023-07-31T10:30:00",
+        "resourceId": "b",
+    },
+    {
+        "title": "Event 3",
+        "start": "2023-07-31T10:40:00",
+        "end": "2023-07-31T12:30:00",
+        "resourceId": "a",
+    }
 ]
 
-cal_data = calendar(events=events, options=calendar_options, key="basic_cal")
+cal_data = calendar(
+        events=events, 
+        options=calendar_options,
+        custom_css=calendar_custom_css,
+        key="basic_cal"
+        )
+
 st.write("Calendar data:", cal_data)
 btn_txt_book='Book a meeting 🗓️'
 menu_choice = st.selectbox("Menu", [btn_txt_book, "Cancel Booking", "View Bookings"])
