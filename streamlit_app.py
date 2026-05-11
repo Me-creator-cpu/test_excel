@@ -431,7 +431,7 @@ def login():
             st.navigation([ st.Page(pg_v2_idx_costs) ])
         else:
             st.session_state.logged_user=None
-    login_ok()
+    #login_ok()
     if st.button("Log out"):
         login_ko()
     return False
