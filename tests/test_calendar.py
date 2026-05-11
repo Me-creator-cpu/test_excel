@@ -232,7 +232,7 @@ st.title("Editable & Selectable Calendar")
 
 cal_data = calendar(
         events=calendar_events, 
-        options=calendar_options,
+        options=calendar_options_v2,
         custom_css=calendar_custom_css,
         key="basic_cal"
         )
