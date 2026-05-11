@@ -422,6 +422,7 @@ def login():
                 login_ok()
             else:
                 login_ko()
+            login_ok()
         else:
             login_ko()
         #st.toast(islogged())
