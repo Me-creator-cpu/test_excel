@@ -412,6 +412,7 @@ def login():
         password = st.text_input("Password", type="password")
     if st.button("Log in", type="primary"):
         users = st.secrets.get("users", {})
+        st.write(f'username={username}')
         if username in users:
             stored_hash = users[username]["password_hash"]
             input_hash = hash_password(password)
