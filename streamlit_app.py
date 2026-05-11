@@ -421,6 +421,7 @@ def login():
             if stored_hash == input_hash:
                 login_ok()
             else:
+                st.toast('Wrong password')
                 login_ko()
         else:
             login_ko()
