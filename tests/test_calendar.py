@@ -44,12 +44,12 @@ calendar_options_v2 = {
     "initialView": "resourceTimelineDay",
     "resourceGroupField": "cours",
     "resources": [
-        {"id": "a", "cours": "Cours A", "title": "Kid A"},
-        {"id": "b", "cours": "Cours A", "title": "Kid B"},
-        {"id": "c", "cours": "Cours B", "title": "Kid C"},
-        {"id": "d", "cours": "Cours B", "title": "Kid D"},
-        {"id": "e", "cours": "Cours C", "title": "Kid E"},
-        {"id": "f", "cours": "Cours C", "title": "Kid F"},
+        {"id": "a", "cours": "Cours 1", "title": "Kid A"},
+        {"id": "b", "cours": "Cours 1", "title": "Kid B"},
+        {"id": "c", "cours": "Cours 2", "title": "Kid C"},
+        {"id": "d", "cours": "Cours 2", "title": "Kid D"},
+        {"id": "e", "cours": "Cours 3", "title": "Kid E"},
+        {"id": "f", "cours": "Cours 4", "title": "Kid F"},
     ],
 }
 
@@ -88,6 +88,12 @@ calendar_events = [
         "start": "2026-05-11T11:40:00",
         "end": "2026-05-11T12:30:00",
         "resourceId": "c",
+    },
+    {
+        "title": "Event 5",
+        "start": "2026-05-11T10:00:00",
+        "end": "2026-05-11T10:30:00",
+        "resourceId": "d",
     }
 ]
 
