@@ -415,6 +415,8 @@ def login():
         if username in users:
             stored_hash = users[username]["password_hash"]
             input_hash = hash_password(password)
+            st.write(f'stored_hash={stored_hash}')
+            st.write(f'input_hash={input_hash}')
             if stored_hash == input_hash:
                 login_ok()
             else:
