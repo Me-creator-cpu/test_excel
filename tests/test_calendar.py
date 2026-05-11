@@ -45,7 +45,7 @@ calendar_options_v2 = {
     "nowIndicator": True,
     "resourceGroupField": "cours",
     "resources": [
-        {"id": "a", "cours": "Cours 1", "title": "Kid A"},
+        {"id": "a", "cours": "Cours 1", "title": "Kid A", "color": "#FF6C6C"},
         {"id": "b", "cours": "Cours 1", "title": "Kid B"},
         {"id": "c", "cours": "Cours 2", "title": "Kid C"},
         {"id": "d", "cours": "Cours 2", "title": "Kid D"},
