@@ -37,11 +37,12 @@ calendar_options_v2 = {
     "headerToolbar": {
         "left": "today prev,next",
         "center": "title",
-        "right": "resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth",
+        "right": "timeGridWeek,resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth",
     },
     "slotMinTime": "06:00:00",
     "slotMaxTime": "18:00:00",
-    "initialView": "resourceTimelineDay",
+    "initialView": "timeGridWeek",
+    "nowIndicator": True,
     "resourceGroupField": "cours",
     "resources": [
         {"id": "a", "cours": "Cours 1", "title": "Kid A"},
