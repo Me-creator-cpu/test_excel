@@ -231,7 +231,7 @@ def resa_book():
 st.title("Editable & Selectable Calendar")
 
 cal_data = calendar(
-        events=events, 
+        events=calendar_events, 
         options=calendar_options,
         custom_css=calendar_custom_css,
         key="basic_cal"
