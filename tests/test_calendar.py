@@ -252,7 +252,7 @@ planning = calendar(
         )
 
 if st.button('Ungroup'):
-    planning.group=False
+    planning.resourceGroupField=None
 
 st.write("Calendar data:", planning)
 btn_txt_book='Book a meeting 🗓️'
