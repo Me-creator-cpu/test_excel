@@ -11,6 +11,8 @@ import re
 # https://ryanandmattdatascience.com/streamlit-calender/
 # https://github.com/kanishtulasi/Meeting_Room_Booking_System/blob/main/meeting_room.py
 # => https://meeting-room-booking-system-kt.streamlit.app/
+# https://docs.python.org/fr/3/library/calendar.html
+# https://github.com/im-perativa/streamlit-calendar
 
 # Get the current time in IST
 #current_time_ist = datetime.datetime.now(ist)
@@ -80,6 +82,12 @@ calendar_events = [
         "start": "2026-05-11T10:40:00",
         "end": "2026-05-11T12:30:00",
         "resourceId": "a",
+    },
+    {
+        "title": "Event 4",
+        "start": "2023-07-31T11:40:00",
+        "end": "2023-07-31T12:30:00",
+        "resourceId": "c",
     }
 ]
 
