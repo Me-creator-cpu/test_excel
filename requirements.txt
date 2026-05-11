@@ -8,3 +8,4 @@ matplotlib
 graphviz
 PyGithub
 uuid
+streamlit_calendar
