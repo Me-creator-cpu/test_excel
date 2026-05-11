@@ -10,6 +10,9 @@ import pandas as pd
 # https://github.com/kanishtulasi/Meeting_Room_Booking_System/blob/main/meeting_room.py
 # => https://meeting-room-booking-system-kt.streamlit.app/
 
+# Get the current time in IST
+#current_time_ist = datetime.datetime.now(ist)
+current_time_ist = datetime.datetime.now()
 ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
 default_time_gap=15
 calendar_options = {
