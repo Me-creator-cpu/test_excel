@@ -244,15 +244,19 @@ def resa_book():
 
 st.title("Planning")
 
-cal_data = calendar(
+planning = calendar(
         events=calendar_events, 
         options=calendar_options_v2,
         custom_css=calendar_custom_css,
         key="basic_cal"
         )
 
-st.write("Calendar data:", cal_data)
+if st.button('Ungroup'):
+    planning.group=False
+
+st.write("Calendar data:", planning)
 btn_txt_book='Book a meeting 🗓️'
 menu_choice = st.selectbox("Menu", [btn_txt_book, "Cancel Booking", "View Bookings"])
 if menu_choice == btn_txt_book:
     resa_book()
+
