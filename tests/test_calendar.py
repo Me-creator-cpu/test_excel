@@ -148,6 +148,6 @@ events = [
 cal_data = calendar(events=events, options=calendar_options, key="basic_cal")
 st.write("Calendar data:", cal_data)
 btn_txt_book='Book a meeting 🗓️'
-book_room=st.button(f"{btn_txt_book}")
-if book_room == btn_txt_book:
+menu_choice = st.selectbox("Menu", [btn_txt_book, "Cancel Booking", "View Bookings"])
+if menu_choice == btn_txt_book:
     resa_book()
