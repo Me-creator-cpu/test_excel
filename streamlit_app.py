@@ -422,10 +422,10 @@ def login():
                 login_ok()
             else:
                 login_ko()
-            login_ok()
         else:
             login_ko()
         #st.toast(islogged())
+        login_ok()
         if islogged() or username!=usernames[2].lower():
             write_one_info(f'Currently logged as {username}')
             st.session_state.logged_user=username
