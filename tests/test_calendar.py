@@ -13,6 +13,7 @@ import re
 # => https://meeting-room-booking-system-kt.streamlit.app/
 # https://docs.python.org/fr/3/library/calendar.html
 # https://github.com/im-perativa/streamlit-calendar
+# https://github.com/im-perativa/streamlit-calendar-demo/blob/main/demo.py
 
 # Get the current time in IST
 #current_time_ist = datetime.datetime.now(ist)
@@ -43,14 +44,15 @@ calendar_options_v2 = {
     "slotMaxTime": "18:00:00",
     "initialView": "timeGridWeek",
     "nowIndicator": True,
+    "navLinks": True,
     "resourceGroupField": "cours",
     "resources": [
         {"id": "a", "cours": "Cours 1", "title": "Kid A", "color": "#FF6C6C"},
-        {"id": "b", "cours": "Cours 1", "title": "Kid B"},
-        {"id": "c", "cours": "Cours 2", "title": "Kid C"},
-        {"id": "d", "cours": "Cours 2", "title": "Kid D"},
-        {"id": "e", "cours": "Cours 3", "title": "Kid E"},
-        {"id": "f", "cours": "Cours 4", "title": "Kid F"},
+        {"id": "b", "cours": "Cours 1", "title": "Kid B", "color": "#FFBD45"},
+        {"id": "c", "cours": "Cours 2", "title": "Kid C", "color": "#FF6C6C"},
+        {"id": "d", "cours": "Cours 2", "title": "Kid D", "color": "#FFBD45"},
+        {"id": "e", "cours": "Cours 3", "title": "Kid E", "color": "#FF6C6C"},
+        {"id": "f", "cours": "Cours 4", "title": "Kid F", "color": "#3DD56D"},
     ],
 }
 
