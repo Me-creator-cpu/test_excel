@@ -42,14 +42,14 @@ calendar_options_v2 = {
     "slotMinTime": "06:00:00",
     "slotMaxTime": "18:00:00",
     "initialView": "resourceTimelineDay",
-    "resourceGroupField": "building",
+    "resourceGroupField": "cours",
     "resources": [
-        {"id": "a", "building": "Building A", "title": "Event A"},
-        {"id": "b", "building": "Building A", "title": "Event B"},
-        {"id": "c", "building": "Building B", "title": "Event C"},
-        {"id": "d", "building": "Building B", "title": "Event D"},
-        {"id": "e", "building": "Building C", "title": "Event E"},
-        {"id": "f", "building": "Building C", "title": "Event F"},
+        {"id": "a", "cours": "Cours A", "title": "Event A"},
+        {"id": "b", "cours": "Cours A", "title": "Event B"},
+        {"id": "c", "cours": "Cours B", "title": "Event C"},
+        {"id": "d", "cours": "Cours B", "title": "Event D"},
+        {"id": "e", "cours": "Cours C", "title": "Event E"},
+        {"id": "f", "cours": "Cours C", "title": "Event F"},
     ],
 }
 
