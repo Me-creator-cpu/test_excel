@@ -41,6 +41,37 @@ room_capacity = {
 # Define file paths for storing booking data
 booking_data_file = "booking_data.csv"
 
+# Load existing booking data from the CSV file
+try:
+    with open(booking_data_file, "r") as file:
+        reader = csv.DictReader(file)
+        booking_data = {"room_bookings": {}, "room_availability": {}}
+
+        for row in reader:
+            booking_id = int(row["booking_id"])
+            booking_data["room_bookings"][booking_id] = {
+                "booking_id": booking_id,
+                "date": row["date"],
+                "start_time": row["start_time"],
+                "end_time": row["end_time"],
+                "room": row["room"],
+                "name": row["name"],
+                "email": row["email"],
+                "description": row["description"],
+            }
+
+            # Update room availability data
+            if row["date"] not in booking_data["room_availability"]:
+                booking_data["room_availability"][row["date"]] = {}
+            if row["room"] not in booking_data["room_availability"][row["date"]]:
+                booking_data["room_availability"][row["date"]][row["room"]] = []
+            booking_data["room_availability"][row["date"]][row["room"]].append(
+                (row["start_time"], row["end_time"])
+            )
+
+except FileNotFoundError:
+    booking_data = {"room_bookings": {}, "room_availability": {}}
+
 # Utility Functions
 def is_valid_time(time_str):
     try:
