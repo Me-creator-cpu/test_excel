@@ -236,7 +236,7 @@ def resa_book():
                                     booking_data["room_availability"][str(date)][selected_room].append((str(start_time), str(end_time)))
 
 
-st.title("Editable & Selectable Calendar")
+st.title("Planning")
 
 cal_data = calendar(
         events=calendar_events, 
