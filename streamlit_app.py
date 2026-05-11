@@ -3011,6 +3011,8 @@ if use_pics:
 write_no_streamlit_link()
 #🧮📱
 st.session_state.logged_in = True
+st.session_state.logged_user = 'admin'
+
 if islogged():
     pages = {
         get_text_trad('menu_home'):[ 
