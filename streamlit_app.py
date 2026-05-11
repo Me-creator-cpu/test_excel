@@ -3054,6 +3054,7 @@ if islogged():
             st.Page('./tests/test_eval.py', title='Tests EVAL',icon='🛠️'),
             st.Page('./tests/test2_github.py', title='Test Github',icon='🛠️'),
             st.Page('./tests/test_graph.py', title='Test graphviz',icon='🛠️'),
+            st.Page('./tests/test_calendar.py', title='Test Calendar',icon='📅'),
             st.Page(pg_test_menu_v2, title='Test Menu v2',icon='🛠️')
         ],    
     }
