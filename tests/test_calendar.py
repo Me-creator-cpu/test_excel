@@ -29,6 +29,28 @@ calendar_options = {
     }
 }
 
+calendar_options_v2 = {
+    "editable": True,
+    "selectable": True,
+    "headerToolbar": {
+        "left": "today prev,next",
+        "center": "title",
+        "right": "resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth",
+    },
+    "slotMinTime": "06:00:00",
+    "slotMaxTime": "18:00:00",
+    "initialView": "resourceTimelineDay",
+    "resourceGroupField": "building",
+    "resources": [
+        {"id": "a", "building": "Building A", "title": "Building A"},
+        {"id": "b", "building": "Building A", "title": "Building B"},
+        {"id": "c", "building": "Building B", "title": "Building C"},
+        {"id": "d", "building": "Building B", "title": "Building D"},
+        {"id": "e", "building": "Building C", "title": "Building E"},
+        {"id": "f", "building": "Building C", "title": "Building F"},
+    ],
+}
+
 # Book a Room
 # Define a dictionary that maps room names to their capacities
 room_capacity = {
@@ -38,6 +60,28 @@ room_capacity = {
     "Room 4": 12,
     "Room 5": 14,
 }
+
+# Calendar Default Events
+calendar_events = [
+    {
+        "title": "Event 1",
+        "start": "2023-07-31T08:30:00",
+        "end": "2023-07-31T10:30:00",
+        "resourceId": "a",
+    },
+    {
+        "title": "Event 2",
+        "start": "2023-07-31T07:30:00",
+        "end": "2023-07-31T10:30:00",
+        "resourceId": "b",
+    },
+    {
+        "title": "Event 3",
+        "start": "2023-07-31T10:40:00",
+        "end": "2023-07-31T12:30:00",
+        "resourceId": "a",
+    }
+]
 
 calendar_custom_css="""
     .fc-event-past {
@@ -185,28 +229,6 @@ def resa_book():
 
 
 st.title("Editable & Selectable Calendar")
-
-# Calendar Default Events
-calendar_events = [
-    {
-        "title": "Event 1",
-        "start": "2023-07-31T08:30:00",
-        "end": "2023-07-31T10:30:00",
-        "resourceId": "a",
-    },
-    {
-        "title": "Event 2",
-        "start": "2023-07-31T07:30:00",
-        "end": "2023-07-31T10:30:00",
-        "resourceId": "b",
-    },
-    {
-        "title": "Event 3",
-        "start": "2023-07-31T10:40:00",
-        "end": "2023-07-31T12:30:00",
-        "resourceId": "a",
-    }
-]
 
 cal_data = calendar(
         events=events, 
