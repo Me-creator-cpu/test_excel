@@ -20,7 +20,7 @@ default_time_gap=15
 calendar_options = {
     "editable": True,
     "selectable": True,
-    "initialView": "dayGridMonth",
+    "initialView": "timeGridWeek",
     "headerToolbar": {
         "left": "prev,next today",
         "center": "title",
