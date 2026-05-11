@@ -6,6 +6,10 @@ import pandas as pd
 from pytz import timezone
 
 
+# https://ryanandmattdatascience.com/streamlit-calender/
+# https://github.com/kanishtulasi/Meeting_Room_Booking_System/blob/main/meeting_room.py
+# => https://meeting-room-booking-system-kt.streamlit.app/
+
 st.title("Editable & Selectable Calendar")
 
 options = {
