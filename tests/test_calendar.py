@@ -44,12 +44,12 @@ calendar_options_v2 = {
     "initialView": "resourceTimelineDay",
     "resourceGroupField": "cours",
     "resources": [
-        {"id": "a", "cours": "Cours A", "title": "Event A"},
-        {"id": "b", "cours": "Cours A", "title": "Event B"},
-        {"id": "c", "cours": "Cours B", "title": "Event C"},
-        {"id": "d", "cours": "Cours B", "title": "Event D"},
-        {"id": "e", "cours": "Cours C", "title": "Event E"},
-        {"id": "f", "cours": "Cours C", "title": "Event F"},
+        {"id": "a", "cours": "Cours A", "title": "Kid A"},
+        {"id": "b", "cours": "Cours A", "title": "Kid B"},
+        {"id": "c", "cours": "Cours B", "title": "Kid C"},
+        {"id": "d", "cours": "Cours B", "title": "Kid D"},
+        {"id": "e", "cours": "Cours C", "title": "Kid E"},
+        {"id": "f", "cours": "Cours C", "title": "Kid F"},
     ],
 }
 
