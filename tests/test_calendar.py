@@ -74,6 +74,7 @@ def resa_book():
     current_time = current_time_ist.time()
     office_start_time = datetime.time(9, 0)
     office_end_time = datetime.time(18, 0)
+    default_time_gap=15
     if default_time_gap < 15:
         default_time_gap=15
 
