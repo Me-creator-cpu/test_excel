@@ -53,7 +53,7 @@ calendar_resources = [
 ]
 
 calendar_events = [
-    {"resourceId": "a", "cours": "Cours 1", "title": "Kid A", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00", "color": "#FF6C6C"},
+    {"resourceId": "a", "cours": "Cours 1", "title": "Kid A", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00", "backgroundColor": "#FF6C6C", "borderColor": "#FFBD45"},
     {"resourceId": "b", "cours": "Cours 1", "title": "Kid B", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00", "color": "#FFBD45"},
     {"resourceId": "c", "cours": "Cours 2", "title": "Kid C", "start": "2026-05-12T10:30:00", "end": "2026-05-12T11:00:00", "color": "#FF6C6C"},
     {"resourceId": "d", "cours": "Cours 2", "title": "Kid D", "start": "2026-05-12T14:00:00", "end": "2026-05-12T14:30:00", "color": "#FFBD45"},
