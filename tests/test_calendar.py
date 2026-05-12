@@ -253,23 +253,33 @@ def resa_book():
                                     if selected_room not in booking_data["room_availability"][str(date)]:
                                         booking_data["room_availability"][str(date)][selected_room] = []
                                     booking_data["room_availability"][str(date)][selected_room].append((str(start_time), str(end_time)))
-
-
+   
 st.title("Planning")
 
-mode = st.selectbox(
-    "Calendar Mode:",
-    (
-        "daygrid",
-        "timegrid",
-        "timeline",
-        "resource-daygrid",
-        "resource-timegrid",
-        "resource-timeline",
-        "list",
-        "multimonth",
-    ),
-)
+calendar_display=(
+        "daygrid":"Day",
+        "timegrid":"Time",
+        "timeline":"Timeline",
+        "resource-daygrid":"Resource: Day",
+        "resource-timegrid":"Resource: Time",
+        "resource-timeline":"Resource: Timeline",
+        "list":"List",
+        "multimonth":"Multi months",
+    )
+mode = st.selectbox("Calendar Mode:", options=list(calendar_display.keys()), format_func=lambda x:calendar_display[ x ])
+#mode = st.selectbox(
+#    "Calendar Mode:",
+#    (
+#        "daygrid",
+#        "timegrid",
+#        "timeline",
+#        "resource-daygrid",
+#        "resource-timegrid",
+#        "resource-timeline",
+#        "list",
+#        "multimonth",
+#    ),
+#)
 initialDate='2026-05-12'
 if "resource" in mode:
     if mode == "resource-daygrid":
