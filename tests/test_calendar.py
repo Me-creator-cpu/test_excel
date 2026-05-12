@@ -20,6 +20,16 @@ import re
 current_time_ist = datetime.datetime.now()
 ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
 default_time_gap=15
+
+calendar_resources = [
+    {"id": "a", "cours": "Cours 1", "title": "Kid A", "color": "#FF6C6C"},
+    {"id": "b", "cours": "Cours 1", "title": "Kid B", "color": "#FFBD45"},
+    {"id": "c", "cours": "Cours 2", "title": "Kid C", "color": "#FF6C6C"},
+    {"id": "d", "cours": "Cours 2", "title": "Kid D", "color": "#FFBD45"},
+    {"id": "e", "cours": "Cours 3", "title": "Kid E", "color": "#FF6C6C"},
+    {"id": "f", "cours": "Cours 4", "title": "Kid F", "color": "#3DD56D"},
+]
+
 calendar_options = {
     "editable": True,
     "selectable": True,
@@ -30,6 +40,13 @@ calendar_options = {
         "right": "dayGridMonth,timeGridWeek,listMonth,resourceTimelineDay"
         #"right": "resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth",
     }
+}
+
+calendar_options = {
+    "editable": "true",
+    "navLinks": "true",
+    "resources": calendar_resources,
+    "selectable": "true",
 }
 
 calendar_options_v2 = {
@@ -46,14 +63,7 @@ calendar_options_v2 = {
     "nowIndicator": True,
     "navLinks": True,
     "resourceGroupField": "cours",
-    "resources": [
-        {"id": "a", "cours": "Cours 1", "title": "Kid A", "color": "#FF6C6C"},
-        {"id": "b", "cours": "Cours 1", "title": "Kid B", "color": "#FFBD45"},
-        {"id": "c", "cours": "Cours 2", "title": "Kid C", "color": "#FF6C6C"},
-        {"id": "d", "cours": "Cours 2", "title": "Kid D", "color": "#FFBD45"},
-        {"id": "e", "cours": "Cours 3", "title": "Kid E", "color": "#FF6C6C"},
-        {"id": "f", "cours": "Cours 4", "title": "Kid F", "color": "#3DD56D"},
-    ],
+    "resources": calendar_resources,
 }
 
 # Book a Room
