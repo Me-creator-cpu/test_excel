@@ -22,7 +22,7 @@ ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
 default_time_gap=15
 initialDate='2026-05-12'
 
-calendar_display={
+calendar_display={e
         "daygrid":"Day",
         "timegrid":"Time",
         "timeline":"Timeline",
@@ -366,7 +366,7 @@ if st.button('Ungroup'):
 
 if st.button('Check'):
         with st.expander('Calendar eventsSet', expanded=False, icon=':material/table_view:', width='stretch'):
-                st.write(        planning['eventsSet']['view']        )
+                st.write(        planning['eventsSet']['view'].currentEnd[:10]        )
         
 st.write("Calendar data:", planning)
 btn_txt_book='Book a meeting 🗓️'
