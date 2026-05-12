@@ -80,6 +80,7 @@ calendar_options = {
     "navLinks": True,
     "resources": calendar_resources,
     "selectable": True,
+    "resourceGroupField": calendar_groupby,
     "resourceAreaWidth": "40%",
     "resourceAreaColumns": [
       {
@@ -120,40 +121,6 @@ room_capacity = {
     "Room 4": 12,
     "Room 5": 14,
 }
-
-# Calendar Default Events
-calendar_events_default = [
-    {
-        "title": "Event 1",
-        "start": "2026-05-12T09:30:00",
-        "end": "2026-05-12T10:00:00",
-        "resourceId": "a",
-    },
-    {
-        "title": "Event 2",
-        "start": "2026-05-12T09:30:00",
-        "end": "2026-05-12T10:00:00",
-        "resourceId": "b",
-    },
-    {
-        "title": "Event 3",
-        "start": "2026-05-12T14:00:00",
-        "end": "2026-05-12T14:30:00",
-        "resourceId": "a",
-    },
-    {
-        "title": "Event 4",
-        "start": "2026-05-12T14:00:00",
-        "end": "2026-05-12T14:30:00",
-        "resourceId": "c",
-    },
-    {
-        "title": "Event 5",
-        "start": "2026-05-12T10:00:00",
-        "end": "2026-05-12T10:30:00",
-        "resourceId": "d",
-    }
-]
 
 calendar_custom_css="""
     .fc-event-past {
