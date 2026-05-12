@@ -80,16 +80,16 @@ calendar_options = {
     "navLinks": True,
     "resources": calendar_resources,
     "selectable": True,
-    "resourceAreaWidth": '40%',
+    "resourceAreaWidth": "40%",
     "resourceAreaColumns": [
       {
         "group": True,
-        "field": 'title',
-        "headerContent": 'Kid's name'
+        "field": "title",
+        "headerContent": "Kid's name"
       },
       {
-        "field": 'level',
-        "headerContent": 'Level'
+        "field": "level",
+        "headerContent": "Level"
       }
     ],        
 }
