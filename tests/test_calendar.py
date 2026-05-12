@@ -365,7 +365,8 @@ if st.button('Ungroup'):
         pass
 
 if st.button('Check'):
-        st.write(planning["eventsSet"])
+        with st.expander('Calendar eventsSet', expanded=False, icon=':material/table_view:', width='stretch'):
+                st.write(planning['eventsSet'])
         
 st.write("Calendar data:", planning)
 btn_txt_book='Book a meeting 🗓️'
