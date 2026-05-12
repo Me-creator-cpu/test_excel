@@ -247,12 +247,96 @@ def resa_book():
 
 st.title("Planning")
 
+mode = st.selectbox(
+    "Calendar Mode:",
+    (
+        "daygrid",
+        "timegrid",
+        "timeline",
+        "resource-daygrid",
+        "resource-timegrid",
+        "resource-timeline",
+        "list",
+        "multimonth",
+    ),
+)
+initialDate='2026-05-12'
+if "resource" in mode:
+    if mode == "resource-daygrid":
+        calendar_options = {
+            **calendar_options,
+            "initialDate": initialDate,
+            "initialView": "resourceDayGridDay",
+            "resourceGroupField": "building",
+        }
+    elif mode == "resource-timeline":
+        calendar_options = {
+            **calendar_options,
+            "headerToolbar": {
+                "left": "today prev,next",
+                "center": "title",
+                "right": "resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth",
+            },
+            "initialDate": initialDate,
+            "initialView": "resourceTimelineDay",
+            "resourceGroupField": "building",
+        }
+    elif mode == "resource-timegrid":
+        calendar_options = {
+            **calendar_options,
+            "initialDate": initialDate,
+            "initialView": "resourceTimeGridDay",
+            "resourceGroupField": "building",
+        }
+else:
+    if mode == "daygrid":
+        calendar_options = {
+            **calendar_options,
+            "headerToolbar": {
+                "left": "today prev,next",
+                "center": "title",
+                "right": "dayGridDay,dayGridWeek,dayGridMonth",
+            },
+            "initialDate": initialDate,
+            "initialView": "dayGridMonth",
+        }
+    elif mode == "timegrid":
+        calendar_options = {
+            **calendar_options,
+            "initialView": "timeGridWeek",
+        }
+    elif mode == "timeline":
+        calendar_options = {
+            **calendar_options,
+            "headerToolbar": {
+                "left": "today prev,next",
+                "center": "title",
+                "right": "timelineDay,timelineWeek,timelineMonth",
+            },
+            "initialDate": initialDate,
+            "initialView": "timelineMonth",
+        }
+    elif mode == "list":
+        calendar_options = {
+            **calendar_options,
+            "initialDate": initialDate,
+            "initialView": "listMonth",
+        }
+    elif mode == "multimonth":
+        calendar_options = {
+            **calendar_options,
+            "initialView": "multiMonthYear",
+        }
+
 planning = calendar(
-        events=calendar_events, 
-        options=calendar_options_v2,
+        events=st.session_state.get("events", calendar_events), 
+        options=calendar_options,
         custom_css=calendar_custom_css,
         key="basic_cal"
         )
+
+if planning.get("eventsSet") is not None:
+    st.session_state["events"] = planning["eventsSet"]
 
 if st.button('Ungroup'):
     planning.resourceGroupField=None
