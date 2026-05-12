@@ -349,9 +349,6 @@ else:
             "initialView": "multiMonthYear",
         }
 
-if "view" in planning["eventsSet"]:
-        st.write(planning["eventsSet"])
-
 planning = calendar(
         #events=st.session_state.get("events", calendar_events), 
         events=st.session_state.get("events", calendar_resources),
@@ -367,6 +364,9 @@ if st.button('Ungroup'):
     #planning.resourceGroupField=None
         pass
 
+if st.button('Check'):
+        st.write(planning["eventsSet"])
+        
 st.write("Calendar data:", planning)
 btn_txt_book='Book a meeting 🗓️'
 menu_choice = st.selectbox("Menu", [btn_txt_book, "Cancel Booking", "View Bookings"])
