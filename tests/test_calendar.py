@@ -21,16 +21,16 @@ import re
 current_time_ist = datetime.datetime.now()
 ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
 
-businessHours= [
+businessHours = [
   {
-    daysOfWeek: [ 1, 2, 3 ], # Monday, Tuesday, Wednesday
-    startTime: '08:00', # 8am
-    endTime: '18:00' # 6pm
+    "daysOfWeek": [ 1, 2, 3 ],  # Monday, Tuesday, Wednesday
+    "startTime": '08:00',       # 8am
+    "endTime": '18:00'          # 6pm
   },
   {
-    daysOfWeek: [ 4, 5 ], # Thursday, Friday
-    startTime: '09:00', # 9am
-    endTime: '16:00' # 4pm
+    "daysOfWeek": [ 4, 5 ],     # Thursday, Friday
+    "startTime": '09:00',       # 9am
+    "endTime": '16:00'          # 4pm
   }
 ]
 
