@@ -14,11 +14,25 @@ import re
 # https://docs.python.org/fr/3/library/calendar.html
 # https://github.com/im-perativa/streamlit-calendar
 # https://github.com/im-perativa/streamlit-calendar-demo/blob/main/demo.py
+# https://fullcalendar.io/docs/resourceAreaColumns-grouping-demo
 
 # Get the current time in IST
 #current_time_ist = datetime.datetime.now(ist)
 current_time_ist = datetime.datetime.now()
 ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
+
+businessHours= [
+  {
+    daysOfWeek: [ 1, 2, 3 ], # Monday, Tuesday, Wednesday
+    startTime: '08:00', # 8am
+    endTime: '18:00' # 6pm
+  },
+  {
+    daysOfWeek: [ 4, 5 ], # Thursday, Friday
+    startTime: '09:00', # 9am
+    endTime: '16:00' # 4pm
+  }
+]
 
 default_time_gap=15
 initialDate='2026-05-12'
@@ -34,15 +48,6 @@ calendar_display={
         "list":"List",
         "multimonth":"Multi months",
 }
-
-calendar_resources_demo = [
-    {"id": "a", "building": "Building A", "title": "Room A"},
-    {"id": "b", "building": "Building A", "title": "Room B"},
-    {"id": "c", "building": "Building B", "title": "Room C"},
-    {"id": "d", "building": "Building B", "title": "Room D"},
-    {"id": "e", "building": "Building C", "title": "Room E"},
-    {"id": "f", "building": "Building C", "title": "Room F"},
-]
 
 calendar_resources = [
     {"id": "a", "title": "Kid A", "level":"Niveau 2", "color": "#FF6C6C"},
@@ -80,6 +85,8 @@ calendar_options = {
     "navLinks": True,
     "resources": calendar_resources,
     "selectable": True,
+    "nowIndicator": True,
+    "eventOrder":"level,-duration,allDay,start",
     #"resourceGroupField": calendar_groupby,
     "resourceAreaWidth": "40%",
     "resourceAreaColumns": [
