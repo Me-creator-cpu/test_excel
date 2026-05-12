@@ -80,6 +80,18 @@ calendar_options = {
     "navLinks": True,
     "resources": calendar_resources,
     "selectable": True,
+    "resourceAreaWidth": '40%',
+    "resourceAreaColumns": [
+      {
+        "group": True,
+        "field": 'title',
+        "headerContent": 'Kid's name'
+      },
+      {
+        "field": 'level',
+        "headerContent": 'Level'
+      }
+    ],        
 }
 
 calendar_options_v2 = {
@@ -297,6 +309,7 @@ if "resource" in mode:
             **calendar_options,
             "initialDate": initialDate,
             "initialView": "resourceDayGridDay",
+            "firstweekday": 0,
             "resourceGroupField": calendar_groupby,
         }
     elif mode == "resource-timeline":
@@ -309,6 +322,7 @@ if "resource" in mode:
             },
             "initialDate": initialDate,
             "initialView": "resourceTimelineDay",
+            "firstweekday": 0,
             "resourceGroupField": calendar_groupby,
         }
     elif mode == "resource-timegrid":
@@ -316,6 +330,7 @@ if "resource" in mode:
             **calendar_options,
             "initialDate": initialDate,
             "initialView": "resourceTimeGridDay",
+            "firstweekday": 0,
             "resourceGroupField": calendar_groupby,
         }
 else:
@@ -329,6 +344,7 @@ else:
             },
             "initialDate": initialDate,
             "initialView": "dayGridMonth",
+            "firstweekday": 0,
         }
     elif mode == "timegrid":
         calendar_options = {
