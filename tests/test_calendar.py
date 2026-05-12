@@ -55,21 +55,24 @@ calendar_eventTimeFormat= { # like '14:30:00'
     "second": '2-digit',
     "hour12": False
   }
-
+data_type={
+    "Type":["Water",      "Fire",    "Electricity",    "Wood",    "Any"],
+    "Icon":["💧",        "🔥",      "⚡",             "🪵",     "🌐"] ,
+    "Color":["#2784F5","#F54927",    "#EEF527",    "#F57D27",    "#27F549"]
 calendar_resources = [
-    {"id": "a", "title": "Kid A", "level":"Niveau 2", "color": "#FF6C6C"},
-    {"id": "b", "title": "Kid B", "level":"Niveau 1", "color": "#FFBD45"},
-    {"id": "c", "title": "Kid C", "level":"Niveau 3", "color": "#FF6C6C"},
+    {"id": "a", "title": "Kid A", "level":"Niveau 2", "color": "#2784F5"},
+    {"id": "b", "title": "Kid B", "level":"Niveau 1", "color": "#F54927"},
+    {"id": "c", "title": "Kid C", "level":"Niveau 3", "color": "#EEF527"},
     {"id": "d", "title": "Kid D", "level":"Niveau 5", "color": "#FFBD45"},
     {"id": "e", "title": "Kid E", "level":"Niveau 8", "color": "#FF6C6C"},
     {"id": "f", "title": "Kid F", "level":"Niveau 4", "color": "#3DD56D"},
-    {"id": "g", "title": "Kid G", "level":"Niveau 3", "color": "#3DD56D"},
+    {"id": "g", "title": "Kid G", "level":"Niveau 3", "color": "#27F549"},
 ]
 
 calendar_events = [
-    {"resourceId": "a", "cours": "Cours 1", "title": "Kid A", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00", "color": "#FF6C6C", "backgroundColor": "#FF6C6C", "borderColor": "#FF6C6C"},
-    {"resourceId": "b", "cours": "Cours 1", "title": "Kid B", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00", "color": "#FFBD45"},
-    {"resourceId": "c", "cours": "Cours 2", "title": "Kid C", "start": "2026-05-12T10:30:00", "end": "2026-05-12T11:00:00", "color": "#FF6C6C"},
+    {"resourceId": "a", "cours": "Cours 1", "title": "Kid A", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00", "color": "#2784F5", "backgroundColor": "#FF6C6C", "borderColor": "#FF6C6C"},
+    {"resourceId": "b", "cours": "Cours 1", "title": "Kid B", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00", "color": "#F54927"},
+    {"resourceId": "c", "cours": "Cours 2", "title": "Kid C", "start": "2026-05-12T10:30:00", "end": "2026-05-12T11:00:00", "color": "#EEF527"},
     {"resourceId": "d", "cours": "Cours 2", "title": "Kid D", "start": "2026-05-12T14:00:00", "end": "2026-05-12T14:30:00", "color": "#FFBD45"},
     {"resourceId": "e", "cours": "Cours 3", "title": "Kid E", "start": "2026-05-12T14:30:00", "end": "2026-05-12T15:00:00", "color": "#FF6C6C"},
     {"resourceId": "f", "cours": "Cours 4", "title": "Kid F", "start": "2026-05-12T15:30:00", "end": "2026-05-12T16:00:00", "color": "#3DD56D"},
