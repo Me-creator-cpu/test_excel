@@ -363,12 +363,12 @@ if planning.get("eventsSet") is not None:
 if st.button('Ungroup'):
     #planning.resourceGroupField=None
         pass
-
-with st.expander('Calendar eventsSet', expanded=False, icon=':material/table_view:', width='stretch'):
-        #st.write(        planning['eventsSet']['view'].currentEnd[:10]        )
-        initialDate=planning['eventsSet']['view'].currentEnd
+if "currentEnd" in planning['eventsSet']['view']:
+        with st.expander('Calendar eventsSet', expanded=True, icon=':material/table_view:', width='stretch'):
+                #st.write(        planning['eventsSet']['view'].currentEnd[:10]        )
+                initialDate=planning['eventsSet']['view'].currentEnd
         
-with st.expander('Calendar eventsSet', expanded=False, icon=':material/table_view:', width='stretch'):
+with st.expander('Calendar data', expanded=False, icon=':material/table_view:', width='stretch'):
         st.write("Calendar data:", planning)
 
 btn_txt_book='Book a meeting 🗓️'
