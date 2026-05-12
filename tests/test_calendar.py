@@ -109,7 +109,7 @@ room_capacity = {
 }
 
 # Calendar Default Events
-calendar_events = [
+calendar_events_default = [
     {
         "title": "Event 1",
         "start": "2026-05-12T09:30:00",
