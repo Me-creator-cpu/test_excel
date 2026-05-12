@@ -49,6 +49,14 @@ calendar_display={
         "multimonth":"Multi months",
 }
 
+calendar_eventTimeFormat= { # like '14:30:00'
+    "hour": '2-digit',
+    "minute": '2-digit',
+    "second": '2-digit',
+    "hour12": False
+  }
+})
+
 calendar_resources = [
     {"id": "a", "title": "Kid A", "level":"Niveau 2", "color": "#FF6C6C"},
     {"id": "b", "title": "Kid B", "level":"Niveau 1", "color": "#FFBD45"},
@@ -84,6 +92,7 @@ calendar_options = {
     "editable": True,
     "navLinks": True,
     "resources": calendar_resources,
+    "eventTimeFormat": calendar_eventTimeFormat,
     "selectable": True,
     "nowIndicator": True,
     "eventOrder":"level,-duration,allDay,start",
