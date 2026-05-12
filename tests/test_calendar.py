@@ -85,12 +85,12 @@ calendar_options = {
     "resourceAreaColumns": [
       {
         "group": True,
-        "field": "title",
-        "headerContent": "Kid's name"
-      },
-      {
         "field": "level",
         "headerContent": "Level"
+      },
+      {
+        "field": "title",
+        "headerContent": "Kid's name"
       }
     ],        
 }
