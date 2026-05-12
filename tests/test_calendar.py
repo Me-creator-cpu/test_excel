@@ -80,7 +80,7 @@ calendar_options = {
     "navLinks": True,
     "resources": calendar_resources,
     "selectable": True,
-    "resourceGroupField": calendar_groupby,
+    #"resourceGroupField": calendar_groupby,
     "resourceAreaWidth": "40%",
     "resourceAreaColumns": [
       {
