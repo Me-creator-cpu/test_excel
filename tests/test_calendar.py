@@ -256,7 +256,7 @@ def resa_book():
    
 st.title("Planning")
 
-calendar_display=(
+calendar_display={
         "daygrid":"Day",
         "timegrid":"Time",
         "timeline":"Timeline",
@@ -265,7 +265,7 @@ calendar_display=(
         "resource-timeline":"Resource: Timeline",
         "list":"List",
         "multimonth":"Multi months",
-    )
+}
 mode = st.selectbox("Calendar Mode:", options=list(calendar_display.keys()), format_func=lambda x:calendar_display[ x ])
 #mode = st.selectbox(
 #    "Calendar Mode:",
