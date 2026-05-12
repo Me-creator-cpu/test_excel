@@ -45,13 +45,13 @@ calendar_resources_demo = [
 ]
 
 calendar_resources = [
-    {"id": "a", "title": "Kid A", "level":2, "color": "#FF6C6C"},
-    {"id": "b", "title": "Kid B", "level":1, "color": "#FFBD45"},
-    {"id": "c", "title": "Kid C", "level":3, "color": "#FF6C6C"},
-    {"id": "d", "title": "Kid D", "level":5, "color": "#FFBD45"},
-    {"id": "e", "title": "Kid E", "level":8, "color": "#FF6C6C"},
-    {"id": "f", "title": "Kid F", "level":4, "color": "#3DD56D"},
-    {"id": "g", "title": "Kid G", "level":3, "color": "#3DD56D"},
+    {"id": "a", "title": "Kid A", "level":"Niveau 2", "color": "#FF6C6C"},
+    {"id": "b", "title": "Kid B", "level":"Niveau 1", "color": "#FFBD45"},
+    {"id": "c", "title": "Kid C", "level":"Niveau 3", "color": "#FF6C6C"},
+    {"id": "d", "title": "Kid D", "level":"Niveau 5", "color": "#FFBD45"},
+    {"id": "e", "title": "Kid E", "level":"Niveau 8", "color": "#FF6C6C"},
+    {"id": "f", "title": "Kid F", "level":"Niveau 4", "color": "#3DD56D"},
+    {"id": "g", "title": "Kid G", "level":"Niveau 3", "color": "#3DD56D"},
 ]
 
 calendar_events = [
