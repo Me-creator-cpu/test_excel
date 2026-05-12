@@ -41,19 +41,20 @@ calendar_resources_demo = [
     {"id": "e", "building": "Building C", "title": "Room E"},
     {"id": "f", "building": "Building C", "title": "Room F"},
 ]
-
+        
+        
 calendar_resources = [
-    {"id": "a", "cours": "Cours 1", "title": "Kid A", "color": "#FF6C6C"},
-    {"id": "b", "cours": "Cours 1", "title": "Kid B", "color": "#FFBD45"},
-    {"id": "c", "cours": "Cours 2", "title": "Kid C", "color": "#FF6C6C"},
-    {"id": "d", "cours": "Cours 2", "title": "Kid D", "color": "#FFBD45"},
-    {"id": "e", "cours": "Cours 3", "title": "Kid E", "color": "#FF6C6C"},
-    {"id": "f", "cours": "Cours 4", "title": "Kid F", "color": "#3DD56D"},
+    {"id": "a", "cours": "Cours 1", "title": "Kid A", "start": "2026-05-11T09:30:00", "end": "2026-05-11T10:00:00", "color": "#FF6C6C"},
+    {"id": "b", "cours": "Cours 1", "title": "Kid B", "start": "2026-05-11T09:30:00", "end": "2026-05-11T10:00:00", "color": "#FFBD45"},
+    {"id": "c", "cours": "Cours 2", "title": "Kid C", "start": "2026-05-11T10:30:00", "end": "2026-05-11T11:00:00", "color": "#FF6C6C"},
+    {"id": "d", "cours": "Cours 2", "title": "Kid D", "start": "2026-05-11T14:00:00", "end": "2026-05-11T14:30:00", "color": "#FFBD45"},
+    {"id": "e", "cours": "Cours 3", "title": "Kid E", "start": "2026-05-11T14:30:00", "end": "2026-05-11T15:00:00", "color": "#FF6C6C"},
+    {"id": "f", "cours": "Cours 4", "title": "Kid F", "start": "2026-05-11T15:30:00", "end": "2026-05-11T16:00:00", "color": "#3DD56D"},
 ]
 
 calendar_groupby = "cours" #"building"
 
-calendar_options = {
+calendar_options_demo = {
     "editable": True,
     "selectable": True,
     "initialView": "timeGridWeek",
@@ -66,10 +67,10 @@ calendar_options = {
 }
 
 calendar_options = {
-    "editable": "true",
-    "navLinks": "true",
+    "editable": True,
+    "navLinks": True,
     "resources": calendar_resources,
-    "selectable": "true",
+    "selectable": True,
 }
 
 calendar_options_v2 = {
@@ -85,7 +86,7 @@ calendar_options_v2 = {
     "initialView": "timeGridWeek",
     "nowIndicator": True,
     "navLinks": True,
-    "resourceGroupField": "cours",
+    "resourceGroupField": calendar_groupby,
     "resources": calendar_resources,
 }
 
@@ -353,7 +354,6 @@ planning = calendar(
         events=st.session_state.get("events", calendar_resources),
         options=calendar_options,
         custom_css=calendar_custom_css,
-        #key="basic_cal"
         key=mode,
         )
 
