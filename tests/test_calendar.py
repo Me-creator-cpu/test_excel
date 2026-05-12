@@ -364,14 +364,12 @@ if st.button('Ungroup'):
     #planning.resourceGroupField=None
         pass
 
-if st.button('Check'):
-        with st.expander('Calendar eventsSet', expanded=False, icon=':material/table_view:', width='stretch'):
-                #st.write(        planning['eventsSet']['view'].currentEnd[:10]        )
-                initialDate=planning['eventsSet']['view'].currentEnd
+with st.expander('Calendar eventsSet', expanded=False, icon=':material/table_view:', width='stretch'):
+        #st.write(        planning['eventsSet']['view'].currentEnd[:10]        )
+        initialDate=planning['eventsSet']['view'].currentEnd
         
-if st.button('Calendar eventsSet'):
-        with st.expander('Calendar eventsSet', expanded=False, icon=':material/table_view:', width='stretch'):
-                st.write("Calendar data:", planning)
+with st.expander('Calendar eventsSet', expanded=False, icon=':material/table_view:', width='stretch'):
+        st.write("Calendar data:", planning)
 
 btn_txt_book='Book a meeting 🗓️'
 menu_choice = st.selectbox("Menu", [btn_txt_book, "Cancel Booking", "View Bookings"])
