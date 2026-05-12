@@ -22,7 +22,7 @@ ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
 default_time_gap=15
 initialDate='2026-05-12'
 
-calendar_display={e
+calendar_display={
         "daygrid":"Day",
         "timegrid":"Time",
         "timeline":"Timeline",
