@@ -349,6 +349,9 @@ else:
             "initialView": "multiMonthYear",
         }
 
+if "view" in planning["eventsSet"]:
+        st.write(planning["eventsSet"])
+
 planning = calendar(
         #events=st.session_state.get("events", calendar_events), 
         events=st.session_state.get("events", calendar_resources),
@@ -361,7 +364,8 @@ if planning.get("eventsSet") is not None:
     st.session_state["events"] = planning["eventsSet"]
 
 if st.button('Ungroup'):
-    planning.resourceGroupField=None
+    #planning.resourceGroupField=None
+        pass
 
 st.write("Calendar data:", planning)
 btn_txt_book='Book a meeting 🗓️'
