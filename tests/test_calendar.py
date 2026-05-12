@@ -56,9 +56,8 @@ calendar_eventTimeFormat= { # like '14:30:00'
     "hour12": False
   }
 data_type={
-    "Type":["Water",      "Fire",    "Electricity",    "Wood",    "Any"],
-    "Icon":["💧",        "🔥",      "⚡",             "🪵",     "🌐"] ,
     "Color":["#2784F5","#F54927",    "#EEF527",    "#F57D27",    "#27F549"]
+}  
 calendar_resources = [
     {"id": "a", "title": "Kid A", "level":"Niveau 2", "color": "#2784F5"},
     {"id": "b", "title": "Kid B", "level":"Niveau 1", "color": "#F54927"},
