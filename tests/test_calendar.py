@@ -19,8 +19,10 @@ import re
 #current_time_ist = datetime.datetime.now(ist)
 current_time_ist = datetime.datetime.now()
 ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
+
 default_time_gap=15
 initialDate='2026-05-12'
+calendar_groupby = "title" #"building"
 
 calendar_display={
         "daygrid":"Day",
@@ -41,8 +43,7 @@ calendar_resources_demo = [
     {"id": "e", "building": "Building C", "title": "Room E"},
     {"id": "f", "building": "Building C", "title": "Room F"},
 ]
-        
-        
+
 calendar_resources = [
     {"id": "a", "title": "Kid A", "level":2, "color": "#FF6C6C"},
     {"id": "b", "title": "Kid B", "level":1, "color": "#FFBD45"},
@@ -60,8 +61,6 @@ calendar_events = [
     {"resourceId": "e", "cours": "Cours 3", "title": "Kid E", "start": "2026-05-12T14:30:00", "end": "2026-05-12T15:00:00", "color": "#FF6C6C"},
     {"resourceId": "f", "cours": "Cours 4", "title": "Kid F", "start": "2026-05-12T15:30:00", "end": "2026-05-12T16:00:00", "color": "#3DD56D"},
 ]
-
-calendar_groupby = "cours" #"building"
 
 calendar_options_demo = {
     "editable": True,
