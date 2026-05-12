@@ -51,6 +51,7 @@ calendar_resources = [
     {"id": "d", "title": "Kid D", "level":5, "color": "#FFBD45"},
     {"id": "e", "title": "Kid E", "level":8, "color": "#FF6C6C"},
     {"id": "f", "title": "Kid F", "level":4, "color": "#3DD56D"},
+    {"id": "g", "title": "Kid G", "level":3, "color": "#3DD56D"},
 ]
 
 calendar_events = [
