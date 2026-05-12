@@ -55,7 +55,6 @@ calendar_eventTimeFormat= { # like '14:30:00'
     "second": '2-digit',
     "hour12": False
   }
-})
 
 calendar_resources = [
     {"id": "a", "title": "Kid A", "level":"Niveau 2", "color": "#FF6C6C"},
