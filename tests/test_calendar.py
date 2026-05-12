@@ -44,6 +44,15 @@ calendar_resources_demo = [
         
         
 calendar_resources = [
+    {"id": "a", "title": "Kid A", "level":2, "color": "#FF6C6C"},
+    {"id": "b", "title": "Kid B", "level":1, "color": "#FFBD45"},
+    {"id": "c", "title": "Kid C", "level":3, "color": "#FF6C6C"},
+    {"id": "d", "title": "Kid D", "level":5, "color": "#FFBD45"},
+    {"id": "e", "title": "Kid E", "level":8, "color": "#FF6C6C"},
+    {"id": "f", "title": "Kid F", "level":4, "color": "#3DD56D"},
+]
+
+calendar_events = [
     {"id": "a", "cours": "Cours 1", "title": "Kid A", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00", "color": "#FF6C6C"},
     {"id": "b", "cours": "Cours 1", "title": "Kid B", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00", "color": "#FFBD45"},
     {"id": "c", "cours": "Cours 2", "title": "Kid C", "start": "2026-05-12T10:30:00", "end": "2026-05-12T11:00:00", "color": "#FF6C6C"},
@@ -350,8 +359,7 @@ else:
         }
 
 planning = calendar(
-        #events=st.session_state.get("events", calendar_events), 
-        events=st.session_state.get("events", calendar_resources),
+        events=st.session_state.get("events", calendar_events),
         options=calendar_options,
         custom_css=calendar_custom_css,
         key=mode,
