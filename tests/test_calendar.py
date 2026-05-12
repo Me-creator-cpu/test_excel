@@ -349,7 +349,8 @@ else:
         }
 
 planning = calendar(
-        events=st.session_state.get("events", calendar_events), 
+        #events=st.session_state.get("events", calendar_events), 
+        events=st.session_state.get("events", calendar_resources),
         options=calendar_options,
         custom_css=calendar_custom_css,
         #key="basic_cal"
