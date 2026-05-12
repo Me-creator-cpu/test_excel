@@ -342,7 +342,8 @@ planning = calendar(
         events=st.session_state.get("events", calendar_events), 
         options=calendar_options,
         custom_css=calendar_custom_css,
-        key="basic_cal"
+        #key="basic_cal"
+        key=mode,
         )
 
 if planning.get("eventsSet") is not None:
