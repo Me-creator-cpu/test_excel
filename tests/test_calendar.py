@@ -87,6 +87,7 @@ calendar_options = {
     "selectable": True,
     "nowIndicator": True,
     "eventOrder":"level,-duration,allDay,start",
+    "eventDisplay":"block",
     #"resourceGroupField": calendar_groupby,
     "resourceAreaWidth": "40%",
     "resourceAreaColumns": [
