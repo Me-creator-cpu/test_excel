@@ -20,6 +20,27 @@ import re
 current_time_ist = datetime.datetime.now()
 ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
 default_time_gap=15
+initialDate='2026-05-12'
+
+calendar_display={
+        "daygrid":"Day",
+        "timegrid":"Time",
+        "timeline":"Timeline",
+        "resource-daygrid":"Resource: Day",
+        "resource-timegrid":"Resource: Time",
+        "resource-timeline":"Resource: Timeline",
+        "list":"List",
+        "multimonth":"Multi months",
+}
+
+calendar_resources_demo = [
+    {"id": "a", "building": "Building A", "title": "Room A"},
+    {"id": "b", "building": "Building A", "title": "Room B"},
+    {"id": "c", "building": "Building B", "title": "Room C"},
+    {"id": "d", "building": "Building B", "title": "Room D"},
+    {"id": "e", "building": "Building C", "title": "Room E"},
+    {"id": "f", "building": "Building C", "title": "Room F"},
+]
 
 calendar_resources = [
     {"id": "a", "cours": "Cours 1", "title": "Kid A", "color": "#FF6C6C"},
@@ -29,6 +50,8 @@ calendar_resources = [
     {"id": "e", "cours": "Cours 3", "title": "Kid E", "color": "#FF6C6C"},
     {"id": "f", "cours": "Cours 4", "title": "Kid F", "color": "#3DD56D"},
 ]
+
+calendar_groupby = "cours" #"building"
 
 calendar_options = {
     "editable": True,
@@ -256,38 +279,15 @@ def resa_book():
    
 st.title("Planning")
 
-calendar_display={
-        "daygrid":"Day",
-        "timegrid":"Time",
-        "timeline":"Timeline",
-        "resource-daygrid":"Resource: Day",
-        "resource-timegrid":"Resource: Time",
-        "resource-timeline":"Resource: Timeline",
-        "list":"List",
-        "multimonth":"Multi months",
-}
 mode = st.selectbox("Calendar Mode:", options=list(calendar_display.keys()), format_func=lambda x:calendar_display[ x ])
-#mode = st.selectbox(
-#    "Calendar Mode:",
-#    (
-#        "daygrid",
-#        "timegrid",
-#        "timeline",
-#        "resource-daygrid",
-#        "resource-timegrid",
-#        "resource-timeline",
-#        "list",
-#        "multimonth",
-#    ),
-#)
-initialDate='2026-05-12'
+
 if "resource" in mode:
     if mode == "resource-daygrid":
         calendar_options = {
             **calendar_options,
             "initialDate": initialDate,
             "initialView": "resourceDayGridDay",
-            "resourceGroupField": "building",
+            "resourceGroupField": calendar_groupby,
         }
     elif mode == "resource-timeline":
         calendar_options = {
@@ -299,14 +299,14 @@ if "resource" in mode:
             },
             "initialDate": initialDate,
             "initialView": "resourceTimelineDay",
-            "resourceGroupField": "building",
+            "resourceGroupField": calendar_groupby,
         }
     elif mode == "resource-timegrid":
         calendar_options = {
             **calendar_options,
             "initialDate": initialDate,
             "initialView": "resourceTimeGridDay",
-            "resourceGroupField": "building",
+            "resourceGroupField": calendar_groupby,
         }
 else:
     if mode == "daygrid":
