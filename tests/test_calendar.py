@@ -249,6 +249,7 @@ def generate_random_booking_id():
     return random.randint(1000, 9999)
 
 # Calendar Functions
+@st.dialog("New Resa")
 def resa_book():
     st.header("New event")
     current_date = current_time_ist.date()
