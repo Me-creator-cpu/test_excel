@@ -2,6 +2,7 @@ import streamlit as st
 #import datetime
 from datetime import timedelta
 from datetime import datetime
+from datetime import time
 from streamlit_calendar import calendar
 import csv
 import pandas as pd
@@ -252,8 +253,8 @@ def resa_book():
     st.header("New event")
     current_date = current_time_ist.date()
     current_time = current_time_ist.time()
-    office_start_time = datetime.time(9, 0)
-    office_end_time = datetime.time(18, 0)
+    office_start_time = time(9, 0)
+    office_end_time = time(18, 0)
     default_time_gap=15
     if default_time_gap < 15:
         default_time_gap=15
