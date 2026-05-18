@@ -89,7 +89,29 @@ data_cours = [
     {"title": "Title 8", "start": "2026-05-21 15:30:00", "end": "2026-05-21 16:00:00"},
 ]
 
-data_cours_niveau = []
+data_cours_niveau = [
+	{
+		niveau_txt:["Pour tous","Niveau 1","Niveau 2","Niveau 3","Niveau 4","Niveau 5","Niveau 6","Niveau 7","Niveau 8","Niveau 9","Niveau 1O","Niveau 11","Niveau 12"]
+		niveau_lvl:[0,1,2,3,4,5,6,7,8,9,10,11,12]
+	}
+]
+
+
+liste_niveaux = {
+	"Pour tous":0,
+	"Niveau 1":1,
+	"Niveau 2":2,
+	"Niveau 3":3,
+	"Niveau 4":4,
+	"Niveau 5":5,
+	"Niveau 6":6,
+	"Niveau 7":7,
+	"Niveau 8":8,
+	"Niveau 9":9,
+	"Niveau 1O":10,
+	"Niveau 11":11,
+	"Niveau 12":12
+}
 
 calendar_options_demo = {
     "editable": True,
@@ -312,6 +334,7 @@ def form_time(item):
 def new_event(item):
     st.write(f"Why is {item} your favorite?")
     reason = st.text_input("Reason...")
+	options = st.multiselect(f"Filter values for event:", data_cours_niveau['niveau_txt'].unique(), default=list(data_cours_niveau['niveau_txt'].unique()))
     formatted_cours = [et['title'] + ': ' + form_time(et['start']).strftime('%H:%M:%S') + '-' + form_time(et['end']).strftime('%H:%M:%S') for et in list(data_cours)]
     requested_cours=st.selectbox("Select the period:", formatted_cours,index=None) 
   
