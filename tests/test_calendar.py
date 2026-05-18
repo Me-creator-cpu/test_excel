@@ -89,13 +89,10 @@ data_cours = [
     {"title": "Title 8", "start": "2026-05-21 15:30:00", "end": "2026-05-21 16:00:00"},
 ]
 
-data_cours_niveau = [
-	{
-		"niveau_txt":["Pour tous","Niveau 1","Niveau 2","Niveau 3","Niveau 4","Niveau 5","Niveau 6","Niveau 7","Niveau 8","Niveau 9","Niveau 1O","Niveau 11","Niveau 12"]
-		"niveau_lvl":[0,1,2,3,4,5,6,7,8,9,10,11,12]
-	}
-]
-
+data_cours_niveau ={
+	"niveau_txt":["Pour tous","Niveau 1","Niveau 2","Niveau 3","Niveau 4","Niveau 5","Niveau 6","Niveau 7","Niveau 8","Niveau 9","Niveau 1O","Niveau 11","Niveau 12"]
+	"niveau_lvl":[0,1,2,3,4,5,6,7,8,9,10,11,12]
+}
 
 liste_niveaux = {
 	"Pour tous":0,
