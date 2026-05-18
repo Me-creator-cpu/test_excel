@@ -311,7 +311,7 @@ def new_event(item):
     st.write(f"Why is {item} your favorite?")
     reason = st.text_input("Reason...")
     formatted_cours = [et['title'] + ': ' + form_time(et['start']).strftime('%H:%M:%S') + '-' + form_time(et['end']).strftime('%H:%M:%S') for et in list(data_cours)]
-    requested_cours=st.selectbox("Select the period:", formatted_end_times,index=None) 
+    requested_cours=st.selectbox("Select the period:", formatted_cours,index=None) 
   
     if st.button("Submit"):
         st.session_state.new_event = {"item": item, "reason": reason}
