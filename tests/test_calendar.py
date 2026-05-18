@@ -79,14 +79,14 @@ calendar_events = [
 ]
 
 data_cours = [
-    {"title": "Title 1", "start": "2026-05-12 09:30:00", "end": "2026-05-12T10:00:00"},
-    {"title": "Title 2", "start": "2026-05-12 10:30:00", "end": "2026-05-12 11:00:00"},
-    {"title": "Title 3", "start": "2026-05-12 14:30:00", "end": "2026-05-12 15:00:00"},
-    {"title": "Title 4", "start": "2026-05-12 15:30:00", "end": "2026-05-12 16:00:00"},
-    {"title": "Title 5", "start": "2026-05-18 09:30:00", "end": "2026-05-18 10:00:00"},
-    {"title": "Title 6", "start": "2026-05-19 10:30:00", "end": "2026-05-19 11:00:00"},
-    {"title": "Title 7", "start": "2026-05-20 14:30:00", "end": "2026-05-20 15:00:00"},
-    {"title": "Title 8", "start": "2026-05-21 15:30:00", "end": "2026-05-21 16:00:00"},
+    {"title": "Title 1", "niveau": "1", "start": "2026-05-12 09:30:00", "end": "2026-05-12T10:00:00"},
+    {"title": "Title 2", "niveau": "2", "start": "2026-05-12 10:30:00", "end": "2026-05-12 11:00:00"},
+    {"title": "Title 3", "niveau": "3", "start": "2026-05-12 14:30:00", "end": "2026-05-12 15:00:00"},
+    {"title": "Title 4", "niveau": "4", "start": "2026-05-12 15:30:00", "end": "2026-05-12 16:00:00"},
+    {"title": "Title 5", "niveau": "5", "start": "2026-05-18 09:30:00", "end": "2026-05-18 10:00:00"},
+    {"title": "Title 6", "niveau": "6", "start": "2026-05-19 10:30:00", "end": "2026-05-19 11:00:00"},
+    {"title": "Title 7", "niveau": "7", "start": "2026-05-20 14:30:00", "end": "2026-05-20 15:00:00"},
+    {"title": "Title 8", "niveau": "0", "start": "2026-05-21 15:30:00", "end": "2026-05-21 16:00:00"},
 ]
 
 data_cours_niveau = {
@@ -331,8 +331,9 @@ def form_time(item):
 def new_event(item):
     st.write(f"Why is {item} your favorite?")
     reason = st.text_input("Reason...")
-    options = st.multiselect(f"Filter values for event:", data_cours_niveau['niveau_txt'])
-    formatted_cours = [et['title'] + ': ' + form_time(et['start']).strftime('%H:%M:%S') + '-' + form_time(et['end']).strftime('%H:%M:%S') for et in list(data_cours)]
+    options = st.selectbox(f"Filter values for event:", data_cours_niveau['niveau_txt'])
+	data_cours_filtered=data_cours
+    formatted_cours = [et['title'] + ': ' + form_time(et['start']).strftime('%H:%M:%S') + '-' + form_time(et['end']).strftime('%H:%M:%S') for et in list(data_cours_filtered)]
     requested_cours=st.selectbox("Select the period:", formatted_cours,index=None) 
   
     if st.button("Submit"):
