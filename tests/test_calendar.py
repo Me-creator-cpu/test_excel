@@ -283,7 +283,23 @@ def resa_book():
                                     if selected_room not in booking_data["room_availability"][str(date)]:
                                         booking_data["room_availability"][str(date)][selected_room] = []
                                     booking_data["room_availability"][str(date)][selected_room].append((str(start_time), str(end_time)))
-   
+
+@st.dialog("New Event")
+def new_event(item):
+    st.write(f"Why is {item} your favorite?")
+    reason = st.text_input("Reason...")
+    if st.button("Submit"):
+        st.session_state.new_event = {"item": item, "reason": reason}
+        st.rerun()
+
+if "new_event" not in st.session_state:
+    st.write("Create event")
+    if st.button("New"):
+        new_event("current_time_ist")
+else:
+    f"New event is {st.session_state.new_event['item']} for {st.session_state.new_event['reason']}"
+
+
 st.title("Planning")
 
 mode = st.selectbox("Calendar Mode:", options=list(calendar_display.keys()), format_func=lambda x:calendar_display[ x ])
