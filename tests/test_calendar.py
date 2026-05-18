@@ -77,7 +77,7 @@ calendar_events = [
     {"resourceId": "f", "cours": "Cours 4", "title": "Kid F", "start": "2026-05-12T15:30:00", "end": "2026-05-12T16:00:00", "color": "#3DD56D"},
 ]
 
-calendar_events = [
+data_cours = [
     {"title": "Cours 1", "start": "2026-05-12T09:30:00", "end": "2026-05-12T10:00:00"},
     {"title": "Cours 2", "start": "2026-05-12T10:30:00", "end": "2026-05-12T11:00:00"},
     {"title": "Cours 3", "start": "2026-05-12T14:30:00", "end": "2026-05-12T15:00:00"},
