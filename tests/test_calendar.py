@@ -332,9 +332,12 @@ def form_time(item):
 def new_event(item):
     st.write(f"Why is {item} your favorite?")
     reason = st.text_input("Reason...")
-    #options = st.selectbox(f"Filter values for event:", data_cours_niveau['niveau_txt'],index=None)
     options = st.selectbox(f"Filter values for event:", data_cours_niveau['niveau_txt'],index=None)
     st.write("option=",options)
+    try:
+		st.write("value=",data_cours_niveau['niveau_txt'](options))
+	except:
+		st.write('None selected')
     #data_cours_filtered=dict(data_cours_niveau).loc[('niveau'>=option-1) & ('niveau'<=option+1)]
 #df = df_chart.loc[(df_chart[xField] >= int(selMin)) & (df_chart[xField] <= int(selMax))]
     formatted_cours = [et['title'] + ': ' + form_time(et['start']).strftime('%H:%M') + '-' + form_time(et['end']).strftime('%H:%M') for et in list(data_cours)]
