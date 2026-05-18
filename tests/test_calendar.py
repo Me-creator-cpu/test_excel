@@ -89,6 +89,8 @@ data_cours = [
     {"title": "Title 8", "start": "2026-05-21 15:30:00", "end": "2026-05-21 16:00:00"},
 ]
 
+data_cours_niveau = []
+
 calendar_options_demo = {
     "editable": True,
     "selectable": True,
