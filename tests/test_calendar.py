@@ -337,7 +337,7 @@ def new_event(item):
     st.write("option=",options)
     #data_cours_filtered=dict(data_cours_niveau).loc[('niveau'>=option-1) & ('niveau'<=option+1)]
 #df = df_chart.loc[(df_chart[xField] >= int(selMin)) & (df_chart[xField] <= int(selMax))]
-    formatted_cours = [et['title'] + ': ' + form_time(et['start']).strftime('%H:%M:%S') + '-' + form_time(et['end']).strftime('%H:%M:%S') for et in list(data_cours)]
+    formatted_cours = [et['title'] + ': ' + form_time(et['start']).strftime('%H:%M') + '-' + form_time(et['end']).strftime('%H:%M') for et in list(data_cours)]
     requested_cours=st.selectbox("Select the period:", formatted_cours,index=None) 
   
     if st.button("Submit"):
