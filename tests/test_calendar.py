@@ -18,8 +18,8 @@ import re
 # https://fullcalendar.io/docs/resourceAreaColumns-grouping-demo
 
 # Get the current time in IST
-#current_time_ist = datetime.datetime.now(ist)
-current_time_ist = datetime.datetime.now()
+#current_time_ist = datetime.now(ist)
+current_time_ist = datetime.now()
 ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
 
 businessHours = [
@@ -203,7 +203,7 @@ except FileNotFoundError:
 # Utility Functions
 def is_valid_time(time_str):
     try:
-        datetime.datetime.strptime(time_str, '%H:%M')
+        datetime.strptime(time_str, '%H:%M')
         return True
     except ValueError:
         return False
@@ -241,7 +241,7 @@ def resa_book():
     if date:
         start_times = [office_start_time]
         while start_times[-1] < office_end_time:
-            next_time = (datetime.datetime.combine(date, start_times[-1]) + timedelta(minutes=default_time_gap)).time()
+            next_time = (datetime.combine(date, start_times[-1]) + timedelta(minutes=default_time_gap)).time()
             start_times.append(next_time)  
       
         start_time = st.selectbox("Select the Start Time:", start_times,index=None)
@@ -251,7 +251,7 @@ def resa_book():
                 st.warning("Start time should be from current date and time.")
             else:
                 end_of_day = min(office_end_time, datetime.time(23, 59))
-                available_end_times = [datetime.datetime.combine(date, start_time) + timedelta(minutes=i) for i in range(default_time_gap, (end_of_day.hour - start_time.hour) * 60 + 1, default_time_gap)]
+                available_end_times = [datetime.combine(date, start_time) + timedelta(minutes=i) for i in range(default_time_gap, (end_of_day.hour - start_time.hour) * 60 + 1, default_time_gap)]
                 formatted_end_times = [et.strftime('%H:%M:%S') for et in available_end_times]
                 end_time = st.selectbox("Select the End Time:", formatted_end_times,index=None)                
                 if end_time:
