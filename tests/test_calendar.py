@@ -303,7 +303,7 @@ def form_time(item):
 		try:
 			return datetime.strptime(item, '%Y-%m-%dT%H:%M:%S').time()
 		except ValueError as ve2:
-			return v2
+			return ve2
 		return ve1
 
 @st.dialog("New Event")
