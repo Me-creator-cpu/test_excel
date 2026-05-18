@@ -19,8 +19,8 @@ import re
 # https://fullcalendar.io/docs/resourceAreaColumns-grouping-demo
 
 # Get the current time in IST
-#current_time_ist = now(ist)
-current_time_ist = now()
+#current_time_ist = datetime.now(ist)
+current_time_ist = datetime.now()
 ctif = current_time_ist.strftime("%y-%m-%d %H:%M:%S")
 
 businessHours = [
