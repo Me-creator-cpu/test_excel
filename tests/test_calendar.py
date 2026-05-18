@@ -263,7 +263,7 @@ def resa_book():
     if date:
         start_times = [office_start_time]
         while start_times[-1] < office_end_time:
-            next_time = (combine(date, start_times[-1]) + timedelta(minutes=default_time_gap)).time()
+            next_time = (datetime.combine(date, start_times[-1]) + timedelta(minutes=default_time_gap)).time()
             start_times.append(next_time)  
       
         start_time = st.selectbox("Select the Start Time:", start_times,index=None)
