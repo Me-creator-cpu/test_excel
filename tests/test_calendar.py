@@ -295,11 +295,21 @@ def resa_book():
                                         booking_data["room_availability"][str(date)][selected_room] = []
                                     booking_data["room_availability"][str(date)][selected_room].append((str(start_time), str(end_time)))
 
+def form_time(item):
+	try:
+		return datetime.strptime(item, '%Y-%m-%d %H:%M:%S').time()
+	except ValueError as ve1:
+		try:
+			return datetime.strptime(item, '%Y-%m-%dT%H:%M:%S').time()
+		except ValueError as ve2:
+			return v2
+		return ve1
+
 @st.dialog("New Event")
 def new_event(item):
     st.write(f"Why is {item} your favorite?")
     reason = st.text_input("Reason...")
-    formatted_cours = [et.cours + ': ' + et.start.strftime('%H:%M:%S') + '-' + et.end.strftime('%H:%M:%S') for et in data_cours]
+    formatted_cours = [et['title'] + ': ' + form_time(et['start']).strftime('%H:%M:%S') + '-' + form_time(et['end']).strftime('%H:%M:%S') for et in list(data_cours)]
     requested_cours=st.selectbox("Select the period:", formatted_end_times,index=None) 
   
     if st.button("Submit"):
